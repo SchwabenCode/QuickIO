@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6B312E6C-9C98-4FF2-A877-C52818545B8C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SchwabenCode.QuickIO</RootNamespace>
+    <AssemblyName>SchwabenCode.QuickIO</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Framework Condition="'$(Framework)' == ''">NET45</Framework>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET20_OR_GREATER;NET30_OR_GREATER;NET35_OR_GREATER;NET40_OR_GREATER;NET45;NET45_OR_GREATER</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>\Debug\QuickIO.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Framework Condition="'$(Framework)' == ''">NET45</Framework>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NET20_OR_GREATER;NET30_OR_GREATER;NET35_OR_GREATER;NET40_OR_GREATER;NET45;NET45_OR_GREATER</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>_Output\Debug\NET45\SchwabenCode.QuickIO.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <!--SEVERAL FRAMEWORK SUPPORT -->
+  <PropertyGroup Condition="'$(Framework)' == 'NET20'">
+    <DebugType>pdbonly</DebugType>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <Optimize>true</Optimize>
+    <DefineConstants>NET20;NET20_OR_GREATER</DefineConstants>
+    <OutputPath>_Output\$(Configuration)\$(Framework)</OutputPath>
+    <DocumentationFile>_Output\$(Configuration)\$(Framework)\SchwabenCode.QuickIO.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Framework)' == 'NET20'">
+    <DebugType>pdbonly</DebugType>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <Optimize>true</Optimize>
+    <DefineConstants>NET20_OR_GREATER;NET30;NET30_OR_GREATER</DefineConstants>
+    <OutputPath>_Output\$(Configuration)\$(Framework)</OutputPath>
+    <DocumentationFile>_Output\$(Configuration)\$(Framework)\SchwabenCode.QuickIO.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Framework)' == 'NET35'">
+    <DebugType>pdbonly</DebugType>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <Optimize>true</Optimize>
+    <DefineConstants>NET20_OR_GREATER;NET30_OR_GREATER;NET35;NET35_OR_GREATER</DefineConstants>
+    <OutputPath>_Output\$(Configuration)\$(Framework)</OutputPath>
+    <DocumentationFile>_Output\$(Configuration)\$(Framework)\SchwabenCode.QuickIO.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Framework)' == 'NET40'">
+    <DebugType>pdbonly</DebugType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <Optimize>true</Optimize>
+    <DefineConstants>NET20_OR_GREATER;NET30_OR_GREATER;NET35_OR_GREATER;NET40;NET40_OR_GREATER</DefineConstants>
+    <OutputPath>_Output\$(Configuration)\$(Framework)</OutputPath>
+    <DocumentationFile>_Output\$(Configuration)\$(Framework)\SchwabenCode.QuickIO.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Framework)' == 'NET45'">
+    <DebugType>pdbonly</DebugType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <Optimize>true</Optimize>
+    <DefineConstants>NET20_OR_GREATER;NET30_OR_GREATER;NET35_OR_GREATER;NET40_OR_GREATER;NET45;NET45_OR_GREATER</DefineConstants>
+    <OutputPath>_Output\$(Configuration)\$(Framework)</OutputPath>
+    <DocumentationFile>_Output\$(Configuration)\$(Framework)\SchwabenCode.QuickIO.xml</DocumentationFile>
+  </PropertyGroup>
+  <!--<PropertyGroup Condition="'$(Framework)' == 'NET451'">
+    <DebugType>pdbonly</DebugType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <Optimize>true</Optimize>
+    <DefineConstants>NET20_OR_GREATER;NET30_OR_GREATER;NET35_OR_GREATER;NET40_OR_GREATER;NET45_OR_GREATER;NET451;NET451_OR_GREATER</DefineConstants>
+    <OutputPath>_Output\$(Configuration)\$(Framework)</OutputPath>
+    <DocumentationFile>_Output\$(Configuration)\$(Framework)\$(MSBuildProjectName).xml</DocumentationFile>
+  </PropertyGroup>-->
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Compatibility\NETCompatibility.cs" />
+    <None Include="QuickIODirectory_Attributes_Async.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIODirectory_Attributes_Async.cs</LastGenOutput>
+    </None>
+    <None Include="QuickIODirectory_Attributes.tt">
+      <TransformOnBuild>True</TransformOnBuild>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIODirectory_Attributes.cs</LastGenOutput>
+    </None>
+    <None Include="QuickIODirectory_FileTime_Async.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIODirectory_FileTime_Async.cs</LastGenOutput>
+    </None>
+    <None Include="QuickIODirectory_Root_Async.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIODirectory_Root_Async.cs</LastGenOutput>
+    </None>
+    <None Include="QuickIOFile_Attributes_Async.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIOFile_Attributes_Async.cs</LastGenOutput>
+    </None>
+    <None Include="QuickIOFile_Attributes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIOFile_Attributes.cs</LastGenOutput>
+      <TransformOnBuild>True</TransformOnBuild>
+    </None>
+    <None Include="QuickIOFile_FileTime_Async.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIOFile_FileTime_Async.cs</LastGenOutput>
+    </None>
+    <None Include="QuickIODirectory_Root.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIODirectory_Root.cs</LastGenOutput>
+    </None>
+    <None Include="QuickIOFile_Root_Async.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIOFile_Root_Async.cs</LastGenOutput>
+    </None>
+    <None Include="QuickIOFile_Root.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIOFile_Root.cs</LastGenOutput>
+    </None>
+    <None Include="QuickIOFile_FileTime.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIOFile_FileTime.cs</LastGenOutput>
+      <TransformOnBuild>True</TransformOnBuild>
+    </None>
+    <None Include="QuickIODirectory_FileTime.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIODirectory_FileTime.cs</LastGenOutput>
+      <TransformOnBuild>True</TransformOnBuild>
+    </None>
+    <Compile Include="Internal\InternalEventHelpercs.cs" />
+    <Compile Include="QuickIO_Async.cs" />
+    <Compile Include="QuickIODirectoryInfo_Async.cs" />
+    <Compile Include="QuickIODirectoryInfo_Enumerations_Async.cs" />
+    <Compile Include="QuickIODirectoryInfo_Metadata_Async.cs" />
+    <Compile Include="QuickIODirectoryInfo_Metadata.cs" />
+    <Compile Include="QuickIODirectoryInfo_Operators_Async.cs" />
+    <Compile Include="QuickIODirectoryMetadata_Async.cs" />
+    <Compile Include="QuickIODirectory_Attributes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickIODirectory_Attributes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuickIODirectory_Attributes_Async.cs">
+      <DependentUpon>QuickIODirectory_Attributes_Async.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="QuickIODirectory_Compress_Async.cs" />
+    <Compile Include="QuickIODirectory_Create_Async.cs" />
+    <Compile Include="QuickIODirectory_Delete_Async.cs" />
+    <Compile Include="QuickIODirectory_Enumerations_Async.cs" />
+    <Compile Include="QuickIODirectory_Exists_Async.cs" />
+    <Compile Include="QuickIODirectory_FileTime_Async.cs">
+      <DependentUpon>QuickIODirectory_FileTime_Async.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="QuickIODirectory_Metadata.cs" />
+    <Compile Include="QuickIODirectory_Metadata_Async.cs" />
+    <Compile Include="QuickIODirectory_Copy_Async.cs" />
+    <Compile Include="QuickIODirectory_Compress.cs" />
+    <Compile Include="QuickIODirectory_Move_Async.cs" />
+    <Compile Include="QuickIODirectory_Move.cs" />
+    <Compile Include="QuickIODirectory_Root_Async.cs">
+      <DependentUpon>QuickIODirectory_Root_Async.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="QuickIODirectory_Statistics_Async.cs" />
+    <Compile Include="QuickIOFileChunk.cs" />
+    <Compile Include="QuickIOFileCompareCriteria.cs" />
+    <Compile Include="QuickIOFileInfo_Async.cs" />
+    <Compile Include="QuickIOFileInfo_Append_Async.cs" />
+    <Compile Include="QuickIOFileInfo_Compress_Async.cs" />
+    <Compile Include="QuickIOFileInfo_Compress.cs" />
+    <Compile Include="QuickIOFileInfo_Chunks_Async.cs" />
+    <Compile Include="QuickIOFileInfo_Compare.cs" />
+    <Compile Include="QuickIOFileInfo_Chunks.cs" />
+    <Compile Include="QuickIOFileInfo_Compare_Timestamps.cs" />
+    <Compile Include="QuickIOFileInfo_Hash_Async.cs" />
+    <Compile Include="QuickIOFileInfo_Metadata_Async.cs" />
+    <Compile Include="QuickIOFileInfo_Open_Async.cs" />
+    <Compile Include="QuickIOFileInfo_Metadata.cs" />
+    <Compile Include="QuickIOFileInfo_Operators_Async.cs" />
+    <Compile Include="QuickIOFileInfo_Read_Async.cs" />
+    <Compile Include="QuickIOFileInfo_Write_Async.cs" />
+    <Compile Include="QuickIOFile_Attributes_Async.cs">
+      <DependentUpon>QuickIOFile_Attributes_Async.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="QuickIOFile_FileTime_Async.cs">
+      <DependentUpon>QuickIOFile_FileTime_Async.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="QuickIODirectory_Root.cs">
+      <DependentUpon>QuickIODirectory_Root.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="QuickIOFile_Root_Async.cs">
+      <DependentUpon>QuickIOFile_Root_Async.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="QuickIOPatternConstants.cs" />
+    <Compile Include="QuickIORecommendedValues.cs" />
+    <Compile Include="QuickIOShareInfo_DiskInformation_Async.cs" />
+    <Compile Include="QuickIOShareInfo_DiskInformation.cs" />
+    <Compile Include="QuickIOShareInfo_Operators_Async.cs" />
+    <Compile Include="QuickIOShareInfo_Operators.cs" />
+    <Compile Include="QuickIOShare_Enumerate_Async.cs" />
+    <Compile Include="QuickIOShare_Enumerate.cs" />
+    <Compile Include="QuickIOShare_DiskInformation_Async.cs" />
+    <Compile Include="QuickIOShare_DiskInformation.cs" />
+    <Compile Include="QuickIOShareInfo.cs" />
+    <Compile Include="QuickIOShareApiReadLevel.cs" />
+    <Compile Include="QuickIOShareMetadata_Async.cs" />
+    <Compile Include="QuickIOShareType.cs" />
+    <Compile Include="QuickIODirectory_Copy.cs" />
+    <Compile Include="QuickIOEnumerateOptions.cs" />
+    <Compile Include="QuickIOFile_Attributes.cs">
+      <DependentUpon>QuickIOFile_Attributes.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="QuickIOFile_Root.cs">
+      <DependentUpon>QuickIOFile_Root.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="QuickIOFile_FileTime.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickIOFile_FileTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuickIODirectory_FileTime.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickIODirectory_FileTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuickIOShare.cs" />
+    <Compile Include="QuickIODiskInformation.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferDirectoryCreationErrorEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferFileCopyErrorEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferFileCreationErrorEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobEndEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobErrorEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobEventArgs.cs" />
+    <Compile Include="FileSystemIsBusyException.cs" />
+    <Compile Include="Internal\Invariant.cs" />
+    <Compile Include="Transfer\IQuickIOTransferJob.cs" />
+    <Compile Include="Transfer\IQuickIOTransferObserver.cs" />
+    <Compile Include="Transfer\IQuickIOTransferWriteJob.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobWriteEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferDirectoryCopyService.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferDirectoryCreatedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferDirectoryCreatingEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferEventDelegates.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobRunEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferDirectoryCopyService_Events.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCopyService_Events.cs" />
+    <Compile Include="Transfer\QuickIOTransferServiceBase_Events.cs" />
+    <Compile Include="Transfer\QuickIOTransferSetTimestampsJob.cs" />
+    <Compile Include="Transfer\QuickIOTransferDirectoryCreationJob.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferFileCopyFinishedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferFileCopyProgressEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCopyService.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferFileCopyStartedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferFileCreationFinishedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferFileCreationProgressEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferFileCreationStartedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobDequeuedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobEnqueuedEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobPriorityComparer.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobQueuedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobReatryMaxReachedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobRequeuedEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobType.cs" />
+    <Compile Include="Transfer\QuickIOTransferServiceBase_Executions.cs" />
+    <Compile Include="Transfer\QuickIOTransferServiceBase.cs" />
+    <Compile Include="Transfer\QuickIOTransferBackgroundService.cs" />
+    <Compile Include="Transfer\QuickIOTransferJob.cs" />
+    <Compile Include="QuickIODirectoryInfo_Operators.cs" />
+    <Compile Include="QuickIODirectoryInfo_Enumerations.cs" />
+    <Compile Include="QuickIODirectoryMetadata.cs" />
+    <Compile Include="QuickIODirectory_Exists.cs" />
+    <Compile Include="QuickIODirectory_Create.cs" />
+    <Compile Include="QuickIODirectory_Delete.cs" />
+    <Compile Include="QuickIODirectory_Enumerations.cs" />
+    <Compile Include="QuickIODirectory_Statistics.cs" />
+    <Compile Include="QuickIOFileInfo_Operators.cs" />
+    <Compile Include="QuickIOFileInfo_Read.cs" />
+    <Compile Include="QuickIOFileInfo_Write.cs" />
+    <Compile Include="QuickIOFileInfo_Append.cs" />
+    <Compile Include="QuickIOFileInfo_Open.cs" />
+    <Compile Include="QuickIOFileInfo_Hash.cs" />
+    <Compile Include="QuickIOFileMetadata.cs" />
+    <Compile Include="QuickIOFileSystemMetadataBase.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCreationJob.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCopyJob.cs" />
+    <Compile Include="QuickIOFile_Append.cs" />
+    <Compile Include="QuickIOFile_Create.cs" />
+    <Compile Include="QuickIOFile_Hash.cs" />
+    <Compile Include="QuickIOFile_Open.cs" />
+    <Compile Include="QuickIOFile_Read.cs" />
+    <Compile Include="QuickIOFile_Write.cs" />
+    <Compile Include="QuickIOHashImplementationType.cs" />
+    <Compile Include="QuickIOHashResult.cs" />
+    <Compile Include="QuickIOFile.cs" />
+    <Compile Include="QuickIOFileSystemEntryType.cs" />
+    <Compile Include="QuickIOFolderStatisticResult.cs" />
+    <Compile Include="QuickIOParsePathResult.cs" />
+    <Compile Include="QuickIOPatterns.cs" />
+    <Compile Include="QuickIOSystemRules.cs" />
+    <Compile Include="PathAlreadyExistsException.cs" />
+    <Compile Include="DirectoryAlreadyExistsException.cs" />
+    <Compile Include="DirectoryNotEmptyException.cs" />
+    <Compile Include="Internal\InternalQuickIOCommon.cs" />
+    <Compile Include="QuickIOExtensions.cs" />
+    <Compile Include="QuickIOPath.cs" />
+    <Compile Include="QuickIOFileSystemEntryBase.cs" />
+    <Compile Include="QuickIOFileInfo.cs" />
+    <Compile Include="QuickIODirectoryInfo.cs" />
+    <Compile Include="QuickIOPathInfo.cs" />
+    <Compile Include="QuickIOPathLocation.cs" />
+    <Compile Include="QuickIOPathType.cs" />
+    <Compile Include="FileAlreadyExistsException.cs" />
+    <Compile Include="QuickIOBaseException.cs" />
+    <Compile Include="Internal\InternalHelpers.cs" />
+    <Compile Include="Internal\InternalRawDataHelpers.cs" />
+    <Compile Include="QuickIO.cs" />
+    <Compile Include="Internal\InternalQuickIO.cs" />
+    <Compile Include="InvalidPathException.cs" />
+    <Compile Include="Overrides\DirectoryInfo.cs" />
+    <Compile Include="Overrides\FileInfo.cs" />
+    <Compile Include="PathNotFoundException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuickIOFileSystemSecurity.cs" />
+    <Compile Include="Transfer\QuickIOTransferObserver.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobWriteWithSourceEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferWorkerCreatedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferWorkerIsSleepingEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferWorkerPickedJobEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferWorkerShutdownEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferWorkerStartedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferWorkerWokeUpEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobWriteJob.cs" />
+    <Compile Include="UnsupportedDriveType.cs" />
+    <Compile Include="UnsupportedShareType.cs" />
+    <Compile Include="Win32API\QuickIOShareDetailedInfo.cs" />
+    <Compile Include="Win32API\Win32ApiShareInfoAdmin.cs" />
+    <Compile Include="Win32API\Win32ApiShareInfoNormal.cs" />
+    <Compile Include="Win32API\Win32FileHandle.cs" />
+    <Compile Include="Win32API\Win32SecurityObjectType.cs" />
+    <Compile Include="Win32API\Win32FileSystemEntrySecurityInformation.cs" />
+    <Compile Include="UnmatchedFileSystemEntryTypeException.cs" />
+    <Compile Include="Win32API\Win32FindData.cs" />
+    <Compile Include="Win32API\Win32ErrorCodes.cs" />
+    <Compile Include="Win32API\Win32FileTime.cs" />
+    <Compile Include="Win32API\Win32SafeNativeMethods.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="License.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <!-- BUILD LOGIC TO SUPPORT SEVERAL .NET VERSIONS -->
+  <Target Name="AfterBuild">
+    <MSBuild Condition="'$(Framework)' == 'NET30'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET20" RunEachTargetSeparately="true" />
+    <MSBuild Condition="'$(Framework)' == 'NET35'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET30" RunEachTargetSeparately="true" />
+    <MSBuild Condition="'$(Framework)' == 'NET40'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET35" RunEachTargetSeparately="true" />
+    <MSBuild Condition="'$(Framework)' == 'NET45'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET40" RunEachTargetSeparately="true" />
+    <!--<MSBuild Condition="'$(Framework)' == 'NET451'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET45" RunEachTargetSeparately="true" />-->
+  </Target>
+</Project>

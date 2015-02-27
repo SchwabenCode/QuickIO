@@ -1,0 +1,86 @@
+
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>QuickIO.NET</title>
+        <meta name="viewport" content="width=device-width">
+
+					<link rel="stylesheet" type="text/css" href="../assets/css/style.css?version=0.9.4.1" />
+			<script src="../assets/js/vendor.js?version=0.9.4.1"></script>
+			<script src="../assets/js/frame.js?version=0.9.4.1"></script>
+		
+		<script>hljs.initHighlightingOnLoad();</script>
+
+    </head>
+    <body>      	
+		<div class="ui-layout-center">
+			<div class="text-box markdown no-margin">
+				
+				<h1>Version History</h1>
+
+<h3><strong>2014-07-06 (Version: 2.0.0.0)</strong></h3>
+
+<ul>
+<li>Replaced changelist file with Markdown menu supported by sharpDox</li>
+<li>Formatted license file</li>
+<li>Added new class QuickIOShareInfo</li>
+<li>Added methods for enumerate network shares</li>
+<li>Added new class QuickIOFileCompare to compare files</li>
+<li>Integrated all methods as Async()</li>
+<li>Added Directory Compress support by using .NET 4.5 FileCompress</li>
+<li>Added File Compress by GZipStream</li>
+<li>Native Name Filter support in all EnumerateXYZ()-methods</li>
+<li>Added general disk information call (total bytes, free bytes of network shares and local disks)</li>
+<li>Removed doubled methods from class QuickIO. Please Use QuickIOFile or QuickIODirectory classes.</li>
+</ul>
+
+<h3><strong>2014-05-28 (Version: 1.0.6.0)</strong></h3>
+
+<ul>
+<li>Fixed Start()-Error in QuickIO FileCopyService</li>
+</ul>
+
+<h3><strong>2014-04-24 (Version: 1.0.2.0)</strong></h3>
+
+<ul>
+<li>Fixed Directory delete error: sometimes filesystem returns incorrect folder order and removing fails then</li>
+<li>QuickIODirectoryInfo now support share root</li>
+<li>QuickIOEnumerationOptions now supported by all enumeration methods</li>
+</ul>
+
+<h3><strong>2014-04-14 (Version: 1.0.1.0)</strong></h3>
+
+<ul>
+<li>Added QuickIOEnumerationOptions to handle exception in enumerations</li>
+<li>Added QuickIODirectory.Copy()</li>
+<li>Added some null and empty checks</li>
+<li>Optimized directory delete</li>
+<li>Fixed directory exists error on network share root timeout</li>
+</ul>
+
+<h3><strong>2014-04-07  (Version: 1.0.0.1)</strong></h3>
+
+<ul>
+<li>Fixed EnumerateFiles-Exception if search in all sub dirs too</li>
+</ul>
+
+<h3><strong>2014-04-05  (Version: 1.0.0.0)</strong></h3>
+
+<ul>
+<li>First public release</li>
+</ul>
+
+<h3><strong>2014-01-23</strong></h3>
+
+<ul>
+<li>Started new project QuickIO.NET</li>
+</ul>
+
+			</div>
+		</div> 
+    </body>
+</html>
+

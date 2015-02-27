@@ -1,0 +1,7 @@
+﻿<#@ template language="C#" hostspecific="true" #>
+<#@ include file="..\QuickIO.CodeGeneration\SaveOutput.tt" #>
+<#@ include file="..\QuickIO.CodeGeneration\StaticFileTimeMethods_Async.tt" #>
+<#@ output  extension=".cs" #>
+<#
+    Generate("QuickIOFile");
+#>
