@@ -32,6 +32,7 @@ It would be also very nice when you just write me, if you like this implementati
 ## QuickIO.NET 3.0
 - Dropped support of < .NET 4.0
 - Fully async elements and events
+- Cancellation support
 - Code Contracts
 - - Support for Windows 10 and Windows Server 2014
 
