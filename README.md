@@ -34,7 +34,7 @@ It would be also very nice when you just write me, if you like this implementati
 - Fully async elements and events
 - Cancellation support
 - Code Contracts
-- - Support for Windows 10 and Windows Server 2014
+- Support for Windows 10 and Windows Server 2014
 
 ## License
 [Microsoft Public License (Ms-PL)](https://github.com/SchwabenCode/QuickIO/blob/master/LICENSE.md)
