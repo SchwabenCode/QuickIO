@@ -29,6 +29,12 @@ If you want to thank me personally, take a look at [my personal Amazon wishlist]
 
 It would be also very nice when you just write me, if you like this implementation and tell me what you've started!
 
+## QuickIO.NET 3.0
+- Dropped support of < .NET 4.0
+- Fully async elements and events
+- Code Contracts
+- - Support for Windows 10 and Windows Server 2014
+
 ## License
 [Microsoft Public License (Ms-PL)](https://github.com/SchwabenCode/QuickIO/blob/master/LICENSE.md)
 ##NuGet
