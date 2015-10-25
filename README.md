@@ -1,7 +1,11 @@
 # QuickIO.NET
 **by [SchwabenCode.com](http://www.schwabencode.com) - Benjamin Abt**
 
-[![NuGet Downloads](https://img.shields.io/nuget/dt/QuickIO.NET.svg?style=flat-square)](https://www.nuget.org/packages/QuickIO.NET/) [![NuGet Version](https://img.shields.io/nuget/v/QuickIO.NET.svg?style=flat-square)](https://www.nuget.org/packages/QuickIO.NET/)
+[![License](https://img.shields.io/github/license/SchwabenCode/QuickIO.svg?label=License&style=flat-square)](https://www.nuget.org/packages/QuickIO.NET/) 
+[![NuGet Downloads](https://img.shields.io/nuget/dt/QuickIO.NET.svg?label=NuGet%20Downloads&style=flat-square)](https://www.nuget.org/packages/QuickIO.NET/) [![NuGet Version](https://img.shields.io/nuget/v/QuickIO.NET.svg?label=NuGet%20Release&style=flat-square)](https://www.nuget.org/packages/QuickIO.NET/) [![NuGet PreVersion](https://img.shields.io/nuget/vpre/QuickIO.NET.svg?label=NuGet%20Pre-Version&style=flat-square)](https://www.nuget.org/packages/QuickIO.NET/) ![GitHub Release](https://img.shields.io/github/release/SchwabenCode/QuickIO.svg?label=GitHub%20Release&style=flat-square) ![GitHub Issues](https://img.shields.io/github/issues/SchwabenCode/QuickIO.svg?label=Open%20Issues&style=flat-square)
+
+
+
 
 ## Website
 Checkout the official Page [http://quickIO.NET](http://quickIO.NET)
