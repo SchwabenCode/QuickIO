@@ -1,7 +1,7 @@
 # QuickIO.NET
 **by [SchwabenCode.com](http://www.schwabencode.com) - Benjamin Abt**
 
-![NuGet Version](https://img.shields.io/nuget/dt/QuickIO.NET.svg) ![NuGet Downloads](https://img.shields.io/nuget/v/QuickIO.NET.svg)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/QuickIO.NET.svg)](https://www.nuget.org/packages/QuickIO.NET/) [![NuGet Version](https://img.shields.io/nuget/v/QuickIO.NET.svg)](https://www.nuget.org/packages/QuickIO.NET/)
 
 ## Website
 Checkout the official Page [http://quickIO.NET](http://quickIO.NET)
