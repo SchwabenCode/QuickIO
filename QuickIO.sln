@@ -5,10 +5,6 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickIO", "QuickIO\QuickIO.csproj", "{6B312E6C-9C98-4FF2-A877-C52818545B8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickIO.CodeGeneration", "QuickIO.CodeGeneration\QuickIO.CodeGeneration.csproj", "{CCB05576-1AAA-4F0C-992A-3A805A6CD8F7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickIO.Transfer", "QuickIO.Transfer\QuickIO.Transfer.csproj", "{9983420A-0DDB-4C75-9679-5243FCF0EA9A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,14 +15,6 @@ Global
 		{6B312E6C-9C98-4FF2-A877-C52818545B8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B312E6C-9C98-4FF2-A877-C52818545B8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B312E6C-9C98-4FF2-A877-C52818545B8C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CCB05576-1AAA-4F0C-992A-3A805A6CD8F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CCB05576-1AAA-4F0C-992A-3A805A6CD8F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CCB05576-1AAA-4F0C-992A-3A805A6CD8F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CCB05576-1AAA-4F0C-992A-3A805A6CD8F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9983420A-0DDB-4C75-9679-5243FCF0EA9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9983420A-0DDB-4C75-9679-5243FCF0EA9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9983420A-0DDB-4C75-9679-5243FCF0EA9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9983420A-0DDB-4C75-9679-5243FCF0EA9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

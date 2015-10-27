@@ -117,196 +117,196 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Compatibility\NETCompatibility.cs" />
-    <None Include="QuickIODirectory_Attributes_Async.tt">
+    <None Include="QuickIODirectory.Attributes.Async.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIODirectory_Attributes_Async.cs</LastGenOutput>
+      <LastGenOutput>QuickIODirectory.Attributes.Async.cs</LastGenOutput>
     </None>
-    <None Include="QuickIODirectory_Attributes.tt">
+    <None Include="QuickIODirectory.Attributes.tt">
       <TransformOnBuild>True</TransformOnBuild>
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIODirectory_Attributes.cs</LastGenOutput>
+      <LastGenOutput>QuickIODirectory.Attributes.cs</LastGenOutput>
     </None>
-    <None Include="QuickIODirectory_FileTime_Async.tt">
+    <None Include="QuickIODirectory.FileTime.Async.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIODirectory_FileTime_Async.cs</LastGenOutput>
+      <LastGenOutput>QuickIODirectory.FileTime.Async.cs</LastGenOutput>
     </None>
-    <None Include="QuickIODirectory_Root_Async.tt">
+    <None Include="QuickIODirectory.Root.Async.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIODirectory_Root_Async.cs</LastGenOutput>
+      <LastGenOutput>QuickIODirectory.Root.Async.cs</LastGenOutput>
     </None>
-    <None Include="QuickIOFile_Attributes_Async.tt">
+    <None Include="QuickIOFile.Attributes.Async.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIOFile_Attributes_Async.cs</LastGenOutput>
+      <LastGenOutput>QuickIOFile.Attributes.Async.cs</LastGenOutput>
     </None>
-    <None Include="QuickIOFile_Attributes.tt">
+    <None Include="QuickIOFile.Attributes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIOFile_Attributes.cs</LastGenOutput>
+      <LastGenOutput>QuickIOFile.Attributes.cs</LastGenOutput>
       <TransformOnBuild>True</TransformOnBuild>
     </None>
-    <None Include="QuickIOFile_FileTime_Async.tt">
+    <None Include="QuickIOFile.FileTime.Async.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIOFile_FileTime_Async.cs</LastGenOutput>
+      <LastGenOutput>QuickIOFile.FileTime.Async.cs</LastGenOutput>
     </None>
-    <None Include="QuickIODirectory_Root.tt">
+    <None Include="QuickIODirectory.Root.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIODirectory_Root.cs</LastGenOutput>
+      <LastGenOutput>QuickIODirectory.Root.cs</LastGenOutput>
     </None>
-    <None Include="QuickIOFile_Root_Async.tt">
+    <None Include="QuickIOFile.Root.Async.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIOFile_Root_Async.cs</LastGenOutput>
+      <LastGenOutput>QuickIOFile.Root.Async.cs</LastGenOutput>
     </None>
-    <None Include="QuickIOFile_Root.tt">
+    <None Include="QuickIOFile.Root.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIOFile_Root.cs</LastGenOutput>
+      <LastGenOutput>QuickIOFile.Root.cs</LastGenOutput>
     </None>
-    <None Include="QuickIOFile_FileTime.tt">
+    <None Include="QuickIOFile.FileTime.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIOFile_FileTime.cs</LastGenOutput>
+      <LastGenOutput>QuickIOFile.FileTime.cs</LastGenOutput>
       <TransformOnBuild>True</TransformOnBuild>
     </None>
-    <None Include="QuickIODirectory_FileTime.tt">
+    <None Include="QuickIODirectory.FileTime.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIODirectory_FileTime.cs</LastGenOutput>
+      <LastGenOutput>QuickIODirectory.FileTime.cs</LastGenOutput>
       <TransformOnBuild>True</TransformOnBuild>
     </None>
+    <Compile Include="QuickIOShare.DiskInformation.cs" />
+    <Compile Include="QuickIOShare.DiskInformation_Async.cs" />
+    <Compile Include="QuickIOShare.Enumerate.cs" />
+    <Compile Include="QuickIOShare.Enumerate_Async.cs" />
+    <Compile Include="QuickIOShareInfo.DiskInformation.cs" />
+    <Compile Include="QuickIOShareInfo.DiskInformation.Async.cs" />
+    <Compile Include="QuickIOShareInfo.Operators.cs" />
+    <Compile Include="QuickIOShareInfo.Operators_Async.cs" />
     <Compile Include="QuickIO_Async.cs" />
-    <Compile Include="QuickIODirectoryInfo_Async.cs" />
-    <Compile Include="QuickIODirectoryInfo_Enumerations_Async.cs" />
-    <Compile Include="QuickIODirectoryInfo_Metadata_Async.cs" />
-    <Compile Include="QuickIODirectoryInfo_Metadata.cs" />
-    <Compile Include="QuickIODirectoryInfo_Operators_Async.cs" />
-    <Compile Include="QuickIODirectoryMetadata_Async.cs" />
-    <Compile Include="QuickIODirectory_Attributes.cs">
+    <Compile Include="QuickIODirectoryInfo.Async.cs" />
+    <Compile Include="QuickIODirectoryInfo.Enumerations.Async.cs" />
+    <Compile Include="QuickIODirectoryInfo.Metadata.Async.cs" />
+    <Compile Include="QuickIODirectoryInfo.Metadata.cs" />
+    <Compile Include="QuickIODirectoryInfo.Operators.Async.cs" />
+    <Compile Include="QuickIODirectoryMetadata.Async.cs" />
+    <Compile Include="QuickIODirectory.Attributes.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuickIODirectory_Attributes.tt</DependentUpon>
+      <DependentUpon>QuickIODirectory.Attributes.tt</DependentUpon>
     </Compile>
-    <Compile Include="QuickIODirectory_Attributes_Async.cs">
-      <DependentUpon>QuickIODirectory_Attributes_Async.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="QuickIODirectory_Compress_Async.cs" />
-    <Compile Include="QuickIODirectory_Create_Async.cs" />
-    <Compile Include="QuickIODirectory_Delete_Async.cs" />
-    <Compile Include="QuickIODirectory_Enumerations_Async.cs" />
-    <Compile Include="QuickIODirectory_Exists_Async.cs" />
-    <Compile Include="QuickIODirectory_FileTime_Async.cs">
-      <DependentUpon>QuickIODirectory_FileTime_Async.tt</DependentUpon>
+    <Compile Include="QuickIODirectory.Attributes.Async.cs">
+      <DependentUpon>QuickIODirectory.Attributes.Async.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="QuickIODirectory_Metadata.cs" />
-    <Compile Include="QuickIODirectory_Metadata_Async.cs" />
-    <Compile Include="QuickIODirectory_Copy_Async.cs" />
-    <Compile Include="QuickIODirectory_Compress.cs" />
-    <Compile Include="QuickIODirectory_Move_Async.cs" />
-    <Compile Include="QuickIODirectory_Move.cs" />
-    <Compile Include="QuickIODirectory_Root_Async.cs">
-      <DependentUpon>QuickIODirectory_Root_Async.tt</DependentUpon>
+    <Compile Include="QuickIODirectory.Compress.Async.cs" />
+    <Compile Include="QuickIODirectory.Create.Async.cs" />
+    <Compile Include="QuickIODirectory.Delete.Async.cs" />
+    <Compile Include="QuickIODirectory.Enumerations.Async.cs" />
+    <Compile Include="QuickIODirectory.Exists.Async.cs" />
+    <Compile Include="QuickIODirectory.FileTime.Async.cs">
+      <DependentUpon>QuickIODirectory.FileTime.Async.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="QuickIODirectory_Statistics_Async.cs" />
+    <Compile Include="QuickIODirectory.Metadata.cs" />
+    <Compile Include="QuickIODirectory.Metadata.Async.cs" />
+    <Compile Include="QuickIODirectory.Copy.Async.cs" />
+    <Compile Include="QuickIODirectory.Compress.cs" />
+    <Compile Include="QuickIODirectory.Move.Async.cs" />
+    <Compile Include="QuickIODirectory.Move.cs" />
+    <Compile Include="QuickIODirectory.Root.Async.cs">
+      <DependentUpon>QuickIODirectory.Root.Async.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="QuickIODirectory.Statistics.Async.cs" />
     <Compile Include="QuickIOFileChunk.cs" />
     <Compile Include="QuickIOFileCompareCriteria.cs" />
-    <Compile Include="QuickIOFileInfo_Async.cs" />
-    <Compile Include="QuickIOFileInfo_Append_Async.cs" />
-    <Compile Include="QuickIOFileInfo_Compress_Async.cs" />
-    <Compile Include="QuickIOFileInfo_Compress.cs" />
-    <Compile Include="QuickIOFileInfo_Chunks_Async.cs" />
-    <Compile Include="QuickIOFileInfo_Compare.cs" />
-    <Compile Include="QuickIOFileInfo_Chunks.cs" />
-    <Compile Include="QuickIOFileInfo_Compare_Timestamps.cs" />
-    <Compile Include="QuickIOFileInfo_Hash_Async.cs" />
-    <Compile Include="QuickIOFileInfo_Metadata_Async.cs" />
-    <Compile Include="QuickIOFileInfo_Open_Async.cs" />
-    <Compile Include="QuickIOFileInfo_Metadata.cs" />
-    <Compile Include="QuickIOFileInfo_Operators_Async.cs" />
-    <Compile Include="QuickIOFileInfo_Read_Async.cs" />
-    <Compile Include="QuickIOFileInfo_Write_Async.cs" />
-    <Compile Include="QuickIOFile_Attributes_Async.cs">
-      <DependentUpon>QuickIOFile_Attributes_Async.tt</DependentUpon>
+    <Compile Include="QuickIOFileInfo.Async.cs" />
+    <Compile Include="QuickIOFileInfo.Append.Async.cs" />
+    <Compile Include="QuickIOFileInfo.Compress.Async.cs" />
+    <Compile Include="QuickIOFileInfo.Compress.cs" />
+    <Compile Include="QuickIOFileInfo.Chunks.Async.cs" />
+    <Compile Include="QuickIOFileInfo.Compare.cs" />
+    <Compile Include="QuickIOFileInfo.Chunks.cs" />
+    <Compile Include="QuickIOFileInfo.Compare.Timestamps.cs" />
+    <Compile Include="QuickIOFileInfo.Hash.Async.cs" />
+    <Compile Include="QuickIOFileInfo.Metadata.Async.cs" />
+    <Compile Include="QuickIOFileInfo.Open.Async.cs" />
+    <Compile Include="QuickIOFileInfo.Metadata.cs" />
+    <Compile Include="QuickIOFileInfo.Operators.Async.cs" />
+    <Compile Include="QuickIOFileInfo.Read.Async.cs" />
+    <Compile Include="QuickIOFileInfo.Write.Async.cs" />
+    <Compile Include="QuickIOFile.Attributes.Async.cs">
+      <DependentUpon>QuickIOFile.Attributes.Async.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="QuickIOFile_FileTime_Async.cs">
-      <DependentUpon>QuickIOFile_FileTime_Async.tt</DependentUpon>
+    <Compile Include="QuickIOFile.FileTime.Async.cs">
+      <DependentUpon>QuickIOFile.FileTime.Async.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="QuickIODirectory_Root.cs">
-      <DependentUpon>QuickIODirectory_Root.tt</DependentUpon>
+    <Compile Include="QuickIODirectory.Root.cs">
+      <DependentUpon>QuickIODirectory.Root.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="QuickIOFile_Root_Async.cs">
-      <DependentUpon>QuickIOFile_Root_Async.tt</DependentUpon>
+    <Compile Include="QuickIOFile.Root.Async.cs">
+      <DependentUpon>QuickIOFile.Root.Async.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="QuickIOPatternConstants.cs" />
     <Compile Include="QuickIORecommendedValues.cs" />
-    <Compile Include="QuickIOShareInfo_DiskInformation_Async.cs" />
-    <Compile Include="QuickIOShareInfo_DiskInformation.cs" />
-    <Compile Include="QuickIOShareInfo_Operators_Async.cs" />
-    <Compile Include="QuickIOShareInfo_Operators.cs" />
-    <Compile Include="QuickIOShare_Enumerate_Async.cs" />
-    <Compile Include="QuickIOShare_Enumerate.cs" />
-    <Compile Include="QuickIOShare_DiskInformation_Async.cs" />
-    <Compile Include="QuickIOShare_DiskInformation.cs" />
     <Compile Include="QuickIOShareInfo.cs" />
     <Compile Include="QuickIOShareApiReadLevel.cs" />
     <Compile Include="QuickIOShareMetadata_Async.cs" />
     <Compile Include="QuickIOShareType.cs" />
-    <Compile Include="QuickIODirectory_Copy.cs" />
+    <Compile Include="QuickIODirectory.Copy.cs" />
     <Compile Include="QuickIOEnumerateOptions.cs" />
-    <Compile Include="QuickIOFile_Attributes.cs">
-      <DependentUpon>QuickIOFile_Attributes.tt</DependentUpon>
+    <Compile Include="QuickIOFile.Attributes.cs">
+      <DependentUpon>QuickIOFile.Attributes.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="QuickIOFile_Root.cs">
-      <DependentUpon>QuickIOFile_Root.tt</DependentUpon>
+    <Compile Include="QuickIOFile.Root.cs">
+      <DependentUpon>QuickIOFile.Root.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="QuickIOFile_FileTime.cs">
+    <Compile Include="QuickIOFile.FileTime.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuickIOFile_FileTime.tt</DependentUpon>
+      <DependentUpon>QuickIOFile.FileTime.tt</DependentUpon>
     </Compile>
-    <Compile Include="QuickIODirectory_FileTime.cs">
+    <Compile Include="QuickIODirectory.FileTime.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuickIODirectory_FileTime.tt</DependentUpon>
+      <DependentUpon>QuickIODirectory.FileTime.tt</DependentUpon>
     </Compile>
     <Compile Include="QuickIOShare.cs" />
     <Compile Include="QuickIODiskInformation.cs" />
     <Compile Include="FileSystemIsBusyException.cs" />
     <Compile Include="Internal\Invariant.cs" />
-    <Compile Include="QuickIODirectoryInfo_Operators.cs" />
-    <Compile Include="QuickIODirectoryInfo_Enumerations.cs" />
+    <Compile Include="QuickIODirectoryInfo.Operators.cs" />
+    <Compile Include="QuickIODirectoryInfo.Enumerations.cs" />
     <Compile Include="QuickIODirectoryMetadata.cs" />
-    <Compile Include="QuickIODirectory_Exists.cs" />
-    <Compile Include="QuickIODirectory_Create.cs" />
-    <Compile Include="QuickIODirectory_Delete.cs" />
-    <Compile Include="QuickIODirectory_Enumerations.cs" />
-    <Compile Include="QuickIODirectory_Statistics.cs" />
-    <Compile Include="QuickIOFileInfo_Operators.cs" />
-    <Compile Include="QuickIOFileInfo_Read.cs" />
-    <Compile Include="QuickIOFileInfo_Write.cs" />
-    <Compile Include="QuickIOFileInfo_Append.cs" />
-    <Compile Include="QuickIOFileInfo_Open.cs" />
-    <Compile Include="QuickIOFileInfo_Hash.cs" />
+    <Compile Include="QuickIODirectory.Exists.cs" />
+    <Compile Include="QuickIODirectory.Create.cs" />
+    <Compile Include="QuickIODirectory.Delete.cs" />
+    <Compile Include="QuickIODirectory.Enumerations.cs" />
+    <Compile Include="QuickIODirectory.Statistics.cs" />
+    <Compile Include="QuickIOFileInfo.Operators.cs" />
+    <Compile Include="QuickIOFileInfo.Read.cs" />
+    <Compile Include="QuickIOFileInfo.Write.cs" />
+    <Compile Include="QuickIOFileInfo.Append.cs" />
+    <Compile Include="QuickIOFileInfo.Open.cs" />
+    <Compile Include="QuickIOFileInfo.Hash.cs" />
     <Compile Include="QuickIOFileMetadata.cs" />
     <Compile Include="QuickIOFileSystemMetadataBase.cs" />
-    <Compile Include="QuickIOFile_Append.cs" />
-    <Compile Include="QuickIOFile_Create.cs" />
-    <Compile Include="QuickIOFile_Hash.cs" />
-    <Compile Include="QuickIOFile_Open.cs" />
-    <Compile Include="QuickIOFile_Read.cs" />
-    <Compile Include="QuickIOFile_Write.cs" />
+    <Compile Include="QuickIOFile.Append.cs" />
+    <Compile Include="QuickIOFile.Create.cs" />
+    <Compile Include="QuickIOFile.Hash.cs" />
+    <Compile Include="QuickIOFile.Open.cs" />
+    <Compile Include="QuickIOFile.Read.cs" />
+    <Compile Include="QuickIOFile.Write.cs" />
     <Compile Include="QuickIOHashImplementationType.cs" />
     <Compile Include="QuickIOHashResult.cs" />
     <Compile Include="QuickIOFile.cs" />
@@ -339,6 +339,57 @@
     <Compile Include="PathNotFoundException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuickIOFileSystemSecurity.cs" />
+    <Compile Include="Transfer\IQuickIOTransferJob.cs" />
+    <Compile Include="Transfer\IQuickIOTransferJobContract.cs" />
+    <Compile Include="Transfer\IQuickIOTransferObserver.cs" />
+    <Compile Include="Transfer\IQuickIOTransferObserverContract.cs" />
+    <Compile Include="Transfer\IQuickIOTransferWriteJob.cs" />
+    <Compile Include="Transfer\IQuickIOTransferWriteJobContract.cs" />
+    <Compile Include="Transfer\QuickIOTransferBackgroundService.cs" />
+    <Compile Include="Transfer\QuickIOTransferDirectoryCopyService.cs" />
+    <Compile Include="Transfer\QuickIOTransferDirectoryCopyService_Events.cs" />
+    <Compile Include="Transfer\QuickIOTransferDirectoryCreatedEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferDirectoryCreatingEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferDirectoryCreationErrorEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferDirectoryCreationJob.cs" />
+    <Compile Include="Transfer\QuickIOTransferEventDelegates.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCopyErrorEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCopyFinishedEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCopyJob.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCopyProgressEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCopyService.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCopyService_Events.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCopyStartedEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCreationErrorEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCreationFinishedEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCreationJob.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCreationProgressEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCreationStartedEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferJob.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobDequeuedEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobEndEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobEnqueuedEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobErrorEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobPriorityComparer.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobQueuedEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobReatryMaxReachedEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobRequeuedEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobRunEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobWriteEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobWriteJob.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobWriteWithSourceEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferObserver.cs" />
+    <Compile Include="Transfer\QuickIOTransferServiceBase.cs" />
+    <Compile Include="Transfer\QuickIOTransferServiceBase.Events.cs" />
+    <Compile Include="Transfer\QuickIOTransferServiceBase.Executions.cs" />
+    <Compile Include="Transfer\QuickIOTransferSetTimestampsJob.cs" />
+    <Compile Include="Transfer\QuickIOTransferWorkerCreatedEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferWorkerIsSleepingEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferWorkerPickedJobEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferWorkerShutdownEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferWorkerStartedEventArgs.cs" />
+    <Compile Include="Transfer\QuickIOTransferWorkerWokeUpEventArgs.cs" />
     <Compile Include="UnsupportedDriveTypeException.cs" />
     <Compile Include="UnsupportedShareTypeException.cs" />
     <Compile Include="Win32API\QuickIOShareDetailedInfo.cs" />
@@ -355,6 +406,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License.txt" />
+    <None Include="CodeGeneration\StaticRootMethods_Async.tt">
+      <LastGenOutput>StaticRootMethods_Async.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGeneration\StaticRootMethods.tt">
+      <LastGenOutput>StaticRootMethods.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGeneration\StaticFileTimeMethods_Async.tt">
+      <LastGenOutput>StaticFileTimeMethods_Async.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGeneration\StaticFileTimeMethods.tt">
+      <LastGenOutput>StaticFileTimeMethods.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGeneration\StaticAttributeMethods_Async.tt">
+      <LastGenOutput>StaticAttributeMethods_Async.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGeneration\StaticAttributeMethods.tt">
+      <LastGenOutput>StaticAttributeMethods.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGeneration\SaveOutput.tt">
+      <LastGenOutput>SaveOutput.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
