@@ -3,8 +3,8 @@
 
 | Visual Studio Build  | NuGet Stable | NuGet Pre | GitHub latest |
 |---|---|---|---|
-| | ![NuGetStable](https://img.shields.io/nuget/v/QuickIO.NET.png?style=flat-square)  | ![NuGetPre](https://img.shields.io/nuget/vpre/QuickIO.NET.png?style=flat-square) | ![GitHubRelease](https://img.shields.io/github/release/SchwabenCode/QuickIO.png?style=flat-square) |
-| | ![NuGetStable](https://img.shields.io/nuget/dt/QuickIO.NET.png?style=flat-square) | | |
+| master: - | ![NuGetStable](https://img.shields.io/nuget/v/QuickIO.NET.png?style=flat-square)  | ![NuGetPre](https://img.shields.io/nuget/vpre/QuickIO.NET.png?style=flat-square) | ![GitHubRelease](https://img.shields.io/github/release/SchwabenCode/QuickIO.png?style=flat-square) |
+| develop: ![develop](https://schwabencode.visualstudio.com/DefaultCollection/_apis/public/build/definitions/1838fe47-1e26-4f59-924a-59ea28e64d6a/13/badge) | ![NuGetStable](https://img.shields.io/nuget/dt/QuickIO.NET.png?style=flat-square) | | |
 
 ## Website
 Checkout the official Page [http://quickIO.NET](http://quickIO.NET)
