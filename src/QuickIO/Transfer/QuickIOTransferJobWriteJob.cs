@@ -28,6 +28,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <param name="observer">Observer for file monitoring by service</param>
         /// <param name="priorityLevel">Default priority</param>
         /// <param name="overwrite">true to overwrite existing elements</param>
+        /// <param name="cancellationToken">Cancel token</param>
         /// <remarks>Thread-safe</remarks>
         protected QuickIOTransferJobWriteJob( IQuickIOTransferObserver observer, Int32 priorityLevel = 0, Boolean overwrite = false, CancellationToken cancellationToken = default( CancellationToken ) ) :
             base( observer, priorityLevel, cancellationToken )
@@ -40,6 +41,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// </summary>
         /// <param name="priorityLevel">Default priority</param>
         /// <param name="overwrite">true to overwrite existing elements</param>
+        /// <param name="cancellationToken">Cancel token</param>
         /// <remarks>Thread-safe</remarks>
         protected QuickIOTransferJobWriteJob( Int32 priorityLevel = 0, Boolean overwrite = false, CancellationToken cancellationToken = default( CancellationToken ) )
             : this( null, priorityLevel, overwrite, cancellationToken )

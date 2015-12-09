@@ -27,7 +27,7 @@ namespace SchwabenCode.QuickIO.Internal
             Contract.Ensures( Contract.Result<IEnumerable<String>>() != null );
 
 
-            IEnumerable<QuickIOFileSystemEntryInfo> entries = EnumerateFileSystemEntryInfos( uncDirectoryPath, pattern, searchOption, enumerateOptions );
+            IEnumerable<QuickIOFileSystemEntry> entries = EnumerateFileSystemEntries( uncDirectoryPath, pattern, searchOption, enumerateOptions );
 
             // filter?
             if( filterType != null )
@@ -35,7 +35,9 @@ namespace SchwabenCode.QuickIO.Internal
                 entries = entries.Where( entry => entry.Type == filterType );
             }
 
-            return entries.Select( x => x.PathInfo.GetFullname( pathFormatReturn ) );
+            // TODO: path format
+
+            return entries.Select( entry => entry.Path );
         }
 
         /// <summary>
@@ -47,14 +49,37 @@ namespace SchwabenCode.QuickIO.Internal
         /// <param name="enumerateOptions">The enumeration options for exception handling</param>
         /// <returns>Collection of <see cref="QuickIODirectoryInfo"/></returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        public static IEnumerable<QuickIOFileSystemEntryInfo> EnumerateFileSystemEntryInfos( String uncDirectoryPath, String pattern = QuickIOPatterns.PathMatchAll, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
+        internal static IEnumerable<QuickIOFileSystemEntry> EnumerateFileSystemEntries( String uncDirectoryPath, String pattern = QuickIOPatterns.PathMatchAll, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( uncDirectoryPath ) );
-            Contract.Ensures( Contract.Result<IEnumerable<QuickIOFileSystemEntryInfo>>() != null );
+            Contract.Ensures( Contract.Result<IEnumerable<QuickIOFileSystemEntry>>() != null );
+
+            return
+                ( from pair in EnumerateWin32FileSystemEntries( uncDirectoryPath, pattern, searchOption, enumerateOptions )
+                  let parentDirectory = pair.Item1
+                  let win32Entry = pair.Item2
+                  let fullpath = QuickIOPath.Combine( parentDirectory, win32Entry.Name )
+                  select
+                      new QuickIOFileSystemEntry( fullpath, win32Entry.FileSystemEntryType, win32Entry.Attributes, win32Entry.Bytes ) );
+        }
+
+        /// <summary>
+        /// Determined all sub system entries of a directory
+        /// </summary>
+        /// <param name="path">Path of the directory</param>
+        /// <param name="pattern">Search pattern. Uses Win32 native filtering.</param>
+        /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">The enumeration options for exception handling</param>
+        /// <returns>Collection of <see cref="QuickIODirectoryInfo"/></returns>
+        /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
+        internal static IEnumerable<Tuple<string, Win32FileSystemEntry>> EnumerateWin32FileSystemEntries( String path, String pattern = QuickIOPatterns.PathMatchAll, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
+        {
+            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
+            Contract.Ensures( Contract.Result<IEnumerable<Tuple<string, Win32FileSystemEntry>>>() != null );
 
             // Stack
             Win32FileSystemStack directoryStack = new Win32FileSystemStack();
-            directoryStack.Push( uncDirectoryPath );
+            directoryStack.Push( path );
 
             while( directoryStack.Count > 0 )
             {
@@ -62,12 +87,10 @@ namespace SchwabenCode.QuickIO.Internal
 
                 foreach( Win32FileSystemEntry systemEntry in new Win32FileHandleCollection( QuickIOPath.Combine( currentDirectory, pattern ) ) )
                 {
+                    yield return new Tuple<string, Win32FileSystemEntry>( currentDirectory, systemEntry );
+
                     // Create hit for current search result
-                    var resultPath = QuickIOPath.Combine( currentDirectory, systemEntry.Name );
-
-                    // return result
-                    yield return new QuickIOFileSystemEntryInfo( new QuickIOPathInfo( resultPath, systemEntry.FindData ), systemEntry.FileSystemEntryType );
-
+                    string resultPath = QuickIOPath.Combine( currentDirectory, systemEntry.Name );
 
                     // Check for Directory
                     if( searchOption == SearchOption.AllDirectories && systemEntry.IsDirectory )

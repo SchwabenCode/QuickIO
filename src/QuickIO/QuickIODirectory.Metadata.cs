@@ -22,7 +22,7 @@ namespace SchwabenCode.QuickIO
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
             Contract.Ensures( Contract.Result<QuickIODirectoryMetadata>() != null );
 
-            return InternalQuickIO.EnumerateDirectoryMetadata( path, enumerateOptions );
+            return InternalEnumerateFileSystem.EnumerateDirectoryMetadata( path, enumerateOptions );
         }
 
         /// <summary>

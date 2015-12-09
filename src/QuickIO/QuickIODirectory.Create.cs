@@ -55,9 +55,8 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Creates a new directory. If <paramref name="recursive"/> is false, the parent directory must exist.
         /// </summary>
-        /// <param name="pathInfo">The directory.</param>
+        /// <param name="path">The directory.</param>
         /// <param name="recursive">If <paramref name="recursive"/> is false, the parent directory must exist.</param>
-        /// <param name="safeCreate">if true not exception will be fired if directory already exists</param>
         /// <remarks>http://msdn.microsoft.com/en-us/library/54a0at6s(v=vs.110).aspx</remarks>
         /// <exception cref="PathAlreadyExistsException">The specified path already exists.</exception>
         /// <exception cref="PathNotFoundException">One or more intermediate directories do not exist; this function will only create the final directory in the path.</exception>
@@ -91,10 +90,10 @@ namespace SchwabenCode.QuickIO
         ///     }
         /// </code>
         /// </example>
-        public static void Create( QuickIOPathInfo info, bool recursive = false )
+        public static void Create( QuickIOPathInfo path, bool recursive = false )
         {
-            Contract.Requires( info != null );
-            InternalQuickIO.CreateDirectory( info.FullNameUnc, recursive );
+            Contract.Requires( path != null );
+            InternalQuickIO.CreateDirectory( path.FullNameUnc, recursive );
         }
     }
 }

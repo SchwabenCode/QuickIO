@@ -14,35 +14,14 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Opens a <see cref="FileStream"/>
         /// </summary>
-        /// <param name="mode"><see cref="FileMode"/></param>
-        /// <returns>A <see cref="FileStream"/> with read and write access and not shared.</returns>
-        public FileStream Open( FileMode mode = FileMode.Open )
-        {
-            return QuickIOFile.Open( FullNameUnc, mode );
-        }
-
-        /// <summary>
-        /// Opens a <see cref="FileStream"/>
-        /// </summary>
-        /// <param name="mode"><see cref="FileMode"/> </param>
-        /// <param name="access"><see cref="FileAccess"/> </param>
-        /// <returns>An unshared <see cref="FileStream"/></returns>
-        public FileStream Open( FileMode mode, FileAccess access )
-        {
-            return QuickIOFile.Open( PathInfo, mode, access );
-        }
-
-        /// <summary>
-        /// Opens a <see cref="FileStream"/>
-        /// </summary>
         /// <param name="mode"><see cref="FileMode"/> </param>
         /// <param name="access"><see cref="FileAccess"/></param>
         /// <param name="share"><see cref="FileShare"/></param>
         /// <returns><see cref="FileStream"/></returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/y973b725(v=vs.110).aspx</remarks>
-        public FileStream Open( FileMode mode, FileAccess access, FileShare share )
+        public FileStream Open( FileMode mode, FileAccess access = FileAccess.Read, FileShare share = FileShare.None )
         {
-            return QuickIOFile.Open( PathInfo );
+            return QuickIOFile.Open( FullNameUnc, mode, access, share );
         }
 
         /// <summary>
@@ -51,7 +30,7 @@ namespace SchwabenCode.QuickIO
         /// <returns>A read-only <see cref="FileStream"/> on the specified path.</returns>
         public FileStream OpenRead()
         {
-            return QuickIOFile.OpenRead( PathInfo );
+            return QuickIOFile.OpenRead( FullNameUnc );
         }
 
         /// <summary>
@@ -60,7 +39,7 @@ namespace SchwabenCode.QuickIO
         /// <returns>A <see cref="StreamReader"/>.</returns>
         public StreamReader OpenText()
         {
-            return QuickIOFile.OpenText(PathInfo);
+            return QuickIOFile.OpenText( FullNameUnc );
         }
 
         /// <summary>
@@ -69,7 +48,7 @@ namespace SchwabenCode.QuickIO
         /// <returns>An unshared <see cref="FileStream"/> with Write access.</returns>
         public FileStream OpenWrite()
         {
-            return QuickIOFile.OpenWrite( PathInfo );
+            return QuickIOFile.OpenWrite( FullNameUnc );
         }
 
         /// <summary>
@@ -78,7 +57,7 @@ namespace SchwabenCode.QuickIO
         /// <returns>An unshared <see cref="FileStream"/> with Write access.</returns>
         public FileStream OpenAppend()
         {
-            return QuickIOFile.OpenAppend(PathInfo);
+            return QuickIOFile.OpenAppend( FullNameUnc );
         }
     }
 }

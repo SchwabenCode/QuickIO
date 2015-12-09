@@ -12,8 +12,8 @@ namespace SchwabenCode.QuickIO.Internal
         /// <summary>
         /// Gets the <see cref="Win32FindData"/> from the passed path.
         /// </summary>
-        /// <param name="pathInfo">Path</param>
-        /// <param name="pathFindData"><seealso cref="Win32FindData"/>. Will be null if path does not exist.</param>
+        /// <param name="path">Path</param>
+        /// <param name="win32FindData"><seealso cref="Win32FindData"/>. Will be null if path does not exist.</param>
         /// <returns>true if path is valid and <see cref="Win32FindData"/> is set</returns>
         /// <remarks>
         /// <see>
@@ -31,12 +31,12 @@ namespace SchwabenCode.QuickIO.Internal
 
 
         /// <summary>
-        /// Returns the <see cref="SafeFileHandle"/> and fills <see cref="Win32FindData"/> from the passes path.
+        /// Returns the <see cref="Win32FileHandle"/> and fills <see cref="Win32FindData"/> from the passes path.
         /// </summary>
         /// <param name="path">Path to the file system entry</param>
         /// <param name="win32FindData"></param>
         /// <param name="win32Error">Last error code. 0 if no error occurs</param>
-        /// <returns><see cref="SafeFileHandle"/></returns>
+        /// <returns><see cref="Win32FileHandle"/></returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         private static Win32FileHandle FindFirstSafeFileHandle( string path, Win32FindData win32FindData, out Int32 win32Error )
         {
@@ -71,9 +71,9 @@ namespace SchwabenCode.QuickIO.Internal
         ///// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         /// 
         /// <summary>
-        /// Returns the <see cref="Win32FindData"/> from specified <paramref name="pathInfo"/>
+        /// Returns the <see cref="Win32FindData"/> from specified <paramref name="path"/>
         /// </summary>
-        /// <param name="pathInfo">Path to the file system entry</param>
+        /// <param name="path">Path to the file system entry</param>
         /// <returns><see cref="Win32FindData"/></returns>
         public static Win32FindData SafeGetFindDataFromPath( String path )
         {

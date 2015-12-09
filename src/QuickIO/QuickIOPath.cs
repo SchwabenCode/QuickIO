@@ -65,7 +65,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Returns the parent directory path
         ///  </summary>
-        /// <param name="fullName">Path to get the parent from</param>
+        /// <param name="path">Path to get the parent</param>
         /// <returns>Parent directory</returns>
         public static String GetParentPath( string path )
         {
@@ -73,25 +73,6 @@ namespace SchwabenCode.QuickIO
             return new QuickIOPathInfo( path ).ParentFullName;
         }
 
-
-        public static Tuple<string, string> GetParentAndName( String path )
-        {
-            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
-
-            // remove trailing slashes
-            string cleaned = QuickIOPath.Clean( path );
-
-            //return root path without name if it's root
-            if( QuickIOPath.IsRoot( path ) )
-            {
-                return new Tuple<string, string>( path, null );
-            }
-
-            // get position of last split char
-            int latestSplitPosition = cleaned.LastIndexOf( DirectorySeparatorChar );
-
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// Removes all spaces and trims backslahes at the end.

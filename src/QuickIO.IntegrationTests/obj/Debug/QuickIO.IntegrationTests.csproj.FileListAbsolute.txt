@@ -1,0 +1,10 @@
+D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO.IntegrationTests\bin\Debug\SchwabenCode.QuickIO.IntegrationTests.dll
+D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO.IntegrationTests\bin\Debug\SchwabenCode.QuickIO.IntegrationTests.pdb
+D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO.IntegrationTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO.IntegrationTests\bin\Debug\SchwabenCode.QuickIO.dll
+D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO.IntegrationTests\bin\Debug\SchwabenCode.QuickIO.pdb
+D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO.IntegrationTests\bin\Debug\SchwabenCode.QuickIO.xml
+D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO.IntegrationTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO.IntegrationTests\obj\Debug\QuickIO.IntegrationTests.csprojResolveAssemblyReference.cache
+D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO.IntegrationTests\obj\Debug\SchwabenCode.QuickIO.IntegrationTests.dll
+D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO.IntegrationTests\obj\Debug\SchwabenCode.QuickIO.IntegrationTests.pdb

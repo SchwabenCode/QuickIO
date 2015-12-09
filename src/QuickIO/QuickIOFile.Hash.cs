@@ -6,6 +6,7 @@
 // <summary>QuickIOFile</summary>
 
 using System;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Security.Cryptography;
 
@@ -18,7 +19,9 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         public static QuickIOHashResult CalculateHash( QuickIOPathInfo pathInfo, QuickIOHashImplementationType hashImplementationType )
         {
-            switch ( hashImplementationType )
+            Contract.Requires( pathInfo != null );
+
+            switch( hashImplementationType )
             {
                 case QuickIOHashImplementationType.SHA1:
                     return CalculateSha1Hash( pathInfo );
@@ -59,6 +62,9 @@ namespace SchwabenCode.QuickIO
         /// <returns><see cref="QuickIOHashResult"/></returns>
         public static QuickIOHashResult CalculateHash( HashAlgorithm hashAlgorithm, Stream stream )
         {
+            Contract.Requires( hashAlgorithm != null );
+            Contract.Requires( stream != null );
+
             return new QuickIOHashResult( hashAlgorithm.ComputeHash( stream ) );
         }
 
@@ -75,8 +81,10 @@ namespace SchwabenCode.QuickIO
         /// </example>
         public static QuickIOHashResult CalculateSha1Hash( QuickIOPathInfo pathInfo )
         {
-            using ( var fs = OpenRead( pathInfo ) )
-            using ( var hashAlgorithm = new SHA1Managed( ) )
+            Contract.Requires( pathInfo != null );
+
+            using( var fs = OpenRead( pathInfo ) )
+            using( var hashAlgorithm = new SHA1Managed() )
             {
                 return CalculateHash( hashAlgorithm, fs );
             }
@@ -96,8 +104,10 @@ namespace SchwabenCode.QuickIO
         /// </example>
         public static QuickIOHashResult CalculateSha256Hash( QuickIOPathInfo pathInfo )
         {
-            using ( var fs = OpenRead( pathInfo ) )
-            using ( var hashAlgorithm = new SHA256Managed( ) )
+            Contract.Requires( pathInfo != null );
+
+            using( var fs = OpenRead( pathInfo ) )
+            using( var hashAlgorithm = new SHA256Managed() )
             {
                 return CalculateHash( hashAlgorithm, fs );
             }
@@ -116,8 +126,10 @@ namespace SchwabenCode.QuickIO
         /// </example>
         public static QuickIOHashResult CalculateSha384Hash( QuickIOPathInfo pathInfo )
         {
-            using ( var fs = OpenRead( pathInfo ) )
-            using ( var hashAlgorithm = new SHA384Managed( ) )
+            Contract.Requires( pathInfo != null );
+
+            using( var fs = OpenRead( pathInfo ) )
+            using( var hashAlgorithm = new SHA384Managed() )
             {
                 return CalculateHash( hashAlgorithm, fs );
             }
@@ -137,8 +149,10 @@ namespace SchwabenCode.QuickIO
         /// </example>
         public static QuickIOHashResult CalculateSha512Hash( QuickIOPathInfo pathInfo )
         {
-            using ( var fs = OpenRead( pathInfo ) )
-            using ( var hashAlgorithm = new SHA512Managed( ) )
+            Contract.Requires( pathInfo != null );
+
+            using( var fs = OpenRead( pathInfo ) )
+            using( var hashAlgorithm = new SHA512Managed() )
             {
                 return CalculateHash( hashAlgorithm, fs );
             }
@@ -157,8 +171,10 @@ namespace SchwabenCode.QuickIO
         /// </example>
         public static QuickIOHashResult CalculateMD5Hash( QuickIOPathInfo pathInfo )
         {
-            using ( var fs = OpenRead( pathInfo ) )
-            using ( var hashAlgorithm = new MD5CryptoServiceProvider( ) )
+            Contract.Requires( pathInfo != null );
+
+            using( var fs = OpenRead( pathInfo ) )
+            using( var hashAlgorithm = new MD5CryptoServiceProvider() )
             {
                 return CalculateHash( hashAlgorithm, fs );
             }

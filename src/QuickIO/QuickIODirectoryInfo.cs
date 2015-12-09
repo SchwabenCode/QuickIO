@@ -6,6 +6,7 @@
 // <summary>Provides properties and instance methods for directories</summary>
 
 using System;
+using System.Diagnostics.Contracts;
 using SchwabenCode.QuickIO.Internal;
 using SchwabenCode.QuickIO.Win32;
 
@@ -33,7 +34,7 @@ namespace SchwabenCode.QuickIO
         public QuickIODirectoryInfo( System.IO.DirectoryInfo directoryInfo )
             : this( new QuickIOPathInfo( directoryInfo.FullName ) )
         {
-
+            Contract.Requires( directoryInfo != null );
         }
 
         /// <summary>
@@ -42,6 +43,7 @@ namespace SchwabenCode.QuickIO
         public QuickIODirectoryInfo( QuickIOPathInfo pathInfo )
             : this( pathInfo, pathInfo.IsRoot ? null : pathInfo.FindData )
         {
+            Contract.Requires( pathInfo != null );
         }
 
         /// <summary>
@@ -52,7 +54,7 @@ namespace SchwabenCode.QuickIO
         internal QuickIODirectoryInfo( QuickIOPathInfo pathInfo, Win32FindData win32FindData ) :
             base( pathInfo, win32FindData )
         {
-      
+
         }
 
         /// <summary>
@@ -73,30 +75,14 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Returns true if current path is root
         /// </summary>
-        public Boolean IsRoot { get { return PathInfo.IsRoot; } }
+        public Boolean IsRoot => PathInfo.IsRoot;
+
         #endregion
 
         /// <summary>
         /// Returns true if directory exists. Result starts a file system call and is not cached.
         /// </summary>
         /// <exception cref="UnmatchedFileSystemEntryTypeException">Path exists but it's a file..</exception>
-        public override Boolean Exists
-        {
-            get
-            {
-                return QuickIODirectory.Exists( this );
-            }
-        }
-
-        /// <summary>
-        /// Determines the time stamp of the given <see cref="Win32FindData"/>
-        /// </summary>
-        /// <param name="win32FindData"><see cref="Win32FindData"/></param>
-        private void RetriveDateTimeInformation( Win32FindData win32FindData )
-        {
-            LastWriteTimeUtc = win32FindData.GetLastWriteTimeUtc( );
-            LastAccessTimeUtc = win32FindData.GetLastAccessTimeUtc( );
-            CreationTimeUtc = win32FindData.GetCreationTimeUtc( );
-        }
+        public override Boolean Exists => QuickIODirectory.Exists( this );
     }
 }

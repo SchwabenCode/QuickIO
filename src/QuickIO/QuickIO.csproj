@@ -85,12 +85,12 @@
     <Compile Include="InternalHelpers.cs" />
     <Compile Include="Internal\InternalEnumerateFileSystem.cs" />
     <Compile Include="Internal\InternalHelpers.cs" />
+    <Compile Include="Internal\InternalQuickIO.Enumerates.cs" />
     <Compile Include="Internal\InternalQuickIO.Directories.cs" />
     <Compile Include="Internal\InternalQuickIO.Directory.Statistics.cs" />
     <Compile Include="Internal\InternalQuickIO.FileHandle.cs" />
     <Compile Include="Internal\InternalQuickIO.Files.cs" />
     <Compile Include="Internal\InternalQuickIO.FilesAttributes.cs" />
-    <Compile Include="Internal\InternalQuickIO.FileSystemEntry.cs" />
     <Compile Include="Internal\InternalQuickIO.FileTimes.cs" />
     <Compile Include="Internal\InternalQuickIO.FindData.cs" />
     <Compile Include="Internal\InternalQuickIO.Shares.cs" />
@@ -118,6 +118,7 @@
     <Compile Include="QuickIODirectoryInfo.Operators.cs" />
     <Compile Include="QuickIODirectoryMetadata.cs" />
     <Compile Include="QuickIODiskInformation.cs" />
+    <Compile Include="QuickIOFileSystemEntry.cs" />
     <Compile Include="Win32\Win32ApiShareInfo.cs" />
     <Compile Include="Win32\Win32FileSystemStack.cs" />
     <Compile Include="_Enums\QuickIOEnumerateOptions.cs" />
@@ -145,7 +146,6 @@
     <Compile Include="QuickIOFileInfo.Write.cs" />
     <Compile Include="QuickIOFileMetadata.cs" />
     <Compile Include="QuickIOFileSystemEntryBase.cs" />
-    <Compile Include="QuickIOFileSystemEntryInfo.cs" />
     <Compile Include="_Enums\QuickIOFileSystemEntryType.cs" />
     <Compile Include="QuickIOFileSystemMetadataBase.cs" />
     <Compile Include="QuickIOFileSystemSecurity.cs" />

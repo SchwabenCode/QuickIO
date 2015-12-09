@@ -67,30 +67,11 @@ namespace SchwabenCode.QuickIO.Internal
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( directoryPath ) );
 
-            IEnumerable<string> allFilePaths = EnumerateFilePaths( directoryPath, QuickIOPatterns.PathMatchAll, recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions.None );
+            IEnumerable<string> allFilePaths = InternalEnumerateFileSystem.EnumerateSystemPaths( directoryPath, QuickIOPatterns.PathMatchAll, recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions.None );
             foreach( var filePath in allFilePaths )
             {
                 DeleteFile( filePath );
             }
-        }
-
-        /// <summary>
-        /// Determined all files paths of a directory
-        /// </summary>
-        /// <param name="path">Path of the directory</param>
-        /// <param name="pattern">Search pattern. Uses Win32 native filtering.</param>
-        /// <param name="searchOption"><see cref="SearchOption"/></param>
-        /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
-        /// <param name="enumerateOptions">The enumeration options for exception handling</param>
-        /// <returns>Collection of file paths</returns>
-        /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        internal static IEnumerable<String> EnumerateFilePaths( String path, String pattern = QuickIOPatterns.PathMatchAll, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular )
-        {
-            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
-            Contract.Ensures( Contract.Result<IEnumerable<String>>() != null );
-
-            throw new NotImplementedException();
-            //return EnumerateSystemPaths( path, pattern, searchOption, QuickIOFileSystemEntryType.File, enumerateOptions, pathFormatReturn );
         }
 
         /// <summary>

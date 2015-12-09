@@ -7,6 +7,9 @@
 
 namespace SchwabenCode.QuickIO
 {
+    /// <summary>
+    /// Read level indicator for share access
+    /// </summary>
     public enum QuickIOShareApiReadLevel : int
     {
         /// <summary>

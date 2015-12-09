@@ -19,8 +19,18 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         public const Int32 MaxRegularPathLength = 260;
 
+        /// <summary>
+        /// Max allowed path element name like folder names or file names
+        /// </summary>
         public const int MaxPathElementLength = 255;
+
+        /// <summary>
+        /// Max allowed length of folder name
+        /// </summary>
         public const int MaxFolderNameLength = MaxPathElementLength;
+        /// <summary>
+        /// Max allowed length of file name
+        /// </summary>
         public const int MaxFileNameLength = MaxPathElementLength;
 
         /// <summary>

@@ -81,26 +81,6 @@ namespace SchwabenCode.QuickIO.Internal
             }
         }
 
-        private static void UnsafeCreateDirectory( string uncDirectoryPath, bool recursive = false )
-        {
-            string parent = QuickIOPath.GetParentPath( uncDirectoryPath );
-            if( parent != null && !QuickIOPath.IsRoot( parent ) )
-            {
-                throw new InvalidOperationException( "Parent directory does not exists and cannot be created." );
-            }
-            // no root path here
-            if( !Win32SafeNativeMethods.CreateDirectory( uncDirectoryPath, IntPtr.Zero ) )
-            {
-                int win32ErrorCode = Marshal.GetLastWin32Error();
-                if( win32ErrorCode == Win32ErrorCodes.ERROR_ALREADY_EXISTS )
-                {
-                    return;
-                }
-
-                InternalQuickIOCommon.NativeExceptionMapping( uncDirectoryPath, Marshal.GetLastWin32Error() );
-            }
-        }
-
         /// <summary>
         /// Deletes the given directory. On request  all contents, too.
         /// </summary>
@@ -138,41 +118,5 @@ namespace SchwabenCode.QuickIO.Internal
                 InternalQuickIOCommon.NativeExceptionMapping( uncDirectoryPath, Marshal.GetLastWin32Error() );
             }
         }
-
-        /// <summary>
-        /// Determined metadata of directory
-        /// </summary>
-        /// <param name="pathInfo">Path of the directory</param>
-        /// <param name="enumerateOptions">The enumeration options for exception handling</param>
-        /// <returns><see cref="QuickIODirectoryMetadata"/> started with the given directory</returns>
-        /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        internal static QuickIODirectoryMetadata EnumerateDirectoryMetadata( string path, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
-        {
-            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
-            Contract.Ensures( Contract.Result<QuickIODirectoryMetadata>() != null );
-
-            return InternalEnumerateFileSystem.EnumerateDirectoryMetadata( path, enumerateOptions );
-        }
-
-
-
-        /// <summary>
-        /// Determined all sub directory paths of a directory
-        /// </summary>
-        /// <param name="path">Path of the directory</param>
-        /// <param name="pattern">Search pattern. Uses Win32 native filtering.</param>
-        /// <param name="searchOption"><see cref="SearchOption"/></param>
-        /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
-        /// <param name="enumerateOptions">The enumeration options for exception handling</param>
-        /// <returns>Collection of directory paths</returns>
-        /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        internal static IEnumerable<String> EnumerateDirectoryPaths( String path, String pattern = QuickIOPatterns.PathMatchAll, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular )
-        {
-            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
-            Contract.Ensures( Contract.Result<IEnumerable<String>>() != null );
-
-            return InternalEnumerateFileSystem.EnumerateSystemPaths( path, pattern, searchOption, enumerateOptions, pathFormatReturn, QuickIOFileSystemEntryType.Directory );
-        }
-
     }
 }

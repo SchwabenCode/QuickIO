@@ -134,6 +134,8 @@ namespace SchwabenCode.QuickIO
         /// <exception cref="FileNotFoundException">File does not exist.</exception>
         public static void Delete( string path )
         {
+            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
+
             InternalQuickIO.DeleteFile( path );
         }
 
@@ -148,6 +150,8 @@ namespace SchwabenCode.QuickIO
         /// <exception cref="InvalidPathException">Path is invalid.</exception>
         public static bool Exists( string path )
         {
+            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
+
             return InternalQuickIO.FileExists( path );
         }
 
@@ -161,6 +165,8 @@ namespace SchwabenCode.QuickIO
         /// <exception cref="InvalidPathException">Path is invalid.</exception>
         public static bool Exists( QuickIOFileInfo fileInfo )
         {
+            Contract.Requires( fileInfo != null );
+
             return Exists( fileInfo.FullNameUnc );
         }
 
@@ -172,6 +178,9 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.move(v=vs.110).aspx</remarks>
         public static void Move( string sourceFileName, string destinationFileName )
         {
+            Contract.Requires( !String.IsNullOrWhiteSpace( sourceFileName ) );
+            Contract.Requires( !String.IsNullOrWhiteSpace( destinationFileName ) );
+
             InternalQuickIO.MoveFile( sourceFileName, destinationFileName );
         }
 
@@ -183,6 +192,9 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.move(v=vs.110).aspx</remarks>
         public static void Move( QuickIOPathInfo sourceFileInfo, QuickIOPathInfo destinationFolder )
         {
+            Contract.Requires( sourceFileInfo != null );
+            Contract.Requires( destinationFolder != null );
+
             InternalQuickIO.MoveFile( sourceFileInfo.FullNameUnc, Path.Combine( destinationFolder.FullNameUnc, sourceFileInfo.Name ) );
         }
 
@@ -194,6 +206,9 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.move(v=vs.110).aspx</remarks>
         public static void Move( QuickIOPathInfo sourceFileInfo, QuickIODirectoryInfo destinationFolder )
         {
+            Contract.Requires( sourceFileInfo != null );
+            Contract.Requires( destinationFolder != null );
+
             InternalQuickIO.MoveFile( sourceFileInfo.FullNameUnc, Path.Combine( destinationFolder.FullNameUnc, sourceFileInfo.Name ) );
         }
 

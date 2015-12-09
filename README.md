@@ -1,5 +1,5 @@
 # QuickIO.NET ![License](https://img.shields.io/github/license/SchwabenCode/QuickIO.png?style=flat-square)
-**by [SchwabenCode.com](http://www.schwabencode.com) - Benjamin Abt**
+**by [SchwabenCode.com](http://www.schwabencode.com) - [Benjamin Abt](http://www.benjamin-abt.com)**
 
 | Visual Studio Build  | NuGet Stable | NuGet Pre | GitHub latest |
 |---|---|---|---|

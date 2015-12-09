@@ -94,6 +94,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="encoding">Encoding for formatting</param>
         /// <param name="format">Pattern for formatting. Use x2 for hexadecimal output.</param>
+        /// <param name="cancellationToken">Cancel token</param>
         /// <returns>Formated string</returns>
         /// <example>
         /// <code>

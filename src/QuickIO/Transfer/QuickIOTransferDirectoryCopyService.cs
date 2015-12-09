@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Diagnostics.Contracts;
+using SchwabenCode.QuickIO.Internal;
 
 namespace SchwabenCode.QuickIO.Transfer
 {
@@ -318,8 +319,14 @@ namespace SchwabenCode.QuickIO.Transfer
 
         private class InternalDirectoryTransferPrefences
         {
-            public List<QuickIOTransferJob> CreateDirectoryJobs { get; set; }
-            public List<QuickIOTransferJob> FileTransferQueueItems { get; set; }
+            public InternalDirectoryTransferPrefences()
+            {
+                CreateDirectoryJobs = new List<QuickIOTransferJob>();
+                FileTransferQueueItems = new List<QuickIOTransferJob>();
+            }
+
+            public List<QuickIOTransferJob> CreateDirectoryJobs { get;  }
+            public List<QuickIOTransferJob> FileTransferQueueItems { get;  }
         }
 
         private InternalDirectoryTransferPrefences DetermineDirectoryTransferPrefences( QuickIODirectoryInfo sourceDirectoryInfo, String targetFullName, SearchOption searchOption, Boolean overwrite )
@@ -330,34 +337,34 @@ namespace SchwabenCode.QuickIO.Transfer
 
             var prefences = new InternalDirectoryTransferPrefences();
 
-            // TODO:
-            throw new NotImplementedException();
 
-            //IEnumerable<QuickIOFileSystemEntryInfo> allContentUncPaths = QuickIODirectory.EnumerateFileSystemEntryInfos( sourceDirectoryInfo, QuickIOPatternConstants.PathMatchAll, searchOption, QuickIOPathType.UNC );
+            IEnumerable<QuickIOFileSystemEntry> allContentUncPaths = InternalEnumerateFileSystem.EnumerateFileSystemEntries( sourceDirectoryInfo.FullNameUnc, QuickIOPatterns.PathMatchAll, searchOption );
 
-            //var targetPathInfo = new QuickIOPathInfo( targetFullName );
+            string targetPathUnc = QuickIOPath.ToPathUnc(targetFullName);
 
-            //prefences.CreateDirectoryJobs = new List<QuickIOTransferJob>();
-            //prefences.FileTransferQueueItems = new List<QuickIOTransferJob>();
-            //foreach( var entry in allContentUncPaths )
-            //{
-            //    var target = targetPathInfo.FullNameUnc + entry.FullName.Substring( sourceDirectoryInfo.FullNameUnc.Length );
+            foreach( QuickIOFileSystemEntry entry in allContentUncPaths )
+            {
+                string sourcePathUnc = entry.GetPathUnc();
 
-            //    switch( entry.Type )
-            //    {
-            //        case QuickIOFileSystemEntryType.Directory:
-            //            {
-            //                prefences.CreateDirectoryJobs.Add( new QuickIOTransferDirectoryCreationJob( target ) );
-            //            }
-            //            break;
+                string target = targetPathUnc + sourcePathUnc.Substring( sourceDirectoryInfo.FullNameUnc.Length );
 
-            //        case QuickIOFileSystemEntryType.File:
-            //            {
-            //                prefences.FileTransferQueueItems.Add( new QuickIOTransferFileCopyJob( entry.F, target, MaxBufferSize, overwrite, false ) );
-            //            }
-            //            break;
-            //    }
-            //}
+                switch( entry.Type )
+                {
+                    case QuickIOFileSystemEntryType.Directory:
+                        {
+                            prefences.CreateDirectoryJobs.Add( new QuickIOTransferDirectoryCreationJob( target ) );
+                        }
+                        break;
+
+                    case QuickIOFileSystemEntryType.File:
+                        {
+                            prefences.FileTransferQueueItems.Add( new QuickIOTransferFileCopyJob( sourcePathUnc, target, MaxBufferSize, overwrite, false ) );
+                        }
+                        break;
+                    default:
+                        throw new NotSupportedException( $"Unknown type '{entry.Type}'" );
+                }
+            }
 
             return prefences;
         }

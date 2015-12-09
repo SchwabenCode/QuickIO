@@ -17,43 +17,6 @@ namespace SchwabenCode.QuickIO
 {
     public static partial class QuickIOFile
     {
-
-        /// <summary>
-        /// Opens a <see cref="FileStream"/> 
-        /// </summary>
-        public static FileStream OpenFileStream( string path, FileAccess fileAccess, FileMode fileOption = FileMode.Open, FileShare shareMode = FileShare.Read, Int32 buffer = 0 )
-        {
-            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
-            Contract.Ensures( Contract.Result<FileStream>() != null );
-
-            var fileHandle = Win32SafeNativeMethods.CreateFile( path, fileAccess, shareMode, IntPtr.Zero, fileOption, 0, IntPtr.Zero );
-            var win32Error = Marshal.GetLastWin32Error();
-            if( fileHandle.IsInvalid )
-            {
-                InternalQuickIOCommon.NativeExceptionMapping( path, win32Error ); // Throws an exception
-            }
-
-            return buffer > 0 ? new FileStream( fileHandle, fileAccess, buffer ) : new FileStream( fileHandle, fileAccess );
-        }
-
-        /// <summary>
-        /// Opens a <see cref="FileStream"/> 
-        /// </summary>
-        public static FileStream OpenAppendFileStream( string path, FileAccess fileAccess, FileMode fileOption = FileMode.Open, FileShare shareMode = FileShare.Read, Int32 buffer = 0 )
-        {
-            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
-            Contract.Ensures( Contract.Result<FileStream>() != null );
-
-            var fileHandle = Win32SafeNativeMethods.CreateFileForAppend( path, 0x0004 /* Internal Win Append Mode*/, shareMode, IntPtr.Zero, fileOption, 0, IntPtr.Zero );
-            var win32Error = Marshal.GetLastWin32Error();
-            if( fileHandle.IsInvalid )
-            {
-                InternalQuickIOCommon.NativeExceptionMapping( path, win32Error ); // Throws an exception
-            }
-
-            return buffer > 0 ? new FileStream( fileHandle, fileAccess, buffer ) : new FileStream( fileHandle, fileAccess );
-        }
-
         /// <summary>
         /// Opens a <see cref="FileStream"/> 
         /// </summary>
@@ -115,6 +78,44 @@ namespace SchwabenCode.QuickIO
 
             return OpenRead( pathInfo.FullNameUnc );
         }
+
+        /// <summary>
+        /// Opens a <see cref="FileStream"/> 
+        /// </summary>
+        public static FileStream OpenFileStream( string path, FileAccess fileAccess, FileMode fileOption = FileMode.Open, FileShare shareMode = FileShare.Read, Int32 buffer = 0 )
+        {
+            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
+            Contract.Ensures( Contract.Result<FileStream>() != null );
+
+            var fileHandle = Win32SafeNativeMethods.CreateFile( path, fileAccess, shareMode, IntPtr.Zero, fileOption, 0, IntPtr.Zero );
+            var win32Error = Marshal.GetLastWin32Error();
+            if( fileHandle.IsInvalid )
+            {
+                InternalQuickIOCommon.NativeExceptionMapping( path, win32Error ); // Throws an exception
+            }
+
+            return buffer > 0 ? new FileStream( fileHandle, fileAccess, buffer ) : new FileStream( fileHandle, fileAccess );
+        }
+
+        /// <summary>
+        /// Opens a <see cref="FileStream"/> 
+        /// </summary>
+        public static FileStream OpenAppendFileStream( string path, FileAccess fileAccess, FileMode fileOption = FileMode.Open, FileShare shareMode = FileShare.Read, Int32 buffer = 0 )
+        {
+            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
+            Contract.Ensures( Contract.Result<FileStream>() != null );
+
+            var fileHandle = Win32SafeNativeMethods.CreateFileForAppend( path, 0x0004 /* Internal Win Append Mode*/, shareMode, IntPtr.Zero, fileOption, 0, IntPtr.Zero );
+            var win32Error = Marshal.GetLastWin32Error();
+            if( fileHandle.IsInvalid )
+            {
+                InternalQuickIOCommon.NativeExceptionMapping( path, win32Error ); // Throws an exception
+            }
+
+            return buffer > 0 ? new FileStream( fileHandle, fileAccess, buffer ) : new FileStream( fileHandle, fileAccess );
+        }
+
+       
 
         /// <summary>
         /// Opens an existing UTF-8 encoded text file for reading.
