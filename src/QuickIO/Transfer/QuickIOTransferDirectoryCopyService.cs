@@ -176,7 +176,7 @@ namespace SchwabenCode.QuickIO.Transfer
             : this( null, sourceDirectoryInfo, targetFullName, Math.Max( threadCount, 1 ), Math.Max( retryCount, 0 ), searchOption, overwrite )
         {
             Contract.Requires( sourceDirectoryInfo != null );
-            Contract.Requires( !String.IsNullOrEmpty( targetFullName ) );
+            Contract.Requires( !String.IsNullOrWhiteSpace( targetFullName ) );
             Contract.Requires( threadCount >= 1 );
             Contract.Requires( retryCount >= 0 );
         }
@@ -257,7 +257,7 @@ namespace SchwabenCode.QuickIO.Transfer
             : base( observer, Math.Max( threadCount, 1 ), Math.Max( retryCount, 0 ) )
         {
             Contract.Requires( sourceDirectoryInfo != null );
-            Contract.Requires( !String.IsNullOrEmpty( targetFullName ) );
+            Contract.Requires( !String.IsNullOrWhiteSpace( targetFullName ) );
             Contract.Requires( threadCount >= 1 );
             Contract.Requires( retryCount >= 0 );
 
