@@ -582,7 +582,7 @@ namespace SchwabenCode.QuickIO.Transfer
                     TotalBytes += file.Bytes;
                 }
 
-                InternalAddRange( fileTransferQueueItems );
+                InternalAdd( fileTransferQueueItems );
 
                 base.StartWorking( );
 

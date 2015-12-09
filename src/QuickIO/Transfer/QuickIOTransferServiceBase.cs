@@ -350,7 +350,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// Locks the queue and adds the collection to the queue.
         /// </summary>
         /// <param name="queueItems">Collection of items to add</param>
-        protected void InternalAddRange( IEnumerable<QuickIOTransferJob> queueItems )
+        protected void InternalAdd( IEnumerable<QuickIOTransferJob> queueItems )
         {
             lock ( _jobQueueLock )
             {

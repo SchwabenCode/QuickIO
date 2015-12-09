@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Diagnostics.Contracts;
+using System.Linq;
 using SchwabenCode.QuickIO.Internal;
 
 namespace SchwabenCode.QuickIO.Transfer
@@ -83,22 +84,22 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <summary>
         /// Directory to copy
         /// </summary>
-        public QuickIODirectoryInfo SourceDirectoryInfo { get; private set; }
+        public QuickIODirectoryInfo SourceDirectoryInfo { get; }
 
         /// <summary>
         /// Target fullname
         /// </summary>
-        public string TargetFullName { get; private set; }
+        public string TargetFullName { get; }
 
         /// <summary>
         /// Deepth to copy
         /// </summary>
-        public SearchOption SearchOption { get; set; }
+        public SearchOption SearchOption { get; }
 
         /// <summary>
         /// true to overwrite existing content
         /// </summary>
-        public bool Overwrite { get; set; }
+        public bool Overwrite { get; }
 
         /// <summary>
         /// Creates new instance of <see cref="QuickIOTransferDirectoryCopyService"/> with default observer
@@ -299,11 +300,15 @@ namespace SchwabenCode.QuickIO.Transfer
                     throw new QuickIOTransferAlreadyRunningException( "Already running." );
                 }
 
-                // Load prefences
-                var preferences = DetermineDirectoryTransferPrefences( SourceDirectoryInfo, TargetFullName, SearchOption, Overwrite );
+                // load jobs
+                IList<QuickIOTransferDirectoryCreationJob> dirCreateJobs;
+                IList<QuickIOTransferFileCopyJob> fileCreateJobs;
 
-                InternalAddRange( preferences.CreateDirectoryJobs );
-                InternalAddRange( preferences.FileTransferQueueItems );
+                LoadAllJobs( out dirCreateJobs, out fileCreateJobs );
+
+                // first add dir jobs
+                InternalAdd( dirCreateJobs );
+                InternalAdd( fileCreateJobs );
 
                 // No more will be added
                 CompleteAdding();
@@ -317,56 +322,41 @@ namespace SchwabenCode.QuickIO.Transfer
             }
         }
 
-        private class InternalDirectoryTransferPrefences
+
+        private void LoadAllJobs( out IList<QuickIOTransferDirectoryCreationJob> dirCreateJobs, out IList<QuickIOTransferFileCopyJob> fileCreateJobs )
         {
-            public InternalDirectoryTransferPrefences()
-            {
-                CreateDirectoryJobs = new List<QuickIOTransferJob>();
-                FileTransferQueueItems = new List<QuickIOTransferJob>();
-            }
+            Contract.Ensures( dirCreateJobs != null );
+            Contract.Ensures( fileCreateJobs != null );
 
-            public List<QuickIOTransferJob> CreateDirectoryJobs { get;  }
-            public List<QuickIOTransferJob> FileTransferQueueItems { get;  }
-        }
+            IEnumerable<QuickIOFileSystemEntry> allContentUncPaths = InternalEnumerateFileSystem.EnumerateFileSystemEntries( SourceDirectoryInfo.FullNameUnc, QuickIOPatterns.PathMatchAll, SearchOption );
 
-        private InternalDirectoryTransferPrefences DetermineDirectoryTransferPrefences( QuickIODirectoryInfo sourceDirectoryInfo, String targetFullName, SearchOption searchOption, Boolean overwrite )
-        {
-            Contract.Requires( sourceDirectoryInfo != null );
-            Contract.Requires( !String.IsNullOrEmpty( targetFullName ) );
+            string targetPathUnc = QuickIOPath.ToPathUnc( TargetFullName );
 
-
-            var prefences = new InternalDirectoryTransferPrefences();
-
-
-            IEnumerable<QuickIOFileSystemEntry> allContentUncPaths = InternalEnumerateFileSystem.EnumerateFileSystemEntries( sourceDirectoryInfo.FullNameUnc, QuickIOPatterns.PathMatchAll, searchOption );
-
-            string targetPathUnc = QuickIOPath.ToPathUnc(targetFullName);
+            dirCreateJobs = new List<QuickIOTransferDirectoryCreationJob>();
+            fileCreateJobs = new List<QuickIOTransferFileCopyJob>();
 
             foreach( QuickIOFileSystemEntry entry in allContentUncPaths )
             {
-                string sourcePathUnc = entry.GetPathUnc();
-
-                string target = targetPathUnc + sourcePathUnc.Substring( sourceDirectoryInfo.FullNameUnc.Length );
+                string newSourcePathUnc = entry.GetPathUnc();
+                string newTargetPathUnc = targetPathUnc + newSourcePathUnc.Substring( SourceDirectoryInfo.FullNameUnc.Length );
 
                 switch( entry.Type )
                 {
                     case QuickIOFileSystemEntryType.Directory:
                         {
-                            prefences.CreateDirectoryJobs.Add( new QuickIOTransferDirectoryCreationJob( target ) );
+                            dirCreateJobs.Add( new QuickIOTransferDirectoryCreationJob( newTargetPathUnc ) );
                         }
                         break;
 
                     case QuickIOFileSystemEntryType.File:
                         {
-                            prefences.FileTransferQueueItems.Add( new QuickIOTransferFileCopyJob( sourcePathUnc, target, MaxBufferSize, overwrite, false ) );
+                            fileCreateJobs.Add( new QuickIOTransferFileCopyJob( newSourcePathUnc, newTargetPathUnc, MaxBufferSize, Overwrite, false ) );
                         }
                         break;
                     default:
                         throw new NotSupportedException( $"Unknown type '{entry.Type}'" );
                 }
             }
-
-            return prefences;
         }
     }
 }

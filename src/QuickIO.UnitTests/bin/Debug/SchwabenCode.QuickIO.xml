@@ -8652,7 +8652,7 @@
             <param name="queueItem">Item to add </param>
             <remarks>The service will inject his observer to the job. If the job already has an observer, it will be overwritten.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Transfer.QuickIOTransferServiceBase.InternalAddRange(System.Collections.Generic.IEnumerable{SchwabenCode.QuickIO.Transfer.QuickIOTransferJob})">
+        <member name="M:SchwabenCode.QuickIO.Transfer.QuickIOTransferServiceBase.InternalAdd(System.Collections.Generic.IEnumerable{SchwabenCode.QuickIO.Transfer.QuickIOTransferJob})">
             <summary>
             Locks the queue and adds the collection to the queue.
             </summary>
