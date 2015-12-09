@@ -1,0 +1,8 @@
+D:\_data\repositories\SchwabenCode.QuickIO\QuickIO\obj\Debug\QuickIO.csprojResolveAssemblyReference.cache
+D:\_data\repositories\SchwabenCode.QuickIO\QuickIO\bin\Debug\SchwabenCode.QuickIO.dll
+D:\_data\repositories\SchwabenCode.QuickIO\QuickIO\bin\Debug\SchwabenCode.QuickIO.pdb
+D:\_data\repositories\SchwabenCode.QuickIO\QuickIO\obj\Debug\SchwabenCode.QuickIO.dll
+D:\_data\repositories\SchwabenCode.QuickIO\QuickIO\obj\Debug\SchwabenCode.QuickIO.pdb
+D:\_data\repositories\SchwabenCode.QuickIO\QuickIO\obj\Debug\Decl\SchwabenCode.QuickIO.dll
+D:\_data\repositories\SchwabenCode.QuickIO\QuickIO\obj\Debug\Decl\SchwabenCode.QuickIO.pdb
+D:\_data\repositories\SchwabenCode.QuickIO\QuickIO\obj\Debug\CodeContractAnalysisRun.log

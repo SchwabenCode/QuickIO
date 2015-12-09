@@ -1,11 +1,10 @@
-# QuickIO.NET
+# QuickIO.NET ![License](https://img.shields.io/github/license/SchwabenCode/QuickIO.png?style=flat-square)
 **by [SchwabenCode.com](http://www.schwabencode.com) - Benjamin Abt**
 
-[![License](https://img.shields.io/github/license/SchwabenCode/QuickIO.svg?label=License&style=flat-square)](https://www.nuget.org/packages/QuickIO.NET/) 
-[![NuGet Downloads](https://img.shields.io/nuget/dt/QuickIO.NET.svg?label=NuGet%20Downloads&style=flat-square)](https://www.nuget.org/packages/QuickIO.NET/) [![NuGet Version](https://img.shields.io/nuget/v/QuickIO.NET.svg?label=NuGet%20Release&style=flat-square)](https://www.nuget.org/packages/QuickIO.NET/) [![NuGet PreVersion](https://img.shields.io/nuget/vpre/QuickIO.NET.svg?label=NuGet%20Pre-Version&style=flat-square)](https://www.nuget.org/packages/QuickIO.NET/) ![GitHub Release](https://img.shields.io/github/release/SchwabenCode/QuickIO.svg?label=GitHub%20Release&style=flat-square) ![GitHub Issues](https://img.shields.io/github/issues/SchwabenCode/QuickIO.svg?label=Open%20Issues&style=flat-square)
-
-
-
+| Visual Studio Build  | NuGet Stable | NuGet Pre | GitHub latest |
+|---|---|---|---|
+| | ![NuGetStable](https://img.shields.io/nuget/v/QuickIO.NET.png?style=flat-square)  | ![NuGetPre](https://img.shields.io/nuget/vpre/QuickIO.NET.png?style=flat-square) | ![GitHubRelease](https://img.shields.io/github/release/SchwabenCode/QuickIO.png?style=flat-square) |
+| | ![NuGetStable](https://img.shields.io/nuget/dt/QuickIO.NET.png?style=flat-square) | | |
 
 ## Website
 Checkout the official Page [http://quickIO.NET](http://quickIO.NET)
@@ -40,20 +39,32 @@ It would be also very nice when you just write me, if you like this implementati
 - Fully async elements and events
 - Cancellation support
 - Code Contracts
-- Support for Windows 10 and Windows Server 2014
+- Support for Windows 10 and Windows Server 2016
+- Change from Microsoft Public License to MIT License
 
 ## License
-[Microsoft Public License (Ms-PL)](https://github.com/SchwabenCode/QuickIO/blob/master/LICENSE.md)
-##NuGet
-  <a href="https://www.nuget.org/packages/QuickIO.NET/" target="_blank"><code style="background-color: black;color:#fff; padding: 5px">
-    PM &gt; Install-Package QuickIO.NET
- </code></a>
- 
- Check out [https://www.nuget.org/packages/QuickIO.NET/](https://www.nuget.org/packages/QuickIO.NET/)
+[MIT License](https://github.com/SchwabenCode/QuickIO/blob/master/LICENSE.md)
 
+> Copyright (c) 2015 Benjamin Abt
+> 
+> Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+> 
+> The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+## NuGet
+```
+Install-Package QuickIO.NET
+```
+or visit [QuickIO.NET on NuGet](https://www.nuget.org/packages/QuickIO.NET/)
+
+## Branches
+- [master](https://github.com/SchwabenCode/QuickIO/tree/master): stable
+- [develop](https://github.com/SchwabenCode/QuickIO/tree/develop): used during development
 
 ## Remarks
-This library was created on the basis of my own needs.
-I am not responsible for integration issues, errors or any damage. If you have problems, please use public forums.
+This library was created on the basis of my own needs. I am not responsible for integration issues, errors or any damage.
+On usage problems, please use public forums. For bugs and features please fork to your own branch, fix it and create a pull request or use the [issue tab](https://github.com/SchwabenCode/QuickIO/issues).
 
 Thank you and good luck with your software.

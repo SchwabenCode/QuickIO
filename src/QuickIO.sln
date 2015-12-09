@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DF14B08B-72FF-4EEB-90BC-D96F508C7BC9}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickIO.UnitTests", "QuickIO.UnitTests\QuickIO.UnitTests.csproj", "{684665AD-23E2-44B1-812D-D87DD9C3DCF6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Targets", "Targets", "{8BE52E4B-B90D-47F5-8E8E-9207283CAEEF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{86BE31B7-7B6E-4D71-9289-21E367F2FA72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{4863B9FA-D2FB-4B8C-B3D8-10B0769BD14D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickIO.CodeGeneration", "QuickIO.CodeGeneration\QuickIO.CodeGeneration.csproj", "{F2079A43-76A0-4192-8F62-91B05198B430}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B4328C3C-2189-4D9A-99F8-F9BD18A8CAAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickIO", "QuickIO\QuickIO.csproj", "{69C7E9B2-3553-4333-8841-25849639F472}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{684665AD-23E2-44B1-812D-D87DD9C3DCF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{684665AD-23E2-44B1-812D-D87DD9C3DCF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{684665AD-23E2-44B1-812D-D87DD9C3DCF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{684665AD-23E2-44B1-812D-D87DD9C3DCF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2079A43-76A0-4192-8F62-91B05198B430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2079A43-76A0-4192-8F62-91B05198B430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2079A43-76A0-4192-8F62-91B05198B430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2079A43-76A0-4192-8F62-91B05198B430}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69C7E9B2-3553-4333-8841-25849639F472}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69C7E9B2-3553-4333-8841-25849639F472}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69C7E9B2-3553-4333-8841-25849639F472}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69C7E9B2-3553-4333-8841-25849639F472}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{684665AD-23E2-44B1-812D-D87DD9C3DCF6} = {4863B9FA-D2FB-4B8C-B3D8-10B0769BD14D}
+		{4863B9FA-D2FB-4B8C-B3D8-10B0769BD14D} = {86BE31B7-7B6E-4D71-9289-21E367F2FA72}
+		{F2079A43-76A0-4192-8F62-91B05198B430} = {B4328C3C-2189-4D9A-99F8-F9BD18A8CAAA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+	EndGlobalSection
+EndGlobal
