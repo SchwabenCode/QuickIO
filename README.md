@@ -1,6 +1,12 @@
 # QuickIO.NET
 **by [SchwabenCode.com](http://www.schwabencode.com) - Benjamin Abt**
 
+[![License](https://img.shields.io/github/license/SchwabenCode/QuickIO.svg?label=License&style=flat-square)](https://www.nuget.org/packages/QuickIO.NET/) 
+[![NuGet Downloads](https://img.shields.io/nuget/dt/QuickIO.NET.svg?label=NuGet%20Downloads&style=flat-square)](https://www.nuget.org/packages/QuickIO.NET/) [![NuGet Version](https://img.shields.io/nuget/v/QuickIO.NET.svg?label=NuGet%20Release&style=flat-square)](https://www.nuget.org/packages/QuickIO.NET/) [![NuGet PreVersion](https://img.shields.io/nuget/vpre/QuickIO.NET.svg?label=NuGet%20Pre-Version&style=flat-square)](https://www.nuget.org/packages/QuickIO.NET/) ![GitHub Release](https://img.shields.io/github/release/SchwabenCode/QuickIO.svg?label=GitHub%20Release&style=flat-square) ![GitHub Issues](https://img.shields.io/github/issues/SchwabenCode/QuickIO.svg?label=Open%20Issues&style=flat-square)
+
+
+
+
 ## Website
 Checkout the official Page [http://quickIO.NET](http://quickIO.NET)
 
@@ -23,7 +29,7 @@ To offer you a simple use and an easy integration QuickIO.NET methods lean again
 
 ## Give Thanks
 It took many hours to create this library in its published form.  
-If you like the library and saved much time, than maybe respect this with a small donation to the [animal shelter of Stuttgart](http://www.tierheim-stuttgart.de/).
+If you like the library and saved you much time, then maybe respect this with a small donation to the [animal shelter of Stuttgart](http://www.tierheim-stuttgart.de/).
 
 If you want to thank me personally, take a look at [my personal Amazon wishlist](http://www.amazon.de/gp/registry/wishlist/H6KLKT7UMI7Z/).
 
