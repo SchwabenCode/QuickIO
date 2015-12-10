@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Diagnostics.Contracts;
-using System.Linq;
 using SchwabenCode.QuickIO.Internal;
 
 namespace SchwabenCode.QuickIO.Transfer
@@ -301,8 +300,8 @@ namespace SchwabenCode.QuickIO.Transfer
                 }
 
                 // load jobs
-                IList<QuickIOTransferDirectoryCreationJob> dirCreateJobs;
-                IList<QuickIOTransferFileCopyJob> fileCreateJobs;
+                IList<QuickIOTransferDirectoryCreationJob> dirCreateJobs = null;
+                IList<QuickIOTransferFileCopyJob> fileCreateJobs = null;
 
                 LoadAllJobs( out dirCreateJobs, out fileCreateJobs );
 
