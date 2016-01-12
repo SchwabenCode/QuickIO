@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Runtime.InteropServices;
 using SchwabenCode.QuickIO.Internal;
-using SchwabenCode.QuickIO.Pinvoke;
+using SchwabenCode.QuickIO.PInvoke;
 using System.Diagnostics.Contracts;
 
 namespace SchwabenCode.QuickIO.Win32
@@ -12,9 +12,9 @@ namespace SchwabenCode.QuickIO.Win32
     {
         public string DirectoryPath { get; private set; }
 
-        Win32FileHandle _currentFileHandle;
-        Win32FindData _currentFindData;
-        int _currentErrorCode;
+        private readonly Win32FileHandle _currentFileHandle;
+        private Win32FindData _currentFindData;
+        private int _currentErrorCode;
         /// <summary>
         /// Returns current element
         /// </summary>
@@ -30,13 +30,7 @@ namespace SchwabenCode.QuickIO.Win32
         /// <summary>
         /// Returns current element
         /// </summary>
-        object IEnumerator.Current
-        {
-            get
-            {
-                return this.Current;
-            }
-        }
+        object IEnumerator.Current => this.Current;
 
         private Win32FileHandleEnumerator()
         {
@@ -77,20 +71,18 @@ namespace SchwabenCode.QuickIO.Win32
 
                 return false;
             }
-            else
+
+            // filter system path "." and ".."
+            Boolean entryFound;
+            do
             {
-                // filter system path "." and ".."
-                Boolean entryFound;
-                do
-                {
-                    _currentFindData = new Win32FindData();
-                    entryFound = Win32SafeNativeMethods.FindNextFile( _currentFileHandle, _currentFindData );
-                    _currentErrorCode = Marshal.GetLastWin32Error();
-                }
-                // skip found element if system entry
-                while( _currentFindData.cFileName == "." || _currentFindData.cFileName == ".." );
-                return entryFound;
+                _currentFindData = new Win32FindData();
+                entryFound = Win32SafeNativeMethods.FindNextFile( _currentFileHandle, _currentFindData );
+                _currentErrorCode = Marshal.GetLastWin32Error();
             }
+            // skip found element if system entry
+            while( _currentFindData.cFileName == "" || _currentFindData.cFileName == "." || _currentFindData.cFileName == ".." );
+            return entryFound;
         }
 
         /// <summary>
@@ -102,7 +94,8 @@ namespace SchwabenCode.QuickIO.Win32
         }
 
         #region Dispose
-        bool _disposed;
+
+        private bool _disposed;
         public void Dispose()
         {
             Dispose( true );

@@ -1,5 +1,5 @@
 ﻿using SchwabenCode.QuickIO.Win32;
-using SchwabenCode.QuickIO.Pinvoke;
+using SchwabenCode.QuickIO.PInvoke;
 using System;
 using System.Diagnostics.Contracts;
 using System.IO;

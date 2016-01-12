@@ -9,10 +9,8 @@ using System;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Runtime.InteropServices;
-using SchwabenCode.QuickIO.Win32;
-using SchwabenCode.QuickIO.Pinvoke;
+using SchwabenCode.QuickIO.PInvoke;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SchwabenCode.QuickIO.Internal
 {

@@ -7,10 +7,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using SchwabenCode.QuickIO.Internal;
 using SchwabenCode.QuickIO.Win32;
-using SchwabenCode.QuickIO.Pinvoke;
 using System.Diagnostics.Contracts;
 
 namespace SchwabenCode.QuickIO

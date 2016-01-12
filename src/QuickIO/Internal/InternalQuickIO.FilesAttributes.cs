@@ -10,9 +10,8 @@ using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Runtime.InteropServices;
-using SchwabenCode.QuickIO.Pinvoke;
+using SchwabenCode.QuickIO.PInvoke;
 
-using System.Threading.Tasks;
 namespace SchwabenCode.QuickIO.Internal
 {
     internal static partial class InternalQuickIO
@@ -20,7 +19,7 @@ namespace SchwabenCode.QuickIO.Internal
         /// <summary>
         /// Adds a file attribute
         /// </summary>
-        /// <param name="pathInfo">Affected target</param>
+        /// <param name="path">Affected target</param>
         /// <param name="attribute">Attribute to add</param>
         /// <returns>true if added. false if already exists in attributes</returns>
         public static bool AddAttribute( string path, FileAttributes attribute )
@@ -98,7 +97,7 @@ namespace SchwabenCode.QuickIO.Internal
         /// <summary>
         /// Gets the <see cref="FileAttributes"/> of the file on the entry.
         /// </summary>
-        /// <param name="uncPath">The path to the entry. </param>
+        /// <param name="path">The path to the entry. </param>
         /// <param name="win32Error">Win32 Error Code</param>
         /// <returns>The <see cref="FileAttributes"/> of the file on the entry.</returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>

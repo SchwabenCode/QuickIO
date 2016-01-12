@@ -1,8 +1,9 @@
 ﻿using Microsoft.Win32.SafeHandles;
-using SchwabenCode.QuickIO.Pinvoke;
+using SchwabenCode.QuickIO.PInvoke;
 using System;
 using System.Diagnostics.Contracts;
 using System.IO;
+using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO.Internal
 {
@@ -54,24 +55,24 @@ namespace SchwabenCode.QuickIO.Internal
             return Win32SafeNativeMethods.OpenReadWriteFileSystemEntryHandle( path, ( 0x40000000 | 0x80000000 ), FileShare.Read | FileShare.Write | FileShare.Delete, IntPtr.Zero, FileMode.Open, ( 0x02000000 ), IntPtr.Zero );
         }
 
-        /// <summary>
-        /// Handles the options to the fired exception
-        /// </summary>
-        private static bool EnumerationHandleInvalidFileHandle( string path, QuickIOEnumerateOptions enumerateOptions, int win32Error )
-        {
-            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
+        ///// <summary>
+        ///// Handles the options to the fired exception
+        ///// </summary>
+        //private static bool EnumerationHandleInvalidFileHandle( string path, QuickIOEnumerateOptions enumerateOptions, int win32Error )
+        //{
+        //    Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
 
-            try
-            {
-                InternalQuickIOCommon.NativeExceptionMapping( path, win32Error );
-            }
-            catch( Exception ) when (enumerateOptions.HasFlag( QuickIOEnumerateOptions.SuppressAllExceptions ))
-            {
-                return true;
-            }
+        //    try
+        //    {
+        //        InternalQuickIOCommon.NativeExceptionMapping( path, win32Error );
+        //    }
+        //    catch( Exception ) when (enumerateOptions.HasFlag( QuickIOEnumerateOptions.SuppressAllExceptions ))
+        //    {
+        //        return true;
+        //    }
 
 
-            return false;
-        }
+        //    return false;
+        //}
     }
 }

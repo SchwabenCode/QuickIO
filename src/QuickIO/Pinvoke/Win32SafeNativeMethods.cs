@@ -12,7 +12,7 @@ using System.Text;
 using Microsoft.Win32.SafeHandles;
 using SchwabenCode.QuickIO.Win32;
 
-namespace SchwabenCode.QuickIO.Pinvoke
+namespace SchwabenCode.QuickIO.PInvoke
 {
     /// <summary>
     /// Native Methods - take a look on www.pinvoke.net

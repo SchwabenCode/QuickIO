@@ -28,13 +28,13 @@ namespace SchwabenCode.QuickIO.Internal
             /// Is equal to UInt32.MaxValue
             /// See http://msdn.microsoft.com/en-us/library/windows/desktop/aa364944(v=vs.85).aspx
             /// </summary>
-            public const UInt32 INVALID_FILE_ATTRIBUTES = 0xffffffff;
+            public const UInt32 InvalidFileAttributes = 0xffffffff;
         }
 
         /// <summary>
         /// Determines the type based on the attributes of the path
         /// </summary>
-        /// <param name="path"><see cref="QuickIOPathInfo"/></param>
+        /// <param name="internalPath"><see cref="InternalPath"/></param>
         /// <returns><see cref="QuickIOFileSystemEntryType"/></returns>
         internal static QuickIOFileSystemEntryType DetermineFileSystemEntry( InternalPath internalPath )
         {

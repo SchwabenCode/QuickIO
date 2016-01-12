@@ -5,7 +5,7 @@
 // <date>01/06/2014</date>
 // <summary>Win32SecurityObjectType</summary>
 
-namespace SchwabenCode.QuickIO.Win32
+namespace SchwabenCode.QuickIO.PInvoke
 {
     /// <summary>
     /// Win32 Security Object Type

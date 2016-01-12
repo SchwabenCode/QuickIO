@@ -8,8 +8,7 @@
 using System;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
-using SchwabenCode.QuickIO.Win32;
-using SchwabenCode.QuickIO.Pinvoke;
+using SchwabenCode.QuickIO.PInvoke;
 using Microsoft.Win32.SafeHandles;
 
 namespace SchwabenCode.QuickIO.Internal

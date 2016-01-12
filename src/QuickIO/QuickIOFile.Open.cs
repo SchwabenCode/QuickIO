@@ -11,7 +11,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using SchwabenCode.QuickIO.Internal;
-using SchwabenCode.QuickIO.Pinvoke;
+using SchwabenCode.QuickIO.PInvoke;
 
 namespace SchwabenCode.QuickIO
 {

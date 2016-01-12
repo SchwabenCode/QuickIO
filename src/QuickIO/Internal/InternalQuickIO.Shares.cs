@@ -8,7 +8,7 @@
 using System;
 using System.Diagnostics.Contracts;
 using SchwabenCode.QuickIO.Win32;
-using SchwabenCode.QuickIO.Pinvoke;
+using SchwabenCode.QuickIO.PInvoke;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
@@ -30,7 +30,8 @@ namespace SchwabenCode.QuickIO.Internal
 
             try
             {
-                int resumeHandle = 0, entriesRead = 0, totalEntries = 0;
+                int resumeHandle = 0;
+                int entriesRead, totalEntries;
                 int returnCode = Win32SafeNativeMethods.NetShareEnum( machineName, ( int )level, out buffer, -1, out entriesRead, out totalEntries, ref resumeHandle );
 
                 // Available return codes: http://msdn.microsoft.com/en-us/library/windows/desktop/bb525387(v=vs.85).aspx

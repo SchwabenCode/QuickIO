@@ -9,7 +9,7 @@
 using System;
 using System.Security.Permissions;
 using Microsoft.Win32.SafeHandles;
-using SchwabenCode.QuickIO.Pinvoke;
+using SchwabenCode.QuickIO.PInvoke;
 
 namespace SchwabenCode.QuickIO.Win32
 {

@@ -268,7 +268,7 @@
         </member>
         <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.CreateSafeFileHandle(SchwabenCode.QuickIO.QuickIOPathInfo)">
             <summary>
-            Returns the <see cref="T:Microsoft.Win32.SafeHandles.SafeFileHandle"/> and fills <see cref="!:Win32FindData"/> from the passes path.
+            Returns the <see cref="T:Microsoft.Win32.SafeHandles.SafeFileHandle"/> and fills <see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/> from the passes path.
             </summary>
             <param name="pathInfo">Path to the file system entry</param>
             <returns><see cref="T:Microsoft.Win32.SafeHandles.SafeFileHandle"/></returns>
@@ -276,7 +276,7 @@
         </member>
         <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.CreateSafeFileHandle(System.String)">
             <summary>
-            Returns the <see cref="T:Microsoft.Win32.SafeHandles.SafeFileHandle"/> and fills <see cref="!:Win32FindData"/> from the passes path.
+            Returns the <see cref="T:Microsoft.Win32.SafeHandles.SafeFileHandle"/> and fills <see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/> from the passes path.
             </summary>
             <param name="path">Path to the file system entry</param>
             <returns><see cref="T:Microsoft.Win32.SafeHandles.SafeFileHandle"/></returns>
@@ -284,16 +284,11 @@
         </member>
         <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.OpenReadWriteFileSystemEntryHandle(System.String)">
             <summary>
-            Returns the <see cref="T:Microsoft.Win32.SafeHandles.SafeFileHandle"/> and fills <see cref="!:Win32FindData"/> from the passes path.
+            Returns the <see cref="T:Microsoft.Win32.SafeHandles.SafeFileHandle"/> and fills <see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/> from the passes path.
             </summary>
             <param name="path">Path to the file system entry</param>
             <returns><see cref="T:Microsoft.Win32.SafeHandles.SafeFileHandle"/></returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerationHandleInvalidFileHandle(System.String,SchwabenCode.QuickIO.QuickIOEnumerateOptions,System.Int32)">
-            <summary>
-            Handles the options to the fired exception
-            </summary>
         </member>
         <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.CreateFile(System.String,System.IO.FileAccess,System.IO.FileShare,System.IO.FileMode,System.IO.FileAttributes)">
             <summary>
@@ -333,7 +328,7 @@
             <summary>
             Adds a file attribute
             </summary>
-            <param name="pathInfo">Affected target</param>
+            <param name="path">Affected target</param>
             <param name="attribute">Attribute to add</param>
             <returns>true if added. false if already exists in attributes</returns>
         </member>
@@ -364,7 +359,7 @@
             <summary>
             Gets the <see cref="T:System.IO.FileAttributes"/> of the file on the entry.
             </summary>
-            <param name="uncPath">The path to the entry. </param>
+            <param name="path">The path to the entry. </param>
             <param name="win32Error">Win32 Error Code</param>
             <returns>The <see cref="T:System.IO.FileAttributes"/> of the file on the entry.</returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
@@ -462,7 +457,7 @@
             Common Constants
             </summary>
         </member>
-        <member name="F:SchwabenCode.QuickIO.Internal.InternalQuickIOCommon.Constants.INVALID_FILE_ATTRIBUTES">
+        <member name="F:SchwabenCode.QuickIO.Internal.InternalQuickIOCommon.Constants.InvalidFileAttributes">
             <summary>
             Represents return value of invalid request of get the file attributes of a system entry.
             Is equal to UInt32.MaxValue
@@ -473,7 +468,7 @@
             <summary>
             Determines the type based on the attributes of the path
             </summary>
-            <param name="path"><see cref="T:SchwabenCode.QuickIO.QuickIOPathInfo"/></param>
+            <param name="internalPath"><see cref="T:SchwabenCode.QuickIO.Internal.InternalPath"/></param>
             <returns><see cref="T:SchwabenCode.QuickIO.QuickIOFileSystemEntryType"/></returns>
         </member>
         <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIOCommon.DetermineFileSystemEntry(SchwabenCode.QuickIO.Win32.Win32FindData)">
@@ -522,382 +517,121 @@
             Converts DateTime to Win32 FileTime format
             </summary>
         </member>
-        <member name="T:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods">
+        <member name="T:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods">
             <summary>
             Native Methods - take a look on www.pinvoke.net
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.SetAllFileTimes(Microsoft.Win32.SafeHandles.SafeFileHandle,System.Int64@,System.Int64@,System.Int64@)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.SetAllFileTimes(Microsoft.Win32.SafeHandles.SafeFileHandle,System.Int64@,System.Int64@,System.Int64@)">
             <summary>
             Sets the last all times for files or directories
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.SetCreationFileTime(Microsoft.Win32.SafeHandles.SafeFileHandle,System.Int64@,System.IntPtr,System.IntPtr)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.SetCreationFileTime(Microsoft.Win32.SafeHandles.SafeFileHandle,System.Int64@,System.IntPtr,System.IntPtr)">
             <summary>
             Sets the last creation time for files or directories
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.SetLastAccessFileTime(Microsoft.Win32.SafeHandles.SafeFileHandle,System.IntPtr,System.Int64@,System.IntPtr)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.SetLastAccessFileTime(Microsoft.Win32.SafeHandles.SafeFileHandle,System.IntPtr,System.Int64@,System.IntPtr)">
             <summary>
             Sets the last acess time for files or directories
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.SetLastWriteFileTime(Microsoft.Win32.SafeHandles.SafeFileHandle,System.IntPtr,System.IntPtr,System.Int64@)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.SetLastWriteFileTime(Microsoft.Win32.SafeHandles.SafeFileHandle,System.IntPtr,System.IntPtr,System.Int64@)">
             <summary>
             Sets the last write time for files or directories
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.CreateDirectory(System.String,System.IntPtr)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.CreateDirectory(System.String,System.IntPtr)">
             <summary>
             Create directory
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.CreateFile(System.String,System.IO.FileAccess,System.IO.FileShare,System.IntPtr,System.IO.FileMode,System.IO.FileAttributes,System.IntPtr)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.CreateFile(System.String,System.IO.FileAccess,System.IO.FileShare,System.IntPtr,System.IO.FileMode,System.IO.FileAttributes,System.IntPtr)">
             <summary>
             Creates a file / directory or opens an handle for an existing file.
-            <b>If you want to get an handle for an existing folder use <see cref="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.OpenReadWriteFileSystemEntryHandle(System.String,System.UInt32,System.IO.FileShare,System.IntPtr,System.IO.FileMode,System.UInt32,System.IntPtr)"/> with ( 0x02000000 ) as attribute and FileMode ( 0x40000000 | 0x80000000 )</b>
+            <b>If you want to get an handle for an existing folder use <see cref="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.OpenReadWriteFileSystemEntryHandle(System.String,System.UInt32,System.IO.FileShare,System.IntPtr,System.IO.FileMode,System.UInt32,System.IntPtr)"/> with ( 0x02000000 ) as attribute and FileMode ( 0x40000000 | 0x80000000 )</b>
             Otherwise it you'll get an invalid handle
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.OpenReadWriteFileSystemEntryHandle(System.String,System.UInt32,System.IO.FileShare,System.IntPtr,System.IO.FileMode,System.UInt32,System.IntPtr)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.OpenReadWriteFileSystemEntryHandle(System.String,System.UInt32,System.IO.FileShare,System.IntPtr,System.IO.FileMode,System.UInt32,System.IntPtr)">
             <summary>
             Use this to open an handle for an existing file or directory to change for example the timestamps
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.CreateFileForAppend(System.String,System.UInt32,System.IO.FileShare,System.IntPtr,System.IO.FileMode,System.IO.FileAttributes,System.IntPtr)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.CreateFileForAppend(System.String,System.UInt32,System.IO.FileShare,System.IntPtr,System.IO.FileMode,System.IO.FileAttributes,System.IntPtr)">
             <summary>
             Open handle for appending
             <br/>
             FileMode has to be 0x0004 for internal appending mode
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.FindFirstFile(System.String,SchwabenCode.QuickIO.Win32.Win32FindData)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.FindFirstFile(System.String,SchwabenCode.QuickIO.Win32.Win32FindData)">
             <summary>
             Finds first file of given path
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.FindNextFile(SchwabenCode.QuickIO.Win32.Win32FileHandle,SchwabenCode.QuickIO.Win32.Win32FindData)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.FindNextFile(SchwabenCode.QuickIO.Win32.Win32FileHandle,SchwabenCode.QuickIO.Win32.Win32FindData)">
             <summary>
             Finds next file of current handle
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.MoveFile(System.String,System.String)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.MoveFile(System.String,System.String)">
             <summary>
             Moves a directory
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.CopyFile(System.String,System.String,System.Boolean)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.CopyFile(System.String,System.String,System.Boolean)">
             <summary>
             Copy file
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.DeleteFile(System.String)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.DeleteFile(System.String)">
             <summary>
             Removes a file.
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.RemoveDirectory(System.String)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.RemoveDirectory(System.String)">
             <summary>
             Removes a file.
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.SetFileAttributes(System.String,System.UInt32)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.SetFileAttributes(System.String,System.UInt32)">
             <summary>
             Set File Attributes
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.GetFileAttributes(System.String)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.GetFileAttributes(System.String)">
             <summary>
             Gets Attributes of given path
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.FindClose(System.Runtime.InteropServices.SafeHandle)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.FindClose(System.Runtime.InteropServices.SafeHandle)">
             <summary>
             Close Hnalde
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.LocalFree(System.IntPtr)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.LocalFree(System.IntPtr)">
             <summary>
             Free unmanaged memory
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.GetDiskFreeSpaceEx(System.String,System.UInt64@,System.UInt64@,System.UInt64@)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.GetDiskFreeSpaceEx(System.String,System.UInt64@,System.UInt64@,System.UInt64@)">
             <summary>
             QuickIOShareInfo information
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Pinvoke.Win32SafeNativeMethods.NetShareEnum(System.String,System.Int32,System.IntPtr@,System.Int32,System.Int32@,System.Int32@,System.Int32@)">
+        <member name="M:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods.NetShareEnum(System.String,System.Int32,System.IntPtr@,System.Int32,System.Int32@,System.Int32@,System.Int32@)">
             <summary>
             Enumerate shares (NT)
             </summary>
             <remarks>http://msdn.microsoft.com/en-us/library/windows/desktop/bb525387(v=vs.85).aspx</remarks>
         </member>
-        <member name="T:SchwabenCode.QuickIO.Win32.Win32SecurityObjectType">
+        <member name="T:SchwabenCode.QuickIO.PInvoke.Win32SecurityObjectType">
             <summary>
             Win32 Security Object Type
             </summary>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.IWin32ApiShareInfo.GetShareName">
-            <summary>
-            Returns the share name
-            </summary>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.IWin32ApiShareInfo.GetShareType">
-            <summary>
-            Returns the share name
-            </summary>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.IWin32ApiShareInfo.GetRemark">
-            <summary>
-            Returns the remark
-            </summary>
-        </member>
-        <member name="T:SchwabenCode.QuickIO.Win32.Win32ApiShareInfoAdmin">
-            <summary>
-            Gets the complete share information. Requires admin priviles.
-            </summary>
-            <remarks>See http://msdn.microsoft.com/en-us/library/windows/desktop/bb525408(v=vs.85).aspx</remarks>
-        </member>
-        <member name="T:SchwabenCode.QuickIO.Win32.Win32ApiShareInfoNormal">
-            <summary>
-            Use this Info bag if call with admin privilegs fails (fallback)
-            </summary>
-            <remarks>See http://msdn.microsoft.com/en-us/library/windows/desktop/bb525407(v=vs.85).aspx</remarks>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32ApiShareInfoNormal.GetShareName">
-            <summary>
-            Returns the share name
-            </summary>
-        </member>
-        <member name="T:SchwabenCode.QuickIO.Win32.Win32ErrorCodes">
-            <summary>
-            Win32 Error Code Collection
-            </summary>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32ErrorCodes.FormatMessage(System.Int32)">
-            <summary>
-            Formats <paramref name="errorCode"/> to a message
-            </summary>
-            <param name="errorCode">ErrorCode</param>
-            <returns>Message or "Unknown" if <paramref name="errorCode"/> is not handles</returns>
-        </member>
-        <member name="T:SchwabenCode.QuickIO.Win32.Win32FileHandle">
-            <summary>
-            Provides a class for Win32 safe handle implementations
-            </summary>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandle.#ctor">
-            <summary>
-            Initializes a new instance of the Win32ApiFileHandle class, specifying whether the handle is to be reliably released.
-            </summary>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandle.#ctor(System.IntPtr,System.Boolean)">
-            <summary>
-            Initializes a new instance of the Win32ApiFileHandle class, specifying whether the handle is to be reliably released.
-            </summary>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandle.ReleaseHandle">
-            <summary>
-            When overridden in a derived class, executes the code required to free the handle.
-            </summary>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandle.Dispose(System.Boolean)">
-            <summary>
-            Releases the unmanaged resources used by the Win32ApiFileHandle class specifying whether to perform a normal dispose operation. 
-            </summary>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandleCollection.#ctor(System.String)">
-            <summary>
-            Creates an instance of with given directory path
-            </summary>
-            <param name="path">Directory</param>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.Current">
-            <summary>
-            Returns current element
-            </summary>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.System#Collections#IEnumerator#Current">
-            <summary>
-            Returns current element
-            </summary>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.#ctor(System.String)">
-            <summary>
-            Creates an instance of <see cref = "T:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator"/>
-            </summary>
-            <param name = "directoryPath">UNC Path to directory</param>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.MoveNext">
-            <summary>
-            Moves to next element
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.Reset">
-            <summary>
-            You cannot reset this enumerator
-            </summary>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileSystemEntry.Name">
-            <summary>
-            Returns name of entry (not fullname!)
-            </summary>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileSystemEntry.Attributes">
-            <summary>
-            Returns all <see cref="T:System.IO.FileAttributes"/> responding to this <see cref="P:SchwabenCode.QuickIO.Win32.Win32FileSystemEntry.FindData"/>
-            </summary>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileSystemEntry.IsDirectory">
-            <summary>
-            Returns true if entry is a directory
-            </summary>
-            <remarks>Checks <see cref="F:System.IO.FileAttributes.Directory"/></remarks>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileSystemEntry.IsFile">
-            <summary>
-            Returns true if entry is a file
-            </summary>
-            <remarks>Checks <see cref="F:System.IO.FileAttributes.Directory"/></remarks>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileSystemEntry.Bytes">
-            <summary>
-            Returns total size of entry in Bytes
-            </summary>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileSystemEntry.FileSystemEntryType">
-            <summary>
-            Returns type of entry
-            </summary>
-        </member>
-        <member name="T:SchwabenCode.QuickIO.Win32.Win32FileSystemEntrySecurityInformation">
-            <summary>
-            Win32 Security Information
-            </summary>
-        </member>
-        <member name="T:SchwabenCode.QuickIO.Win32.Win32FileTime">
-            <summary>
-            See http://www.pinvoke.net/default.aspx/Structures/FILETIME.html?diff=y
-            Represents Win32 LongFileTime
-            </summary>
-        </member>
-        <member name="T:SchwabenCode.QuickIO.Win32.Win32FindData">
-            <summary>
-            Structure of File Data given by Win32 API
-            </summary>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Win32.Win32FindData.IsDirectory">
-            <summary>
-            Returns true if entry is a directory
-            </summary>
-            <remarks>Checks <see cref="F:System.IO.FileAttributes.Directory"/></remarks>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Win32.Win32FindData.IsFile">
-            <summary>
-            Returns true if entry is a file
-            </summary>
-            <remarks>Checks <see cref="F:System.IO.FileAttributes.Directory"/></remarks>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Win32.Win32FindData.Bytes">
-            <summary>
-            Returns total size of entry in Bytes
-            </summary>
-        </member>
-        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.dwFileAttributes">
-            <summary>
-            File Attributes
-            </summary>
-        </member>
-        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftCreationTime_dwLowDateTime">
-            <summary>
-            Last Creation Time (Low DateTime)
-            </summary>
-        </member>
-        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftCreationTime_dwHighDateTime">
-            <summary>
-            Last Creation Time (High DateTime)
-            </summary>
-        </member>
-        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftLastAccessTime_dwLowDateTime">
-            <summary>
-            Last Access Time (Low DateTime)
-            </summary>
-        </member>
-        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftLastAccessTime_dwHighDateTime">
-            <summary>
-            Last Access Time (High DateTime)
-            </summary>
-        </member>
-        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftLastWriteTime_dwLowDateTime">
-            <summary>
-            Last Write Time (Low DateTime)
-            </summary>
-        </member>
-        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftLastWriteTime_dwHighDateTime">
-            <summary>
-            Last Write Time (High DateTime)
-            </summary>
-        </member>
-        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.nFileSizeHigh">
-            <summary>
-            File Size High
-            </summary>
-        </member>
-        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.nFileSizeLow">
-            <summary>
-            File Size Low
-            </summary>
-        </member>
-        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.dwReserved0">
-            <summary>
-            Reserved
-            </summary>
-        </member>
-        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.dwReserved1">
-            <summary>
-            Reserved
-            </summary>
-        </member>
-        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.cFileName">
-            <summary>
-            File name
-            </summary>
-        </member>
-        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.cAlternateFileName">
-            <summary>
-            Alternate File Name
-            </summary>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Win32.Win32FindData.FileSystemEntryType">
-            <summary>
-            Returns type of entry
-            </summary>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindData.CalculateBytes">
-            <summary>
-            Returns the total size in bytes
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindData.GetLastWriteTimeUtc">
-            <summary>
-            Gets last write time based on UTC
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindData.GetLastAccessTimeUtc">
-            <summary>
-            Gets last access time based on UTC
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindData.GetCreationTimeUtc">
-            <summary>
-            Gets the creation time based on UTC
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:SchwabenCode.QuickIO.QuickIO.SetAttributes(System.String,System.IO.FileAttributes)">
             <summary>
@@ -2181,6 +1915,267 @@
             <summary>
             Entry type
             </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.IWin32ApiShareInfo.GetShareName">
+            <summary>
+            Returns the share name
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.IWin32ApiShareInfo.GetShareType">
+            <summary>
+            Returns the share name
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.IWin32ApiShareInfo.GetRemark">
+            <summary>
+            Returns the remark
+            </summary>
+        </member>
+        <member name="T:SchwabenCode.QuickIO.Win32.Win32ApiShareInfoAdmin">
+            <summary>
+            Gets the complete share information. Requires admin priviles.
+            </summary>
+            <remarks>See http://msdn.microsoft.com/en-us/library/windows/desktop/bb525408(v=vs.85).aspx</remarks>
+        </member>
+        <member name="T:SchwabenCode.QuickIO.Win32.Win32ApiShareInfoNormal">
+            <summary>
+            Use this Info bag if call with admin privilegs fails (fallback)
+            </summary>
+            <remarks>See http://msdn.microsoft.com/en-us/library/windows/desktop/bb525407(v=vs.85).aspx</remarks>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32ApiShareInfoNormal.GetShareName">
+            <summary>
+            Returns the share name
+            </summary>
+        </member>
+        <member name="T:SchwabenCode.QuickIO.Win32.Win32ErrorCodes">
+            <summary>
+            Win32 Error Code Collection
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32ErrorCodes.FormatMessage(System.Int32)">
+            <summary>
+            Formats <paramref name="errorCode"/> to a message
+            </summary>
+            <param name="errorCode">ErrorCode</param>
+            <returns>Message or "Unknown" if <paramref name="errorCode"/> is not handles</returns>
+        </member>
+        <member name="T:SchwabenCode.QuickIO.Win32.Win32FileHandle">
+            <summary>
+            Provides a class for Win32 safe handle implementations
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandle.#ctor">
+            <summary>
+            Initializes a new instance of the Win32ApiFileHandle class, specifying whether the handle is to be reliably released.
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandle.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+            Initializes a new instance of the Win32ApiFileHandle class, specifying whether the handle is to be reliably released.
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandle.ReleaseHandle">
+            <summary>
+            When overridden in a derived class, executes the code required to free the handle.
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandle.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the Win32ApiFileHandle class specifying whether to perform a normal dispose operation. 
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandleCollection.#ctor(System.String)">
+            <summary>
+            Creates an instance of with given directory path
+            </summary>
+            <param name="path">Directory</param>
+        </member>
+        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.Current">
+            <summary>
+            Returns current element
+            </summary>
+        </member>
+        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.System#Collections#IEnumerator#Current">
+            <summary>
+            Returns current element
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.#ctor(System.String)">
+            <summary>
+            Creates an instance of <see cref = "T:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator"/>
+            </summary>
+            <param name = "directoryPath">UNC Path to directory</param>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.MoveNext">
+            <summary>
+            Moves to next element
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.Reset">
+            <summary>
+            You cannot reset this enumerator
+            </summary>
+        </member>
+        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileSystemEntry.Name">
+            <summary>
+            Returns name of entry (not fullname!)
+            </summary>
+        </member>
+        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileSystemEntry.Attributes">
+            <summary>
+            Returns all <see cref="T:System.IO.FileAttributes"/> responding to this <see cref="P:SchwabenCode.QuickIO.Win32.Win32FileSystemEntry.FindData"/>
+            </summary>
+        </member>
+        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileSystemEntry.IsDirectory">
+            <summary>
+            Returns true if entry is a directory
+            </summary>
+            <remarks>Checks <see cref="F:System.IO.FileAttributes.Directory"/></remarks>
+        </member>
+        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileSystemEntry.IsFile">
+            <summary>
+            Returns true if entry is a file
+            </summary>
+            <remarks>Checks <see cref="F:System.IO.FileAttributes.Directory"/></remarks>
+        </member>
+        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileSystemEntry.Bytes">
+            <summary>
+            Returns total size of entry in Bytes
+            </summary>
+        </member>
+        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileSystemEntry.FileSystemEntryType">
+            <summary>
+            Returns type of entry
+            </summary>
+        </member>
+        <member name="T:SchwabenCode.QuickIO.Win32.Win32FileSystemEntrySecurityInformation">
+            <summary>
+            Win32 Security Information
+            </summary>
+        </member>
+        <member name="T:SchwabenCode.QuickIO.Win32.Win32FileTime">
+            <summary>
+            See http://www.pinvoke.net/default.aspx/Structures/FILETIME.html?diff=y
+            Represents Win32 LongFileTime
+            </summary>
+        </member>
+        <member name="T:SchwabenCode.QuickIO.Win32.Win32FindData">
+            <summary>
+            Structure of File Data given by Win32 API
+            </summary>
+        </member>
+        <member name="P:SchwabenCode.QuickIO.Win32.Win32FindData.IsDirectory">
+            <summary>
+            Returns true if entry is a directory
+            </summary>
+            <remarks>Checks <see cref="F:System.IO.FileAttributes.Directory"/></remarks>
+        </member>
+        <member name="P:SchwabenCode.QuickIO.Win32.Win32FindData.IsFile">
+            <summary>
+            Returns true if entry is a file
+            </summary>
+            <remarks>Checks <see cref="F:System.IO.FileAttributes.Directory"/></remarks>
+        </member>
+        <member name="P:SchwabenCode.QuickIO.Win32.Win32FindData.Bytes">
+            <summary>
+            Returns total size of entry in Bytes
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.dwFileAttributes">
+            <summary>
+            File Attributes
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftCreationTime_dwLowDateTime">
+            <summary>
+            Last Creation Time (Low DateTime)
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftCreationTime_dwHighDateTime">
+            <summary>
+            Last Creation Time (High DateTime)
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftLastAccessTime_dwLowDateTime">
+            <summary>
+            Last Access Time (Low DateTime)
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftLastAccessTime_dwHighDateTime">
+            <summary>
+            Last Access Time (High DateTime)
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftLastWriteTime_dwLowDateTime">
+            <summary>
+            Last Write Time (Low DateTime)
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftLastWriteTime_dwHighDateTime">
+            <summary>
+            Last Write Time (High DateTime)
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.nFileSizeHigh">
+            <summary>
+            File Size High
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.nFileSizeLow">
+            <summary>
+            File Size Low
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.dwReserved0">
+            <summary>
+            Reserved
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.dwReserved1">
+            <summary>
+            Reserved
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.cFileName">
+            <summary>
+            File name
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.cAlternateFileName">
+            <summary>
+            Alternate File Name
+            </summary>
+        </member>
+        <member name="P:SchwabenCode.QuickIO.Win32.Win32FindData.FileSystemEntryType">
+            <summary>
+            Returns type of entry
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindData.CalculateBytes">
+            <summary>
+            Returns the total size in bytes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindData.GetLastWriteTimeUtc">
+            <summary>
+            Gets last write time based on UTC
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindData.GetLastAccessTimeUtc">
+            <summary>
+            Gets last access time based on UTC
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindData.GetCreationTimeUtc">
+            <summary>
+            Gets the creation time based on UTC
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions">
             <summary>

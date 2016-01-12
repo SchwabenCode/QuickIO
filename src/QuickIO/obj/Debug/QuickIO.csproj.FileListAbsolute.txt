@@ -11,3 +11,4 @@ D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO\bin\Debug\SchwabenCode.Qu
 D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO\bin\Debug\SchwabenCode.QuickIO.pdb
 D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO\obj\Debug\SchwabenCode.QuickIO.dll
 D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO\obj\Debug\SchwabenCode.QuickIO.pdb
+D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO\obj\Debug\QuickIO.csprojResolveAssemblyReference.cache

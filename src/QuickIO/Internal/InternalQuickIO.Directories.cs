@@ -12,7 +12,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using SchwabenCode.QuickIO.Win32;
-using SchwabenCode.QuickIO.Pinvoke;
+using SchwabenCode.QuickIO.PInvoke;
 
 namespace SchwabenCode.QuickIO.Internal
 {

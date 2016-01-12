@@ -13,7 +13,7 @@ using System.Security.AccessControl;
 using System.Security.Principal;
 using SchwabenCode.QuickIO.Internal;
 using SchwabenCode.QuickIO.Win32;
-using SchwabenCode.QuickIO.Pinvoke;
+using SchwabenCode.QuickIO.PInvoke;
 
 namespace SchwabenCode.QuickIO
 {

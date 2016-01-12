@@ -9,7 +9,7 @@
 using System;
 using System.Runtime.InteropServices;
 using SchwabenCode.QuickIO.Internal;
-using SchwabenCode.QuickIO.Pinvoke;
+using SchwabenCode.QuickIO.PInvoke;
 using System.Diagnostics.Contracts;
 
 namespace SchwabenCode.QuickIO
