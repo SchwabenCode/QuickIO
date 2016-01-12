@@ -1,5 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using FluentAssertions;
+using Xunit;
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace SchwabenCode.QuickIO.UnitTests
 {
@@ -8,96 +11,81 @@ namespace SchwabenCode.QuickIO.UnitTests
     public class QuickIOPath_IsRoot
     {
 
-        [TestMethod()]
-        public void IsRootLocalRegular()
+        [Theory]
+        [InlineData( TestHelpers.AlphabethUpperCase, true )]
+        [InlineData( TestHelpers.AlphabethLowerCase, true )]
+        public void IsRootLocalRegular_TrueTestsLoop( string test, bool expected )
         {
-            Func<string, bool> testMethod = delegate ( string value ) { return QuickIOPath.IsRootLocalRegular( value ); };
-
             // True
-            foreach( var c in TestHelpers.AlphabethUpperCase )
+            foreach( var c in test )
             {
-                Assert.IsTrue( testMethod( c + @":\" ), c + @":\" );
-            }
-            foreach( var c in TestHelpers.AlphabethLowerCase )
-            {
-                Assert.IsTrue( testMethod( c + @":\" ), c + @":\" );
-            }
-
-            // False
-            string[ ] falseTests = new
-            [ ]{
-                "",
-                @"   ",
-                 @"2:\",
-                 @"_:\",
-               @"\\server",
-               @"#:\",
-               @"C:\folder"
-            };
-
-
-            foreach( var expectedFalse in falseTests )
-            {
-                Assert.IsFalse( testMethod( expectedFalse ), expectedFalse );
+                QuickIOPath.IsRootLocalRegular( c + @":\" ).Should().Be( expected );
             }
         }
-
-        [TestMethod()]
-        public void IsRootLocalUnc()
+        [Theory]
+        [InlineData( "", false )]
+        [InlineData( @"   ", false )]
+        [InlineData( @"2:\", false )]
+        [InlineData( @"_:\", false )]
+        [InlineData( @"\\server", false )]
+        [InlineData( @"#:\", false )]
+        [InlineData( @"C:\folder", false )]
+        public void IsRootLocalRegular_FalseTests( string test, bool expected )
         {
-            Func<string, bool> testMethod = delegate ( string value ) { return QuickIOPath.IsRootLocalUnc( value ); };
-
-            Assert.IsFalse( testMethod( @"C:" ), @"C:" );
-            Assert.IsFalse( testMethod( @"C:\" ), @"C:\" );
-            Assert.IsFalse( testMethod( @"C:\folder" ), @"C:\folder" );
-            Assert.IsFalse( testMethod( @"1:" ), @"2:" );
-            Assert.IsFalse( testMethod( @"\\server\share" ), @"\\server\share" );
-            Assert.IsFalse( testMethod( @"\\server\share\" ), @"\\server\share\" );
-            Assert.IsFalse( testMethod( @"\\server\share\folder" ), @"\\server\share\folder" );
-            Assert.IsFalse( testMethod( @"\\?\UNC\\server\share" ), @"\\?\UNC\\server\share" );
-            Assert.IsFalse( testMethod( @"\\?\UNC\\server\share\folder" ), @"\\?\UNC\\server\share\folder" );
-            Assert.IsFalse( testMethod( @"\\?\C:" ), @"\\?\C:" );
-            Assert.IsFalse( testMethod( @"\\?\C:\folder" ), @"\\?\C:\folder" );
-
-
-            Assert.IsTrue( testMethod( @"\\?\C:\" ), @"\\?\C:\" );
-            Assert.IsTrue( testMethod( @"\\?\c:\" ), @"\\?\c:\" );
+            QuickIOPath.IsRootLocalRegular( test ).Should().Be( expected );
         }
 
-        [TestMethod()]
-        public void IsRootShareRegular()
+        [Theory]
+        [InlineData( @"C:", false )]
+        [InlineData( @"C:\", false )]
+        [InlineData( @"C:\folder", false )]
+        [InlineData( @"1:", false )]
+        [InlineData( @"\\server\share", false )]
+        [InlineData( @"\\server\share\", false )]
+        [InlineData( @"\\server\share\folder", false )]
+        [InlineData( @"\\?\UNC\\server\share", false )]
+        [InlineData( @"\\?\UNC\\server\share\folder", false )]
+        [InlineData( @"\\?\C:", false )]
+        [InlineData( @"\\?\C:\folder", false )]
+        [InlineData( @"\\?\C:\", true )]
+        [InlineData( @"\\?\c:\", true )]
+        public void IsRootLocalUnc( string test, bool expected )
         {
-            Func<string, bool> testMethod = delegate ( string value ) { return QuickIOPath.IsRootShareRegular( value ); };
+            QuickIOPath.IsRootLocalUnc( test ).Should().Be( expected );
+        }
 
-            Assert.IsFalse( testMethod( @"\\?\UNC\\server\share" ), @"\\?\UNC\\server\share" );
-            Assert.IsFalse( testMethod( @"\\?\C:" ), @"\\?\C:" );
-            Assert.IsFalse( testMethod( @"\\?\C:\" ), @"\\?\C:\" );
-            Assert.IsFalse( testMethod( @"\\?\c:\" ), @"\\?\c:\" );
-            Assert.IsFalse( testMethod( @"\\?\C:\sadasd" ), @"\\?\C:\sadasd" );
-            Assert.IsFalse( testMethod( @"\\?\c:\sadasd" ), @"\\?\C:\sadasd" );
-            Assert.IsFalse( testMethod( @"\\server\share\folder" ), @"\\server\share\folder" );
-
-            Assert.IsTrue( testMethod( @"\\server\share" ), @"\\server\share" );
-            Assert.IsTrue( testMethod( @"\\server\share\" ), @"\\server\share\" );
+        [Theory]
+        [InlineData( @"\\?\UNC\\server\share", false )]
+        [InlineData( @"\\?\C:", false )]
+        [InlineData( @"\\?\C:\", false )]
+        [InlineData( @"\\?\c:\", false )]
+        [InlineData( @"\\?\C:\sadasd", false )]
+        [InlineData( @"\\?\c:\sadasd", false )]
+        [InlineData( @"\\server\share\folder", false )]
+        [InlineData( @"\\server\share", true )]
+        [InlineData( @"\\server\share\", true )]
+        [InlineData()]
+        [InlineData()]
+        public void IsRootShareRegular( string test, bool expected )
+        {
+            QuickIOPath.IsRootShareRegular( test ).Should().Be( expected );
         }
 
 
-        [TestMethod()]
-        public void IsRootShareUnc()
+        [Theory]
+        [InlineData( @"\\?\C:", false )]
+        [InlineData( @"\\?\C:\", false )]
+        [InlineData( @"\\?\c:\", false )]
+        [InlineData( @"\\?\C:\sadasd", false )]
+        [InlineData( @"\\?\c:\sadasd", false )]
+        [InlineData( @"\\server\share", false )]
+        [InlineData( @"\\server\share\", false )]
+        [InlineData( @"\\server\share\folder", false )]
+        [InlineData( @"\\?\UNC\\server\share", true )]
+        [InlineData( @"\\?\UNC\\server\share\", true )]
+        public void IsRootShareUnc( string test, bool expected )
         {
-            Func<string, bool> testMethod = delegate ( string value ) { return QuickIOPath.IsRootShareUnc( value ); };
-
-            Assert.IsFalse( testMethod( @"\\?\C:" ), @"\\?\C:" );
-            Assert.IsFalse( testMethod( @"\\?\C:\" ), @"\\?\C:\" );
-            Assert.IsFalse( testMethod( @"\\?\c:\" ), @"\\?\c:\" );
-            Assert.IsFalse( testMethod( @"\\?\C:\sadasd" ), @"\\?\C:\sadasd" );
-            Assert.IsFalse( testMethod( @"\\?\c:\sadasd" ), @"\\?\C:\sadasd" );
-            Assert.IsFalse( testMethod( @"\\server\share" ), @"\\server\share" );
-            Assert.IsFalse( testMethod( @"\\server\share\" ), @"\\server\share\" );
-            Assert.IsFalse( testMethod( @"\\server\share\folder" ), @"\\server\share\folder" );
-
-            Assert.IsFalse( testMethod( @"\\?\UNC\\server\share" ), @"\\?\UNC\\server\share" );
-            Assert.IsFalse( testMethod( @"\\?\UNC\\server\share\" ), @"\\?\UNC\\server\share\" );
+            QuickIOPath.IsRootShareUnc( test ).Should().Be( expected );
         }
     }
 }

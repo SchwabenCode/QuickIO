@@ -1,27 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentAssertions;
+using Xunit;
 
 namespace SchwabenCode.QuickIO.IntegrationTests
 {
-    [TestClass]
     public class QuickIODirectory_Enumerations
     {
-        [TestMethod()]
-        public void QuickIODirectory_EnumerateFilesEmptyDirectory()
+        [Theory]
+        [InlineData( "_TestFolders/ExistingFolderEmpty", 0 )]
+        public void QuickIODirectory_EnumerateFilesCount( string test, string searchPattern, int expected )
         {
-            const string path = "TestContents/EmptyDirectory";
+            QuickIODirectoryInfo directoryInfo = new QuickIODirectoryInfo( test );
+            IEnumerable<QuickIOFileInfo> result
+                = ( searchPattern == null ? directoryInfo.EnumerateFiles() : directoryInfo.EnumerateFiles( searchPattern ) );
 
-            QuickIODirectoryInfo directoryInfo = new QuickIODirectoryInfo( path );
-
-            IEnumerable<QuickIOFileInfo> resultFilesNoExt = directoryInfo.EnumerateFiles();
-            IEnumerable<QuickIOFileInfo> resultFilesExt = directoryInfo.EnumerateFiles( ".ext" );
-
-            Assert.AreEqual( 0, resultFilesNoExt.Count(), "No extension result" );
-            Assert.AreEqual( 0, resultFilesExt.Count(), "Extension result" );
+            result.Count().Should().Be( expected );
         }
     }
 }

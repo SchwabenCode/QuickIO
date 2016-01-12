@@ -1,34 +1,28 @@
-﻿
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using FluentAssertions;
+using Xunit;
 
 namespace SchwabenCode.QuickIO.UnitTests
 {
-    [TestClass]
     public class QuickIOPath_ToPath : QuickIOTestBase
     {
-        [TestMethod]
-        public void ToPathRegular()
+        [Theory]
+        [InlineData( @"C:\test\path", @"C:\test\path" )]
+        [InlineData( @"\\?\C:\test\path", @"C:\test\path" )]
+        [InlineData( @"\\test\path", @"\\test\path" )]
+        [InlineData( @"\\?\UNC\test\path", @"\\test\path" )]
+        public void ToPathRegular( string test, string expected )
         {
-            Func<string, string> testMethod = delegate ( string value ) { return QuickIOPath.ToPathRegular( value ); };
-
-            // Valid
-            Assert.AreEqual( @"C:\test\path", testMethod( @"C:\test\path" ), @"C:\test\path" );
-            Assert.AreEqual( @"C:\test\path", testMethod( @"\\?\C:\test\path" ), @"\\?C:\test\path" );
-            Assert.AreEqual( @"\\test\path", testMethod( @"\\test\path" ), @"\\test\path" );
-            Assert.AreEqual( @"\\test\path", testMethod( @"\\?\UNC\test\path" ), @"\\?\UNC\test\path" );
+            QuickIOPath.ToPathRegular( test ).Should().Be( expected );
         }
 
-        [TestMethod]
-        public void ToPathUnc()
+        [Theory]
+        [InlineData( @"C:\test\path", @"\\?\C:\test\path" )]
+        [InlineData( @"\\?\C:\test\path", @"\\?\C:\test\path" )]
+        [InlineData( @"\\test\path", @"\\?\UNC\test\path" )]
+        [InlineData( @"\\?\UNC\test\path", @"\\?\UNC\test\path" )]
+        public void ToPathUnc( string test, string expected )
         {
-            Func<string, string> testMethod = delegate ( string value ) { return QuickIOPath.ToPathUnc( value ); };
-
-            // Valid
-            Assert.AreEqual( @"\\?\C:\test\path", testMethod( @"C:\test\path" ), @"C:\test\path" );
-            Assert.AreEqual( @"\\?\C:\test\path", testMethod( @"\\?\C:\test\path" ), @"\\?C:\test\path" );
-            Assert.AreEqual( @"\\?\UNC\test\path", testMethod( @"\\test\path" ), @"\\test\path" );
-            Assert.AreEqual( @"\\?\UNC\test\path", testMethod( @"\\?\UNC\test\path" ), @"\\?\UNC\test\path" );
+            QuickIOPath.ToPathUnc( test ).Should().Be( expected );
         }
 
     }

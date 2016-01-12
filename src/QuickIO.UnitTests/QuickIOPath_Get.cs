@@ -1,35 +1,34 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using FluentAssertions;
+using Xunit;
 
 namespace SchwabenCode.QuickIO.UnitTests
 {
 
-    [TestClass()]
     public class QuickIOPath_Get
     {
-
-        [TestMethod()]
-        public void GetName()
+        [Theory]
+        [InlineData( @"folder\text.txt", "text.txt" )]
+        [InlineData( @"C:\folder\text.txt", "text.txt" )]
+        [InlineData( @"text.txt", "text.txt" )]
+        [InlineData( @"", "" )]
+        [InlineData( @"C:\folder\folder2\", "folder2" )]
+        public void GetName( string test, string expected )
         {
-            Assert.AreEqual( "text.txt", QuickIOPath.GetName( @"folder\text.txt" ), @"folder\text.txt" );
-            Assert.AreEqual( "text.txt", QuickIOPath.GetName( @"C:\folder\text.txt" ), @"C:\folder\text.txt" );
-            Assert.AreEqual( "text.txt", QuickIOPath.GetName( @"text.txt" ), @"text.txt" );
-            Assert.AreEqual( "", QuickIOPath.GetName( @"" ), @"" );
-            Assert.AreEqual( "folder2", QuickIOPath.GetName( @"C:\folder\folder2\" ), @"C:\folder\folder2\" );
+            QuickIOPath.GetName( test ).Should().Be( expected );
         }
 
-        [TestMethod()]
+        [Fact]
         public void GetFullPath()
         {
             string path = @"_TestFiles\TextFile.txt";
-            Assert.AreEqual( System.IO.Path.GetFullPath( path ), QuickIOPath.GetFullPath( path ) );
+            QuickIOPath.GetFullPath( path ).Should().Be( System.IO.Path.GetFullPath( path ) );
         }
 
-        [TestMethod()]
-        public void GetFullPathInfo()
-        {
-            string path = @"_TestFiles\TextFile.txt";
-            Assert.AreEqual( System.IO.Path.GetFullPath( path ), QuickIOPath.GetFullPathInfo( path ).FullName );
-        }
+        //    [Theory]
+        //    [InlineData( @"jhdsajdv\ ", "jhdsajdv" )]
+        //    public void InternalTrimTrailingSeparator( string test, string expected )
+        //    {
+        //        QuickIOPath.InternalTrimTrailingSeparator( test ).Should().Be( expected );
+        //    }
     }
 }

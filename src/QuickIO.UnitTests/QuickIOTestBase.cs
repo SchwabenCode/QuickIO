@@ -1,7 +1,4 @@
 ﻿namespace SchwabenCode.QuickIO.UnitTests
 {
-
-    public class QuickIOTestBase
-    {
-    }
+    public abstract class QuickIOTestBase { }
 }
