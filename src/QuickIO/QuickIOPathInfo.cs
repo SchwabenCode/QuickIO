@@ -19,12 +19,15 @@ namespace SchwabenCode.QuickIO
     /// </summary>
     public sealed class QuickIOPathInfo
     {
+        private readonly InternalPath _interalPath;
+
+
         /// <summary>
         /// Creates the path information container
         /// </summary>
-        /// <param name="anyFullname">Full path to the file or directory (regular or unc)</param>
+        /// <param name="path">Full path to the file or directory (regular or unc)</param>
         public QuickIOPathInfo( String path ) :
-            this( path, InternalQuickIO.GetFindDataFromPath( path ) )
+            this( QuickIOPath.GetInternalPath( path ) )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
         }
@@ -32,34 +35,46 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Creates the path information container
         /// </summary>
-        /// <param name="anyFullname">Full path to the file or directory (regular or unc)</param>
-        internal QuickIOPathInfo( String path, Win32FindData win32FindData )
+        /// <param name="internalPath">Full path to the file or directory (regular or unc)</param>
+        internal QuickIOPathInfo( InternalPath internalPath ) :
+            this( internalPath, InternalQuickIO.GetFindDataFromPath( internalPath ) )
         {
-            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
+            Contract.Requires( internalPath != null );
+        }
+
+        /// <summary>
+        /// Creates the path information container
+        /// </summary>
+        /// <param name="internalPath">Full path to the file or directory (regular or unc)</param>
+        internal QuickIOPathInfo( InternalPath internalPath, Win32FindData win32FindData )
+        {
+            _interalPath = internalPath;
+
+            Contract.Requires( _interalPath != null );
             Contract.Requires( win32FindData != null );
 
             this.FindData = win32FindData;
 
-            this.IsRoot = QuickIOPath.IsRoot( path );
-            this.Name = QuickIOPath.GetName( path );
+            this.IsRoot = QuickIOPath.IsRoot( _interalPath.Path );
+            this.Name = QuickIOPath.GetName( _interalPath.Path );
 
-            this.ParentFullName = QuickIOPath.GetParentPath( path );
+            this.ParentFullName = QuickIOPath.GetParentPath( _interalPath.Path );
 
-            this.FullName = QuickIOPath.ToPathRegular( path );
-            this.FullNameUnc = QuickIOPath.ToPathUnc( path );
+            this.FullName = QuickIOPath.ToPathRegular( _interalPath.Path );
+            this.FullNameUnc = QuickIOPath.ToPathUnc( _interalPath.Path );
         }
 
 
-        public String GetFullname( QuickIOPathType formatReturn = QuickIOPathType.Regular )
-        {
-            Contract.Ensures( !String.IsNullOrWhiteSpace( Contract.Result<string>() ) );
+        //public String GetFullname( QuickIOPathType formatReturn = QuickIOPathType.Regular )
+        //{
+        //    Contract.Ensures( !String.IsNullOrWhiteSpace( Contract.Result<string>() ) );
 
-            if( formatReturn == QuickIOPathType.Regular )
-            {
-                return FullName;
-            }
-            return FullNameUnc;
-        }
+        //    if( formatReturn == QuickIOPathType.Regular )
+        //    {
+        //        return FullName;
+        //    }
+        //    return FullNameUnc;
+        //}
 
         /// <summary>
         /// Path to file or directory (regular format)
@@ -112,7 +127,7 @@ namespace SchwabenCode.QuickIO
                 {
                     throw new NotSupportedException( "Root directory does not provide owner access" );
                 }
-                return _findData ?? ( _findData = InternalQuickIO.GetFindDataFromPath( FullNameUnc ) );
+                return _findData ?? ( _findData = InternalQuickIO.GetFindDataFromPath( _interalPath ) );
             }
             private set
             {
@@ -179,8 +194,8 @@ namespace SchwabenCode.QuickIO
         {
             get
             {
-                Contract.Requires( !String.IsNullOrWhiteSpace( FullNameUnc ) );
-                return InternalQuickIOCommon.DetermineFileSystemEntry( FullNameUnc );
+                Contract.Requires( _interalPath != null );
+                return InternalQuickIOCommon.DetermineFileSystemEntry( _interalPath );
             }
 
         }

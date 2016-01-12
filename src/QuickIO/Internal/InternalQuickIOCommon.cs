@@ -36,11 +36,11 @@ namespace SchwabenCode.QuickIO.Internal
         /// </summary>
         /// <param name="path"><see cref="QuickIOPathInfo"/></param>
         /// <returns><see cref="QuickIOFileSystemEntryType"/></returns>
-        internal static QuickIOFileSystemEntryType DetermineFileSystemEntry( string path )
+        internal static QuickIOFileSystemEntryType DetermineFileSystemEntry( InternalPath internalPath )
         {
-            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
+            Contract.Requires( internalPath != null );
 
-            Win32FindData findData = InternalQuickIO.GetFindDataFromPath( path );
+            Win32FindData findData = InternalQuickIO.GetFindDataFromPath( internalPath );
 
             return !InternalHelpers.ContainsFileAttribute( findData.dwFileAttributes, FileAttributes.Directory ) ? QuickIOFileSystemEntryType.File : QuickIOFileSystemEntryType.Directory;
         }
@@ -67,7 +67,7 @@ namespace SchwabenCode.QuickIO.Internal
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
 
-            if ( errorCode == Win32ErrorCodes.ERROR_SUCCESS )
+            if( errorCode == Win32ErrorCodes.ERROR_SUCCESS )
             {
                 return;
             }
@@ -76,7 +76,7 @@ namespace SchwabenCode.QuickIO.Internal
 
             // http://msdn.microsoft.com/en-us/library/windows/desktop/ms681382(v=vs.85).aspx
 
-            switch ( errorCode )
+            switch( errorCode )
             {
                 case Win32ErrorCodes.ERROR_PATH_NOT_FOUND:
                 case Win32ErrorCodes.ERROR_FILE_NOT_FOUND:

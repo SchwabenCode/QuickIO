@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="Contracts\ContractForIWin32ApiShareInfo.cs" />
     <Compile Include="InternalHelpers.cs" />
+    <Compile Include="Internal\InternalPath.cs" />
     <Compile Include="Internal\InternalEnumerateFileSystem.cs" />
     <Compile Include="Internal\InternalHelpers.cs" />
     <Compile Include="Internal\InternalQuickIO.Directories.cs" />

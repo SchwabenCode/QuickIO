@@ -10,7 +10,19 @@ namespace SchwabenCode.QuickIO
     public static partial class QuickIOPath
     {
         /// <summary>
-        /// Returns true if given path is <see cref="IsLocalRoot(string)"/> or <see cref="IsShareRoot(string)"/>
+        /// Checks if given path starts with a known root path
+        /// </summary>
+        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        public static Boolean IsRelative(string path)
+        {
+            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
+
+            // If IsPath then it is no relative path
+            return !IsPath(path);
+        }
+
+        /// <summary>
+        /// Returns true if given path is <see cref="IsLocal(string)"/> or <see cref="IsShare(string)"/>
         /// </summary>
         /// <remarks>Will return true on C:\ but will return false on C:\folderName</remarks>
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
@@ -150,7 +162,7 @@ namespace SchwabenCode.QuickIO
             }
 
             const string expectedPrefix = QuickIOPath.UncSharePathPrefix;
-            if( !InternalStartsWithExpected( path, expectedPrefix ) )
+            if( !InternalStartsWithExpected( path, expectedPrefix ) || expectedPrefix  == path)
             {
                 return false;
             }

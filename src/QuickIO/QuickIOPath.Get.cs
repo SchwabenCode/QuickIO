@@ -7,6 +7,7 @@
 
 using System;
 using System.Diagnostics.Contracts;
+using SchwabenCode.QuickIO.Internal;
 
 namespace SchwabenCode.QuickIO
 {
@@ -40,7 +41,7 @@ namespace SchwabenCode.QuickIO
         }
 
         /// <summary>
-        /// A wrapper for <see cref="Path.GetFullPath"/>
+        /// A wrapper for <see cref="System.IO.Path.GetFullPath"/>
         /// </summary>
         /// <remarks>Calls <see cref="System.IO.Path.GetFullPath(string)"/></remarks>
         /// <returns>a regular path</returns>
@@ -49,7 +50,20 @@ namespace SchwabenCode.QuickIO
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
             Contract.Ensures( !String.IsNullOrWhiteSpace( Contract.Result<String>() ) );
 
-            return System.IO.Path.GetFullPath( path );
+            // Only access System.IO on relative path
+            if( IsRelative( path ) )
+            {
+                return System.IO.Path.GetFullPath( path );
+            }
+
+            // otherwise it is a valid path
+            return path;
+
+        }
+
+        internal static InternalPath GetInternalPath( string path )
+        {
+            return new InternalPath( GetFullPath( path ) );
         }
 
         /// <summary>
