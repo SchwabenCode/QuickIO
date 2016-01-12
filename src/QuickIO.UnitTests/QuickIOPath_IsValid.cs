@@ -29,7 +29,7 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( "folder_name", true )]
         public void IsValidFolderName( string test, bool expected )
         {
-            QuickIOPath.IsValidFolderName( test ).Should().Be(expected);
+            QuickIOPath.IsValidFolderName( test ).Should().Be( expected );
         }
 
         [Theory]
@@ -98,7 +98,7 @@ namespace SchwabenCode.QuickIO.UnitTests
         }
 
         [Theory]
-        [InlineData( @"serverName\shareName", "serverName", "shareName," )]
+        [InlineData( @"serverName\shareName", "serverName", "shareName" )]
         public void TryGetServerAndShareNameFromLocation( string test, string serverNameExpected, string shareNameExpected )
         {
             string serverName, shareName;

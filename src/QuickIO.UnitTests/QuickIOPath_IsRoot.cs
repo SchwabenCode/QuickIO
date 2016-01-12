@@ -1,16 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
-using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace SchwabenCode.QuickIO.UnitTests
 {
-
-    [TestClass()]
     public class QuickIOPath_IsRoot
     {
-
         [Theory]
         [InlineData( TestHelpers.AlphabethUpperCase, true )]
         [InlineData( TestHelpers.AlphabethLowerCase, true )]
@@ -43,8 +37,8 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( @"\\server\share", false )]
         [InlineData( @"\\server\share\", false )]
         [InlineData( @"\\server\share\folder", false )]
-        [InlineData( @"\\?\UNC\\server\share", false )]
-        [InlineData( @"\\?\UNC\\server\share\folder", false )]
+        [InlineData( @"\\?\UNC\server\share", false )]
+        [InlineData( @"\\?\UNC\server\share\folder", false )]
         [InlineData( @"\\?\C:", false )]
         [InlineData( @"\\?\C:\folder", false )]
         [InlineData( @"\\?\C:\", true )]
@@ -55,7 +49,6 @@ namespace SchwabenCode.QuickIO.UnitTests
         }
 
         [Theory]
-        [InlineData( @"\\?\UNC\\server\share", false )]
         [InlineData( @"\\?\C:", false )]
         [InlineData( @"\\?\C:\", false )]
         [InlineData( @"\\?\c:\", false )]
@@ -64,8 +57,7 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( @"\\server\share\folder", false )]
         [InlineData( @"\\server\share", true )]
         [InlineData( @"\\server\share\", true )]
-        [InlineData()]
-        [InlineData()]
+        [InlineData( @"\\?\UNC\server\share", false )]
         public void IsRootShareRegular( string test, bool expected )
         {
             QuickIOPath.IsRootShareRegular( test ).Should().Be( expected );
@@ -81,8 +73,8 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( @"\\server\share", false )]
         [InlineData( @"\\server\share\", false )]
         [InlineData( @"\\server\share\folder", false )]
-        [InlineData( @"\\?\UNC\\server\share", true )]
-        [InlineData( @"\\?\UNC\\server\share\", true )]
+        [InlineData( @"\\?\UNC\server\share", true )]
+        [InlineData( @"\\?\UNC\server\share\", true )]
         public void IsRootShareUnc( string test, bool expected )
         {
             QuickIOPath.IsRootShareUnc( test ).Should().Be( expected );

@@ -34,7 +34,6 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( @"c:\sadasd", false )]
         [InlineData( @"\\server\", false )]
         [InlineData( @"\\?\UNC\server\name", false )]
-        [InlineData( @"\\?\UNC\\server\name", false )]
         [InlineData( @"\\server\name", true )]
         [InlineData( @"\\server\name\", true )]
         [InlineData( @"\\server\name\folder", true )]
@@ -54,8 +53,6 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( @"\\?\UNC\", false )]
         [InlineData( @"\\?\UNC\server", false )]
         [InlineData( @"\\?\UNC\server\", false )]
-        [InlineData( @"\\?\UNC\\server", false )]
-        [InlineData( @"\\?\UNC\\server\", false )]
         [InlineData( @"\\?\UNC\server\share", true )]
         [InlineData( @"\\?\UNC\server\share\", true )]
         public void IsShareUnc( string test, bool expected )
@@ -75,7 +72,7 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( @"\\?\UNC\server\share\", true )]
         public void IsUnc( string test, bool expected )
         {
-             QuickIOPath.IsUnc( test ).Should().Be( expected );
+            QuickIOPath.IsUnc( test ).Should().Be( expected );
         }
 
         [Theory]
@@ -87,10 +84,24 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( @"\\server\share\", false )]
         [InlineData( @"\\?\UNC\server\share", false )]
         [InlineData( @"\\?\UNC\server\share\", false )]
-        [InlineData( @"\\?\C:\" , true)]
+        [InlineData( @"\\?\C:\", true )]
         public void IsLocalUnc( string test, bool expected )
         {
             QuickIOPath.IsLocalUnc( test ).Should().Be( expected );
+        }
+
+        [Theory]
+        [InlineData( @"C:\", false )]
+        [InlineData( @"\\server\share", false )]
+        [InlineData( @"\\server\share\", false )]
+        [InlineData( @"\\?\UNC\server\share", false )]
+        [InlineData( @"\\?\UNC\server\share\", false )]
+        [InlineData( @"\\?\C:\", false )]
+        [InlineData( @"folder\file.txt", true )]
+        [InlineData( @"\\server\", true )]
+        public void IsRelative( string test, bool expected )
+        {
+            QuickIOPath.IsRelative( test ).Should().Be( expected, because: test );
         }
     }
 }
