@@ -408,11 +408,11 @@
             <param name="pathInfo">Affected file or directory</param>     
             <param name="utcTime">The time that is to be used (UTC)</param>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.TryGetFindDataFromPath(System.String,SchwabenCode.QuickIO.Win32.Win32FindData@)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.TryGetFindDataFromPath(SchwabenCode.QuickIO.Internal.InternalPath,SchwabenCode.QuickIO.Win32.Win32FindData@)">
             <summary>
             Gets the <see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/> from the passed path.
             </summary>
-            <param name="path">Path</param>
+            <param name="internalPath">Path</param>
             <param name="win32FindData"><seealso cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/>. Will be null if path does not exist.</param>
             <returns>true if path is valid and <see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/> is set</returns>
             <remarks>
@@ -438,7 +438,7 @@
             </summary>
             <param name="path">Path to check</param>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.SafeGetFindDataFromPath(System.String)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.SafeGetFindDataFromPath(SchwabenCode.QuickIO.Internal.InternalPath)">
             
             <summary>
             Returns the <see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/> from specified <paramref name="path"/>
@@ -469,7 +469,7 @@
             See http://msdn.microsoft.com/en-us/library/windows/desktop/aa364944(v=vs.85).aspx
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIOCommon.DetermineFileSystemEntry(System.String)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIOCommon.DetermineFileSystemEntry(SchwabenCode.QuickIO.Internal.InternalPath)">
             <summary>
             Determines the type based on the attributes of the path
             </summary>
@@ -4647,7 +4647,7 @@
             Returns the parent directory path
              </summary>
             <param name="path">Path to get the parent</param>
-            <returns>Parent directory</returns>
+            <returns>Parent directory or null if parent is root</returns>
         </member>
         <member name="M:SchwabenCode.QuickIO.QuickIOPath.Clean(System.String)">
             <summary>
@@ -4684,7 +4684,7 @@
         </member>
         <member name="M:SchwabenCode.QuickIO.QuickIOPath.GetFullPath(System.String)">
             <summary>
-            A wrapper for <see cref="!:Path.GetFullPath"/>
+            A wrapper for <see cref="M:System.IO.Path.GetFullPath(System.String)"/>
             </summary>
             <remarks>Calls <see cref="M:System.IO.Path.GetFullPath(System.String)"/></remarks>
             <returns>a regular path</returns>
@@ -4694,9 +4694,14 @@
             A wrapper for <see cref="M:SchwabenCode.QuickIO.QuickIOPath.GetFullPath(System.String)"/> that returns <see cref="T:SchwabenCode.QuickIO.QuickIOPathInfo"/>
             </summary>
         </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIOPath.IsRelative(System.String)">
+            <summary>
+            Checks if given path starts with a known root path
+            </summary>
+        </member>
         <member name="M:SchwabenCode.QuickIO.QuickIOPath.IsPath(System.String)">
             <summary>
-            Returns true if given path is <see cref="!:IsLocalRoot(string)"/> or <see cref="!:IsShareRoot(string)"/>
+            Returns true if given path is <see cref="M:SchwabenCode.QuickIO.QuickIOPath.IsLocal(System.String)"/> or <see cref="M:SchwabenCode.QuickIO.QuickIOPath.IsShare(System.String)"/>
             </summary>
             <remarks>Will return true on C:\ but will return false on C:\folderName</remarks>
         </member>
@@ -4885,13 +4890,19 @@
             <summary>
             Creates the path information container
             </summary>
-            <param name="anyFullname">Full path to the file or directory (regular or unc)</param>
+            <param name="path">Full path to the file or directory (regular or unc)</param>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIOPathInfo.#ctor(System.String,SchwabenCode.QuickIO.Win32.Win32FindData)">
+        <member name="M:SchwabenCode.QuickIO.QuickIOPathInfo.#ctor(SchwabenCode.QuickIO.Internal.InternalPath)">
             <summary>
             Creates the path information container
             </summary>
-            <param name="anyFullname">Full path to the file or directory (regular or unc)</param>
+            <param name="internalPath">Full path to the file or directory (regular or unc)</param>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIOPathInfo.#ctor(SchwabenCode.QuickIO.Internal.InternalPath,SchwabenCode.QuickIO.Win32.Win32FindData)">
+            <summary>
+            Creates the path information container
+            </summary>
+            <param name="internalPath">Full path to the file or directory (regular or unc)</param>
         </member>
         <member name="P:SchwabenCode.QuickIO.QuickIOPathInfo.FullName">
             <summary>
