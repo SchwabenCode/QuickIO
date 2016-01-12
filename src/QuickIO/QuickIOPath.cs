@@ -39,7 +39,7 @@ namespace SchwabenCode.QuickIO
         {
             Contract.Requires( pathElements != null );
             Contract.Requires( pathElements != null );
-            Contract.Ensures(!String.IsNullOrWhiteSpace( Contract.Result<String>()) );
+            Contract.Ensures( !String.IsNullOrWhiteSpace( Contract.Result<String>() ) );
 
             if( pathElements == null || pathElements.Length == 0 )
             {
@@ -67,11 +67,24 @@ namespace SchwabenCode.QuickIO
         /// Returns the parent directory path
         ///  </summary>
         /// <param name="path">Path to get the parent</param>
-        /// <returns>Parent directory</returns>
+        /// <returns>Parent directory or null if parent is root</returns>
         public static String GetParentPath( string path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
-            return new QuickIOPathInfo( path ).ParentFullName;
+            string cleanPath = Clean( path );
+
+            if( IsRoot( cleanPath ) )
+            {
+                return null;
+            }
+
+            int lastDirectorySeparatorChar = cleanPath.LastIndexOf( DirectorySeparatorChar );
+            if( lastDirectorySeparatorChar == -1 )
+            {
+                return null;
+            }
+            return cleanPath.Substring( 0, lastDirectorySeparatorChar );
+
         }
 
 
@@ -81,7 +94,7 @@ namespace SchwabenCode.QuickIO
         public static string Clean( string path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
-            return path.Trim().TrimEnd( '\\' );
+            return path.Trim().Trim( '\\' );
         }
 
         /// <summary>
