@@ -13,12 +13,12 @@ namespace SchwabenCode.QuickIO
         /// Checks if given path starts with a known root path
         /// </summary>
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
-        public static Boolean IsRelative(string path)
+        public static Boolean IsRelative( string path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
 
             // If IsPath then it is no relative path
-            return !IsPath(path);
+            return !IsPath( path );
         }
 
         /// <summary>
@@ -123,18 +123,13 @@ namespace SchwabenCode.QuickIO
             // strip information
             string serverName;
             string shareName;
-            if( !TryGetServerAndShareNameFromLocation( location, out serverName, out shareName ) )
+            if( !TryGetServerAndShareNameFromLocation( location, QuickIOPathType.Regular, out serverName, out shareName ) )
             {
                 return false;
             }
 
             // validate
-            if( !IsValidServerName( serverName ) || !IsValidShareName( shareName ) )
-            {
-                return false;
-            }
-
-            return true;
+            return IsValidServerName( serverName ) && IsValidShareName( shareName );
         }
 
         /// <summary>
@@ -162,14 +157,7 @@ namespace SchwabenCode.QuickIO
             }
 
             const string expectedPrefix = QuickIOPath.UncSharePathPrefix;
-            if( !InternalStartsWithExpected( path, expectedPrefix ) || expectedPrefix  == path)
-            {
-                return false;
-            }
-
-            var location = path.Substring( expectedPrefix.Length );
-            // first char if location must be alphnum
-            if( !char.IsLetterOrDigit( location[ 0 ] ) )
+            if( !InternalStartsWithExpected( path, expectedPrefix ) || expectedPrefix == path )
             {
                 return false;
             }
@@ -177,20 +165,13 @@ namespace SchwabenCode.QuickIO
             // strip information
             string serverName;
             string shareName;
-            if( !TryGetServerAndShareNameFromLocation( location, out serverName, out shareName ) )
+            if( !TryGetServerAndShareNameFromLocation( path, QuickIOPathType.UNC, out serverName, out shareName ) )
             {
                 return false;
             }
 
             // validate
-            if( !IsValidServerName( serverName ) || !IsValidShareName( shareName ) )
-            {
-                return false;
-            }
-
-            // TODO: validate server and share names here
-
-            return true;
+            return IsValidServerName( serverName ) && IsValidShareName( shareName );
         }
 
 
