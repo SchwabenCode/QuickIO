@@ -62,6 +62,10 @@ namespace SchwabenCode.QuickIO
 
             this.FullName = QuickIOPath.ToPathRegular( _interalPath.Path );
             this.FullNameUnc = QuickIOPath.ToPathUnc( _interalPath.Path );
+
+            // TODO:
+            //this.Root = QuickIOPath.GetRoot( _interalPath.Path );
+            this.RootFullName = QuickIOPath.ToPathUnc( _interalPath.Path );
         }
 
 
@@ -160,10 +164,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Returns Root or null if current path is root
         /// </summary>
-        public QuickIOPathInfo Root
-        {
-            get { return ( RootFullName == null ? null : new QuickIOPathInfo( RootFullName ) ); }
-        }
+        public QuickIOPathInfo Root => ( RootFullName == null ? null : new QuickIOPathInfo( RootFullName ) );
 
         /// <summary>
         /// Returns true if path exists. Checks <see cref="QuickIOFileSystemEntryType"/>
