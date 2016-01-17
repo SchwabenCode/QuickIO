@@ -98,12 +98,12 @@ namespace SchwabenCode.QuickIO.UnitTests
         }
 
         [Theory]
-        [InlineData( @"serverName\shareName", "serverName", "shareName" )]
+        [InlineData( @"\\serverName\shareName", "serverName", "shareName" )]
         public void TryGetServerAndShareNameFromLocation( string test, string serverNameExpected, string shareNameExpected )
         {
             string serverName, shareName;
 
-            QuickIOPath.TryGetServerAndShareNameFromLocation( test, out serverName, out shareName ).Should().BeTrue();
+            QuickIOPath.TryGetServerAndShareNameFromLocation( test, QuickIOPathType.Regular, out serverName, out shareName ).Should().BeTrue();
             serverName.Should().Be( serverNameExpected );
             shareName.Should().Be( shareNameExpected );
         }

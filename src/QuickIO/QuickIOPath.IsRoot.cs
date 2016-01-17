@@ -6,7 +6,7 @@ namespace SchwabenCode.QuickIO
     public static partial class QuickIOPath
     {
         /// <summary>
-        /// Returns true if given path is <see cref="IsLocalRoot(string)"/> or <see cref="IsShareRoot(string)"/>
+        /// Returns true if given path is <see cref="IsRootLocal(string)"/> or <see cref="IsRootLocalRegular(string)"/>
         /// </summary>
         /// <remarks>Will return true on C:\ but will return false on C:\folderName</remarks>
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
@@ -20,7 +20,7 @@ namespace SchwabenCode.QuickIO
         /// Checks if given path is local root
         /// </summary>
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
-        public static Boolean IsRootLocal( string path )
+        public static bool IsRootLocal( string path )
         {
             return ( IsRootLocalRegular( path ) || IsRootLocalUnc( path ) );
         }
@@ -29,7 +29,7 @@ namespace SchwabenCode.QuickIO
         /// Checks if given path is share root
         /// </summary>
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
-        public static Boolean IsRootShare( string path )
+        public static bool IsRootShare( string path )
         {
             return ( IsRootShareRegular( path ) || IsRootShareUnc( path ) );
         }
@@ -38,17 +38,17 @@ namespace SchwabenCode.QuickIO
         /// Checks if given path matches C:\ or X:\ ...
         /// </summary>
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
-        public static Boolean IsRootLocalRegular( string path )
+        public static bool IsRootLocalRegular( string path )
         {
             // Validate input
-            if( String.IsNullOrWhiteSpace( path ) )
+            if( string.IsNullOrWhiteSpace( path ) )
             {
                 return false;
             }
 
-            return 
+            return
                 // check length
-                ( path.Length == 3 
+                ( path.Length == 3
                 // check root
                 && ( ( IsValidDriveLetter( path[ 0 ] ) && path[ 1 ] == ':' && path[ 2 ] == '\\' ) ) );
         }
@@ -57,19 +57,19 @@ namespace SchwabenCode.QuickIO
         /// Checks if given path matches  \\?\C:\ or \\?\X:\ ...
         /// </summary>
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
-        public static Boolean IsRootLocalUnc( string path )
+        public static bool IsRootLocalUnc( string path )
         {
             // Validate input
-            if( String.IsNullOrWhiteSpace( path ) )
+            if( string.IsNullOrWhiteSpace( path ) )
             {
                 return false;
             }
 
-            return 
+            return
                 // check length
                 ( ( path.Length == 7 )
                 // check prefix
-                && InternalStartsWithExpected( path, UncLocalPathPrefix)
+                && InternalStartsWithExpected( path, UncLocalPathPrefix )
                 // check root
                 && IsRootLocalRegular( path.Substring( 4, 3 ) ) );
         }
@@ -94,7 +94,7 @@ namespace SchwabenCode.QuickIO
                 return false;
             }
 
-            var location = path.Substring( expectedPrefix.Length );
+            string location = path.Substring( expectedPrefix.Length );
             // first char if location must be alphnum
             if( !char.IsLetterOrDigit( location[ 0 ] ) )
             {
@@ -115,7 +115,7 @@ namespace SchwabenCode.QuickIO
 
             // TODO: validate server and share names here
 
-            return true;
+            return IsValidServerName( serverName ) && IsValidShareName( shareName );
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <remarks>Min length: \\?\UNC\s\s</remarks>
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
-        public static Boolean IsRootShareUnc( string path )
+        public static bool IsRootShareUnc( string path )
         {
             // Validate input
             if( String.IsNullOrWhiteSpace( path ) )
@@ -137,58 +137,21 @@ namespace SchwabenCode.QuickIO
                 return false;
             }
 
-            var location = path.Substring( expectedPrefix.Length );
-            // first char if location must be alphnum
-            if( !char.IsLetterOrDigit( location[ 0 ] ) )
-            {
-                return false;
-            }
-
             // strip information
             string serverName;
             string shareName;
-            if( !TryGetServerAndShareNameFromLocation( location, out serverName, out shareName ) )
+            if( !TryGetServerAndShareNameFromLocation( path, QuickIOPathType.UNC, out serverName, out shareName ) )
             {
                 return false;
             }
 
             // validate
-            if( !IsValidServerName( serverName ) || !IsValidShareName( shareName ) )
-            {
-                return false;
-            }
-
-            // TODO: validate server and share names here
-
-            return true;
+            return IsValidServerName( serverName ) && IsValidShareName( shareName );
         }
 
 
 
 
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
-        public static Boolean TryGetServerAndShareNameFromLocation( string location, out string serverName, out string shareName )
-        {
-            serverName = null;
-            shareName = null;
 
-            // Validate input
-            if( String.IsNullOrWhiteSpace( location ) )
-            {
-                return false;
-            }
-
-            // try to found server and name
-            string[ ] names = location.Trim( '\\' ).Split( '\\' );
-            if( names.Length < 2 )
-            {
-                // if less than two it is invalid
-                return false;
-            }
-
-            serverName = names[ 0 ];
-            shareName = names[ 1 ];
-            return true;
-        }
     }
 }

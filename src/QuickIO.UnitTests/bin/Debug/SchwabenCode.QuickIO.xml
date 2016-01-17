@@ -438,7 +438,7 @@
             <summary>
             Returns the <see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/> from specified <paramref name="path"/>
             </summary>
-            <param name="path">Path to the file system entry</param>
+            <param name="internalPath">Path to the file system entry</param>
             <returns><see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/></returns>
         </member>
         <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateShares``1(SchwabenCode.QuickIO.QuickIOShareApiReadLevel,System.String)">
@@ -4649,13 +4649,6 @@
             Removes all spaces and trims backslahes at the end.
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIOPath.GetRoot(System.String)">
-            <summary>
-            Returns the root directory path
-             </summary>
-            <param name="path">Path to get the parent from</param>
-            <returns>Root directory</returns>
-        </member>
         <member name="M:SchwabenCode.QuickIO.QuickIOPath.Exists(System.String)">
             <summary>
             Checks if path exists
@@ -4688,6 +4681,39 @@
             <summary>
             A wrapper for <see cref="M:SchwabenCode.QuickIO.QuickIOPath.GetFullPath(System.String)"/> that returns <see cref="T:SchwabenCode.QuickIO.QuickIOPathInfo"/>
             </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIOPath.GetPathRoot(System.String)">
+            <summary>
+            Full path, no relative path allowed
+            </summary>
+            <remarks>Same return behavior like <see cref="M:System.IO.Path.GetPathRoot(System.String)"/></remarks>
+            <returns>Null if <paramref name="path" /> is null, empty string if <paramref name="path" /> does not contain any root information or is invalid.</returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIOPath.TryGetLocalRootPath(System.String,System.String@)">
+            <summary>
+            Returns true if <paramref name="path" /> can be parsed and puts root information to <paramref name="root" />
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIOPath.TryGetLocalUncRootPath(System.String,System.String@)">
+            <summary>
+            Returns true if <paramref name="path" /> can be parsed and puts root information to <paramref name="root" />
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIOPath.TryGetShareRootPath(System.String,System.String@)">
+            <summary>
+            Returns true if <paramref name="path" /> can be parsed and puts root information to <paramref name="root" />
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIOPath.TryGetShareUncRootPath(System.String,System.String@)">
+            <summary>
+            Returns true if <paramref name="path" /> can be parsed and puts root information to <paramref name="root" />
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIOPath.TryGetServerAndShareNameFromLocation(System.String,SchwabenCode.QuickIO.QuickIOPathType,System.String@,System.String@)">
+            <summary>
+            Strips server and share from given path
+            </summary>
+            <remarks>Returns false if path is invalid for this operation</remarks>
         </member>
         <member name="M:SchwabenCode.QuickIO.QuickIOPath.IsRelative(System.String)">
             <summary>

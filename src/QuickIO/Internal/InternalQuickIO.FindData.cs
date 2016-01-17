@@ -41,7 +41,6 @@ namespace SchwabenCode.QuickIO.Internal
         private static Win32FileHandle FindFirstSafeFileHandle( string path, Win32FindData win32FindData, out Int32 win32Error )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
-            Contract.Requires( win32FindData != null );
 
             Contract.Ensures( Contract.Result<Win32FileHandle>() != null );
 
@@ -73,7 +72,7 @@ namespace SchwabenCode.QuickIO.Internal
         /// <summary>
         /// Returns the <see cref="Win32FindData"/> from specified <paramref name="path"/>
         /// </summary>
-        /// <param name="path">Path to the file system entry</param>
+        /// <param name="internalPath">Path to the file system entry</param>
         /// <returns><see cref="Win32FindData"/></returns>
         public static Win32FindData SafeGetFindDataFromPath( InternalPath internalPath )
         {
@@ -81,7 +80,7 @@ namespace SchwabenCode.QuickIO.Internal
 
             Win32FindData win32FindData = new Win32FindData();
             int win32Error;
-            using( var fileHandle = FindFirstSafeFileHandle( internalPath.Path, win32FindData, out win32Error ) )
+            using( Win32FileHandle fileHandle = FindFirstSafeFileHandle( internalPath.Path, win32FindData, out win32Error ) )
             {
                 // Take care of invalid handles
                 if( fileHandle.IsInvalid )
