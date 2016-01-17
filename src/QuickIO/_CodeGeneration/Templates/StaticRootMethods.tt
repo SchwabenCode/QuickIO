@@ -3,12 +3,11 @@ void Generate(string className)
 {
 	
 	#>
-// <copyright file="<#= className #>_Root.cs" company="Benjamin Abt ( http://www.benjamin-abt.com - http://quickIO.NET )">
-// Copyright (c) 2014 All Rights Reserved - DO NOT REMOVE OR EDIT COPYRIGHT
+// <copyright company="Benjamin Abt ( http://www.benjamin-abt.com - http://quickIO.NET )">
+//      Copyright (c) 2016 Benjamin Abt Rights Reserved - DO NOT REMOVE OR EDIT COPYRIGHT
 // </copyright>
 // <author>Benjamin Abt</author>
-// <date><#= DateTime.Now.ToString("MM/dd/yyyy", new System.Globalization.CultureInfo("en-US"))#></date>
-// <summary><#= className#>_Root></summary>
+
 
 namespace SchwabenCode.QuickIO
 {

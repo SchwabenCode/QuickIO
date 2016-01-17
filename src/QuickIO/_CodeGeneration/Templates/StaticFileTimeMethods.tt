@@ -7,12 +7,11 @@ var dateTimePassValueText = "The time that is to be used";
 var dateTimeReturnValueText = "A <see cref=\"DateTime\"/> structure.";
 
     #>
-// <copyright file="<#= className #>_FileTimeMethods.cs" company="Benjamin Abt ( http://www.benjamin-abt.com - http://quickIO.NET )">
-// Copyright (c) 2014 All Rights Reserved - DO NOT REMOVE OR EDIT COPYRIGHT
+// <copyright company="Benjamin Abt ( http://www.benjamin-abt.com - http://quickIO.NET )">
+//      Copyright (c) 2016 Benjamin Abt Rights Reserved - DO NOT REMOVE OR EDIT COPYRIGHT
 // </copyright>
 // <author>Benjamin Abt</author>
-// <date><#= DateTime.Now.ToString("MM/dd/yyyy", new System.Globalization.CultureInfo("en-US"))#></date>
-// <summary><#= className#>_FileTimeMethods></summary>
+
 
 using System;
 using SchwabenCode.QuickIO.Internal;
