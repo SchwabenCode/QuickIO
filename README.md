@@ -9,6 +9,17 @@
 ## Website
 Checkout the official Page [http://quickIO.NET](http://quickIO.NET)
 
+## Current Source State January, 17 2015
+- New source base
+- All operations will be refactored to use normalized strings for better performance
+- Project focus is Windows base. Cross-Plattform Support with QuickIO 4.0 and DNX.
+- Drop support for older .NET versions. At least 4.0 required (right now)
+- License changed to MIT
+- Cancellation support for all async operations
+- Code Contracts
+
+Master branch is the current development branch. With the first stable release of QuickIO 3.0 project will be changed to support GIT Workflow.
+
 ## Project Description
 QuickIO.NET is an extension for the .NET Framework to provide faster file operations.
 To offer you a simple use and an easy integration QuickIO.NET methods lean against the ones provided by the .NET Framework.
@@ -34,18 +45,10 @@ If you want to thank me personally, take a look at [my personal Amazon wishlist]
 
 It would be also very nice when you just write me, if you like this implementation and tell me what you've started!
 
-## QuickIO.NET 3.0
-- Dropped support of < .NET 4.0
-- Fully async elements and events
-- Cancellation support
-- Code Contracts
-- Support for Windows 10 and Windows Server 2016
-- Change from Microsoft Public License to MIT License
-
 ## License
 [MIT License](https://github.com/SchwabenCode/QuickIO/blob/master/LICENSE.md)
 
-> Copyright (c) 2015 Benjamin Abt
+> Copyright (c) 2016 Benjamin Abt
 > 
 > Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 > 
