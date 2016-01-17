@@ -1,9 +1,7 @@
-﻿// <copyright file="DirectoryNotEmptyException.cs" company="Benjamin Abt (  http://www.benjamin-abt.com - http://quickIO.NET  )">
-// Copyright (c) 2014 PathMatchAll Rights Reserved - DO NOT REMOVE OR EDIT COPYRIGHT
+﻿// <copyright company="Benjamin Abt ( http://www.benjamin-abt.com - http://quickIO.NET )">
+//      Copyright (c) 2016 Benjamin Abt Rights Reserved - DO NOT REMOVE OR EDIT COPYRIGHT
 // </copyright>
 // <author>Benjamin Abt</author>
-// <date>01/24/2014</date>
-// <summary>This error is raised if a folder that is not empty should be deleted.</summary>
 
 using System;
 using System.Diagnostics.Contracts;
