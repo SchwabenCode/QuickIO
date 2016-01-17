@@ -96,17 +96,5 @@ namespace SchwabenCode.QuickIO
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
             return path.Trim().Trim( '\\' );
         }
-
-        /// <summary>
-        /// Returns the root directory path
-        ///  </summary>
-        /// <param name="path">Path to get the parent from</param>
-        /// <returns>Root directory</returns>
-        public static String GetRoot( String path )
-        {
-            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
-
-            return new QuickIOPathInfo( path ).RootFullName;
-        }
     }
 }
