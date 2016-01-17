@@ -7,6 +7,7 @@
 
 using System;
 using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 using SchwabenCode.QuickIO.Internal;
 
 namespace SchwabenCode.QuickIO
@@ -75,6 +76,145 @@ namespace SchwabenCode.QuickIO
             Contract.Ensures( Contract.Result<QuickIOPathInfo>() != null );
 
             return new QuickIOPathInfo( GetFullPath( path ) );
+        }
+
+        /// <summary>
+        /// Full path, no relative path allowed
+        /// </summary>
+        /// <remarks>Same return behavior like <see cref="System.IO.Path.GetPathRoot(string)"/></remarks>
+        /// <returns>Null if <paramref name="path" /> is null, empty string if <paramref name="path" /> does not contain any root information or is invalid.</returns>
+        public static string GetPathRoot( string path )
+        {
+            if( path == null )
+            {
+                return null;
+            }
+
+            if( !IsPath( path ) )
+            {
+                return String.Empty;
+            }
+
+            // Return C:\
+            string root;
+            if( TryGetLocalRootPath( path, out root ) )
+            {
+                return root;
+            }
+
+
+            // Return \\server\name
+            if( TryGetShareRootPath( path, out root ) )
+            {
+                return path;
+            }
+
+
+            // Return \\?\UNC\C:\
+            if( TryGetLocalUncRootPath( path, out root ) )
+            {
+                return path;
+            }
+
+            return String.Empty;
+        }
+
+        /// <summary>
+        /// Returns true if <paramref name="path" /> can be parsed and puts root information to <paramref name="root" />
+        /// </summary>
+        internal static bool TryGetLocalRootPath( string path, out string root )
+        {
+            if( IsLocalRegular( path ) )
+            {
+                root = path.Substring( 0, 3 );
+                return true;
+            }
+
+            root = null;
+            return false;
+        }
+
+        /// <summary>
+        /// Returns true if <paramref name="path" /> can be parsed and puts root information to <paramref name="root" />
+        /// </summary>
+        internal static bool TryGetLocalUncRootPath( string path, out string root )
+        {
+            if( IsLocalUnc( path ) )
+            {
+                root = path.Substring( 0, 11 );
+                return true;
+            }
+
+            root = null;
+            return false;
+        }
+
+        /// <summary>
+        /// Returns true if <paramref name="path" /> can be parsed and puts root information to <paramref name="root" />
+        /// </summary>
+        internal static bool TryGetShareRootPath( string path, out string root )
+        {
+            string serverName;
+            string shareName;
+            if( IsShareRegular( path ) && TryGetServerAndShareNameFromLocation( path, QuickIOPathType.Regular, out serverName, out shareName ) )
+            {
+                root = $@"\\{serverName}\{shareName}";
+                return true;
+            }
+
+            root = null;
+            return false;
+        }
+
+        /// <summary>
+        /// Returns true if <paramref name="path" /> can be parsed and puts root information to <paramref name="root" />
+        /// </summary>
+        internal static bool TryGetShareUncRootPath( string path, out string root )
+        {
+            string serverName;
+            string shareName;
+            if( IsShareUnc( path ) && TryGetServerAndShareNameFromLocation( path, QuickIOPathType.UNC, out serverName, out shareName ) )
+            {
+                root = $@"\\{serverName}\{shareName}";
+                return true;
+            }
+
+            root = null;
+            return false;
+        }
+
+        /// <summary>
+        /// Strips server and share from given path
+        /// </summary>
+        /// <remarks>Returns false if path is invalid for this operation</remarks>
+        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        public static Boolean TryGetServerAndShareNameFromLocation( string path, QuickIOPathType shouldBe, out string serverName, out string shareName )
+        {
+            serverName = null;
+            shareName = null;
+
+            // Validate input
+            if( String.IsNullOrWhiteSpace( path ) )
+            {
+                return false;
+            }
+
+            if( shouldBe == QuickIOPathType.UNC )
+            {
+                path = path.Substring( QuickIOPath.UncSharePathPrefix.Length );
+            }
+
+            // try to found server and name
+            string[ ] names = path.Trim( '\\' /*trim start and end */ ).Split( '\\' );
+            if( names.Length < 2 )
+            {
+                // if less than two it is invalid
+                return false;
+            }
+
+            serverName = names[ 0 ];
+            shareName = names[ 1 ];
+            return true;
         }
     }
 }
