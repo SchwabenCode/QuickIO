@@ -1,0 +1,7 @@
+﻿<#@ template language="C#" hostspecific="true" #>
+<#@ include file="..\Templates\SaveOutput.tt" #>
+<#@ include file="..\Templates\StaticFileTimeMethods.tt" #>
+<#@ output  extension=".cs" #>
+<#
+    Generate("QuickIODirectory");
+#>
