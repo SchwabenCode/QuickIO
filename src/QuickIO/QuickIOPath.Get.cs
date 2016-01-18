@@ -156,7 +156,7 @@ namespace SchwabenCode.QuickIO
             string shareName;
             if( IsShareRegular( path ) && TryGetServerAndShareNameFromLocation( path, QuickIOPathType.Regular, out serverName, out shareName ) )
             {
-                root = $@"\\{serverName}\{shareName}";
+                root = $@"{RegularSharePathPrefix}{serverName}\{shareName}";
                 return true;
             }
 
@@ -173,7 +173,7 @@ namespace SchwabenCode.QuickIO
             string shareName;
             if( IsShareUnc( path ) && TryGetServerAndShareNameFromLocation( path, QuickIOPathType.UNC, out serverName, out shareName ) )
             {
-                root = $@"\\{serverName}\{shareName}";
+                root = $@"{UncSharePathPrefix}{serverName}\{shareName}";
                 return true;
             }
 
