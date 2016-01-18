@@ -115,7 +115,7 @@ namespace SchwabenCode.QuickIO
                 return root;
             }
 
-            // Return \\?\UNC\C:\
+            // Return \\?\UNC\server\share
             if( TryGetShareUncRootPath( path, out root ) )
             {
                 return root;
