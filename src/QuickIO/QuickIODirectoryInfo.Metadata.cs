@@ -10,7 +10,7 @@ namespace SchwabenCode.QuickIO
     public partial class QuickIODirectoryInfo
     {
         // TODO:
-        /// <summary>
+        ///// <summary>
         ///// Receives <see cref="QuickIODirectoryMetadata"/> of current file
         ///// </summary>
         ///// <returns><see cref="QuickIODirectoryMetadata"/></returns>

@@ -96,7 +96,6 @@ namespace SchwabenCode.QuickIO
         /// <param name="pattern">Search pattern. Uses Win32 native filtering.</param>
         /// <param name="searchOption">Specifiy depth with <see cref="SearchOption"/></param>
         /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
-        /// <param name="pathFormatReturn">Type of return</param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         public IEnumerable<QuickIOFileSystemEntry> EnumerateFileSystemEntries( String pattern = QuickIOPatterns.PathMatchAll, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )

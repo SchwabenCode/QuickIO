@@ -111,7 +111,7 @@ namespace SchwabenCode.QuickIO
                 {
                     QuickIODirectory.Create( targetDirectoryPath, true );
                 }
-                catch( PathAlreadyExistsException e )
+                catch( PathAlreadyExistsException )
                 {
                     // yay ignore this!
                 }

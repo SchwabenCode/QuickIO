@@ -91,12 +91,16 @@ namespace SchwabenCode.QuickIO
         /// Returns the path in regular format (\\server\share\)
         /// </summary>
         private string _fullName;
+        /// <summary>
+        /// Returns the Fullname
+        /// </summary>
         public string FullName
         {
             get
             {
                 Contract.Requires( !String.IsNullOrWhiteSpace( ShareName ) );
                 Contract.Ensures( !String.IsNullOrWhiteSpace( Contract.Result<String>() ) );
+                Contract.Ensures( Contract.Result<String>() != null );
 
                 if( _fullName == null )
                 {

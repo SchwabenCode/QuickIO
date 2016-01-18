@@ -33,7 +33,6 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="fullpath">Full path to the file or directory (regular or unc)</param>
         /// <param name="win32FindData">Win32 handle information</param>
-        /// <param name="pathType">The pathtype</param>
         internal QuickIOPathInfo( string fullpath, Win32FindData win32FindData )
         {
             Contract.Requires( fullpath != null );

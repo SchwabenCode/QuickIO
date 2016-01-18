@@ -16,7 +16,7 @@ namespace SchwabenCode.QuickIO
         /// Checks if given name is a valid server name
         /// </summary>
         /// <remarks>Ignores Unix File Systems</remarks>
-        /// <param name="path">Path to check</param>
+        /// <param name="name">Name to check</param>
         /// <exception cref="InvalidPathException">If invalid character found</exception>
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
         public static bool IsValidFolderName( String name )

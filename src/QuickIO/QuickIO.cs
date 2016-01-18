@@ -10,6 +10,9 @@ using System.IO;
 
 namespace SchwabenCode.QuickIO
 {
+    /// <summary>
+    /// QuickIO provides you methods to interact with the file system - local and remote targets
+    /// </summary>
     public class QuickIO
     {
         /// <summary>
