@@ -131,6 +131,8 @@ namespace SchwabenCode.QuickIO.Win32
         /// <summary>
         /// You cannot reset this enumerator
         /// </summary>
+        /// <remarks>Throws an <see cref="NotSupportedException"/></remarks>
+        /// <exception cref="NotSupportedException">Method not supported</exception>
         public void Reset()
         {
             throw new NotSupportedException();
