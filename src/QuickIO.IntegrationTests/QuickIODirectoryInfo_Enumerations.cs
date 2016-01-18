@@ -17,7 +17,7 @@ namespace SchwabenCode.QuickIO.IntegrationTests
             IEnumerable<QuickIOFileInfo> result = ( pattern == null ? directoryInfo.EnumerateFiles() : directoryInfo.EnumerateFiles( pattern ) );
 
             List<QuickIOFileInfo> list = result.ToList();
-            //result.Count().Should().Be( expected );
+            list.Count.Should().Be( expected );
         }
     }
 }

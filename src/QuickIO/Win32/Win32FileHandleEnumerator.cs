@@ -18,7 +18,7 @@ namespace SchwabenCode.QuickIO.Win32
         public string DirectoryPath { get; }
         public bool FilterSystemEntries { get; }
 
-        private readonly Win32FileHandle _currentFileHandle;
+        private Win32FileHandle _currentFileHandle;
         private Win32FindData _currentFindData;
         private int _currentErrorCode;
         /// <summary>
@@ -58,8 +58,7 @@ namespace SchwabenCode.QuickIO.Win32
             DirectoryPath = directoryPath;
             FilterSystemEntries = filterSystemEntries;
 
-            _currentFileHandle = Win32SafeNativeMethods.FindFirstFile( DirectoryPath, _currentFindData );
-            _currentErrorCode = Marshal.GetLastWin32Error();
+
         }
 
         /// <summary>
@@ -68,26 +67,40 @@ namespace SchwabenCode.QuickIO.Win32
         /// <returns></returns>
         public bool MoveNext()
         {
-            // Take care of invalid handles
-            if( _currentFileHandle.IsInvalid )
-            {
-                if( _currentErrorCode != Win32ErrorCodes.ERROR_NO_MORE_FILES )
-                {
-                    InternalQuickIOCommon.NativeExceptionMapping( DirectoryPath, _currentErrorCode );
-                }
-
-                return false;
-            }
-
-            bool entryFound;
             do
             {
-                _currentFindData = new Win32FindData();
-                entryFound = Win32SafeNativeMethods.FindNextFile( _currentFileHandle, _currentFindData );
-                _currentErrorCode = Marshal.GetLastWin32Error();
+                // only at start currentFileHandle is null
+                if( _currentFileHandle == null )
+                {
+                    // first call
+                    _currentFileHandle = Win32SafeNativeMethods.FindFirstFile( DirectoryPath, _currentFindData );
+                    _currentErrorCode = Marshal.GetLastWin32Error();
+                }
+                else
+                {
+                    // second to n call
+                    _currentFindData = new Win32FindData();
+                    if( !Win32SafeNativeMethods.FindNextFile( _currentFileHandle, _currentFindData ) )
+                    {
+                        return false;
+                    }
+                }
+
+                // Take care of invalid handles
+                if( _currentFileHandle.IsInvalid )
+                {
+                    if( _currentErrorCode != Win32ErrorCodes.ERROR_NO_MORE_FILES )
+                    {
+                        InternalQuickIOCommon.NativeExceptionMapping( DirectoryPath, _currentErrorCode );
+                    }
+
+                    return false;
+                }
+
+                // skip entries to ignore
             } while( FilterSystemEntries && _currentFindData.IsSystemDirectoryEntry() );
 
-            return entryFound;
+            return true;
         }
 
         /// <summary>
@@ -109,17 +122,19 @@ namespace SchwabenCode.QuickIO.Win32
 
         protected virtual void Dispose( bool disposing )
         {
-            if( !_disposed )
+            if( _disposed )
             {
-                // dispose all
-                if( disposing )
-                {
-                    _currentFileHandle.Dispose();
-                }
-
-                // done
-                _disposed = true;
+                return;
             }
+            // dispose all
+            if( disposing )
+            {
+                _currentFileHandle.Dispose();
+                _currentFileHandle = null;
+            }
+
+            // done
+            _disposed = true;
         }
 
         ~Win32FileHandleEnumerator()
