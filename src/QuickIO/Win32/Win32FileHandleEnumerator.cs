@@ -13,14 +13,61 @@ using System.Diagnostics.Contracts;
 
 namespace SchwabenCode.QuickIO.Win32
 {
+    /// <summary>
+    /// Provides an file system enumerator for FindFirstFile and FindNextFile
+    /// </summary>
     internal class Win32FileHandleEnumerator : IEnumerator<Win32FileSystemEntry>
     {
+        /// <summary>
+        /// Creates an instance of <see cref="Win32FileHandleEnumerator"/> and sets <see cref="_currentFindData"/>
+        /// </summary>
+        private Win32FileHandleEnumerator()
+        {
+            _currentFindData = new Win32FindData();
+        }
+
+        /// <summary>
+        /// Creates an instance of <see cref = "Win32FileHandleEnumerator"/>
+        /// </summary>
+        /// <param name = "directoryPath">UNC Path to directory</param>
+        /// <param name="filterSystemEntries">Ignores system entries like . and .. in enumeration and skips them in <see cref="MoveNext"/></param>
+        internal Win32FileHandleEnumerator( string directoryPath, bool filterSystemEntries = true ) : this()
+        {
+            Contract.Requires( !String.IsNullOrWhiteSpace( directoryPath ) );
+            if( String.IsNullOrWhiteSpace( directoryPath ) )
+            {
+                throw new ArgumentNullException( nameof( directoryPath ) );
+            }
+
+            DirectoryPath = directoryPath;
+            FilterSystemEntries = filterSystemEntries;
+        }
+
+        /// <summary>
+        /// The Path to enumerate
+        /// </summary>
         public string DirectoryPath { get; }
+
+        /// <summary>
+        /// Indicates the state if system entries like . and .. should be skipped in <see cref="MoveNext"/>
+        /// </summary>
         public bool FilterSystemEntries { get; }
 
+        /// <summary>
+        /// Current handle found
+        /// </summary>
         private Win32FileHandle _currentFileHandle;
+
+        /// <summary>
+        /// Current find data found
+        /// </summary>
         private Win32FindData _currentFindData;
+
+        /// <summary>
+        /// Last occured error code
+        /// </summary>
         private int _currentErrorCode;
+
         /// <summary>
         /// Returns current element
         /// </summary>
@@ -38,28 +85,6 @@ namespace SchwabenCode.QuickIO.Win32
         /// </summary>
         object IEnumerator.Current => this.Current;
 
-        private Win32FileHandleEnumerator()
-        {
-            _currentFindData = new Win32FindData();
-        }
-
-        /// <summary>
-        /// Creates an instance of <see cref = "Win32FileHandleEnumerator"/>
-        /// </summary>
-        /// <param name = "directoryPath">UNC Path to directory</param>
-        internal Win32FileHandleEnumerator( string directoryPath, bool filterSystemEntries = true ) : this()
-        {
-            Contract.Requires( !String.IsNullOrWhiteSpace( directoryPath ) );
-            if( String.IsNullOrWhiteSpace( directoryPath ) )
-            {
-                throw new ArgumentNullException( nameof( directoryPath ) );
-            }
-
-            DirectoryPath = directoryPath;
-            FilterSystemEntries = filterSystemEntries;
-
-
-        }
 
         /// <summary>
         /// Moves to next element

@@ -2027,6 +2027,48 @@
             <param name="path">Directory</param>
             <param name="filterSystemEntries">Filters . and .. from system enumeration</param>
         </member>
+        <member name="T:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator">
+            <summary>
+            Provides an file system enumerator for FindFirstFile and FindNextFile
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator"/> and sets <see cref="F:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator._currentFindData"/>
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.#ctor(System.String,System.Boolean)">
+            <summary>
+            Creates an instance of <see cref = "T:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator"/>
+            </summary>
+            <param name = "directoryPath">UNC Path to directory</param>
+            <param name="filterSystemEntries">Ignores system entries like . and .. in enumeration and skips them in <see cref="M:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.MoveNext"/></param>
+        </member>
+        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.DirectoryPath">
+            <summary>
+            The Path to enumerate
+            </summary>
+        </member>
+        <member name="P:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.FilterSystemEntries">
+            <summary>
+            Indicates the state if system entries like . and .. should be skipped in <see cref="M:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.MoveNext"/>
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator._currentFileHandle">
+            <summary>
+            Current handle found
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator._currentFindData">
+            <summary>
+            Current find data found
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator._currentErrorCode">
+            <summary>
+            Last occured error code
+            </summary>
+        </member>
         <member name="P:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.Current">
             <summary>
             Returns current element
@@ -2036,12 +2078,6 @@
             <summary>
             Returns current element
             </summary>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.#ctor(System.String,System.Boolean)">
-            <summary>
-            Creates an instance of <see cref = "T:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator"/>
-            </summary>
-            <param name = "directoryPath">UNC Path to directory</param>
         </member>
         <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.MoveNext">
             <summary>
