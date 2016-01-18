@@ -101,36 +101,23 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Name of file or directory
         /// </summary>
-        public String Name { get { return PathInfo.Name; } }
+        public String Name => PathInfo.Name;
 
         #region Path Properties
         /// <summary>
         /// Full path of the directory or file.
         /// </summary>
-        public String FullName { get { return PathInfo.FullName; } }
+        public String FullName => PathInfo.FullName;
+
         /// <summary>
         /// Full path of the directory or file (unc format)
         /// </summary>
-        public String FullNameUnc { get { return PathInfo.FullNameUnc; } }
+        public String FullNameUnc => PathInfo.FullNameUnc;
 
         /// <summary>
         /// Fullname of Parent.
         /// </summary>
-        public String ParentFullName { get { return PathInfo.ParentFullName; } }
-        /// <summary>
-        /// Parent. 
-        /// </summary>
-        public QuickIOPathInfo Parent { get { return PathInfo.Parent; } }
-
-
-        /// <summary>
-        /// <see cref="QuickIOPathLocation"/> of current path
-        /// </summary>
-        public QuickIOPathLocation PathLocation { get { return PathInfo.PathLocation; } }
-        /// <summary>
-        /// <see cref="PathType"/>
-        /// </summary>
-        public QuickIOPathType PathType { get { return PathInfo.PathType; } }
+        public String Parent => PathInfo.Parent;
 
         /// <summary>
         /// Returns current <see cref="QuickIOFileSystemSecurity"/>
@@ -142,13 +129,9 @@ namespace SchwabenCode.QuickIO
         }
 
         /// <summary>
-        /// Fullname of Root. null if current path is root.
-        /// </summary>
-        public String RootFullName { get { return PathInfo.RootFullName; } }
-        /// <summary>
         /// Returns Root or null if current path is root
         /// </summary>
-        public QuickIOPathInfo Root { get { return PathInfo.Root; } }
+        public string Root => PathInfo.Root;
 
         #endregion
 

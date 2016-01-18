@@ -18,53 +18,39 @@ namespace SchwabenCode.QuickIO
     /// </summary>
     public sealed class QuickIOPathInfo
     {
-        private readonly InternalPath _interalPath;
-
-
         /// <summary>
         /// Creates the path information container
         /// </summary>
-        /// <param name="path">Full path to the file or directory (regular or unc)</param>
-        public QuickIOPathInfo( String path ) :
-            this( QuickIOPath.GetInternalPath( path ) )
+        /// <param name="fullpath">Full path to the file or directory (regular or unc)</param>
+        internal QuickIOPathInfo( String fullpath ) :
+               this( fullpath, InternalQuickIO.GetFindDataFromPath( fullpath ) )
         {
-            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
+            Contract.Requires( !String.IsNullOrWhiteSpace( fullpath ) );
         }
 
         /// <summary>
         /// Creates the path information container
         /// </summary>
-        /// <param name="internalPath">Full path to the file or directory (regular or unc)</param>
-        internal QuickIOPathInfo( InternalPath internalPath ) :
-            this( internalPath, InternalQuickIO.GetFindDataFromPath( internalPath ) )
+        /// <param name="fullpath">Full path to the file or directory (regular or unc)</param>
+        /// <param name="win32FindData">Win32 handle information</param>
+        /// <param name="pathType">The pathtype</param>
+        internal QuickIOPathInfo( string fullpath, Win32FindData win32FindData )
         {
-            Contract.Requires( internalPath != null );
-        }
-
-        /// <summary>
-        /// Creates the path information container
-        /// </summary>
-        /// <param name="internalPath">Full path to the file or directory (regular or unc)</param>
-        internal QuickIOPathInfo( InternalPath internalPath, Win32FindData win32FindData )
-        {
-            _interalPath = internalPath;
-
-            Contract.Requires( _interalPath != null );
+            Contract.Requires( fullpath != null );
             Contract.Requires( win32FindData != null );
 
             this.FindData = win32FindData;
 
-            this.IsRoot = QuickIOPath.IsRoot( _interalPath.Path );
-            this.Name = QuickIOPath.GetName( _interalPath.Path );
 
-            this.ParentFullName = QuickIOPath.GetParentPath( _interalPath.Path );
-
-            this.FullName = QuickIOPath.ToPathRegular( _interalPath.Path );
-            this.FullNameUnc = QuickIOPath.ToPathUnc( _interalPath.Path );
+            this.Name = QuickIOPath.GetName( fullpath );
+            this.FullName = QuickIOPath.ToPathRegular( fullpath );
+            this.FullNameUnc = QuickIOPath.ToPathUnc( fullpath );
 
             // TODO:
-            //this.Root = QuickIOPath.GetRoot( _interalPath.Path );
-            this.RootFullName = QuickIOPath.ToPathUnc( _interalPath.Path );
+            this.Parent = QuickIOPath.GetParentPath( fullpath );
+            this.Root = QuickIOPath.GetPathRoot( fullpath );
+
+            this.IsRoot = QuickIOPath.IsRoot( fullpath );
         }
 
 
@@ -95,29 +81,9 @@ namespace SchwabenCode.QuickIO
         public String Name { get; private set; }
 
         /// <summary>
-        /// <see cref="PathType"/>
-        /// </summary>
-        public QuickIOPathType PathType { get; private set; } // TODO: NO SET!!
-
-        /// <summary>
-        /// Fullname of Root. null if current path is root.
-        /// </summary>
-        public string RootFullName { get; private set; } // TODO: NO SET!!
-
-        /// <summary>
-        /// Fullname of Parent. null if current path is root.
-        /// </summary>
-        public string ParentFullName { get; }
-
-        /// <summary>
         /// Parent Directory
         /// </summary>
-        public QuickIOPathInfo Parent => ( ParentFullName == null ? null : new QuickIOPathInfo( ParentFullName ) );
-
-        /// <summary>
-        /// <see cref="QuickIOPathLocation"/> of current path
-        /// </summary>
-        public QuickIOPathLocation PathLocation { get; }  // TODO: NO SET!!
+        public string Parent { get; }
 
         /// <summary>
         /// FindData
@@ -130,7 +96,7 @@ namespace SchwabenCode.QuickIO
                 {
                     throw new NotSupportedException( "Root directory does not provide owner access" );
                 }
-                return _findData ?? ( _findData = InternalQuickIO.GetFindDataFromPath( _interalPath ) );
+                return _findData ?? ( _findData = InternalQuickIO.GetFindDataFromPath( FullNameUnc ) );
             }
             private set
             {
@@ -163,7 +129,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Returns Root or null if current path is root
         /// </summary>
-        public QuickIOPathInfo Root => ( RootFullName == null ? null : new QuickIOPathInfo( RootFullName ) );
+        public string Root { get; }
 
         /// <summary>
         /// Returns true if path exists. Checks <see cref="QuickIOFileSystemEntryType"/>
@@ -194,8 +160,8 @@ namespace SchwabenCode.QuickIO
         {
             get
             {
-                Contract.Requires( _interalPath != null );
-                return InternalQuickIOCommon.DetermineFileSystemEntry( _interalPath );
+                Contract.Requires( FullNameUnc != null );
+                return InternalQuickIOCommon.DetermineFileSystemEntry( FullNameUnc );
             }
 
         }

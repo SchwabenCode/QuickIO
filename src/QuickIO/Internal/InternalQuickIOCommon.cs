@@ -32,13 +32,13 @@ namespace SchwabenCode.QuickIO.Internal
         /// <summary>
         /// Determines the type based on the attributes of the path
         /// </summary>
-        /// <param name="internalPath"><see cref="InternalPath"/></param>
+        /// <param name="fullPath">Full path</param>
         /// <returns><see cref="QuickIOFileSystemEntryType"/></returns>
-        internal static QuickIOFileSystemEntryType DetermineFileSystemEntry( InternalPath internalPath )
+        internal static QuickIOFileSystemEntryType DetermineFileSystemEntry( string fullPath )
         {
-            Contract.Requires( internalPath != null );
+            Contract.Requires( !String.IsNullOrWhiteSpace( fullPath ) );
 
-            Win32FindData findData = InternalQuickIO.GetFindDataFromPath( internalPath );
+            Win32FindData findData = InternalQuickIO.GetFindDataFromPath( fullPath );
 
             return !InternalHelpers.ContainsFileAttribute( findData.dwFileAttributes, FileAttributes.Directory ) ? QuickIOFileSystemEntryType.File : QuickIOFileSystemEntryType.Directory;
         }

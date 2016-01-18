@@ -17,7 +17,7 @@ namespace SchwabenCode.QuickIO.Internal
         /// <summary>
         /// Gets the <see cref="Win32FindData"/> from the passed path.
         /// </summary>
-        /// <param name="internalPath">Path</param>
+        /// <param name="fullpath">Path</param>
         /// <param name="win32FindData"><seealso cref="Win32FindData"/>. Will be null if path does not exist.</param>
         /// <returns>true if path is valid and <see cref="Win32FindData"/> is set</returns>
         /// <remarks>
@@ -26,11 +26,11 @@ namespace SchwabenCode.QuickIO.Internal
         /// </see> if invalid handle found.
         /// </remarks>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        public static bool TryGetFindDataFromPath( InternalPath internalPath, out Win32FindData win32FindData )
+        public static bool TryGetFindDataFromPath( string fullpath, out Win32FindData win32FindData )
         {
-            Contract.Requires( internalPath != null );
+            Contract.Requires( !String.IsNullOrWhiteSpace( fullpath ) );
 
-            win32FindData = GetFindDataFromPath( internalPath );
+            win32FindData = GetFindDataFromPath( fullpath );
             return ( win32FindData != null );
         }
 
@@ -75,22 +75,22 @@ namespace SchwabenCode.QuickIO.Internal
         ///// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         /// 
         /// <summary>
-        /// Returns the <see cref="Win32FindData"/> from specified <paramref name="path"/>
+        /// Returns the <see cref="Win32FindData"/> from specified <paramref name="fullpath"/>
         /// </summary>
-        /// <param name="internalPath">Path to the file system entry</param>
+        /// <param name="fullpath">Path to the file system entry</param>
         /// <returns><see cref="Win32FindData"/></returns>
-        public static Win32FindData SafeGetFindDataFromPath( InternalPath internalPath )
+        public static Win32FindData SafeGetFindDataFromPath( string fullpath )
         {
-            Contract.Requires( internalPath != null );
+            Contract.Requires( !String.IsNullOrWhiteSpace( fullpath ) );
 
             Win32FindData win32FindData = new Win32FindData();
             int win32Error;
-            using( Win32FileHandle fileHandle = FindFirstSafeFileHandle( internalPath.Path, win32FindData, out win32Error ) )
+            using( Win32FileHandle fileHandle = FindFirstSafeFileHandle( fullpath, win32FindData, out win32Error ) )
             {
                 // Take care of invalid handles
                 if( fileHandle.IsInvalid )
                 {
-                    InternalQuickIOCommon.NativeExceptionMapping( internalPath.Path, win32Error );
+                    InternalQuickIOCommon.NativeExceptionMapping( fullpath, win32Error );
                 }
 
                 // Treffer auswerten
@@ -104,16 +104,16 @@ namespace SchwabenCode.QuickIO.Internal
             return null;
         }
 
-        public static Win32FindData GetFindDataFromPath( InternalPath internalPath, QuickIOFileSystemEntryType? estimatedFileSystemEntryType = null )
+        public static Win32FindData GetFindDataFromPath( string fullpath, QuickIOFileSystemEntryType? estimatedFileSystemEntryType = null )
         {
-            Contract.Requires( internalPath != null );
+            Contract.Requires( fullpath != null );
             Contract.Ensures( Contract.Result<Win32FindData>() != null );
 
-            Win32FindData win32FindData = SafeGetFindDataFromPath( internalPath );
+            Win32FindData win32FindData = SafeGetFindDataFromPath( fullpath );
 
             if( win32FindData == null )
             {
-                throw new PathNotFoundException( internalPath.Path );
+                throw new PathNotFoundException( fullpath );
             }
 
             // Check for correct type
@@ -126,7 +126,7 @@ namespace SchwabenCode.QuickIO.Internal
                         {
                             return win32FindData;
                         }
-                        throw new UnmatchedFileSystemEntryTypeException( QuickIOFileSystemEntryType.Directory, QuickIOFileSystemEntryType.File, internalPath.Path );
+                        throw new UnmatchedFileSystemEntryTypeException( QuickIOFileSystemEntryType.Directory, QuickIOFileSystemEntryType.File, fullpath );
                     }
                 case QuickIOFileSystemEntryType.File:
                     {
@@ -135,7 +135,7 @@ namespace SchwabenCode.QuickIO.Internal
                         {
                             return win32FindData;
                         }
-                        throw new UnmatchedFileSystemEntryTypeException( QuickIOFileSystemEntryType.File, QuickIOFileSystemEntryType.Directory, internalPath.Path );
+                        throw new UnmatchedFileSystemEntryTypeException( QuickIOFileSystemEntryType.File, QuickIOFileSystemEntryType.Directory, fullpath );
                     }
                 case null:
                 default:

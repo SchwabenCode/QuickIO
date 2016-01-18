@@ -60,11 +60,6 @@ namespace SchwabenCode.QuickIO
 
         }
 
-        internal static InternalPath GetInternalPath( string path )
-        {
-            return new InternalPath( GetFullPath( path ) );
-        }
-
         /// <summary>
         /// A wrapper for <see cref="GetFullPath(string)"/> that returns <see cref="QuickIOPathInfo"/>
         /// </summary>

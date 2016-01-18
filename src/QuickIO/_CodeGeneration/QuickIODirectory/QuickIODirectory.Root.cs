@@ -21,7 +21,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.directory.getdirectoryroot(v=vs.110).aspx</remarks>
         public static QuickIOPathInfo GetDirectoryRoot( string path )
         {
-            return GetDirectoryRoot( new QuickIOPathInfo ( path ) );
+            return GetDirectoryRoot( new QuickIOPathInfo( path ) );
         }
 
         /// <summary>
@@ -32,10 +32,10 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.directory.getdirectoryroot(v=vs.110).aspx</remarks>
         public static QuickIOPathInfo GetDirectoryRoot( QuickIOPathInfo info )
         {
-            return info.Root;
+            return info.IsRoot ? null : GetDirectoryRoot( info.Root );
         }
 
-		/// <summary>
+        /// <summary>
         /// Returns the root information
         /// </summary>
         /// <param name="info">A file or directory. </param>
@@ -43,7 +43,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.directory.getdirectoryroot(v=vs.110).aspx</remarks>
         public static QuickIOPathInfo GetDirectoryRoot( QuickIODirectoryInfo info )
         {
-            return info.Root;
+            return info.IsRoot ? null : GetDirectoryRoot( info.Root );
         }
 
         #endregion
