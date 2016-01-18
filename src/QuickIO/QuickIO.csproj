@@ -94,7 +94,6 @@
     <Compile Include="Internal\InternalQuickIO.FindData.cs" />
     <Compile Include="Internal\InternalQuickIO.Shares.cs" />
     <Compile Include="Internal\InternalQuickIOCommon.cs" />
-    <Compile Include="Internal\InternalRawDataHelpers.cs" />
     <None Include="Internal\README.md" />
     <Compile Include="Overrides\DirectoryInfo.cs" />
     <Compile Include="Overrides\FileInfo.cs" />
@@ -120,6 +119,7 @@
     <Compile Include="QuickIOFileSystemEntry.cs" />
     <Compile Include="Win32\Win32ApiShareInfo.cs" />
     <Compile Include="Win32\Win32FileSystemStack.cs" />
+    <Compile Include="Win32\Win32FindDataExtensions.cs" />
     <Compile Include="_Enums\QuickIOEnumerateOptions.cs" />
     <Compile Include="QuickIOFile.Append.cs" />
     <Compile Include="QuickIOFile.Create.cs" />

@@ -18,7 +18,7 @@ namespace SchwabenCode.QuickIO
         /// Create new instance of <see cref="QuickIOFileInfo"/>
         /// </summary>
         public QuickIOFileInfo( String path )
-            : this( new QuickIOPathInfo( path ) )
+            : this( new QuickIOPathInfo( QuickIOPath.GetFullPath( path ) ) )
         {
 
         }
@@ -50,8 +50,7 @@ namespace SchwabenCode.QuickIO
         internal QuickIOFileInfo( String fullName, Win32FindData win32FindData )
             : this( new QuickIOPathInfo( fullName ), win32FindData )
         {
-            RetriveDateTimeInformation( win32FindData );
-            CalculateSize( win32FindData );
+           
         }
 
         /// <summary>
@@ -62,51 +61,23 @@ namespace SchwabenCode.QuickIO
         internal QuickIOFileInfo( QuickIOPathInfo pathInfo, Win32FindData win32FindData )
             : base( pathInfo, win32FindData )
         {
-            RetriveDateTimeInformation( win32FindData );
-            CalculateSize( win32FindData );
+            
         }
 
         /// <summary>
         /// Returns true if file exists. Uncached.
         /// </summary>
         /// <exception cref="UnmatchedFileSystemEntryTypeException">Path exists but it's a directory.</exception>
-        public override Boolean Exists
-        {
-            get
-            {
-                return QuickIOFile.Exists( this );
-            }
-        }
+        public override Boolean Exists => QuickIOFile.Exists( this );
 
         /// <summary>
         /// Size of the file. Cached.
         /// </summary>
-        public UInt64 Bytes { get; private set; }
+        public UInt64 Bytes => FindData.GetBytes();
 
         /// <summary>
         /// Size of the file (returns <see cref="Bytes"/>).
         /// </summary>
-        public UInt64 Length { get { return Bytes; } }
-
-
-        /// <summary>
-        /// Determines the time stamp of the given <see cref="Win32FindData"/>
-        /// </summary>
-        /// <param name="win32FindData"><see cref="Win32FindData"/></param>
-        private void RetriveDateTimeInformation( Win32FindData win32FindData )
-        {
-            LastWriteTimeUtc = win32FindData.GetLastWriteTimeUtc( );
-            LastAccessTimeUtc = win32FindData.GetLastAccessTimeUtc( );
-            CreationTimeUtc = win32FindData.GetCreationTimeUtc( );
-        }
-
-        /// <summary>
-        /// Calculates the size of the file from the handle
-        /// </summary>
-        /// <param name="win32FindData"></param>
-        private void CalculateSize( Win32FindData win32FindData )
-        {
-            this.Bytes = win32FindData.CalculateBytes( );
-        }
+        public UInt64 Length => FindData.GetBytes();
     }
 }

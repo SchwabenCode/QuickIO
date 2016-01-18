@@ -34,6 +34,10 @@ namespace SchwabenCode.QuickIO
             {
                 this.Attributes = findData.dwFileAttributes;
             }
+
+            _lastWriteTimeUtc = FindData.GetLastWriteTimeUtc();
+            _lastAccessTimeUtc = findData.GetLastAccessTimeUtc();
+            _creationTimeUtc = findData.GetCreationTimeUtc();
         }
         #endregion
 

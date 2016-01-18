@@ -14,6 +14,8 @@ namespace SchwabenCode.QuickIO.Internal
 {
     internal static partial class InternalQuickIO
     {
+ 
+
         /// <summary>
         /// Gets the <see cref="Win32FindData"/> from the passed path.
         /// </summary>
@@ -95,7 +97,7 @@ namespace SchwabenCode.QuickIO.Internal
 
                 // Treffer auswerten
                 // Ignore . and .. directories
-                if( !InternalRawDataHelpers.IsSystemDirectoryEntry( win32FindData ) )
+                if( !win32FindData.IsSystemDirectoryEntry( ) )
                 {
                     return win32FindData;
                 }

@@ -15,7 +15,8 @@ namespace SchwabenCode.QuickIO.Win32
 {
     internal class Win32FileHandleEnumerator : IEnumerator<Win32FileSystemEntry>
     {
-        public string DirectoryPath { get; private set; }
+        public string DirectoryPath { get; }
+        public bool FilterSystemEntries { get; }
 
         private readonly Win32FileHandle _currentFileHandle;
         private Win32FindData _currentFindData;
@@ -46,7 +47,7 @@ namespace SchwabenCode.QuickIO.Win32
         /// Creates an instance of <see cref = "Win32FileHandleEnumerator"/>
         /// </summary>
         /// <param name = "directoryPath">UNC Path to directory</param>
-        internal Win32FileHandleEnumerator( string directoryPath ) : this()
+        internal Win32FileHandleEnumerator( string directoryPath, bool filterSystemEntries = true ) : this()
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( directoryPath ) );
             if( String.IsNullOrWhiteSpace( directoryPath ) )
@@ -55,6 +56,7 @@ namespace SchwabenCode.QuickIO.Win32
             }
 
             DirectoryPath = directoryPath;
+            FilterSystemEntries = filterSystemEntries;
 
             _currentFileHandle = Win32SafeNativeMethods.FindFirstFile( DirectoryPath, _currentFindData );
             _currentErrorCode = Marshal.GetLastWin32Error();
@@ -77,16 +79,14 @@ namespace SchwabenCode.QuickIO.Win32
                 return false;
             }
 
-            // filter system path "." and ".."
-            Boolean entryFound;
+            bool entryFound;
             do
             {
                 _currentFindData = new Win32FindData();
                 entryFound = Win32SafeNativeMethods.FindNextFile( _currentFileHandle, _currentFindData );
                 _currentErrorCode = Marshal.GetLastWin32Error();
-            }
-            // skip found element if system entry
-            while( _currentFindData.cFileName == "" || _currentFindData.cFileName == "." || _currentFindData.cFileName == ".." );
+            } while( FilterSystemEntries && _currentFindData.IsSystemDirectoryEntry() );
+
             return entryFound;
         }
 

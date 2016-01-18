@@ -17,52 +17,6 @@ namespace SchwabenCode.QuickIO.Win32
     [BestFitMapping( false )]
     internal class Win32FindData
     {
-        private bool? _isDirectory = null;
-        /// <summary>
-        /// Returns true if entry is a directory
-        /// </summary>
-        /// <remarks>Checks <see cref="FileAttributes.Directory"/></remarks>
-        public Boolean IsDirectory
-        {
-            get
-            {
-                if( _isDirectory == null )
-                {
-                    _isDirectory = ( dwFileAttributes & FileAttributes.Directory ) != 0;
-                }
-                return ( bool )_isDirectory;
-            }
-        }
-
-        /// <summary>
-        /// Returns true if entry is a file
-        /// </summary>
-        /// <remarks>Checks <see cref="FileAttributes.Directory"/></remarks>
-        public Boolean IsFile
-        {
-            get
-            {
-                return !IsDirectory;
-            }
-        }
-
-        private ulong? _bytes = null;
-        /// <summary>
-        /// Returns total size of entry in Bytes
-        /// </summary>
-        public ulong Bytes
-        {
-            get
-            {
-                if( _bytes == null )
-                {
-                    _bytes = CalculateBytes();
-                }
-                return ( ulong )_bytes;
-            }
-        }
-
-
         /// <summary>
         /// File Attributes
         /// </summary>
@@ -129,52 +83,5 @@ namespace SchwabenCode.QuickIO.Win32
         /// </summary>
         [MarshalAs( UnmanagedType.ByValTStr, SizeConst = 14 )]
         public string cAlternateFileName;
-
-         /// <summary>
-        /// Returns type of entry
-        /// </summary>
-        public QuickIOFileSystemEntryType FileSystemEntryType
-        {
-            get { return IsDirectory ? QuickIOFileSystemEntryType.Directory : QuickIOFileSystemEntryType.File; }
-        }
-
-        /// <summary>
-        /// Returns the total size in bytes
-        /// </summary>
-        /// <returns></returns>
-        public ulong CalculateBytes()
-        {
-
-            return ( ( ulong )nFileSizeHigh << 32 | nFileSizeLow );
-        }
-
-        /// <summary>
-        /// Gets last write time based on UTC
-        /// </summary>
-        /// <returns></returns>
-        public DateTime GetLastWriteTimeUtc()
-        {
-            return InternalRawDataHelpers.ConvertDateTime( ftLastWriteTime_dwHighDateTime, ftLastWriteTime_dwLowDateTime );
-        }
-
-        /// <summary>
-        /// Gets last access time based on UTC
-        /// </summary>
-        /// <returns></returns>
-        public DateTime GetLastAccessTimeUtc()
-        {
-            return InternalRawDataHelpers.ConvertDateTime( ftLastAccessTime_dwHighDateTime, ftLastAccessTime_dwLowDateTime );
-        }
-
-        /// <summary>
-        /// Gets the creation time based on UTC
-        /// </summary>
-        /// <returns></returns>
-        public DateTime GetCreationTimeUtc()
-        {
-            return InternalRawDataHelpers.ConvertDateTime( ftCreationTime_dwHighDateTime, ftCreationTime_dwLowDateTime );
-        }
-
-
     }
 }

@@ -5,6 +5,7 @@
 
 using System;
 using System.IO;
+using System.Runtime.Remoting.Messaging;
 
 namespace SchwabenCode.QuickIO.Win32
 {
@@ -16,17 +17,9 @@ namespace SchwabenCode.QuickIO.Win32
             FindData = findData;
         }
 
-        public Win32FileHandle FileHandle
-        {
-            get;
-            private set;
-        }
+        public Win32FileHandle FileHandle { get; }
 
-        public Win32FindData FindData
-        {
-            get;
-            private set;
-        }
+        public Win32FindData FindData { get; }
 
         /// <summary>
         /// Returns name of entry (not fullname!)
@@ -42,22 +35,24 @@ namespace SchwabenCode.QuickIO.Win32
         /// Returns true if entry is a directory
         /// </summary>
         /// <remarks>Checks <see cref="FileAttributes.Directory"/></remarks>
-        public Boolean IsDirectory => FindData.IsDirectory;
+        public Boolean IsDirectory => FindData.IsDirectory();
 
         /// <summary>
         /// Returns true if entry is a file
         /// </summary>
         /// <remarks>Checks <see cref="FileAttributes.Directory"/></remarks>
-        public Boolean IsFile => FindData.IsFile;
+        public Boolean IsFile => FindData.IsFile();
 
         /// <summary>
         /// Returns total size of entry in Bytes
         /// </summary>
-        public UInt64 Bytes => FindData.Bytes;
+        public UInt64 Bytes => FindData.GetBytes();
 
         /// <summary>
         /// Returns type of entry
         /// </summary>
-        public QuickIOFileSystemEntryType FileSystemEntryType => FindData.FileSystemEntryType;
+        public QuickIOFileSystemEntryType FileSystemEntryType => FindData.GetFileSystemEntryType();
+
+        public Boolean IsValidEntry => !FindData.IsSystemDirectoryEntry();
     }
 }

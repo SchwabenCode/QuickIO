@@ -16,21 +16,17 @@ namespace SchwabenCode.QuickIO
     /// </summary>
     public abstract class QuickIOFileSystemMetadataBase
     {
-        #region Fields
-        private string _fullName;
-        #endregion
+        internal Win32FindData FindData { get; }
 
-        /// <summary>
-        /// Ctor
-        /// </summary>
-        /// <param name="path"></param>
-        internal QuickIOFileSystemMetadataBase( string path, Win32FindData win32FindData )
+        internal QuickIOFileSystemMetadataBase( string fullPath, Win32FindData win32FindData)
         {
-            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
+            Contract.Requires( !String.IsNullOrWhiteSpace( fullPath ) );
             Contract.Requires( win32FindData != null );
 
-            FullNameUnc = QuickIOPath.ToPathUnc( FullNameUnc );
-            FullName = QuickIOPath.ToPathRegular( FullNameUnc );
+            FindData = win32FindData;
+
+            FullNameUnc = QuickIOPath.ToPathUnc( fullPath );
+            FullName = QuickIOPath.ToPathRegular( fullPath );
 
             this.LastWriteTimeUtc = win32FindData.GetLastWriteTimeUtc();
             this.LastAccessTimeUtc = win32FindData.GetLastAccessTimeUtc();

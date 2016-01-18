@@ -19,15 +19,15 @@ namespace SchwabenCode.QuickIO
         /// <param name="uncResultPath">UNC Path of current file</param>
         /// <param name="win32FindData">Win32FindData of current file</param>
         internal QuickIOFileMetadata( string uncResultPath, Win32FindData win32FindData )
-            : base( uncResultPath , win32FindData )
+            : base( uncResultPath, win32FindData )
         {
-            Bytes = win32FindData.CalculateBytes( );
+
         }
 
         /// <summary>
         /// Size of the file. 
         /// </summary>
-        public UInt64 Bytes { get; private set; }
+        public UInt64 Bytes => FindData.GetBytes();
 
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace SchwabenCode.QuickIO
         /// <returns><see cref="QuickIOFileInfo"/></returns>
         public QuickIOFileInfo QuickIOFileInfo()
         {
-            return new QuickIOFileInfo( ToPathInfo( ) );
+            return new QuickIOFileInfo( ToPathInfo() );
         }
     }
 }

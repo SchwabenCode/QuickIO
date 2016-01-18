@@ -485,38 +485,6 @@
             <param name="path"></param>
             <param name="errorCode">errorCode</param>
         </member>
-        <member name="T:SchwabenCode.QuickIO.Internal.InternalRawDataHelpers">
-            <summary>
-            Various internal methods for the treatment of raw data
-            </summary>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalRawDataHelpers.ConvertDateTime(System.UInt32,System.UInt32)">
-            <summary>
-            Converts the PInvoke information into <see cref="T:System.DateTime"/>
-            </summary>
-            <param name="high"><see cref="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftLastWriteTime_dwHighDateTime"/> of <see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/></param>
-            <param name="low"><see cref="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftLastWriteTime_dwLowDateTime"/> of <see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/></param>
-            <returns><see cref="T:System.DateTime"/></returns>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalRawDataHelpers.CombineHighLowInts(System.UInt32,System.UInt32)">
-            <summary>
-            Merges the PInvoke information
-            </summary>
-            <param name="high"><see cref="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftLastWriteTime_dwHighDateTime"/> of <see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/></param>
-            <param name="low"><see cref="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftLastWriteTime_dwLowDateTime"/> of <see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/></param>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalRawDataHelpers.IsSystemDirectoryEntry(SchwabenCode.QuickIO.Win32.Win32FindData)">
-            <summary>
-            Checks whether a directory supplied by PINvoke is relevant
-            </summary>
-            <param name="win32FindData"><see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/></param>
-            <returns>true if is relevant; otherwise false</returns>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalRawDataHelpers.DateTimeToFiletime(System.DateTime)">
-            <summary>
-            Converts DateTime to Win32 FileTime format
-            </summary>
-        </member>
         <member name="T:SchwabenCode.QuickIO.PInvoke.Win32SafeNativeMethods">
             <summary>
             Native Methods - take a look on www.pinvoke.net
@@ -1931,6 +1899,73 @@
             Returns the remark
             </summary>
         </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindDataExtensions.IsDirectory(SchwabenCode.QuickIO.Win32.Win32FindData)">
+            <summary>
+            Returns true if entry is a directory
+            </summary>
+            <remarks>Checks <see cref="F:System.IO.FileAttributes.Directory"/></remarks>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindDataExtensions.IsFile(SchwabenCode.QuickIO.Win32.Win32FindData)">
+            <summary>
+            Returns true if entry is a file
+            </summary>
+            <remarks>Checks <see cref="F:System.IO.FileAttributes.Directory"/></remarks>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindDataExtensions.GetBytes(SchwabenCode.QuickIO.Win32.Win32FindData)">
+            <summary>
+            Returns total size of entry in Bytes
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindDataExtensions.GetFileSystemEntryType(SchwabenCode.QuickIO.Win32.Win32FindData)">
+            <summary>
+            Returns type of entry
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindDataExtensions.GetLastWriteTimeUtc(SchwabenCode.QuickIO.Win32.Win32FindData)">
+            <summary>
+            Gets last write time based on UTC
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindDataExtensions.GetLastAccessTimeUtc(SchwabenCode.QuickIO.Win32.Win32FindData)">
+            <summary>
+            Gets last access time based on UTC
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindDataExtensions.GetCreationTimeUtc(SchwabenCode.QuickIO.Win32.Win32FindData)">
+            <summary>
+            Gets the creation time based on UTC
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindDataExtensions.ConvertDateTime(System.UInt32,System.UInt32)">
+            <summary>
+            Converts the PInvoke information into <see cref="T:System.DateTime"/>
+            </summary>
+            <param name="high"><see cref="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftLastWriteTime_dwHighDateTime"/> of <see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/></param>
+            <param name="low"><see cref="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftLastWriteTime_dwLowDateTime"/> of <see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/></param>
+            <returns><see cref="T:System.DateTime"/></returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindDataExtensions.CombineHighLowInts(System.UInt32,System.UInt32)">
+            <summary>
+            Merges the PInvoke information
+            </summary>
+            <param name="high"><see cref="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftLastWriteTime_dwHighDateTime"/> of <see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/></param>
+            <param name="low"><see cref="F:SchwabenCode.QuickIO.Win32.Win32FindData.ftLastWriteTime_dwLowDateTime"/> of <see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/></param>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindDataExtensions.DateTimeToFiletime(System.DateTime)">
+            <summary>
+            Converts DateTime to Win32 FileTime format
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindDataExtensions.IsSystemDirectoryEntry(SchwabenCode.QuickIO.Win32.Win32FindData)">
+            <summary>
+            Checks whether a directory supplied by PINvoke is relevant
+            </summary>
+            <param name="win32FindData"><see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/></param>
+            <returns>true if is relevant; otherwise false</returns>
+        </member>
         <member name="T:SchwabenCode.QuickIO.Win32.Win32ApiShareInfoAdmin">
             <summary>
             Gets the complete share information. Requires admin priviles.
@@ -1985,11 +2020,12 @@
             Releases the unmanaged resources used by the Win32ApiFileHandle class specifying whether to perform a normal dispose operation. 
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandleCollection.#ctor(System.String)">
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandleCollection.#ctor(System.String,System.Boolean)">
             <summary>
             Creates an instance of with given directory path
             </summary>
             <param name="path">Directory</param>
+            <param name="filterSystemEntries">Filters . and .. from system enumeration</param>
         </member>
         <member name="P:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.Current">
             <summary>
@@ -2001,7 +2037,7 @@
             Returns current element
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.#ctor(System.String)">
+        <member name="M:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator.#ctor(System.String,System.Boolean)">
             <summary>
             Creates an instance of <see cref = "T:SchwabenCode.QuickIO.Win32.Win32FileHandleEnumerator"/>
             </summary>
@@ -2064,23 +2100,6 @@
         <member name="T:SchwabenCode.QuickIO.Win32.Win32FindData">
             <summary>
             Structure of File Data given by Win32 API
-            </summary>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Win32.Win32FindData.IsDirectory">
-            <summary>
-            Returns true if entry is a directory
-            </summary>
-            <remarks>Checks <see cref="F:System.IO.FileAttributes.Directory"/></remarks>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Win32.Win32FindData.IsFile">
-            <summary>
-            Returns true if entry is a file
-            </summary>
-            <remarks>Checks <see cref="F:System.IO.FileAttributes.Directory"/></remarks>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Win32.Win32FindData.Bytes">
-            <summary>
-            Returns total size of entry in Bytes
             </summary>
         </member>
         <member name="F:SchwabenCode.QuickIO.Win32.Win32FindData.dwFileAttributes">
@@ -2147,35 +2166,6 @@
             <summary>
             Alternate File Name
             </summary>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Win32.Win32FindData.FileSystemEntryType">
-            <summary>
-            Returns type of entry
-            </summary>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindData.CalculateBytes">
-            <summary>
-            Returns the total size in bytes
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindData.GetLastWriteTimeUtc">
-            <summary>
-            Gets last write time based on UTC
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindData.GetLastAccessTimeUtc">
-            <summary>
-            Gets last access time based on UTC
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Win32.Win32FindData.GetCreationTimeUtc">
-            <summary>
-            Gets the creation time based on UTC
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions">
             <summary>
@@ -3540,18 +3530,6 @@
             Size of the file (returns <see cref="P:SchwabenCode.QuickIO.QuickIOFileInfo.Bytes"/>).
             </summary>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIOFileInfo.RetriveDateTimeInformation(SchwabenCode.QuickIO.Win32.Win32FindData)">
-            <summary>
-            Determines the time stamp of the given <see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/>
-            </summary>
-            <param name="win32FindData"><see cref="T:SchwabenCode.QuickIO.Win32.Win32FindData"/></param>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIOFileInfo.CalculateSize(SchwabenCode.QuickIO.Win32.Win32FindData)">
-            <summary>
-            Calculates the size of the file from the handle
-            </summary>
-            <param name="win32FindData"></param>
-        </member>
         <member name="M:SchwabenCode.QuickIO.QuickIOFileInfo.CalculateHash(SchwabenCode.QuickIO.QuickIOHashImplementationType)">
             <summary>
             File content hash calculation
@@ -3896,12 +3874,6 @@
             Abstract class for file system entries such as files and directory.
             Just for meta data reprentation
             </summary>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIOFileSystemMetadataBase.#ctor(System.String,SchwabenCode.QuickIO.Win32.Win32FindData)">
-            <summary>
-            Ctor
-            </summary>
-            <param name="path"></param>
         </member>
         <member name="P:SchwabenCode.QuickIO.QuickIOFileSystemMetadataBase.FullName">
             <summary>

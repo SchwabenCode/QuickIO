@@ -11,13 +11,16 @@ namespace SchwabenCode.QuickIO.Win32
 {
     internal class Win32FileHandleCollection : IEnumerable
     {
-        public string DirectoryPath { get; private set; }
+        public bool FitlerSystemEntries { get; }
+
+        public string DirectoryPath { get; }
 
         /// <summary>
         /// Creates an instance of with given directory path
         /// </summary>
         /// <param name="path">Directory</param>
-        public Win32FileHandleCollection( string path )
+        /// <param name="filterSystemEntries">Filters . and .. from system enumeration</param>
+        public Win32FileHandleCollection( string path, bool filterSystemEntries = true )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
             if( String.IsNullOrWhiteSpace( path ) )
@@ -27,6 +30,7 @@ namespace SchwabenCode.QuickIO.Win32
 
 
             DirectoryPath = path;
+            FitlerSystemEntries = filterSystemEntries;
         }
 
         // Implementation for the GetEnumerator method.
@@ -40,7 +44,7 @@ namespace SchwabenCode.QuickIO.Win32
             Contract.Requires( !String.IsNullOrWhiteSpace( DirectoryPath ) );
             Contract.Ensures( Contract.Result<Win32FileHandleEnumerator>() != null );
 
-            return new Win32FileHandleEnumerator( DirectoryPath );
+            return new Win32FileHandleEnumerator( DirectoryPath, FitlerSystemEntries );
         }
     }
 }

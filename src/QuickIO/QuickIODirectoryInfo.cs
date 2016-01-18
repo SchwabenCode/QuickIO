@@ -21,9 +21,9 @@ namespace SchwabenCode.QuickIO
         /// Create new instance of <see cref="QuickIODirectoryInfo"/>
         /// </summary>
         public QuickIODirectoryInfo( String path )
-            : this( new QuickIOPathInfo( path ) )
+            : this( new QuickIOPathInfo( QuickIOPath.GetFullPath( path ) ) )
         {
-
+            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
         }
 
         /// <summary>
