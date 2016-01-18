@@ -83,11 +83,13 @@ namespace SchwabenCode.QuickIO
         /// <returns>Null if <paramref name="path" /> is null, empty string if <paramref name="path" /> does not contain any root information or is invalid.</returns>
         public static string GetPathRoot( string path )
         {
+            // The System.IO behavior is to return null on null
             if( path == null )
             {
                 return null;
             }
 
+            // The System.IO behavior is to "" null on invalid path
             if( !IsPath( path ) )
             {
                 return String.Empty;
@@ -104,16 +106,22 @@ namespace SchwabenCode.QuickIO
             // Return \\server\name
             if( TryGetShareRootPath( path, out root ) )
             {
-                return path;
+                return root;
             }
-
 
             // Return \\?\UNC\C:\
             if( TryGetLocalUncRootPath( path, out root ) )
             {
-                return path;
+                return root;
             }
 
+            // Return \\?\UNC\C:\
+            if( TryGetShareUncRootPath( path, out root ) )
+            {
+                return root;
+            }
+
+            // The System.IO behavior is to return "" on invalid path
             return String.Empty;
         }
 
@@ -139,7 +147,7 @@ namespace SchwabenCode.QuickIO
         {
             if( IsLocalUnc( path ) )
             {
-                root = path.Substring( 0, 11 );
+                root = path.Substring( 0, 7 );
                 return true;
             }
 
