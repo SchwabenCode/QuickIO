@@ -1,0 +1,10 @@
+﻿<#@ template language="C#" hostspecific="true" #>
+<#@ import namespace="System.IO" #>
+<#+
+  void SaveOutput(string outputFileName)
+  {
+      File.WriteAllText(outputFileName, this.GenerationEnvironment.ToString()); 
+
+      this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
+  }
+#>

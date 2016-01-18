@@ -1,0 +1,5 @@
+D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO.TestCore\bin\Debug\QuickIO.TestCore.dll
+D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO.TestCore\bin\Debug\QuickIO.TestCore.pdb
+D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO.TestCore\obj\Debug\QuickIO.TestCore.csprojResolveAssemblyReference.cache
+D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO.TestCore\obj\Debug\QuickIO.TestCore.dll
+D:\_data\repositories\SchwabenCode.QuickIO\src\QuickIO.TestCore\obj\Debug\QuickIO.TestCore.pdb
