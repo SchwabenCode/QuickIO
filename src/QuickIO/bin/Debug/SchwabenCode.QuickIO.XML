@@ -3903,12 +3903,12 @@
         </member>
         <member name="F:SchwabenCode.QuickIO.QuickIOFileSystemEntryType.File">
             <summary>
-            Represents a file (<see cref="T:System.IO.FileAttributes"/> does not contain directory flag)
+            Represents a file (<see cref="!:FileAttributes"/> does not contain directory flag)
             </summary>
         </member>
         <member name="F:SchwabenCode.QuickIO.QuickIOFileSystemEntryType.Directory">
             <summary>
-            Represents a directory (<see cref="T:System.IO.FileAttributes"/>contains directory flag)
+            Represents a directory (<see cref="!:FileAttributes"/>contains directory flag)
             </summary>
         </member>
         <member name="T:SchwabenCode.QuickIO.QuickIOFileSystemMetadataBase">
@@ -4770,7 +4770,7 @@
         </member>
         <member name="M:SchwabenCode.QuickIO.QuickIOPath.IsRoot(System.String)">
             <summary>
-            Returns true if given path is <see cref="!:IsLocalRoot(string)"/> or <see cref="!:IsShareRoot(string)"/>
+            Returns true if given path is <see cref="M:SchwabenCode.QuickIO.QuickIOPath.IsRootLocal(System.String)"/> or <see cref="M:SchwabenCode.QuickIO.QuickIOPath.IsRootLocalRegular(System.String)"/>
             </summary>
             <remarks>Will return true on C:\ but will return false on C:\folderName</remarks>
         </member>
