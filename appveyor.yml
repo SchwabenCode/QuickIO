@@ -13,7 +13,16 @@ branches:
 #           ENVIRONMENT                           #
 #-------------------------------------------------#
 os: Visual Studio 2015
- 
+environment:
+ # this patch key will be repaced by the before_build event and it's script
+ # only version-pattern here allowed.
+ versionPatchKey: '0.0.0-ci-replace'
+ dnvmVersion: '1.0.0-rc1-final'
+ artifactsPath: 'artifacts\build'
+ # string secured by individual appveyor account
+ nugetKey:
+    secure: s1wmKGbLWJgtNFbeih5ARl8RYSopkcPhKzAuoViFK2QcpD+fDrb2W3NUBGBNP72Q
+    
 #-------------------------------------------------#
 #           INIT                                  #
 #-------------------------------------------------#
@@ -26,7 +35,8 @@ init:
 #           INSTALL                               #
 #-------------------------------------------------#
 install:
-    - ps: Invoke-WebRequest https://api.nuget.org/downloads/nuget.exe -OutFile nuget.exe
+ - cmd: echo INSTALL NUGET
+ - cmd: nuget sources add -Name api.nuget.org -Source https://api.nuget.org/v3/index.json
 
 #-------------------------------------------------#
 #           BUILD CONFIGURATION                   #
@@ -34,18 +44,22 @@ install:
 
 # patch project.json files and install DNVM
 before_build:
- - cmd: echo NuGet Restore
- - cmd: nuget.exe restore src
- - cmd: echo NuGet Insatt XUnit
- - cmd: nuget.exe install xunit.runner.console -ExcludeVersion -Pre -OutputDirectory packages
- - cmd: nuget.exe install xunit.runner.msbuild -ExcludeVersion -Pre -OutputDirectory packages
+ - ps: .\appveyor.install.dnvm.ps1
 
+# build main project with defined configuration
 build_script:
- - cmd: set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
- - cmd: msbuild src\QuickIO.sln /m:4 /nologo /v:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
- - cmd: RunAllTests
+ - ps: .\appveyor.build.ps1 "src\QuickIO" "test\QuickIO.UnitTests" "test\QuickIO.IntegrationTests" -configuration $env:CONFIGURATION
  
-test: off
+#-------------------------------------------------#
+#           TEST CONFIGURATION                    #
+#-------------------------------------------------#
+
+# test with defined configuration
+test_script:
+ - ps: Write-Host "TESTING configuration $env:configuration"
+ - cmd: dnx -p src\QuickIO.UnitTests test"
+ - cmd: dnx -p src\QuickIO.IntegrationTests test"
+ 
 #-------------------------------------------------#
 #           DEPLOY CONFIGURATION                  #
 #-------------------------------------------------#
