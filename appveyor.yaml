@@ -1,0 +1,46 @@
+#-------------------------------------------------#
+#           GENERAL                               #
+#-------------------------------------------------#
+version: 2.9.0-alpha
+configuration: Release
+
+branches:
+ only:
+  - master
+  - develop
+  
+#-------------------------------------------------#
+#           ENVIRONMENT                           #
+#-------------------------------------------------#
+os: Visual Studio 2015
+ 
+#-------------------------------------------------#
+#           INIT                                  #
+#-------------------------------------------------#
+
+init:
+ - git config --global core.autocrlf true
+ 
+#-------------------------------------------------#
+#           INSTALL                               #
+#-------------------------------------------------#
+
+install:
+ - cmd: nuget sources add -Name api.nuget.org -Source https://api.nuget.org/v3/index.json
+
+#-------------------------------------------------#
+#           BUILD CONFIGURATION                   #
+#-------------------------------------------------#
+
+# patch project.json files and install DNVM
+before_build:
+ - cmd: cd src
+ - cmd: nuget restore QuickIO.sln
+ 
+ build:
+  project: src\QuickIO.sln
+  
+#-------------------------------------------------#
+#           DEPLOY CONFIGURATION                  #
+#-------------------------------------------------#
+
