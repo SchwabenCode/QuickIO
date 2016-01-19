@@ -17,7 +17,7 @@ environment:
  # this patch key will be repaced by the before_build event and it's script
  # only version-pattern here allowed.
  versionPatchKey: '0.0.0-ci-replace'
- dnvmVersion: '1.0.0-rc1-final'
+ dnvmVersion: '1.0.0-rc1-update1'
  artifactsPath: 'artifacts\build'
  # string secured by individual appveyor account
  nugetKey:
