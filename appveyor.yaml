@@ -32,7 +32,7 @@ init:
 # patch project.json files and install DNVM
 before_build:
  - cmd: echo Restoring NuGet Packages
- - cmd: nuget restore src
+ - cmd: nuget.exe restore src
  
  build:
   project: src\QuickIO.sln
