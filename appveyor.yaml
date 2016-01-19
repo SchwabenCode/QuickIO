@@ -19,7 +19,7 @@ os: Visual Studio 2015
 #-------------------------------------------------#
 
 init:
-- cmd: Starting Build
+ - cmd: echo Starting CI Task
  - git config --global core.autocrlf true
  
 #-------------------------------------------------#
@@ -32,10 +32,11 @@ init:
 
 # patch project.json files and install DNVM
 before_build:
- - cmd: echo Restoring NuGet Packages
+ - cmd: echo NuGet Restore
  - cmd: nuget.exe restore src
 
-  
+build_script:
+ - cmd: echo Build Script
 #-------------------------------------------------#
 #           DEPLOY CONFIGURATION                  #
 #-------------------------------------------------#
