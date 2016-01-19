@@ -19,6 +19,7 @@ os: Visual Studio 2015
 #-------------------------------------------------#
 
 init:
+- cmd: Starting Build
  - git config --global core.autocrlf true
  
 #-------------------------------------------------#
