@@ -25,9 +25,6 @@ init:
 #           INSTALL                               #
 #-------------------------------------------------#
 
-install:
- - cmd: nuget sources add -Name api.nuget.org -Source https://api.nuget.org/v3/index.json
-
 #-------------------------------------------------#
 #           BUILD CONFIGURATION                   #
 #-------------------------------------------------#
