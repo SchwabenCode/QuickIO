@@ -7,8 +7,8 @@ using System;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Runtime.InteropServices;
-using SchwabenCode.QuickIO.PInvoke;
 using System.Collections.Generic;
+using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO.Internal
 {
@@ -28,7 +28,7 @@ namespace SchwabenCode.QuickIO.Internal
                 var win32Error = Marshal.GetLastWin32Error();
                 if( fileHandle.IsInvalid )
                 {
-                    InternalQuickIOCommon.NativeExceptionMapping( path, win32Error );
+                    Win32ErrorCodes.NativeExceptionMapping( path, win32Error );
                 }
             }
         }
@@ -47,7 +47,7 @@ namespace SchwabenCode.QuickIO.Internal
 
             if( !Win32SafeNativeMethods.DeleteFile( path ) )
             {
-                InternalQuickIOCommon.NativeExceptionMapping( path, Marshal.GetLastWin32Error() );
+                Win32ErrorCodes.NativeExceptionMapping( path, Marshal.GetLastWin32Error() );
             }
         }
 

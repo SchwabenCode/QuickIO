@@ -1,0 +1,22 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "QuickIO.Win32 Class Library",
+  "authors": [ "b.abt" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "frameworks": {
+    "net451": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.0",
+        "System.Collections": "4.0.0",
+        "System.Linq": "4.0.0",
+        "System.Runtime": "4.0.0",
+        "System.Threading": "4.0.0"
+      }
+    }
+  },
+  "dependencies": {
+    "QuickIO.Core": "1.0.0-*"
+  }
+}

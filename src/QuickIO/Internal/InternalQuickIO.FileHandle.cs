@@ -4,7 +4,6 @@
 // <author>Benjamin Abt</author>
 
 using Microsoft.Win32.SafeHandles;
-using SchwabenCode.QuickIO.PInvoke;
 using System;
 using System.Diagnostics.Contracts;
 using System.IO;

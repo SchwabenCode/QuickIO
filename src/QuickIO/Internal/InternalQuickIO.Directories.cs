@@ -9,8 +9,8 @@ using System.Diagnostics.Contracts;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
+using SchwabenCode.QuickIO.Core;
 using SchwabenCode.QuickIO.Win32;
-using SchwabenCode.QuickIO.PInvoke;
 
 namespace SchwabenCode.QuickIO.Internal
 {
@@ -72,7 +72,7 @@ namespace SchwabenCode.QuickIO.Internal
                         // no root path here
                         if( !Win32SafeNativeMethods.CreateDirectory( currentDirectory, IntPtr.Zero ) )
                         {
-                            InternalQuickIOCommon.NativeExceptionMapping( currentDirectory, Marshal.GetLastWin32Error() );
+                            Win32ErrorCodes.NativeExceptionMapping( currentDirectory, Marshal.GetLastWin32Error() );
                         }
                     }
                 }
@@ -113,7 +113,8 @@ namespace SchwabenCode.QuickIO.Internal
             // Remove specified
             if( !Win32SafeNativeMethods.RemoveDirectory( uncDirectoryPath ) )
             {
-                InternalQuickIOCommon.NativeExceptionMapping( uncDirectoryPath, Marshal.GetLastWin32Error() );
+                int errorCode = Marshal.GetLastWin32Error();
+                Win32ErrorCodes.NativeExceptionMapping( uncDirectoryPath, errorCode );
             }
         }
     }

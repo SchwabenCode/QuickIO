@@ -6,8 +6,8 @@
 using System;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
-using SchwabenCode.QuickIO.PInvoke;
 using Microsoft.Win32.SafeHandles;
+using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO.Internal
 {
@@ -34,7 +34,7 @@ namespace SchwabenCode.QuickIO.Internal
                 if( Win32SafeNativeMethods.SetAllFileTimes( fileHandle, ref longCreateTime, ref longAccessTime, ref longWriteTime ) == 0 )
                 {
                     int win32Error = Marshal.GetLastWin32Error();
-                    InternalQuickIOCommon.NativeExceptionMapping( pathInfo.FullName, win32Error );
+                    Win32ErrorCodes.NativeExceptionMapping( pathInfo.FullName, win32Error );
                 }
             }
         }
@@ -54,7 +54,7 @@ namespace SchwabenCode.QuickIO.Internal
                 if( !Win32SafeNativeMethods.SetCreationFileTime( fileHandle, ref longTime, IntPtr.Zero, IntPtr.Zero ) )
                 {
                     int win32Error = Marshal.GetLastWin32Error();
-                    InternalQuickIOCommon.NativeExceptionMapping( pathInfo.FullName, win32Error );
+                    Win32ErrorCodes.NativeExceptionMapping( pathInfo.FullName, win32Error );
                 }
             }
         }
@@ -74,7 +74,7 @@ namespace SchwabenCode.QuickIO.Internal
                 if( !Win32SafeNativeMethods.SetLastWriteFileTime( fileHandle, IntPtr.Zero, IntPtr.Zero, ref longTime ) )
                 {
                     int win32Error = Marshal.GetLastWin32Error();
-                    InternalQuickIOCommon.NativeExceptionMapping( pathInfo.FullName, win32Error );
+                    Win32ErrorCodes.NativeExceptionMapping( pathInfo.FullName, win32Error );
                 }
             }
         }
@@ -94,7 +94,7 @@ namespace SchwabenCode.QuickIO.Internal
                 if( !Win32SafeNativeMethods.SetLastAccessFileTime( fileHandle, IntPtr.Zero, ref longTime, IntPtr.Zero ) )
                 {
                     int win32Error = Marshal.GetLastWin32Error();
-                    InternalQuickIOCommon.NativeExceptionMapping( pathInfo.FullName, win32Error );
+                    Win32ErrorCodes.NativeExceptionMapping( pathInfo.FullName, win32Error );
                 }
             }
         }

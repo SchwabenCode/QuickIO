@@ -7,8 +7,9 @@ using System;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
-using SchwabenCode.QuickIO.PInvoke;
 using System.IO;
+using SchwabenCode.QuickIO.Core;
+using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO.Internal
 {
@@ -47,7 +48,7 @@ namespace SchwabenCode.QuickIO.Internal
             /* PInvoke request */
             if( !Win32SafeNativeMethods.GetDiskFreeSpaceEx( rootPath, out freeBytes, out totalBytes, out totalFreeBytes ) )
             {
-                InternalQuickIOCommon.NativeExceptionMapping( rootPath, Marshal.GetLastWin32Error() );
+                Win32ErrorCodes.NativeExceptionMapping( rootPath, Marshal.GetLastWin32Error() );
             }
 
             return new QuickIODiskInformation( freeBytes, totalBytes, totalFreeBytes );
@@ -65,7 +66,7 @@ namespace SchwabenCode.QuickIO.Internal
 
             if( !Win32SafeNativeMethods.MoveFile( sourceFileName, destFileName ) )
             {
-                InternalQuickIOCommon.NativeExceptionMapping( sourceFileName, Marshal.GetLastWin32Error() );
+                Win32ErrorCodes.NativeExceptionMapping( sourceFileName, Marshal.GetLastWin32Error() );
             }
         }
 

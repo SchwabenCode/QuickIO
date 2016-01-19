@@ -11,7 +11,6 @@ using System.Security.AccessControl;
 using System.Security.Principal;
 using SchwabenCode.QuickIO.Internal;
 using SchwabenCode.QuickIO.Win32;
-using SchwabenCode.QuickIO.PInvoke;
 
 namespace SchwabenCode.QuickIO
 {
@@ -609,7 +608,7 @@ namespace SchwabenCode.QuickIO
 
                 if( namedSecInfoResult != 0 )
                 {
-                    InternalQuickIOCommon.NativeExceptionMapping( PathInfo.FullName, win32Error );
+                    Win32ErrorCodes.NativeExceptionMapping( PathInfo.FullName, win32Error );
                 }
 
                 var securityDescriptorLength = Win32SafeNativeMethods.GetSecurityDescriptorLength( pSecurityDescriptor );

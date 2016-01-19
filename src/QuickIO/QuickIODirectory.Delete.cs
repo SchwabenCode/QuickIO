@@ -3,6 +3,7 @@
 // </copyright>
 // <author>Benjamin Abt</author>
 
+using SchwabenCode.QuickIO.Core;
 using SchwabenCode.QuickIO.Internal;
 
 

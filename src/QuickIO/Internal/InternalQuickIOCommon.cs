@@ -7,6 +7,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.IO;
+using SchwabenCode.QuickIO.Core;
 using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO.Internal
@@ -53,60 +54,6 @@ namespace SchwabenCode.QuickIO.Internal
             Contract.Requires( findData != null );
 
             return !InternalHelpers.ContainsFileAttribute( findData.dwFileAttributes, FileAttributes.Directory ) ? QuickIOFileSystemEntryType.File : QuickIOFileSystemEntryType.Directory;
-        }
-
-
-        /// <summary>
-        /// Exception Mapping
-        /// </summary>
-        /// <param name="path"></param>
-        /// <param name="errorCode">errorCode</param>
-        public static void NativeExceptionMapping( String path, Int32 errorCode )
-        {
-            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
-
-            if( errorCode == Win32ErrorCodes.ERROR_SUCCESS )
-            {
-                return;
-            }
-
-            var affectedPath = QuickIOPath.ToPathRegular( path );
-
-            // http://msdn.microsoft.com/en-us/library/windows/desktop/ms681382(v=vs.85).aspx
-
-            switch( errorCode )
-            {
-                case Win32ErrorCodes.ERROR_PATH_NOT_FOUND:
-                case Win32ErrorCodes.ERROR_FILE_NOT_FOUND:
-                    throw new PathNotFoundException( Win32ErrorCodes.FormatMessage( errorCode ), affectedPath );
-
-                case Win32ErrorCodes.ERROR_ALREADY_EXISTS:
-                    throw new PathAlreadyExistsException( Win32ErrorCodes.FormatMessage( errorCode ), affectedPath );
-
-                case Win32ErrorCodes.ERROR_INVALID_NAME:
-                case Win32ErrorCodes.ERROR_DIRECTORY:
-                    throw new InvalidPathException( Win32ErrorCodes.FormatMessage( errorCode ), affectedPath );
-
-                case Win32ErrorCodes.ERROR_REM_NOT_LIST:
-                case Win32ErrorCodes.ERROR_NETWORK_BUSY:
-                case Win32ErrorCodes.ERROR_BUSY:
-                case Win32ErrorCodes.ERROR_PATH_BUSY:
-                    throw new FileSystemIsBusyException( Win32ErrorCodes.FormatMessage( errorCode ), affectedPath );
-
-                case Win32ErrorCodes.ERROR_DIR_NOT_EMPTY:
-                    throw new DirectoryNotEmptyException( Win32ErrorCodes.FormatMessage( errorCode ), affectedPath );
-
-                case Win32ErrorCodes.ERROR_ACCESS_DENIED:
-                case Win32ErrorCodes.ERROR_NETWORK_ACCESS_DENIED:
-                    throw new UnauthorizedAccessException( "Access to '" + affectedPath + "' denied.", new Win32Exception( errorCode ) );
-
-                case Win32ErrorCodes.ERROR_CURRENT_DIRECTORY:
-                case Win32ErrorCodes.ERROR_CANNOT_MAKE:
-                    throw new Exception( Win32ErrorCodes.FormatMessage( errorCode ) + affectedPath + "'.", new Win32Exception( errorCode ) );
-
-                default:
-                    throw new Exception( "Error on '" + affectedPath + "': See InnerException for details.", new Win32Exception( errorCode ) );
-            }
         }
     }
 }

@@ -6,8 +6,9 @@
 using System;
 using System.Runtime.InteropServices;
 using SchwabenCode.QuickIO.Internal;
-using SchwabenCode.QuickIO.PInvoke;
 using System.Diagnostics.Contracts;
+using SchwabenCode.QuickIO.Core;
+using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO
 {
@@ -33,7 +34,7 @@ namespace SchwabenCode.QuickIO
             if( !Win32SafeNativeMethods.MoveFile( from, to ) )
             {
                 var win32Error = Marshal.GetLastWin32Error();
-                InternalQuickIOCommon.NativeExceptionMapping( from, win32Error );
+                Win32ErrorCodes.NativeExceptionMapping( from, win32Error );
             }
         }
     }

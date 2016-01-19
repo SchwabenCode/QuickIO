@@ -3,12 +3,13 @@
 // </copyright>
 // <author>Benjamin Abt</author>
 
-using SchwabenCode.QuickIO.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
+using SchwabenCode.QuickIO.Win32;
+using SchwabenCode.QuickIO.Core;
 
 namespace SchwabenCode.QuickIO.Internal
 {
@@ -83,12 +84,12 @@ namespace SchwabenCode.QuickIO.Internal
             Contract.Ensures( Contract.Result<IEnumerable<Tuple<string, Win32FileSystemEntry>>>() != null );
 
             // Stack
-            Win32FileSystemStack directoryStack = new Win32FileSystemStack();
-            directoryStack.Push( path );
+            Stack<string> directoryPathStack = new Stack<string>();
+            directoryPathStack.Push( path );
 
-            while( directoryStack.Count > 0 )
+            while( directoryPathStack.Count > 0 )
             {
-                string currentDirectory = directoryStack.Pop();
+                string currentDirectory = directoryPathStack.Pop();
 
                 foreach( Win32FileSystemEntry systemEntry in new Win32FileHandleCollection( QuickIOPath.Combine( currentDirectory, pattern ) ) )
                 {
@@ -100,7 +101,7 @@ namespace SchwabenCode.QuickIO.Internal
                     // Check for Directory
                     if( searchOption == SearchOption.AllDirectories && systemEntry.IsDirectory )
                     {
-                        directoryStack.Push( resultPath );
+                        directoryPathStack.Push( resultPath );
                     }
                 }
             }
@@ -222,12 +223,12 @@ namespace SchwabenCode.QuickIO.Internal
             Contract.Ensures( Contract.Result<IEnumerable<QuickIODirectoryInfo>>() != null );
 
             // Stack
-            Win32FileSystemStack directoryStack = new Win32FileSystemStack();
-            directoryStack.Push( uncDirectoryPath );
+            Stack<string> directoryPathStack = new Stack<string>();
+            directoryPathStack.Push( uncDirectoryPath );
 
-            while( directoryStack.Count > 0 )
+            while( directoryPathStack.Count > 0 )
             {
-                string currentDirectory = directoryStack.Pop();
+                string currentDirectory = directoryPathStack.Pop();
 
                 foreach( Win32FileSystemEntry systemEntry in new Win32FileHandleCollection( QuickIOPath.Combine( currentDirectory, pattern ) ) )
                 {
@@ -242,7 +243,7 @@ namespace SchwabenCode.QuickIO.Internal
                         // SubFolders?!
                         if( searchOption == SearchOption.AllDirectories )
                         {
-                            directoryStack.Push( resultPath );
+                            directoryPathStack.Push( resultPath );
                         }
                     }
                 }
@@ -265,14 +266,14 @@ namespace SchwabenCode.QuickIO.Internal
             UInt64 folderCount = 0;
             UInt64 totalSize = 0;
 
-            Win32FileSystemStack directoryStack = new Win32FileSystemStack();
-            directoryStack.Push( uncDirectoryPath );
+            Stack < string> directoryPathStack = new Stack<string>();
+            directoryPathStack.Push( uncDirectoryPath );
 
-            while( directoryStack.Count > 0 )
+            while( directoryPathStack.Count > 0 )
             {
                 folderCount++;
 
-                string currentDirectory = directoryStack.Pop();
+                string currentDirectory = directoryPathStack.Pop();
                 foreach( Win32FileSystemEntry systemEntry in new Win32FileHandleCollection( QuickIOPath.Combine( currentDirectory, QuickIOPatterns.PathMatchAll ) ) )
                 {
 
@@ -287,7 +288,7 @@ namespace SchwabenCode.QuickIO.Internal
                     }
                     else
                     {
-                        directoryStack.Push( resultPath );
+                        directoryPathStack.Push( resultPath );
                     }
                 }
             }

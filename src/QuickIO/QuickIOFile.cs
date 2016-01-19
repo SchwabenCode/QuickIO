@@ -7,6 +7,8 @@ using System;
 using System.IO;
 using SchwabenCode.QuickIO.Internal;
 using System.Diagnostics.Contracts;
+using SchwabenCode.QuickIO.Core;
+using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO
 {
@@ -120,7 +122,7 @@ namespace SchwabenCode.QuickIO
             int win32Error;
             if( !InternalQuickIO.CopyFile( source, target, out win32Error, overwrite ) )
             {
-                InternalQuickIOCommon.NativeExceptionMapping( !Exists( source ) ? target : target, win32Error );
+                Win32ErrorCodes.NativeExceptionMapping( !Exists( source ) ? target : target, win32Error );
             }
         }
 

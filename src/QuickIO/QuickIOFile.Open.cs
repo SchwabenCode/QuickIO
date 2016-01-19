@@ -9,7 +9,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using SchwabenCode.QuickIO.Internal;
-using SchwabenCode.QuickIO.PInvoke;
+using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO
 {
@@ -89,7 +89,7 @@ namespace SchwabenCode.QuickIO
             var win32Error = Marshal.GetLastWin32Error();
             if( fileHandle.IsInvalid )
             {
-                InternalQuickIOCommon.NativeExceptionMapping( path, win32Error ); // Throws an exception
+                Win32ErrorCodes.NativeExceptionMapping( path, win32Error ); // Throws an exception
             }
 
             return buffer > 0 ? new FileStream( fileHandle, fileAccess, buffer ) : new FileStream( fileHandle, fileAccess );
@@ -107,13 +107,13 @@ namespace SchwabenCode.QuickIO
             var win32Error = Marshal.GetLastWin32Error();
             if( fileHandle.IsInvalid )
             {
-                InternalQuickIOCommon.NativeExceptionMapping( path, win32Error ); // Throws an exception
+                Win32ErrorCodes.NativeExceptionMapping( path, win32Error ); // Throws an exception
             }
 
             return buffer > 0 ? new FileStream( fileHandle, fileAccess, buffer ) : new FileStream( fileHandle, fileAccess );
         }
 
-       
+
 
         /// <summary>
         /// Opens an existing UTF-8 encoded text file for reading.

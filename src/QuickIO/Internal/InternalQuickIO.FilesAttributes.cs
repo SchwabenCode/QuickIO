@@ -8,7 +8,7 @@ using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Runtime.InteropServices;
-using SchwabenCode.QuickIO.PInvoke;
+using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO.Internal
 {
@@ -87,7 +87,7 @@ namespace SchwabenCode.QuickIO.Internal
 
             int win32Error;
             var attrs = SafeGetAttributes( uncPath, out win32Error );
-            InternalQuickIOCommon.NativeExceptionMapping( uncPath, win32Error );
+            Win32ErrorCodes.NativeExceptionMapping( uncPath, win32Error );
 
             return ( FileAttributes )attrs;
         }
@@ -122,7 +122,7 @@ namespace SchwabenCode.QuickIO.Internal
             if( !Win32SafeNativeMethods.SetFileAttributes( path, ( uint )attributes ) )
             {
                 var win32Error = Marshal.GetLastWin32Error();
-                InternalQuickIOCommon.NativeExceptionMapping( path, win32Error );
+                Win32ErrorCodes.NativeExceptionMapping( path, win32Error );
             }
 
             return attributes;

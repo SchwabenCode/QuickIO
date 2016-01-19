@@ -4,17 +4,17 @@
 // <author>Benjamin Abt</author>
 
 using SchwabenCode.QuickIO.Win32;
-using SchwabenCode.QuickIO.PInvoke;
 using System;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Runtime.InteropServices;
+using SchwabenCode.QuickIO.Core;
 
 namespace SchwabenCode.QuickIO.Internal
 {
     internal static partial class InternalQuickIO
     {
- 
+
 
         /// <summary>
         /// Gets the <see cref="Win32FindData"/> from the passed path.
@@ -92,12 +92,12 @@ namespace SchwabenCode.QuickIO.Internal
                 // Take care of invalid handles
                 if( fileHandle.IsInvalid )
                 {
-                    InternalQuickIOCommon.NativeExceptionMapping( fullpath, win32Error );
+                    Win32ErrorCodes.NativeExceptionMapping( fullpath, win32Error );
                 }
 
                 // Treffer auswerten
                 // Ignore . and .. directories
-                if( !win32FindData.IsSystemDirectoryEntry( ) )
+                if( !win32FindData.IsSystemDirectoryEntry() )
                 {
                     return win32FindData;
                 }
