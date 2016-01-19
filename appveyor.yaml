@@ -35,6 +35,11 @@ install:
 # patch project.json files and install DNVM
 before_build:
  - cmd: nuget restore src\QuickIO.sln
+ 
+ build:
+  project: src\QuickIO.sln
+  
 #-------------------------------------------------#
 #           DEPLOY CONFIGURATION                  #
 #-------------------------------------------------#
+
