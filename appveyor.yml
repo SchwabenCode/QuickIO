@@ -57,8 +57,8 @@ build_script:
 # test with defined configuration
 test_script:
  - ps: Write-Host "TESTING configuration $env:configuration"
- - cmd: dnx -p src\QuickIO.UnitTests test"
- - cmd: dnx -p src\QuickIO.IntegrationTests test"
+ - cmd: dnx -p test\QuickIO.UnitTests test"
+ - cmd: dnx -p test\QuickIO.IntegrationTests test"
  
 #-------------------------------------------------#
 #           DEPLOY CONFIGURATION                  #
