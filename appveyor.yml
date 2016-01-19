@@ -1,7 +1,7 @@
 #-------------------------------------------------#
 #           GENERAL                               #
 #-------------------------------------------------#
-version: 2.9.0-alpha
+version: 2.9.0.{build}-alpha
 configuration: Release
 
 branches:
