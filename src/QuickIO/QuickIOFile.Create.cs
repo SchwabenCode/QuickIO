@@ -6,6 +6,7 @@
 using System;
 using System.IO;
 using System.Text;
+using SchwabenCode.QuickIO.Core;
 using SchwabenCode.QuickIO.Internal;
 
 namespace SchwabenCode.QuickIO
