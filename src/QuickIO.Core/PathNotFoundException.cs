@@ -19,7 +19,7 @@ namespace SchwabenCode.QuickIO
         /// Exception if path does not exist.
         /// </summary>
         public PathNotFoundException( string path )
-            : base( "The system cannot find the path specified.", path )
+            : base( $"The system cannot find the path specified: '{path}'", path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
         }
