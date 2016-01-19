@@ -33,9 +33,7 @@ init:
 before_build:
  - cmd: echo Restoring NuGet Packages
  - cmd: nuget.exe restore src
- 
- build:
-  project: src\QuickIO.sln
+
   
 #-------------------------------------------------#
 #           DEPLOY CONFIGURATION                  #
