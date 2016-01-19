@@ -2,7 +2,7 @@
   "locked": false,
   "version": 2,
   "targets": {
-    ".NETFramework,Version=v4.5.1": {
+    "DNX,Version=v4.6": {
       "CodeContracts/1.0.5680.18392": {
         "type": "package",
         "compile": {
@@ -61,7 +61,7 @@
         }
       }
     },
-    ".NETFramework,Version=v4.5.1/win7-x86": {
+    "DNX,Version=v4.6/win7-x86": {
       "CodeContracts/1.0.5680.18392": {
         "type": "package",
         "compile": {
@@ -120,7 +120,7 @@
         }
       }
     },
-    ".NETFramework,Version=v4.5.1/win7-x64": {
+    "DNX,Version=v4.6/win7-x64": {
       "CodeContracts/1.0.5680.18392": {
         "type": "package",
         "compile": {
@@ -412,7 +412,7 @@
   },
   "projectFileDependencyGroups": {
     "": [],
-    ".NETFramework,Version=v4.5.1": [
+    "DNX,Version=v4.6": [
       "Microsoft.CSharp >= 4.0.0",
       "System.Collections >= 4.0.0",
       "System.Linq >= 4.0.0",

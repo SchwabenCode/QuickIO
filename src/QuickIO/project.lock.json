@@ -2,7 +2,7 @@
   "locked": false,
   "version": 2,
   "targets": {
-    ".NETFramework,Version=v4.5.1": {
+    "DNX,Version=v4.6": {
       "CodeContracts/1.0.5680.18392": {
         "type": "package",
         "compile": {
@@ -26,7 +26,7 @@
       },
       "QuickIO.Core/1.0.0": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.5.1",
+        "framework": "DNX,Version=v4.6",
         "dependencies": {
           "CodeContracts": "1.0.5680.18392",
           "Microsoft.CSharp": "4.0.0",
@@ -38,7 +38,7 @@
       },
       "QuickIO.Win32/1.0.0": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.5.1",
+        "framework": "DNX,Version=v4.6",
         "dependencies": {
           "Microsoft.CSharp": "4.0.0",
           "QuickIO.Core": "1.0.0",
@@ -85,7 +85,7 @@
         }
       }
     },
-    ".NETFramework,Version=v4.5.1/win7-x86": {
+    "DNX,Version=v4.6/win7-x86": {
       "CodeContracts/1.0.5680.18392": {
         "type": "package",
         "compile": {
@@ -109,7 +109,7 @@
       },
       "QuickIO.Core/1.0.0": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.5.1",
+        "framework": "DNX,Version=v4.6",
         "dependencies": {
           "CodeContracts": "1.0.5680.18392",
           "Microsoft.CSharp": "4.0.0",
@@ -121,7 +121,7 @@
       },
       "QuickIO.Win32/1.0.0": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.5.1",
+        "framework": "DNX,Version=v4.6",
         "dependencies": {
           "Microsoft.CSharp": "4.0.0",
           "QuickIO.Core": "1.0.0",
@@ -168,7 +168,7 @@
         }
       }
     },
-    ".NETFramework,Version=v4.5.1/win7-x64": {
+    "DNX,Version=v4.6/win7-x64": {
       "CodeContracts/1.0.5680.18392": {
         "type": "package",
         "compile": {
@@ -192,7 +192,7 @@
       },
       "QuickIO.Core/1.0.0": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.5.1",
+        "framework": "DNX,Version=v4.6",
         "dependencies": {
           "CodeContracts": "1.0.5680.18392",
           "Microsoft.CSharp": "4.0.0",
@@ -204,7 +204,7 @@
       },
       "QuickIO.Win32/1.0.0": {
         "type": "project",
-        "framework": ".NETFramework,Version=v4.5.1",
+        "framework": "DNX,Version=v4.6",
         "dependencies": {
           "Microsoft.CSharp": "4.0.0",
           "QuickIO.Core": "1.0.0",
@@ -495,7 +495,7 @@
       "QuickIO.Core >= 1.0.0-*",
       "QuickIO.Win32 >= 1.0.0-*"
     ],
-    ".NETFramework,Version=v4.5.1": [
+    "DNX,Version=v4.6": [
       "Microsoft.CSharp >= 4.0.0",
       "System.Collections >= 4.0.0",
       "System.Linq >= 4.0.0",
