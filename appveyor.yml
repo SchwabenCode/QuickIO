@@ -25,6 +25,8 @@ init:
 #-------------------------------------------------#
 #           INSTALL                               #
 #-------------------------------------------------#
+install:
+    - ps: Invoke-WebRequest https://api.nuget.org/downloads/nuget.exe -OutFile nuget.exe
 
 #-------------------------------------------------#
 #           BUILD CONFIGURATION                   #
@@ -34,9 +36,16 @@ init:
 before_build:
  - cmd: echo NuGet Restore
  - cmd: nuget.exe restore src
+ - cmd: echo NuGet Insatt XUnit
+ - cmd: nuget.exe install xunit.runner.console -ExcludeVersion -Pre -OutputDirectory packages
+ - cmd: nuget.exe install xunit.runner.msbuild -ExcludeVersion -Pre -OutputDirectory packages
 
-build:
-   project: src/QuickIO.sln
+build_script:
+ - cmd: set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+ - cmd: msbuild src\QuickIO.sln /m:4 /nologo /v:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+ - cmd: RunAllTests
+ 
+test: off
 #-------------------------------------------------#
 #           DEPLOY CONFIGURATION                  #
 #-------------------------------------------------#
