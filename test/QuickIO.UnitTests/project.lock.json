@@ -28,6 +28,7 @@
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.1",
         "dependencies": {
+          "CodeContracts": "1.0.5680.18392",
           "Microsoft.CSharp": "4.0.0",
           "QuickIO.Core": "1.0.0",
           "QuickIO.Win32": "1.0.0",
@@ -124,6 +125,7 @@
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.1",
         "dependencies": {
+          "CodeContracts": "1.0.5680.18392",
           "Microsoft.CSharp": "4.0.0",
           "QuickIO.Core": "1.0.0",
           "QuickIO.Win32": "1.0.0",
@@ -220,6 +222,7 @@
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.1",
         "dependencies": {
+          "CodeContracts": "1.0.5680.18392",
           "Microsoft.CSharp": "4.0.0",
           "QuickIO.Core": "1.0.0",
           "QuickIO.Win32": "1.0.0",

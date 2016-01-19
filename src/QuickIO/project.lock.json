@@ -500,7 +500,8 @@
       "System.Collections >= 4.0.0",
       "System.Linq >= 4.0.0",
       "System.Runtime >= 4.0.0",
-      "System.Threading >= 4.0.0"
+      "System.Threading >= 4.0.0",
+      "CodeContracts >= 1.0.5680.18392"
     ]
   }
 }

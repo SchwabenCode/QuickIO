@@ -4,7 +4,6 @@
   "authors": [ "b.abt" ],
   "tags": [ "" ],
   "projectUrl": "",
-  "licenseUrl": "",
   "frameworks": {
     "net451": {
       "dependencies": {
