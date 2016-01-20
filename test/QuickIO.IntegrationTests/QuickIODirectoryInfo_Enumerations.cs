@@ -9,7 +9,7 @@ namespace SchwabenCode.QuickIO.IntegrationTests
     public class QuickIODirectoryInfo_Enumerations : IntegrationTestBase
     {
         [Theory]
-        [InlineData( true, "_TestFolders/ExistingFolder", "*.txt", 1 )]
+        [InlineData( true, @"_TestFolders\ExistingFolder", "*.txt", 1 )]
         //[InlineData( "_TestFolders/ExistingFolder", "*.txt", 1 )]
         //[InlineData( "_TestFolders/ExistingFolder", "*.TXT", 1 )]
         public void QuickIODirectoryInfo_EnumerateFilesCount( bool isRelative, string path, string pattern, int expected )

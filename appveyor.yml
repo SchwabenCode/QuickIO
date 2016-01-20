@@ -58,7 +58,10 @@ build_script:
 test_script:
  - ps: Write-Host "TESTING configuration $env:configuration"
  - cmd: dnx -p test\QuickIO.UnitTests test"
- - cmd: dnx -p test\QuickIO.IntegrationTests test"
+ 
+# There is a DNX problem at the moment to work with integration tests on AppVeyor
+# https://github.com/aspnet/dnx/issues/3321
+# - cmd: dnx -p test\QuickIO.IntegrationTests test"
  
 #-------------------------------------------------#
 #           DEPLOY CONFIGURATION                  #
