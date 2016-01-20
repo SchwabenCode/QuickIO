@@ -4,9 +4,8 @@
 // <author>Benjamin Abt</author>
 
 using System;
-using SchwabenCode.QuickIO.Win32;
 
-namespace SchwabenCode.QuickIO.Core
+namespace SchwabenCode.QuickIO.Win32
 {
     public interface IWin32ApiShareInfo
     {

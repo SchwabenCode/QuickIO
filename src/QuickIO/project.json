@@ -16,9 +16,5 @@
         "CodeContracts": "1.0.5680.18392"
       }
     }
-  },
-  "dependencies": {
-    "QuickIO.Core": "1.0.0-*",
-    "QuickIO.Win32": "1.0.0-*"
   }
 }

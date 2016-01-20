@@ -24,30 +24,6 @@
           "lib/net45/_._": {}
         }
       },
-      "QuickIO.Core/1.0.0": {
-        "type": "project",
-        "framework": "DNX,Version=v4.6",
-        "dependencies": {
-          "CodeContracts": "1.0.5680.18392",
-          "Microsoft.CSharp": "4.0.0",
-          "System.Collections": "4.0.0",
-          "System.Linq": "4.0.0",
-          "System.Runtime": "4.0.0",
-          "System.Threading": "4.0.0"
-        }
-      },
-      "QuickIO.Win32/1.0.0": {
-        "type": "project",
-        "framework": "DNX,Version=v4.6",
-        "dependencies": {
-          "Microsoft.CSharp": "4.0.0",
-          "QuickIO.Core": "1.0.0",
-          "System.Collections": "4.0.0",
-          "System.Linq": "4.0.0",
-          "System.Runtime": "4.0.0",
-          "System.Threading": "4.0.0"
-        }
-      },
       "System.Collections/4.0.0": {
         "type": "package",
         "compile": {
@@ -105,30 +81,6 @@
         },
         "runtime": {
           "lib/net45/_._": {}
-        }
-      },
-      "QuickIO.Core/1.0.0": {
-        "type": "project",
-        "framework": "DNX,Version=v4.6",
-        "dependencies": {
-          "CodeContracts": "1.0.5680.18392",
-          "Microsoft.CSharp": "4.0.0",
-          "System.Collections": "4.0.0",
-          "System.Linq": "4.0.0",
-          "System.Runtime": "4.0.0",
-          "System.Threading": "4.0.0"
-        }
-      },
-      "QuickIO.Win32/1.0.0": {
-        "type": "project",
-        "framework": "DNX,Version=v4.6",
-        "dependencies": {
-          "Microsoft.CSharp": "4.0.0",
-          "QuickIO.Core": "1.0.0",
-          "System.Collections": "4.0.0",
-          "System.Linq": "4.0.0",
-          "System.Runtime": "4.0.0",
-          "System.Threading": "4.0.0"
         }
       },
       "System.Collections/4.0.0": {
@@ -190,30 +142,6 @@
           "lib/net45/_._": {}
         }
       },
-      "QuickIO.Core/1.0.0": {
-        "type": "project",
-        "framework": "DNX,Version=v4.6",
-        "dependencies": {
-          "CodeContracts": "1.0.5680.18392",
-          "Microsoft.CSharp": "4.0.0",
-          "System.Collections": "4.0.0",
-          "System.Linq": "4.0.0",
-          "System.Runtime": "4.0.0",
-          "System.Threading": "4.0.0"
-        }
-      },
-      "QuickIO.Win32/1.0.0": {
-        "type": "project",
-        "framework": "DNX,Version=v4.6",
-        "dependencies": {
-          "Microsoft.CSharp": "4.0.0",
-          "QuickIO.Core": "1.0.0",
-          "System.Collections": "4.0.0",
-          "System.Linq": "4.0.0",
-          "System.Runtime": "4.0.0",
-          "System.Threading": "4.0.0"
-        }
-      },
       "System.Collections/4.0.0": {
         "type": "package",
         "compile": {
@@ -253,14 +181,6 @@
     }
   },
   "libraries": {
-    "QuickIO.Core/1.0.0": {
-      "type": "project",
-      "path": "../QuickIO.Core/project.json"
-    },
-    "QuickIO.Win32/1.0.0": {
-      "type": "project",
-      "path": "../QuickIO.Win32/project.json"
-    },
     "CodeContracts/1.0.5680.18392": {
       "type": "package",
       "sha512": "+8Wf13qS3sP0B7sREOn9lQ8lcPPBQJsCxizerlKXsrpju008upmhMNJQS5eR2DvAeir6CU+BdZflT5TKxdBHCw==",
@@ -491,10 +411,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "": [
-      "QuickIO.Core >= 1.0.0-*",
-      "QuickIO.Win32 >= 1.0.0-*"
-    ],
+    "": [],
     "DNX,Version=v4.6": [
       "Microsoft.CSharp >= 4.0.0",
       "System.Collections >= 4.0.0",
