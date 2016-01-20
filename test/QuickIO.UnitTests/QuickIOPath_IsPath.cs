@@ -3,7 +3,7 @@ using Xunit;
 
 namespace SchwabenCode.QuickIO.UnitTests
 {
-    public class QuickIOPath_IsPath : QuickIOTestBase
+    public class QuickIOPath_IsPath : UnitTestBase
     {
         [Theory]
         [InlineData( @"C:", false )]

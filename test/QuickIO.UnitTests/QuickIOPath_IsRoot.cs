@@ -3,7 +3,7 @@ using Xunit;
 
 namespace SchwabenCode.QuickIO.UnitTests
 {
-    public class QuickIOPath_IsRoot
+    public class QuickIOPath_IsRoot: UnitTestBase
     {
         [Theory]
         [InlineData( TestHelpers.AlphabethUpperCase, true )]

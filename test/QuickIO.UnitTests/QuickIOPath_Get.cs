@@ -4,7 +4,7 @@ using Xunit;
 namespace SchwabenCode.QuickIO.UnitTests
 {
 
-    public class QuickIOPath_Get
+    public class QuickIOPath_Get : UnitTestBase
     {
 
         [Theory]
@@ -58,8 +58,15 @@ namespace SchwabenCode.QuickIO.UnitTests
         [Fact]
         public void GetFullPath()
         {
-            string path = @"_TestFiles\TextFile.txt";
-            QuickIOPath.GetFullPath( path ).Should().Be( System.IO.Path.GetFullPath( path ) );
+            string[ ] pathList = new string[ ]
+            {
+               @"_TestFiles\TextFile.txt",
+                @"C:\temp"
+            };
+            foreach( var entry in pathList )
+            {
+                QuickIOPath.GetFullPath( entry ).Should().Be( System.IO.Path.GetFullPath( entry ) );
+            }
         }
 
         [Fact]

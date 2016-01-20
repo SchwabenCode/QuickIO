@@ -4,7 +4,7 @@ using Xunit;
 namespace SchwabenCode.QuickIO.UnitTests
 {
 
-    public class UT_QuickIOPath
+    public class UT_QuickIOPath: UnitTestBase
     {
         [Theory]
         [InlineData( @"C:\temp", "test", @"C:\temp\test" )]
