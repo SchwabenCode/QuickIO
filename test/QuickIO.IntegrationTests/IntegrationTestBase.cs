@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace SchwabenCode.QuickIO.IntegrationTests
 {
@@ -11,9 +12,7 @@ namespace SchwabenCode.QuickIO.IntegrationTests
     {
         public static string CurrentPath()
         {
-            // TODO: DOES ONLY WORK IN VISUAL STUDIO RIGHT KNOW
-            // https://github.com/aspnet/dnx/issues/3321
-            return Environment.CurrentDirectory;
+            return PlatformServices.Default.Application.ApplicationBasePath;
         }
     }
 }

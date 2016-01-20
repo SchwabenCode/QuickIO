@@ -1777,7 +1777,8 @@
       "System.IO >= 4.0.0",
       "xunit >= 2.1.0",
       "xunit.runner.dnx >= 2.1.0-rc1-build204",
-      "FluentAssertions >= 4.2.1"
+      "FluentAssertions >= 4.2.1",
+      "Microsoft.Extensions.PlatformAbstractions >= 1.0.0-rc1-final"
     ]
   }
 }
