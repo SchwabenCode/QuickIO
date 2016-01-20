@@ -1,0 +1,62 @@
+﻿<#+ 
+void Generate(string className)
+{
+	
+	#>
+// <copyright company="Benjamin Abt ( http://www.benjamin-abt.com - http://quickIO.NET )">
+//      Copyright (c) 2016 Benjamin Abt Rights Reserved - DO NOT REMOVE OR EDIT COPYRIGHT
+// </copyright>
+// <author>Benjamin Abt</author>
+
+
+
+using System;
+using System.Threading.Tasks;
+using SchwabenCode.QuickIO.Compatibility;
+
+namespace SchwabenCode.QuickIO
+{
+    public partial class <#= className #>
+    {
+
+        #region Root
+
+        /// <summary>
+        /// Returns the root information
+        /// </summary>
+        /// <param name="path">The path of a file or directory. </param>
+        /// <returns>A QuickIOPathInfo that represents the root or null if <paramref name="path"/> is root.</returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.directory.getdirectoryroot(v=vs.110).aspx</remarks>
+        public static Task<QuickIOPathInfo> GetDirectoryRootAsync( string path )
+        {
+            return NETCompatibility.AsyncExtensions.GetAsyncResult( ( ) => <#= className #>.GetDirectoryRoot( path ) );
+        }
+
+        /// <summary>
+        /// Returns the root information
+        /// </summary>
+        /// <param name="info">A file or directory. </param>
+        /// <returns>A QuickIOPathInfo that represents the root or null if <paramref name="info"/> is root.</returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.directory.getdirectoryroot(v=vs.110).aspx</remarks>
+        public static Task<QuickIOPathInfo> GetDirectoryRootAsync( QuickIOPathInfo info )
+        {
+            return NETCompatibility.AsyncExtensions.GetAsyncResult( ( ) => <#= className #>.GetDirectoryRoot( info ) );
+        }
+
+		/// <summary>
+        /// Returns the root information
+        /// </summary>
+        /// <param name="info">A file or directory. </param>
+        /// <returns>A QuickIOPathInfo that represents the root or null if <paramref name="info"/> is root.</returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.directory.getdirectoryroot(v=vs.110).aspx</remarks>
+        public static Task<QuickIOPathInfo> GetDirectoryRootAsync( <#= className #>Info info )
+        {
+            return NETCompatibility.AsyncExtensions.GetAsyncResult( ( ) => <#= className #>.GetDirectoryRoot( info ) );
+        }
+
+        #endregion
+    }
+}
+<#+
+}
+#>

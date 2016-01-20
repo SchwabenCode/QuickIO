@@ -1,0 +1,69 @@
+#-------------------------------------------------#
+#           GENERAL                               #
+#-------------------------------------------------#
+version: 2.9.0.{build}-alpha
+configuration: Release
+
+branches:
+ only:
+  - master
+  - develop
+  
+#-------------------------------------------------#
+#           ENVIRONMENT                           #
+#-------------------------------------------------#
+os: Visual Studio 2015
+environment:
+ # this patch key will be repaced by the before_build event and it's script
+ # only version-pattern here allowed.
+ versionPatchKey: '0.0.0-ci-replace'
+ dnvmVersion: '1.0.0-rc1-update1'
+ artifactsPath: 'artifacts\build'
+ # string secured by individual appveyor account
+ nugetKey:
+    secure: s1wmKGbLWJgtNFbeih5ARl8RYSopkcPhKzAuoViFK2QcpD+fDrb2W3NUBGBNP72Q
+    
+#-------------------------------------------------#
+#           INIT                                  #
+#-------------------------------------------------#
+
+init:
+ - cmd: echo Starting CI Task
+ - git config --global core.autocrlf true
+ 
+#-------------------------------------------------#
+#           INSTALL                               #
+#-------------------------------------------------#
+install:
+ - cmd: echo INSTALL NUGET
+ - cmd: nuget sources add -Name api.nuget.org -Source https://api.nuget.org/v3/index.json
+
+#-------------------------------------------------#
+#           BUILD CONFIGURATION                   #
+#-------------------------------------------------#
+
+# patch project.json files and install DNVM
+before_build:
+ - ps: .\appveyor.install.dnvm.ps1
+
+# build main project with defined configuration
+build_script:
+ - ps: .\appveyor.build.ps1 "src\QuickIO" "test\QuickIO.UnitTests" "test\QuickIO.IntegrationTests" -configuration $env:CONFIGURATION
+ 
+#-------------------------------------------------#
+#           TEST CONFIGURATION                    #
+#-------------------------------------------------#
+
+# test with defined configuration
+test_script:
+ - ps: Write-Host "TESTING configuration $env:configuration"
+ - cmd: dnx -p test\QuickIO.UnitTests test"
+ 
+# There is a DNX problem at the moment to work with integration tests on AppVeyor
+# https://github.com/aspnet/dnx/issues/3321
+# - cmd: dnx -p test\QuickIO.IntegrationTests test"
+ 
+#-------------------------------------------------#
+#           DEPLOY CONFIGURATION                  #
+#-------------------------------------------------#
+
