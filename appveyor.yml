@@ -48,7 +48,7 @@ before_build:
 
 # build main project with defined configuration
 build_script:
- - ps: .\appveyor.build.ps1 "src\QuickIO" "test\QuickIO.UnitTests" "test\QuickIO.IntegrationTests" -configuration $env:CONFIGURATION
+ - ps: .\appveyor.build.ps1 "src\QuickIO.NET" "test\QuickIO.UnitTests" "test\QuickIO.IntegrationTests" -configuration $env:CONFIGURATION
  
 #-------------------------------------------------#
 #           TEST CONFIGURATION                    #
