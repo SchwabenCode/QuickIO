@@ -9,14 +9,17 @@
 ## Website
 Checkout the official Page [http://quickIO.NET](http://quickIO.NET)
 
-## Current Source State January, 17 2015
-- New source base
-- All operations will be refactored to use normalized strings for better performance
-- Project focus is Windows base. Cross-Plattform Support with QuickIO 4.0 and DNX.
-- Drop support for older .NET versions. At least 4.0 required (right now)
-- License changed to MIT
-- Cancellation support for all async operations
-- Code Contracts
+## Tasks for 3.0
+- [X] Use DNX project templates
+- [X] Switch test framework to xUnit
+- [X] Continuous Deployment on AppVeyor
+- [X] Remove the memory intensive QuickIOPathInfo and work with plain strings
+- [ ] Test Coverage 100%
+- [ ] Integrate transfer services
+- [ ] Add async methods
+ - [ ] Provide cancellation
+- [ ] Code Contracts
+
 
 Master branch is the current development branch. With the first stable release of QuickIO 3.0 project will be changed to support GIT Workflow.
 
