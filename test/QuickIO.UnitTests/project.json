@@ -20,10 +20,10 @@
       }
     }
   },
-  "dependencies": {
-    "QuickIO": "2.9.0-*"
-  },
   "commands": {
     "test": "xunit.runner.dnx"
+  },
+  "dependencies": {
+    "QuickIO.NET": "2.9.0-*"
   }
 }

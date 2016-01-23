@@ -169,7 +169,7 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
-      "QuickIO/2.9.0": {
+      "QuickIO.NET/2.9.0": {
         "type": "project",
         "framework": "DNX,Version=v4.6",
         "dependencies": {
@@ -503,7 +503,7 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
-      "QuickIO/2.9.0": {
+      "QuickIO.NET/2.9.0": {
         "type": "project",
         "framework": "DNX,Version=v4.6",
         "dependencies": {
@@ -837,7 +837,7 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
-      "QuickIO/2.9.0": {
+      "QuickIO.NET/2.9.0": {
         "type": "project",
         "framework": "DNX,Version=v4.6",
         "dependencies": {
@@ -1006,9 +1006,9 @@
     }
   },
   "libraries": {
-    "QuickIO/2.9.0": {
+    "QuickIO.NET/2.9.0": {
       "type": "project",
-      "path": "../../src/QuickIO/project.json"
+      "path": "../../src/QuickIO.NET/project.json"
     },
     "CodeContracts/1.0.5680.18392": {
       "type": "package",
@@ -1680,7 +1680,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "QuickIO >= 2.9.0-*"
+      "QuickIO.NET >= 2.9.0-*"
     ],
     "DNX,Version=v4.6": [
       "Microsoft.CSharp >= 4.0.0",
