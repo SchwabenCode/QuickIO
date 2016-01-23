@@ -6,14 +6,26 @@ namespace SchwabenCode.QuickIO.UnitTests
     public class QuickIOPathTests
     {
         [Theory]
-        [InlineData( "folder1", "folder2" , @"folder1\folder2" )]
-        [InlineData( @"C:\folder1", "folder2" , @"C:\folder1\folder2")]
+        [InlineData( "folder1", "folder1" )]
+        [InlineData( null, null )]
+        [InlineData( "folder1 ", "folder1" )]
+        [InlineData( "folder1\\", "folder1" )]
+        [InlineData( "\\folder1\\", "folder1" )]
+        [InlineData( " \\ folder1 \\ ", "folder1" )]
+        public void Clean( string p1, string expected )
+        {
+            QuickIOPath.Clean( p1 ).Should().Be( expected );
+        }
+
+        [Theory]
+        [InlineData( "folder1", "folder2", @"folder1\folder2" )]
+        [InlineData( @"C:\folder1", "folder2", @"C:\folder1\folder2" )]
         [InlineData( @"\\server\share\folder1", "folder2", @"\\server\share\folder1\folder2" )]
         [InlineData( @"C:\temp", "test", @"C:\temp\test" )]
         public void Combine( string p1, string p2, string expected )
         {
             string result = QuickIOPath.Combine( p1, p2 );
-            
+
             result.Should().Be( System.IO.Path.Combine( p1, p2 ) );
             result.Should().Be( expected );
         }
