@@ -6,6 +6,7 @@
 using System;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using SchwabenCode.QuickIO.Core;
 using SchwabenCode.QuickIO.Internal;
 
 namespace SchwabenCode.QuickIO

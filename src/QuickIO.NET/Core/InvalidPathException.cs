@@ -5,9 +5,8 @@
 
 using System;
 using System.Diagnostics.Contracts;
-using SchwabenCode.QuickIO.Win32;
 
-namespace SchwabenCode.QuickIO
+namespace SchwabenCode.QuickIO.Core
 {
     /// <summary>
     /// Invalid Path Exception

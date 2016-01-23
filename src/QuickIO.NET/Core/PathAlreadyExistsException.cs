@@ -6,7 +6,7 @@
 using System;
 using System.Diagnostics.Contracts;
 
-namespace SchwabenCode.QuickIO
+namespace SchwabenCode.QuickIO.Core
 {
     /// <summary>
     /// Exception if path does not exist.

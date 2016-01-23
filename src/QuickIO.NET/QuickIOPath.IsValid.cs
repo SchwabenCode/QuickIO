@@ -7,6 +7,7 @@ using System;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using SchwabenCode.QuickIO.Core;
 
 namespace SchwabenCode.QuickIO
 {

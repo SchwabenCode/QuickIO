@@ -3,7 +3,7 @@
 // </copyright>
 // <author>Benjamin Abt</author>
 
-namespace SchwabenCode.QuickIO.Win32
+namespace SchwabenCode.QuickIO.Core
 {
     /// <summary>
     /// Enum collection of available shares types

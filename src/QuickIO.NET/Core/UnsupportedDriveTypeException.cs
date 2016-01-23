@@ -3,7 +3,7 @@
 // </copyright>
 // <author>Benjamin Abt</author>
 
-namespace SchwabenCode.QuickIO
+namespace SchwabenCode.QuickIO.Core
 {
     /// <summary>
     /// Represents an exception for unsuuported drive types

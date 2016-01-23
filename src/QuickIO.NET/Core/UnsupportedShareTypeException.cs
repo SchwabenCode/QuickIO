@@ -5,7 +5,7 @@
 
 using System;
 
-namespace SchwabenCode.QuickIO
+namespace SchwabenCode.QuickIO.Core
 {
     /// <summary>
     /// Represents an exception for unsuuported drive types
@@ -13,7 +13,7 @@ namespace SchwabenCode.QuickIO
     public class UnsupportedShareTypeException : QuickIOBaseException
     {
         /// <summary>
-        /// Creates an instance of <see cref="SchwabenCode.QuickIO.UnsupportedShareTypeException"/>
+        /// Creates an instance of <see cref="UnsupportedShareTypeException"/>
         /// </summary>
         /// <param name="path">Unsupported drive</param>
         /// <param name="message">Error</param>

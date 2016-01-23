@@ -5,7 +5,7 @@
 
 using System;
 
-namespace SchwabenCode.QuickIO
+namespace SchwabenCode.QuickIO.Core
 {
     /// <summary>
     /// Exception of already running transfer activity
