@@ -50,9 +50,10 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( @"C:\", null )]
         [InlineData( "\\server", null )]
         [InlineData( @"C:\folder\text.txt", @"C:\folder" )]
+        [InlineData( @"folder\text.txt", @"folder" )]
         public void GetParentPath( string test, string expected )
         {
-            QuickIOPath.GetParentPath( test ).Should().Be( expected );
+            QuickIOPath.GetDirectoryName( test ).Should().Be( expected );
         }
 
         [Theory]
