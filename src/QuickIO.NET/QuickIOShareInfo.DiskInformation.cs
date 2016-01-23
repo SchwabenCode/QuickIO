@@ -24,9 +24,9 @@ namespace SchwabenCode.QuickIO
             Contract.Requires( !String.IsNullOrWhiteSpace( FullName ) );
             Contract.Ensures( Contract.Result<QuickIODiskInformation>() != null );
 
-            if ( this.ShareType != QuickIOShareType.Disk )
+            if( this.ShareType != QuickIOShareType.Disk )
             {
-                throw new UnsupportedShareTypeException( this.FullName, "Metadata not supported for this Sharetype" );
+                throw new UnsupportedShareTypeException( "Metadata not supported for this Sharetype", this.FullName );
             }
 
             return InternalQuickIO.GetDiskInformation( this.FullName );

@@ -17,7 +17,7 @@ namespace SchwabenCode.QuickIO.Core
         /// </summary>
         /// <param name="path">Unsupported drive</param>
         /// <param name="message">Error</param>
-        public UnsupportedShareTypeException( string path, String message )
+        public UnsupportedShareTypeException( String message, string path )
             : base( message, path )
         {
         }
