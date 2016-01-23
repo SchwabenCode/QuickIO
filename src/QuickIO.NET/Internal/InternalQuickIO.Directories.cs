@@ -47,7 +47,7 @@ namespace SchwabenCode.QuickIO.Internal
             // create parent directory if accepted
             if( recursive )
             {
-                string parent = QuickIOPath.GetParentPath( uncDirectoryPath );
+                string parent = QuickIOPath.GetDirectoryName( uncDirectoryPath );
                 if( parent == null )
                 {
                     throw new InvalidOperationException( "Parent directory does not exists and cannot be created." );

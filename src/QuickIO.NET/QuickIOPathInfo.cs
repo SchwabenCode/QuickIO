@@ -47,7 +47,7 @@ namespace SchwabenCode.QuickIO
             this.FullNameUnc = QuickIOPath.ToPathUnc( fullpath );
 
             // TODO:
-            this.Parent = QuickIOPath.GetParentPath( fullpath );
+            this.Parent = QuickIOPath.GetDirectoryName( fullpath );
             this.Root = QuickIOPath.GetPathRoot( fullpath );
 
             this.IsRoot = QuickIOPath.IsRoot( fullpath );

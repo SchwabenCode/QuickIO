@@ -108,7 +108,7 @@ namespace SchwabenCode.QuickIO
 
             if( createRecursive )
             {
-                var targetDirectoryPath = QuickIOPath.GetParentPath( target );
+                var targetDirectoryPath = QuickIOPath.GetDirectoryName( target );
                 try
                 {
                     QuickIODirectory.Create( targetDirectoryPath, true );

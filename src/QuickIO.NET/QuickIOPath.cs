@@ -66,7 +66,7 @@ namespace SchwabenCode.QuickIO
         ///  </summary>
         /// <param name="path">Path to get the parent</param>
         /// <returns>Parent directory or null if parent is root</returns>
-        public static String GetParentPath( string path )
+        public static String GetDirectoryName( string path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
             string cleanPath = Clean( path );
