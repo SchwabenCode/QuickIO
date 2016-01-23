@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using Xunit;
 
 namespace SchwabenCode.QuickIO.UnitTests
@@ -30,7 +31,16 @@ namespace SchwabenCode.QuickIO.UnitTests
             result.Should().Be( expected );
         }
 
-        [Theory]
+        public void Combine_ArgumentNullException()
+        {
+            QuickIOPath.Combine("", null)
+                .Should()
+                .BeOfType<ArgumentNullException>()
+                .Which.Message.Should()
+                .Be("Cannot be null or empty");
+        }
+
+        [ Theory]
         [InlineData( null, null )]
         [InlineData( "", "" )]
         [InlineData( @"folder\file", "" )]
@@ -210,7 +220,9 @@ namespace SchwabenCode.QuickIO.UnitTests
                 QuickIOPath.IsRootLocalRegular( c + @":\" ).Should().Be( expected );
             }
         }
+
         [Theory]
+        [InlineData( null, false )]
         [InlineData( "", false )]
         [InlineData( @"   ", false )]
         [InlineData( @"2:\", false )]
@@ -224,6 +236,8 @@ namespace SchwabenCode.QuickIO.UnitTests
         }
 
         [Theory]
+        [InlineData( null, false )]
+        [InlineData( "", false )]
         [InlineData( @"C:", false )]
         [InlineData( @"C:\", false )]
         [InlineData( @"C:\folder", false )]
@@ -243,6 +257,8 @@ namespace SchwabenCode.QuickIO.UnitTests
         }
 
         [Theory]
+        [InlineData( null, false )]
+        [InlineData( "", false )]
         [InlineData( @"\\?\C:", false )]
         [InlineData( @"\\?\C:\", false )]
         [InlineData( @"\\?\c:\", false )]
@@ -259,6 +275,8 @@ namespace SchwabenCode.QuickIO.UnitTests
 
 
         [Theory]
+        [InlineData( null, false )]
+        [InlineData( "", false )]
         [InlineData( @"\\?\C:", false )]
         [InlineData( @"\\?\C:\", false )]
         [InlineData( @"\\?\c:\", false )]
