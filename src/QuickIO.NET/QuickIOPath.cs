@@ -89,10 +89,11 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Removes all spaces and trims backslahes at the end.
         /// </summary>
+        /// <remarks>returns null if <paramref name="path"/> is null.</remarks>
         public static string Clean( string path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
-            return path.Trim().Trim( '\\' );
+            return path?.Trim().Trim( '\\' ).Trim();
         }
     }
 }
