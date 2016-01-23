@@ -80,20 +80,6 @@ namespace SchwabenCode.QuickIO
         }
 
         /// <summary>
-        /// Throws an <see cref="ArgumentNullException"/> if passed value is null
-        /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
-        private static void ThrowArgumentNullExceptionIfNull( string @value, string name )
-        {
-            Contract.Requires( !String.IsNullOrWhiteSpace( name ) );
-
-            if( @value == null )
-            {
-                throw new ArgumentNullException( name );
-            }
-        }
-
-        /// <summary>
         /// Checks if given char is a valid windows drive letter
         /// </summary>
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
