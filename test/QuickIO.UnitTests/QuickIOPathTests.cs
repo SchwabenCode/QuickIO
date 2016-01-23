@@ -312,6 +312,8 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( "\0", false )]
         [InlineData( ".point", false )]
         [InlineData( "point.", false )]
+        [InlineData( " invalid", false )]
+        [InlineData( "invalid ", false )]
 
         [InlineData( "_", true )]
         [InlineData( "♥", true )]
@@ -324,7 +326,14 @@ namespace SchwabenCode.QuickIO.UnitTests
             QuickIOPath.IsValidFolderName( test ).Should().Be( expected );
         }
 
+        [Fact]
+        public void IsValidFolderName()
+        {
+            QuickIOPath.IsValidFolderName( new string( 'a', QuickIOPath.MaxFolderNameLength + 1 ) ).Should().Be( false );
+        }
+
         [Theory]
+        [InlineData( ' ', false )]
         [InlineData( '<', false )]
         [InlineData( '>', false )]
         [InlineData( ':', false )]
@@ -370,11 +379,20 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( " ", false )]
         [InlineData( "@", false )]
         [InlineData( ", ", false )]
+        [InlineData( " invalid", false )]
+        [InlineData( "invalid ", false )]
         [InlineData( "valid", true )]
         [InlineData( "valid2", true )]
         public void IsValidServerName( string test, bool expected )
         {
             QuickIOPath.IsValidServerName( test ).Should().Be( expected );
+
+        }
+
+        [Fact]
+        public void IsValidServerName()
+        {
+            QuickIOPath.IsValidServerName( new string( 'a', QuickIOPath.MaxFolderNameLength + 1 ) ).Should().Be( false );
 
         }
 
@@ -405,6 +423,7 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( @"\\?\C:\test\path", @"C:\test\path" )]
         [InlineData( @"\\test\path", @"\\test\path" )]
         [InlineData( @"\\?\UNC\test\path", @"\\test\path" )]
+        [InlineData( @"relative\path", @"relative\path" )]
         public void ToPathRegular( string test, string expected )
         {
             QuickIOPath.ToPathRegular( test ).Should().Be( expected );
@@ -415,6 +434,7 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( @"\\?\C:\test\path", @"\\?\C:\test\path" )]
         [InlineData( @"\\test\path", @"\\?\UNC\test\path" )]
         [InlineData( @"\\?\UNC\test\path", @"\\?\UNC\test\path" )]
+        [InlineData( @"relative\path", @"relative\path" )]
         public void ToPathUnc( string test, string expected )
         {
             QuickIOPath.ToPathUnc( test ).Should().Be( expected );
