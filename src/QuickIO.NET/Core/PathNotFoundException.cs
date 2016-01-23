@@ -27,7 +27,7 @@ namespace SchwabenCode.QuickIO.Core
         /// Exception if path does not exist.
         /// </summary>
         public PathNotFoundException( string message, string path )
-            : base( message + $"Path: '{path}'", path )
+            : base( message, path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( message ) );
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
