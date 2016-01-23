@@ -14,9 +14,9 @@ namespace SchwabenCode.QuickIO.Core
     public sealed class UnmatchedFileSystemEntryTypeException : Exception
     {
         /// <summary>
-        /// Estimated Type
+        /// Expected Type
         /// </summary>
-        public QuickIOFileSystemEntryType Estimated { get; private set; }
+        public QuickIOFileSystemEntryType Expected { get; private set; }
 
         /// <summary>
         /// Type found
@@ -31,10 +31,10 @@ namespace SchwabenCode.QuickIO.Core
         /// <summary>
         /// Exception if path returns another type as excepted
         /// </summary>
-        public UnmatchedFileSystemEntryTypeException( QuickIOFileSystemEntryType estimated, QuickIOFileSystemEntryType found, string path )
+        public UnmatchedFileSystemEntryTypeException( QuickIOFileSystemEntryType expected, QuickIOFileSystemEntryType found, string path )
             : base( "FileSystemEntryType not matched!" )
         {
-            Estimated = estimated;
+            Expected = expected;
             Found = found;
             Path = path;
         }
