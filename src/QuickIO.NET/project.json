@@ -1,0 +1,20 @@
+﻿{
+  "version": "2.9.0-*",
+  "description": "QuickIO Main Library",
+  "authors": [ "Benjamin Abt" ],
+  "tags": [ "QuickIO", "QuickIO.NET", "File Operations", "BenjaminAbt", "SCHWABENCODE" ],
+  "projectUrl": "https://github.com/SchwabenCode/QuickIO",
+  "licenseUrl": "https://github.com/SchwabenCode/QuickIO/LICENSE.md",
+  "frameworks": {
+    "dnx46": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.0",
+        "System.Collections": "4.0.0",
+        "System.Linq": "4.0.0",
+        "System.Runtime": "4.0.0",
+        "System.Threading": "4.0.0",
+        "CodeContracts": "1.0.5680.18392"
+      }
+    }
+  }
+}

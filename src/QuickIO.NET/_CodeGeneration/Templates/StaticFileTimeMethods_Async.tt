@@ -1,0 +1,495 @@
+﻿<#+ 
+void Generate(string className)
+{
+    
+var pathPassValueText = "Affected file or directory";
+var dateTimePassValueText = "The time that is to be used";
+var dateTimeReturnValueText = "A <see cref=\"DateTime\"/> structure.";
+
+    #>
+// <copyright company="Benjamin Abt ( http://www.benjamin-abt.com - http://quickIO.NET )">
+//      Copyright (c) 2016 Benjamin Abt Rights Reserved - DO NOT REMOVE OR EDIT COPYRIGHT
+// </copyright>
+// <author>Benjamin Abt</author>
+
+
+using System;
+using System.Threading.Tasks;
+using SchwabenCode.QuickIO.Compatibility;
+
+namespace SchwabenCode.QuickIO
+{
+    public partial class <#= className #>
+    {
+        #region Get Creation Time
+        /// <summary>
+        /// Returns the creation time of the file or directory
+        /// </summary>
+        /// <param name="path"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #></returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getcreationtime(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception>   
+        public static Task<DateTime> GetCreationTimeAsync( String path )
+        {
+           return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetCreationTime( path ) );
+        }
+        /// <summary>
+        /// Returns the creation time of the file or directory
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #></returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getcreationtime(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception>   
+        public static Task<DateTime> GetCreationTimeAsync( QuickIOPathInfo info )
+        {
+             return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetCreationTime( info ) );
+        }
+        /// <summary>
+        /// Returns the creation time of the file or directory
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #></returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getcreationtime(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception>   
+        public static Task<DateTime> GetCreationTimeAsync( <#= className #>Info info )
+        {
+           return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetCreationTime( info ) );
+        }
+
+        /// <summary>
+        /// Returns the creation time of the file or directory (UTC)
+        /// </summary>
+        /// <param name="path"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #> (UTC)</returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getcreationtimeutc(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception>   
+        public static Task<DateTime> GetCreationTimeUtcAsync( String path )
+        {
+             return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetCreationTimeUtc( path ) );
+        }
+        /// <summary>
+        /// Returns the creation time of the file or directory (UTC)
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #> (UTC)</returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getcreationtimeutc(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception>   
+        public static Task<DateTime> GetCreationTimeUtcAsync( QuickIOPathInfo info )
+        {
+                return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetCreationTimeUtc( info ) );
+        }
+        /// <summary>
+        /// Returns the creation time of the file or directory (UTC)
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #> (UTC)</returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getcreationtimeutc(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception>   
+        public static Task<DateTime> GetCreationTimeUtcAsync( <#= className #>Info info )
+        {
+         return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetCreationTimeUtc( info ) );
+        }
+        #endregion
+
+        #region Get Last Access Time
+        /// <summary>
+        /// Returns the time of last access of the file or directory
+        /// </summary>
+        /// <param name="path"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #></returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getlastaccesstime(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception>   
+        public static Task<DateTime> GetLastAccessTimeAsync( String path )
+        {
+           return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetLastAccessTime( path ) );
+        }
+        /// <summary>
+        /// Returns the time of last access of the file or directory
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #></returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getlastaccesstime(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception>   
+        public static Task<DateTime> GetLastAccessTimeAsync( QuickIOPathInfo info )
+        {
+           return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetLastAccessTime( info ) );
+        }
+        /// <summary>
+        /// Returns the time of last access of the file or directory
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #></returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getlastaccesstime(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception>   
+        public static Task<DateTime> GetLastAccessTimeAsync( <#= className #>Info info )
+        {
+          return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetLastAccessTime( info ) );
+        }
+
+        /// <summary>
+        /// Returns the time of last access of the file or directory (UTC)
+        /// </summary>
+        /// <param name="path"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #> (UTC)</returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getlastaccesstimeutc(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception>   
+        public static Task<DateTime> GetLastAccessTimeUtcAsync( String path )
+        {
+			return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetLastAccessTimeUtc( path ) );
+        }
+        /// <summary>
+        /// Returns the time of last access of the file or directory (UTC)
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #> (UTC)</returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getlastaccesstimeutc(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception>   
+        public static Task<DateTime> GetLastAccessTimeUtcAsync( QuickIOPathInfo info )
+        {
+            return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetLastAccessTimeUtc( info ) );
+        }
+        /// <summary>
+        /// Returns the time of last access of the file or directory (UTC)
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #> (UTC)</returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getlastaccesstimeutc(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception>   
+        public static Task<DateTime> GetLastAccessTimeUtcAsync( <#= className #>Info info )
+        {
+            return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetLastAccessTimeUtc( info ) );
+        }
+        #endregion
+
+        #region Get Last Write Time
+        /// <summary>
+        /// Returns the time of the file or directory was last written
+        /// </summary>
+        /// <param name="path"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #></returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getlastwritetime(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception>   
+        public static Task<DateTime> GetLastWriteTimeAsync( String path )
+        {
+            return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetLastAccessTimeUtc( path ) );
+        }
+        /// <summary>
+        /// Returns the time of the file or directory was last written
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #></returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getlastwritetime(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception>   
+        public static Task<DateTime> GetLastWriteTimeAsync( QuickIOPathInfo info )
+        {
+            return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetLastAccessTimeUtc( info ) );
+        }
+        /// <summary>
+        /// Returns the time of the file or directory was last written
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #></returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getlastwritetime(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception>   
+        public static Task<DateTime> GetLastWriteTimeAsync( <#= className #>Info info )
+        {
+            return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetLastAccessTimeUtc( info ) );
+        }
+
+        /// <summary>
+        /// Returns the time of the file or directory was last written (UTC)
+        /// </summary>
+        /// <param name="path"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #> (UTC)</returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getlastwritetimeutc(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception>   
+        public static Task<DateTime> GetLastWriteTimeUtcAsync( String path )
+        {
+            return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetLastWriteTimeUtc( path ) );
+        }
+        /// <summary>
+        /// Returns the time of the file or directory was last written (UTC)
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #> (UTC)</returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getlastwritetimeutc(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception> 
+        public static Task<DateTime> GetLastWriteTimeUtcAsync( QuickIOPathInfo info )
+        {
+            return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetLastWriteTimeUtc( info ) );
+        }
+        /// <summary>
+        /// Returns the time of the file or directory was last written (UTC)
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <returns><#= dateTimeReturnValueText #> (UTC)</returns>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.getlastwritetimeutc(v=vs.110).aspx</remarks>
+        /// <exception cref="PathNotFoundException">No entry found for passed path</exception> 
+        public static Task<DateTime> GetLastWriteTimeUtcAsync( <#= className #>Info info )
+        {
+            return NETCompatibility.AsyncExtensions.GetAsyncResult( () => <#= className #>.GetLastWriteTimeUtc( info ) );
+        }
+        #endregion
+
+        #region Set All Times
+        /// <summary>
+        /// Sets the time the file was created.
+        /// </summary>
+        /// <param name="path"><#= pathPassValueText #></param>
+        /// <param name="creationTime"><#= dateTimePassValueText #></param>
+        /// <param name="lastAccessTime"><#= dateTimePassValueText #></param>
+        /// <param name="lastWriteTime"><#= dateTimePassValueText #></param>
+        public static Task SetAllFileTimesAsync( String path, DateTime creationTime, DateTime lastAccessTime, DateTime lastWriteTime )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetAllFileTimes( path, creationTime, lastAccessTime, lastWriteTime ) );
+        }
+        /// <summary>
+        /// Sets the time the file was created.
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <param name="creationTime"><#= dateTimePassValueText #></param>
+        /// <param name="lastAccessTime"><#= dateTimePassValueText #></param>
+        /// <param name="lastWriteTime"><#= dateTimePassValueText #></param>
+        public static Task SetAllFileTimesAsync( QuickIOPathInfo info, DateTime creationTime, DateTime lastAccessTime, DateTime lastWriteTime )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetAllFileTimes( info, creationTime, lastAccessTime, lastWriteTime ) );
+        }
+        /// <summary>
+        /// Sets the time the file was created.
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <param name="creationTime"><#= dateTimePassValueText #></param>
+        /// <param name="lastAccessTime"><#= dateTimePassValueText #></param>
+        /// <param name="lastWriteTime"><#= dateTimePassValueText #></param>
+        public static Task SetAllFileTimesAsync( <#= className #>Info info, DateTime creationTime, DateTime lastAccessTime, DateTime lastWriteTime )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetAllFileTimes( info, creationTime, lastAccessTime, lastWriteTime ) );
+        }
+        /// <summary>
+        /// Sets the dates and times of given directory or file.
+        /// </summary>
+        /// <param name="path"><#= pathPassValueText #></param>
+        /// <param name="creationTimeUtc"><#= dateTimePassValueText #> (UTC)</param>
+        /// <param name="lastAccessTimeUtc"><#= dateTimePassValueText #> (UTC)</param>
+        /// <param name="lastWriteTimeUtc"><#= dateTimePassValueText #> (UTC)</param>
+        public static Task SetAllFileTimesUtcAsync( String path, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetAllFileTimesUtc( path, creationTimeUtc, lastAccessTimeUtc, lastWriteTimeUtc ) );
+        }
+        /// <summary>
+        /// Sets the dates and times of given directory or file.
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <param name="creationTimeUtc"><#= dateTimePassValueText #> (UTC)</param>
+        /// <param name="lastAccessTimeUtc"><#= dateTimePassValueText #> (UTC)</param>
+        /// <param name="lastWriteTimeUtc"><#= dateTimePassValueText #> (UTC)</param>
+        public static Task SetAllFileTimesUtcAsync( QuickIOPathInfo info, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetAllFileTimesUtc( info, creationTimeUtc, lastAccessTimeUtc, lastWriteTimeUtc ) );
+        }
+        /// <summary>
+        /// Sets the dates and times of given directory or file.
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <param name="creationTimeUtc"><#= dateTimePassValueText #> (UTC)</param>
+        /// <param name="lastAccessTimeUtc"><#= dateTimePassValueText #> (UTC)</param>
+        /// <param name="lastWriteTimeUtc"><#= dateTimePassValueText #> (UTC)</param>
+        public static Task SetAllFileTimesUtcAsync( <#= className #>Info info, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetAllFileTimesUtc( info, creationTimeUtc, lastAccessTimeUtc, lastWriteTimeUtc ) );
+        }
+        #endregion
+
+        #region Set Creation Time
+        /// <summary>
+        /// Defines the time at which the file or directory was created
+        /// </summary>
+        /// <param name="path"><#= pathPassValueText #></param>
+        /// <param name="creationTime"><#=dateTimePassValueText#></param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setcreationtime(v=vs.110).aspx</remarks>
+        public static Task SetCreationTimeAsync( String path, DateTime creationTime )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetCreationTime( path, creationTime ) );
+        }
+        /// <summary>
+        /// Defines the time at which the file or directory was created
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <param name="creationTime"><#=dateTimePassValueText#></param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setcreationtime(v=vs.110).aspx</remarks>
+        public static Task SetCreationTimeAsync( QuickIOPathInfo info, DateTime creationTime )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetCreationTime( info, creationTime ) );
+        }
+        /// <summary>
+        /// Defines the time at which the file or directory was created
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <param name="creationTime"><#=dateTimePassValueText#></param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setcreationtime(v=vs.110).aspx</remarks>
+        public static Task SetCreationTimeAsync( <#= className #>Info info, DateTime creationTime )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetCreationTime( info, creationTime ) );
+        }
+        /// <summary>
+        /// Defines the time at which the file or directory was created (UTC)
+        /// </summary>
+        /// <param name="path"><#= pathPassValueText #></param>
+        /// <param name="creationTimeUtc"><#=dateTimePassValueText#> (UTC)</param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setcreationtimeutc(v=vs.110).aspx</remarks>
+        public static Task SetCreationTimeUtcAsync( String path, DateTime creationTimeUtc )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetCreationTimeUtc( path, creationTimeUtc ) );
+        }
+        /// <summary>
+        /// Defines the time at which the file or directory was created (UTC)
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <param name="creationTimeUtc"><#=dateTimePassValueText#> (UTC)</param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setcreationtimeutc(v=vs.110).aspx</remarks>
+        public static Task SetCreationTimeUtcAsync( QuickIOPathInfo info, DateTime creationTimeUtc )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetCreationTimeUtc( info, creationTimeUtc ) );
+        }
+        /// <summary>
+        /// Defines the time at which the file or directory was created (UTC)
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <param name="creationTimeUtc"><#=dateTimePassValueText#> (UTC)</param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setcreationtimeutc(v=vs.110).aspx</remarks>
+        public static Task SetCreationTimeUtcAsync( <#= className #>Info info, DateTime creationTimeUtc )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetCreationTimeUtc( info, creationTimeUtc ) );
+        }
+        #endregion
+
+        #region Set Last Access Time
+        /// <summary>
+        /// Defines the time at which the file or directory was last accessed
+        /// </summary>
+        /// <param name="path"><#= pathPassValueText #></param>
+        /// <param name="lastAccessTime"><#=dateTimePassValueText#></param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setcreationtime(v=vs.110).aspx</remarks>
+        public static Task SetLastAccessTimeAsync( String path, DateTime lastAccessTime )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetLastAccessTime( path, lastAccessTime ) );
+        }
+        /// <summary>
+        /// Defines the time at which the file or directory was last accessed
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <param name="lastAccessTime"><#=dateTimePassValueText#></param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastaccesstime(v=vs.110).aspx</remarks>
+        public static Task SetLastAccessTimeAsync( QuickIOPathInfo info, DateTime lastAccessTime )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetLastAccessTime( info, lastAccessTime ) );
+        }
+        /// <summary>
+        /// Defines the time at which the file or directory was last accessed
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <param name="lastAccessTime"><#=dateTimePassValueText#></param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastaccesstime(v=vs.110).aspx</remarks>
+        public static Task SetLastAccessTimeAsync( <#= className #>Info info, DateTime lastAccessTime )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetLastAccessTime( info, lastAccessTime ) );
+        }
+        /// <summary>
+        /// Defines the time at which the file or directory was last accessed (UTC)
+        /// </summary>
+        /// <param name="path"><#= pathPassValueText #></param>
+        /// <param name="lastAccessTimeUtc"><#=dateTimePassValueText#> (UTC)</param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastaccesstimeutc(v=vs.110).aspx</remarks>
+        public static Task SetLastAccessTimeUtcAsync( String path, DateTime lastAccessTimeUtc )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetLastAccessTimeUtc( path, lastAccessTimeUtc ) );
+        }
+        /// <summary>
+        /// Defines the time at which the file or directory was last accessed (UTC)
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <param name="lastAccessTimeUtc"><#=dateTimePassValueText#> (UTC)</param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastaccesstimeutc(v=vs.110).aspx</remarks>
+        public static Task SetLastAccessTimeUtcAsync( QuickIOPathInfo info, DateTime lastAccessTimeUtc )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetLastAccessTimeUtc( info, lastAccessTimeUtc ) );
+        }
+        /// <summary>
+        /// Defines the time at which the file or directory was last accessed (UTC)
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <param name="lastAccessTimeUtc"><#=dateTimePassValueText#> (UTC)</param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastaccesstimeutc(v=vs.110).aspx</remarks>
+        public static Task SetLastAccessTimeUtcAsync( <#= className #>Info info, DateTime lastAccessTimeUtc )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetLastAccessTimeUtc( info, lastAccessTimeUtc ) );
+        }
+        #endregion
+
+        #region Set Last Write Time
+        /// <summary>
+        /// Defines the time at which the file or directory was last written
+        /// </summary>
+        /// <param name="path"><#= pathPassValueText #></param>
+        /// <param name="lastWriteTime"><#=dateTimePassValueText#></param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setcreationtime(v=vs.110).aspx</remarks>
+        public static Task SetLastWriteTimeAsync( String path, DateTime lastWriteTime )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetLastWriteTime( path, lastWriteTime ) );
+        }
+        /// <summary>
+        /// Defines the time at which the file or directory was last written
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <param name="lastWriteTime"><#=dateTimePassValueText#></param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastwritetime(v=vs.110).aspx</remarks>
+        public static Task SetLastWriteTimeAsync( QuickIOPathInfo info, DateTime lastWriteTime )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetLastWriteTime( info, lastWriteTime ) );
+        }
+        /// <summary>
+        /// Defines the time at which the file or directory was last written
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>
+        /// <param name="lastWriteTime"><#=dateTimePassValueText#></param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastwritetime(v=vs.110).aspx</remarks>
+        public static Task SetLastWriteTimeAsync( <#= className #>Info info, DateTime lastWriteTime )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetLastWriteTime( info, lastWriteTime ) );
+        }
+        /// <summary>
+        /// Defines the time at which the file or directory was last written (UTC)
+        /// </summary>
+        /// <param name="path"><#= pathPassValueText #></param>     
+        /// <param name="lastWriteTimeUtc"><#=dateTimePassValueText#> (UTC)</param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastwritetimeutc(v=vs.110).aspx</remarks>
+        public static Task SetLastWriteTimeUtcAsync( String path, DateTime lastWriteTimeUtc )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetLastWriteTimeUtc( path, lastWriteTimeUtc ) );
+        }
+        /// <summary>
+        /// Defines the time at which the file or directory was last written (UTC)
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>     
+        /// <param name="lastWriteTimeUtc"><#=dateTimePassValueText#> (UTC)</param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastwritetimeutc(v=vs.110).aspx</remarks>
+        public static Task SetLastWriteTimeUtcAsync( QuickIOPathInfo info, DateTime lastWriteTimeUtc )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetLastWriteTimeUtc( info, lastWriteTimeUtc ) );
+        }
+        /// <summary>
+        /// Defines the time at which the file or directory was last written (UTC)
+        /// </summary>
+        /// <param name="info"><#= pathPassValueText #></param>     
+        /// <param name="lastWriteTimeUtc"><#=dateTimePassValueText#> (UTC)</param>
+        /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastwritetimeutc(v=vs.110).aspx</remarks>
+        public static Task SetLastWriteTimeUtcAsync( <#= className #>Info info, DateTime lastWriteTimeUtc )
+        {
+            return NETCompatibility.AsyncExtensions.ExecuteAsync( () => <#= className #>.SetLastWriteTimeUtc( info, lastWriteTimeUtc ) );
+        }
+        #endregion
+    }
+}
+<#+
+    }
+#>

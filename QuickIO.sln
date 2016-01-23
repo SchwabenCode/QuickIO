@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E8DD814A-83A4-4487-B73F-D4EA6B539586}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D27108B4-74DF-4DA9-B7D4-CA8D0ED05E16}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "QuickIO.UnitTests", "test\QuickIO.UnitTests\QuickIO.UnitTests.xproj", "{C71DE189-504B-463C-B727-1866FF5A3DEE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{79780B70-D62C-4CEC-9278-976A69F559A9}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "QuickIO.IntegrationTests", "test\QuickIO.IntegrationTests\QuickIO.IntegrationTests.xproj", "{9796224D-45F2-4C20-9B74-B8D838BEBBA1}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "QuickIO.NET", "src\QuickIO.NET\QuickIO.NET.xproj", "{72139CB0-8794-4851-A288-A55BE9541CB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C71DE189-504B-463C-B727-1866FF5A3DEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C71DE189-504B-463C-B727-1866FF5A3DEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C71DE189-504B-463C-B727-1866FF5A3DEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C71DE189-504B-463C-B727-1866FF5A3DEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9796224D-45F2-4C20-9B74-B8D838BEBBA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9796224D-45F2-4C20-9B74-B8D838BEBBA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9796224D-45F2-4C20-9B74-B8D838BEBBA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9796224D-45F2-4C20-9B74-B8D838BEBBA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72139CB0-8794-4851-A288-A55BE9541CB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72139CB0-8794-4851-A288-A55BE9541CB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72139CB0-8794-4851-A288-A55BE9541CB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72139CB0-8794-4851-A288-A55BE9541CB8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C71DE189-504B-463C-B727-1866FF5A3DEE} = {79780B70-D62C-4CEC-9278-976A69F559A9}
+		{9796224D-45F2-4C20-9B74-B8D838BEBBA1} = {79780B70-D62C-4CEC-9278-976A69F559A9}
+		{72139CB0-8794-4851-A288-A55BE9541CB8} = {E8DD814A-83A4-4487-B73F-D4EA6B539586}
+	EndGlobalSection
+EndGlobal
