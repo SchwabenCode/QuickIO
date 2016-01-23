@@ -47,12 +47,12 @@ namespace SchwabenCode.QuickIO
             // Verify not required; System.IO.Path.Combine calls internal path invalid char verifier
 
             // First Element
-            var combinedPath = pathElements[ 0 ];
+            string combinedPath = pathElements[ 0 ];
 
             // Other elements
-            for( var i = 1 ;i < pathElements.Length ;i++ )
+            for( int i = 1 ;i < pathElements.Length ;i++ )
             {
-                var el = pathElements[ i ];
+                string el = pathElements[ i ];
 
                 // Combine
                 combinedPath = System.IO.Path.Combine( combinedPath, el );
