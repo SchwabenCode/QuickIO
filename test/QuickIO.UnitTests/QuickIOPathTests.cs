@@ -6,7 +6,7 @@ namespace SchwabenCode.QuickIO.UnitTests
     public class QuickIOPathTests
     {
         [Theory]
-        [InlineData( "folder1", "folder2" , @"folder1\folder" )]
+        [InlineData( "folder1", "folder2" , @"folder1\folder2" )]
         [InlineData( @"C:\folder1", "folder2" , @"C:\folder1\folder2")]
         [InlineData( @"\\server\share\folder1", "folder2", @"\\server\share\folder1\folder2" )]
         [InlineData( @"C:\temp", "test", @"C:\temp\test" )]
