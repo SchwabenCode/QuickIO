@@ -60,7 +60,7 @@ namespace SchwabenCode.QuickIO
 
         //    if( formatReturn == QuickIOPathType.Regular )
         //    {
-        //        return FullName;
+        //        return Path;
         //    }
         //    return FullNameUnc;
         //}

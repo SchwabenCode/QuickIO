@@ -26,7 +26,7 @@ namespace SchwabenCode.QuickIO.Core
         /// <summary>
         /// Affected full path
         /// </summary>
-        public string FullName { get; private set; }
+        public string Path { get; private set; }
 
         /// <summary>
         /// Exception if path returns another type as excepted
@@ -36,7 +36,7 @@ namespace SchwabenCode.QuickIO.Core
         {
             Estimated = estimated;
             Found = found;
-            FullName = path;
+            Path = path;
         }
     }
 }

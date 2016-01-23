@@ -70,7 +70,7 @@ namespace SchwabenCode.QuickIO
         /// 
         /// foreach ( QuickIODirectoryInfo directoryInfo in allSubFolders )
         /// {
-        ///     Console.WriteLine( "Directory found: {0} Readonly: {1}", directoryInfo.FullName, directoryInfo.IsReadOnly );
+        ///     Console.WriteLine( "Directory found: {0} Readonly: {1}", directoryInfo.Path, directoryInfo.IsReadOnly );
         /// }
         /// </code>
         /// </example>
@@ -148,7 +148,7 @@ namespace SchwabenCode.QuickIO
         /// 
         /// foreach ( QuickIOFileInfo fileInfo in allSubFiles )
         /// {
-        ///     Console.WriteLine( "File found: {0} Readonly: {1}", fileInfo.FullName, fileInfo.IsReadOnly );
+        ///     Console.WriteLine( "File found: {0} Readonly: {1}", fileInfo.Path, fileInfo.IsReadOnly );
         /// }
         ///</code>
         /// </example>
