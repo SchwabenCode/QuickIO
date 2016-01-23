@@ -31,16 +31,19 @@ namespace SchwabenCode.QuickIO.UnitTests
             result.Should().Be( expected );
         }
 
+
+        [Fact]
         public void Combine_ArgumentNullException()
         {
-            QuickIOPath.Combine("", null)
-                .Should()
-                .BeOfType<ArgumentNullException>()
-                .Which.Message.Should()
-                .Be("Cannot be null or empty");
+            Action actionNullParameter = () => QuickIOPath.Combine( "", null );
+            Action actionNoParameter = () => QuickIOPath.Combine();
+
+            actionNullParameter.ShouldThrow<ArgumentNullException>();
+            actionNoParameter.ShouldThrow<ArgumentNullException>();
+
         }
 
-        [ Theory]
+        [Theory]
         [InlineData( null, null )]
         [InlineData( "", "" )]
         [InlineData( @"folder\file", "" )]
@@ -285,6 +288,8 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( @"\\server\share", false )]
         [InlineData( @"\\server\share\", false )]
         [InlineData( @"\\server\share\folder", false )]
+        [InlineData( @"\\?\UNC\", false )]
+        [InlineData( @"\\?\UNC\server\", false )]
         [InlineData( @"\\?\UNC\server\share", true )]
         [InlineData( @"\\?\UNC\server\share\", true )]
         public void IsRootShareUnc( string test, bool expected )
