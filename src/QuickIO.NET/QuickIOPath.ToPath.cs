@@ -74,7 +74,9 @@ namespace SchwabenCode.QuickIO
                 return QuickIOPath.ToLocalPathUnc( path );
             }
 
-            throw new InvalidOperationException( "Unable to identify path type." );
+            // it is already a regular path
+            // or invalid. but will not be checked here
+            return path;
         }
 
         /// <summary>
