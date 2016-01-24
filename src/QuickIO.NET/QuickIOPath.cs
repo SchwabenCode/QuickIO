@@ -36,7 +36,7 @@ namespace SchwabenCode.QuickIO
         public static String Combine( params String[ ] pathElements )
         {
             Contract.Requires( pathElements != null );
-            Contract.Requires( pathElements != null );
+            Contract.Requires( pathElements.Length > 0 );
             Contract.Ensures( !String.IsNullOrWhiteSpace( Contract.Result<String>() ) );
 
             if( pathElements == null || pathElements.Length == 0 )
