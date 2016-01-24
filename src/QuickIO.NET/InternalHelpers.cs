@@ -96,7 +96,7 @@ namespace SchwabenCode.QuickIO
         /// <returns><see cref="FileAttributes"/></returns>
         public static FileAttributes RemoveFileAttribute( FileAttributes source, FileAttributes attr )
         {
-            source &= attr;
+            source &= ~attr;
             return source;
         }
 
