@@ -75,19 +75,19 @@ namespace SchwabenCode.QuickIO
             return path;
         }
 
-        /// <summary>
-        /// Formats a path 
-        /// </summary>
-        /// <param name="pathFormatReturn">Target format type</param>
-        /// <param name="uncPath">Path to format</param>
-        /// <returns>Formatted path</returns>
-        internal static string InternalFormatPathByType( QuickIOPathType pathFormatReturn, string uncPath )
-        {
-            Contract.Requires( !String.IsNullOrWhiteSpace( uncPath ) );
-            Contract.Ensures( Contract.Result<String>() != null );
+        ///// <summary>
+        ///// Formats a path 
+        ///// </summary>
+        ///// <param name="pathFormatReturn">Target format type</param>
+        ///// <param name="uncPath">Path to format</param>
+        ///// <returns>Formatted path</returns>
+        //internal static string InternalFormatPathByType( QuickIOPathType pathFormatReturn, string uncPath )
+        //{
+        //    Contract.Requires( !String.IsNullOrWhiteSpace( uncPath ) );
+        //    Contract.Ensures( Contract.Result<String>() != null );
 
-            return pathFormatReturn == QuickIOPathType.Regular ? ToPathRegular( uncPath ) : uncPath;
-        }
+        //    return pathFormatReturn == QuickIOPathType.Regular ? ToPathRegular( uncPath ) : uncPath;
+        //}
 
         /// <summary>
         /// Converts an unc path to a local regular path
