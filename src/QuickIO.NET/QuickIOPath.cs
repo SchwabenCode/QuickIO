@@ -65,16 +65,26 @@ namespace SchwabenCode.QuickIO
         /// Returns the parent directory path
         ///  </summary>
         /// <param name="path">Path to get the parent</param>
+        /// <remarks>System.IO does not support relative paths here. QuickIO does.</remarks>
         /// <returns>Parent directory or null if parent is root</returns>
         public static String GetDirectoryName( string path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
-            string cleanPath = Clean( path );
+            if( String.IsNullOrWhiteSpace( path ) )
+            {
+                return null;
+            }
+
+            // do here just trim spaces
+            string cleanPath = path.Trim();
 
             if( IsRoot( cleanPath ) )
             {
                 return null;
             }
+
+            // trim again spaces and slashes
+            cleanPath = Clean( path );
 
             int lastDirectorySeparatorChar = cleanPath.LastIndexOf( DirectorySeparatorChar );
             if( lastDirectorySeparatorChar == -1 )
