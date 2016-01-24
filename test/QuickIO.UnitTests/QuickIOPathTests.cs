@@ -333,7 +333,6 @@ namespace SchwabenCode.QuickIO.UnitTests
         }
 
         [Theory]
-        [InlineData( ' ', false )]
         [InlineData( '<', false )]
         [InlineData( '>', false )]
         [InlineData( ':', false )]
@@ -351,6 +350,7 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( 'c', true )]
         [InlineData( '3', true )]
         [InlineData( '.', true )]
+        [InlineData( ' ', true )]
         public void IsValidFolderChar( char test, bool expected )
         {
             QuickIOPath.IsValidFolderChar( test ).Should().Be( expected );
@@ -386,13 +386,6 @@ namespace SchwabenCode.QuickIO.UnitTests
         public void IsValidServerName( string test, bool expected )
         {
             QuickIOPath.IsValidServerName( test ).Should().Be( expected );
-
-        }
-
-        [Fact]
-        public void IsValidServerName()
-        {
-            QuickIOPath.IsValidServerName( new string( 'a', QuickIOPath.MaxFolderNameLength + 1 ) ).Should().Be( false );
 
         }
 
