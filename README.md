@@ -1,10 +1,9 @@
 # QuickIO.NET
 **by [SchwabenCode.com](http://www.schwabencode.com) - [Benjamin Abt](http://www.benjamin-abt.com)**
 
-| CI at AppVeyor  | NuGet Stable | NuGet Pre
-|---|---|---|---|---|
-| master: [![AppVeyor develop](https://img.shields.io/appveyor/ci/BenjaminAbt/QuickIO/master.svg?style=flat-square)](https://ci.appveyor.com/project/BenjaminAbt/quickio) | ![NuGetStable](https://img.shields.io/nuget/v/QuickIO.NET.png?style=flat-square)  | ![NuGetPre](https://img.shields.io/nuget/vpre/QuickIO.NET.png?style=flat-square)
-| develop: [![AppVeyor develop](https://img.shields.io/appveyor/ci/BenjaminAbt/QuickIO/develop.svg?style=flat-square)](https://ci.appveyor.com/project/BenjaminAbt/quickio) | ![NuGetStable](https://img.shields.io/nuget/dt/QuickIO.NET.png?style=flat-square) | | |
+| CI at AppVeyor  | NuGet Stable | NuGet Pre | NuGet Downloads
+|---|---|---|---|---|---|
+| master: [![AppVeyor develop](https://img.shields.io/appveyor/ci/BenjaminAbt/QuickIO/master.svg?style=flat-square)](https://ci.appveyor.com/project/BenjaminAbt/quickio) | ![NuGetStable](https://img.shields.io/nuget/v/QuickIO.NET.png?style=flat-square)  | ![NuGetPre](https://img.shields.io/nuget/vpre/QuickIO.NET.png?style=flat-square) | ![NuGetStable](https://img.shields.io/nuget/dt/QuickIO.NET.png?style=flat-square)
 
 ## Website
 Checkout the official Page [http://quickIO.NET](http://quickIO.NET)
