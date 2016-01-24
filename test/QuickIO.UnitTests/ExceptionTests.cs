@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using SchwabenCode.QuickIO.Core;
+using SchwabenCode.QuickIO.UnitTests.TestClasses;
 using Xunit;
 
 namespace SchwabenCode.QuickIO.UnitTests
@@ -90,24 +91,24 @@ namespace SchwabenCode.QuickIO.UnitTests
             ex.Path.Should().Be( "path" );
         }
 
-        //[Fact]
-        //public void QuickIOBaseExceptionCtor1()
-        //{
-        //    QuickIOBaseException ex = new QuickIOBaseException( "message", "path" );
-        //    ex.Message.Should().Be( "message" );
-        //    ex.Path.Should().Be( "path" );
-        //}
+        [ Fact ]
+        public void QuickIOBaseExceptionCtor1()
+        {
+            QuickIOBaseException ex = new TestExceptionClass( "message", "path" );
+            ex.Message.Should().Be( "message" );
+            ex.Path.Should().Be( "path" );
+        }
 
-        //[Fact]
-        //public void QuickIOBaseExceptionCtor1()
-        //{
-        //    Exception inner = new Exception("InnerExMessage");
+        [Fact]
+        public void QuickIOBaseExceptionCtor2()
+        {
+            Exception inner = new Exception( "InnerExMessage" );
 
-        //    QuickIOBaseException ex = new QuickIOBaseException( "message", "path" , inner );
-        //    ex.Message.Should().Be( "message" );
-        //    ex.Path.Should().Be( "path" );
-        //    ex.InnerException.Should().Be(inner);
-        //}
+            QuickIOBaseException ex = new TestExceptionClass( "message", "path", inner );
+            ex.Message.Should().Be( "message" );
+            ex.Path.Should().Be( "path" );
+            ex.InnerException.Should().Be( inner );
+        }
 
         [Fact]
         public void QuickIOTransferAlreadyRunningExceptionCtor1()
