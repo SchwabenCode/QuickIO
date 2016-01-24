@@ -6,6 +6,7 @@
 using System.IO;
 using SchwabenCode.QuickIO.Core;
 using SchwabenCode.QuickIO.Internal;
+
 namespace SchwabenCode.QuickIO
 {
     public static partial class QuickIODirectory

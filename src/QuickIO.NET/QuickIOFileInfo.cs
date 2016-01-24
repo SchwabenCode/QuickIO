@@ -5,7 +5,6 @@
 
 using System;
 using SchwabenCode.QuickIO.Core;
-using SchwabenCode.QuickIO.Internal;
 using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO

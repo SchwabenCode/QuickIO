@@ -13,7 +13,7 @@ namespace SchwabenCode.QuickIO
     /// <summary>
     /// Directory metadata information
     /// </summary>
-    public sealed partial class QuickIODirectoryMetadata : QuickIOFileSystemMetadataBase
+    public sealed class QuickIODirectoryMetadata : QuickIOFileSystemMetadataBase
     {
         /// <summary>
         /// Creates instance of <see cref="QuickIODirectoryMetadata"/>

@@ -5,7 +5,6 @@
 
 using System;
 using System.Security.Cryptography;
-using SchwabenCode.QuickIO.Internal;
 using System.Diagnostics.Contracts;
 
 namespace SchwabenCode.QuickIO
@@ -90,7 +89,7 @@ namespace SchwabenCode.QuickIO
             }
 
             // then check elements
-            for( var i = 0 ;i < Bytes.Length ;i++ )
+            for( int i = 0 ;i < Bytes.Length ;i++ )
             {
                 if( Bytes[ i ] != chunk.Bytes[ i ] )
                 {
@@ -108,26 +107,35 @@ namespace SchwabenCode.QuickIO
         {
             Contract.Ensures( Contract.Result<QuickIOHashResult>() != null );
 
+            HashAlgorithm hashAlgorithm;
+
             switch( hashImplementationType )
             {
                 case QuickIOHashImplementationType.SHA1:
-                    return CalculateHash( new SHA1Managed() );
+                    hashAlgorithm = new SHA1Managed();
+                    break;
 
                 case QuickIOHashImplementationType.SHA256:
-                    return CalculateHash( new SHA256Managed() );
+                    hashAlgorithm = new SHA256Managed();
+                    break;
 
                 case QuickIOHashImplementationType.SHA384:
-                    return CalculateHash( new SHA384Managed() );
+                    hashAlgorithm = new SHA384Managed();
+                    break;
 
                 case QuickIOHashImplementationType.SHA512:
-                    return CalculateHash( new SHA512Managed() );
+                    hashAlgorithm = new SHA512Managed();
+                    break;
 
                 case QuickIOHashImplementationType.MD5:
-                    return CalculateHash( new MD5CryptoServiceProvider() );
+                    hashAlgorithm = new MD5CryptoServiceProvider();
+                    break;
 
                 default:
                     throw new NotImplementedException( "Type " + hashImplementationType + " not implemented." );
             }
+
+            return CalculateHash( hashAlgorithm );
         }
 
 
@@ -137,8 +145,8 @@ namespace SchwabenCode.QuickIO
         /// <returns><see cref="QuickIOHashResult"/></returns>
         public QuickIOHashResult CalculateHash( HashAlgorithm hashAlgorithm )
         {
-            Contract.Requires(hashAlgorithm != null);
-            Contract.Ensures(Contract.Result<QuickIOHashResult>() != null);
+            Contract.Requires( hashAlgorithm != null );
+            Contract.Ensures( Contract.Result<QuickIOHashResult>() != null );
 
             return new QuickIOHashResult( hashAlgorithm.ComputeHash( Bytes ) );
         }

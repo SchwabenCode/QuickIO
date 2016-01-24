@@ -5,7 +5,6 @@
 
 using System;
 using System.Diagnostics.Contracts;
-using System.IO;
 using System.Threading;
 namespace SchwabenCode.QuickIO
 {
