@@ -64,8 +64,14 @@ namespace SchwabenCode.QuickIO
             }
             set
             {
-                // Force Attribute Existance
-                InternalHelpers.ForceFileAttributesExistance( Attributes, FileAttributes.ReadOnly, value );
+                if( value )
+                {
+                    InternalHelpers.AddFileAttrribute( Attributes, FileAttributes.ReadOnly );
+                }
+                else
+                {
+                    InternalHelpers.RemoveFileAttribute( Attributes, FileAttributes.ReadOnly );
+                }
 
                 // Commit current attributes
                 InternalQuickIO.SetAttributes( PathInfo.FullNameUnc, Attributes );
@@ -92,9 +98,9 @@ namespace SchwabenCode.QuickIO
             {
                 return Exists;
             }
-            catch ( UnmatchedFileSystemEntryTypeException )
+            catch( UnmatchedFileSystemEntryTypeException )
             {
-                if ( throwExceptionIfFileSystemEntryTypeDiffers )
+                if( throwExceptionIfFileSystemEntryTypeDiffers )
                 {
                     return exceptionValue;
                 }
@@ -130,7 +136,7 @@ namespace SchwabenCode.QuickIO
         /// <returns><see cref="QuickIOFileSystemSecurity"/></returns>
         public QuickIOFileSystemSecurity GetFileSystemSecurity()
         {
-            return PathInfo.GetFileSystemSecurity( );
+            return PathInfo.GetFileSystemSecurity();
         }
 
         /// <summary>
@@ -154,7 +160,7 @@ namespace SchwabenCode.QuickIO
         {
             get
             {
-                if ( PathInfo.IsRoot )
+                if( PathInfo.IsRoot )
                 {
                     throw new NotSupportedException( "Root directory does not provide time access" );
                 }
@@ -162,7 +168,7 @@ namespace SchwabenCode.QuickIO
             }
             protected set
             {
-                if ( PathInfo.IsRoot )
+                if( PathInfo.IsRoot )
                 {
                     throw new NotSupportedException( "Root directory does not provide time access" );
                 }
@@ -177,7 +183,7 @@ namespace SchwabenCode.QuickIO
         {
             get
             {
-                if ( PathInfo.IsRoot )
+                if( PathInfo.IsRoot )
                 {
                     throw new NotSupportedException( "Root directory does not provide time access" );
                 }
@@ -185,7 +191,7 @@ namespace SchwabenCode.QuickIO
             }
             protected set
             {
-                if ( PathInfo.IsRoot )
+                if( PathInfo.IsRoot )
                 {
                     throw new NotSupportedException( "Root directory does not provide time access" );
                 }
@@ -200,7 +206,7 @@ namespace SchwabenCode.QuickIO
         {
             get
             {
-                if ( PathInfo.IsRoot )
+                if( PathInfo.IsRoot )
                 {
                     throw new NotSupportedException( "Root directory does not provide time access" );
                 }
@@ -208,7 +214,7 @@ namespace SchwabenCode.QuickIO
             }
             protected set
             {
-                if ( PathInfo.IsRoot )
+                if( PathInfo.IsRoot )
                 {
                     throw new NotSupportedException( "Root directory does not provide time access" );
                 }
@@ -222,17 +228,17 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Gets the creation time
         /// </summary>
-        public DateTime CreationTime { get { return CreationTimeUtc.ToLocalTime( ); } }
+        public DateTime CreationTime { get { return CreationTimeUtc.ToLocalTime(); } }
 
         /// <summary>
         /// Gets the time that the  file was last accessed
         /// </summary>
-        public DateTime LastAccessTime { get { return LastAccessTimeUtc.ToLocalTime( ); } }
+        public DateTime LastAccessTime { get { return LastAccessTimeUtc.ToLocalTime(); } }
 
         /// <summary>
         /// Gets the time the file was last written to.
         /// </summary>
-        public DateTime LastWriteTime { get { return LastWriteTimeUtc.ToLocalTime( ); } }
+        public DateTime LastWriteTime { get { return LastWriteTimeUtc.ToLocalTime(); } }
         #endregion
         #endregion
 
@@ -258,7 +264,7 @@ namespace SchwabenCode.QuickIO
         /// <returns><see cref="NTAccount"/></returns>
         public NTAccount GetOwner()
         {
-            return PathInfo.GetOwner( );
+            return PathInfo.GetOwner();
         }
 
         /// <summary>
@@ -267,7 +273,7 @@ namespace SchwabenCode.QuickIO
         /// <returns><see cref="IdentityReference"/></returns>
         public IdentityReference GetOwnerIdentifier()
         {
-            return PathInfo.GetOwnerIdentifier( );
+            return PathInfo.GetOwnerIdentifier();
         }
 
         /// <summary>
