@@ -7,7 +7,6 @@ using System;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using SchwabenCode.QuickIO.Core;
-using SchwabenCode.QuickIO.Internal;
 
 namespace SchwabenCode.QuickIO
 {
@@ -83,12 +82,6 @@ namespace SchwabenCode.QuickIO
             if( path == null )
             {
                 return null;
-            }
-
-            // The System.IO behavior is to "" null on invalid path
-            if( !IsPath( path ) )
-            {
-                return String.Empty;
             }
 
             // Return C:\
@@ -190,7 +183,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <remarks>Returns false if path is invalid for this operation</remarks>
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
-        public static Boolean TryGetServerAndShareNameFromLocation( string path, QuickIOPathType shouldBe, out string serverName, out string shareName )
+        internal static Boolean TryGetServerAndShareNameFromLocation( string path, QuickIOPathType shouldBe, out string serverName, out string shareName )
         {
             serverName = null;
             shareName = null;
