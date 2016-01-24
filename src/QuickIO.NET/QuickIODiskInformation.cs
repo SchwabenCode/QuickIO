@@ -10,7 +10,7 @@ namespace SchwabenCode.QuickIO
     /// <summary>
     /// Disk metadata information
     /// </summary>
-    public sealed partial class QuickIODiskInformation
+    public sealed class QuickIODiskInformation
     {
         internal QuickIODiskInformation( UInt64 freeBytes, UInt64 totalBytes, UInt64 totalFreeBytes )
         {
@@ -22,16 +22,16 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Total available number of bytes for the user who executed the API call.
         /// </summary>
-        public UInt64 FreeBytes { get; private set; }
+        public UInt64 FreeBytes { get;}
 
         /// <summary>
         /// Total bytes of share
         /// </summary>
-        public UInt64 TotalBytes { get; private set; }
+        public UInt64 TotalBytes { get; }
 
         /// <summary>
         /// Total free bytes for all users
         /// </summary>
-        public UInt64 TotalFreeBytes { get; private set; }
+        public UInt64 TotalFreeBytes { get;  }
     }
 }
