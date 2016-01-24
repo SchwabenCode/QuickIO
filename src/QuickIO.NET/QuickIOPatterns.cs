@@ -68,15 +68,15 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         public const String RegularSharePattern = @"(?<Fullname>" + RegularShareRootPattern + @"\\{0,1}(?<Path>((\\(" + FolderNamePattern + @")){0,})))" + OptionalSperatorPattern;
 
-        /// <summary>
-        /// Returns ^<paramref name="pattern"/>$
-        /// </summary>
-        public static String GetStrict( String pattern )
-        {
-            Contract.Requires( pattern != null );
-            Contract.Ensures( Contract.Result<string>() != null );
+        ///// <summary>
+        ///// Returns ^<paramref name="pattern"/>$
+        ///// </summary>
+        //public static String GetStrict( String pattern )
+        //{
+        //    Contract.Requires( pattern != null );
+        //    Contract.Ensures( Contract.Result<string>() != null );
 
-            return "^" + pattern + "$";
-        }
+        //    return "^" + pattern + "$";
+        //}
     }
 }
