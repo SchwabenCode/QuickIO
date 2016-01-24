@@ -41,6 +41,9 @@ namespace SchwabenCode.QuickIO.UnitTests
 
             InternalHelpers.TryRemoveFileAttrribute( attr, FileAttributes.System, out attr ).Should().BeTrue( "First remove failed" );
             InternalHelpers.ContainsFileAttribute( attr, FileAttributes.System ).Should().Be( false, "First test failed" );
+
+            InternalHelpers.TryRemoveFileAttrribute( attr, FileAttributes.System, out attr ).Should().BeFalse( "Second remove failed" );
+            InternalHelpers.ContainsFileAttribute( attr, FileAttributes.System ).Should().Be( false, "First test failed" );
         }
 
         [Fact]
