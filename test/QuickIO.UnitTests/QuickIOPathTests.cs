@@ -7,7 +7,7 @@ namespace SchwabenCode.QuickIO.UnitTests
     public class QuickIOPathTests
     {
         [Fact]
-        public void GetRandomFileName( )
+        public void GetRandomFileName()
         {
             string test = QuickIOPath.GetRandomFileName();
             test.Should().NotBeNullOrEmpty();
@@ -81,15 +81,25 @@ namespace SchwabenCode.QuickIO.UnitTests
 
 
         [Theory]
-        [InlineData( @"C:\", null )]
-        [InlineData( @"\\server", null )]
-        [InlineData( @" C:\ ", null )]
-        [InlineData( @" \\server\share ", null )]
-        [InlineData( @"C:\folder\text.txt", @"C:\folder" )]
-        [InlineData( @"folder\text.txt", @"folder" )]
-        public void GetDirectoryName( string test, string expected )
+        [InlineData( "", null, true )]
+        [InlineData( " ", null, true )]
+        [InlineData( null, null, false )]
+        [InlineData( @"C:\", null, false )]
+        [InlineData( @" C:\ ", null, false )]
+        [InlineData( @"\server", null, true )]
+        [InlineData( @" \\server\share ", null, false )]
+
+        [InlineData( @"C:\folder\text.txt", @"C:\folder", false )]
+        [InlineData( @"folder\text.txt", "folder", true )]
+        public void GetDirectoryName( string test, string expected, bool differsFromSystemIO )
         {
-            QuickIOPath.GetDirectoryName( test ).Should().Be( expected );
+            string result = QuickIOPath.GetDirectoryName( test );
+            result.Should().Be( expected );
+
+            if( !differsFromSystemIO )
+            {
+                result.Should().Be( System.IO.Path.GetDirectoryName( test ), "Syste.IO differs" );
+            }
         }
 
         [Theory]
