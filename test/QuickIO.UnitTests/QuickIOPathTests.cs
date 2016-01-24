@@ -6,6 +6,14 @@ namespace SchwabenCode.QuickIO.UnitTests
 {
     public class QuickIOPathTests
     {
+        [Fact]
+        public void GetRandomFileName( )
+        {
+            string test = QuickIOPath.GetRandomFileName();
+            test.Should().NotBeNullOrEmpty();
+            test.Should().NotBeNullOrWhiteSpace();
+        }
+
         [Theory]
         [InlineData( "folder1", "folder1" )]
         [InlineData( null, null )]
@@ -46,6 +54,7 @@ namespace SchwabenCode.QuickIO.UnitTests
         [Theory]
         [InlineData( null, null )]
         [InlineData( "", "" )]
+        [InlineData( @"dsadasdasdasdasd", "" )]
         [InlineData( @"folder\file", "" )]
         [InlineData( @"C:\", @"C:\" )]
         [InlineData( @"C:\folder", @"C:\" )]
@@ -73,7 +82,9 @@ namespace SchwabenCode.QuickIO.UnitTests
 
         [Theory]
         [InlineData( @"C:\", null )]
-        [InlineData( "\\server", null )]
+        [InlineData( @"\\server", null )]
+        [InlineData( @" C:\ ", null )]
+        [InlineData( @" \\server\share ", null )]
         [InlineData( @"C:\folder\text.txt", @"C:\folder" )]
         [InlineData( @"folder\text.txt", @"folder" )]
         public void GetDirectoryName( string test, string expected )
@@ -116,6 +127,8 @@ namespace SchwabenCode.QuickIO.UnitTests
         [Theory]
         [InlineData( @"C:", false )]
         [InlineData( @"1:", false )]
+        [InlineData( @"\\*\*", false )]
+        [InlineData( @"\\?\UNC\*\*\", false )]
         [InlineData( @"\\server\name", false )]
         [InlineData( @"\\?\UNC\\server\name", false )]
         [InlineData( @"\\?\C:\", false )]
@@ -142,6 +155,8 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( @"c:\sadasd", false )]
         [InlineData( @"\\server\", false )]
         [InlineData( @"\\?\UNC\server\name", false )]
+        [InlineData( @"\\*\*", false )]
+        [InlineData( @"\\?\UNC\*\*\", false )]
         [InlineData( @"\\server\name", true )]
         [InlineData( @"\\server\name\", true )]
         [InlineData( @"\\server\name\folder", true )]
@@ -153,6 +168,8 @@ namespace SchwabenCode.QuickIO.UnitTests
 
         [Theory]
         [InlineData( @"\\server\name", false )]
+        [InlineData( @"\\*\*", false )]
+        [InlineData( @"\\?\UNC\*\*\", false )]
         [InlineData( @"\\?\C:", false )]
         [InlineData( @"\\?\C:\", false )]
         [InlineData( @"\\?\c:\", false )]
@@ -173,6 +190,8 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( @"\\server\", false )]
         [InlineData( @"C", false )]
         [InlineData( @"C:\", false )]
+        [InlineData( @"\\*\*", false )]
+        [InlineData( @"\\?\UNC\*\*\", false )]
         [InlineData( @"\\server\share", false )]
         [InlineData( @"\\server\share\", false )]
         [InlineData( @"\\?\C:\", true )]
@@ -185,6 +204,8 @@ namespace SchwabenCode.QuickIO.UnitTests
 
         [Theory]
         [InlineData( @"", false )]
+        [InlineData( @"\\*\*", false )]
+        [InlineData( @"\\?\UNC\*\*\", false )]
         [InlineData( @"\\server\", false )]
         [InlineData( @"C", false )]
         [InlineData( @"C:\", false )]
@@ -245,6 +266,8 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( @"C:\", false )]
         [InlineData( @"C:\folder", false )]
         [InlineData( @"1:", false )]
+        [InlineData( @"\\*\*", false )]
+        [InlineData( @"\\?\UNC\*\*\", false )]
         [InlineData( @"\\server\share", false )]
         [InlineData( @"\\server\share\", false )]
         [InlineData( @"\\server\share\folder", false )]
@@ -262,6 +285,8 @@ namespace SchwabenCode.QuickIO.UnitTests
         [Theory]
         [InlineData( null, false )]
         [InlineData( "", false )]
+        [InlineData( @"\\*\*", false )]
+        [InlineData( @"\\?\UNC\*\*\", false )]
         [InlineData( @"\\?\C:", false )]
         [InlineData( @"\\?\C:\", false )]
         [InlineData( @"\\?\c:\", false )]
@@ -280,6 +305,8 @@ namespace SchwabenCode.QuickIO.UnitTests
         [Theory]
         [InlineData( null, false )]
         [InlineData( "", false )]
+        [InlineData( @"\\*\*", false )]
+        [InlineData( @"\\?\UNC\*\*\", false )]
         [InlineData( @"\\?\C:", false )]
         [InlineData( @"\\?\C:\", false )]
         [InlineData( @"\\?\c:\", false )]
@@ -401,15 +428,27 @@ namespace SchwabenCode.QuickIO.UnitTests
         }
 
         [Theory]
-        [InlineData( @"\\serverName\shareName", "serverName", "shareName" )]
-        public void TryGetServerAndShareNameFromLocation( string test, string serverNameExpected, string shareNameExpected )
+        [InlineData( @"\\serverName\shareName", "serverName", "shareName", true )]
+        public void TryGetServerAndShareNameFromLocation( string test, string serverNameExpected, string shareNameExpected, bool parseResultExpected )
         {
             string serverName, shareName;
 
-            QuickIOPath.TryGetServerAndShareNameFromLocation( test, QuickIOPathType.Regular, out serverName, out shareName ).Should().BeTrue();
+            QuickIOPath.TryGetServerAndShareNameFromLocation( test, QuickIOPathType.Regular, out serverName, out shareName ).Should().Be( parseResultExpected );
             serverName.Should().Be( serverNameExpected );
             shareName.Should().Be( shareNameExpected );
         }
+
+        [Theory]
+        [InlineData( @"\\?\UNC\serverName\shareName\folder\file.txt", @"\\?\UNC\serverName\shareName", true )]
+        [InlineData( @"\\serverName\shareName\folder\file.txt", null, false )]
+        public void TryGetShareUncRootPath( string test, string rootExpected, bool parseResultExpected )
+        {
+            string root;
+
+            QuickIOPath.TryGetShareUncRootPath( test, out root ).Should().Be( parseResultExpected );
+            root.Should().Be( rootExpected );
+        }
+
 
         [Theory]
         [InlineData( @"C:\test\path", @"C:\test\path" )]
