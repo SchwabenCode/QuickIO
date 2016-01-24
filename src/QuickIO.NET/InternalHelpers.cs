@@ -78,7 +78,7 @@ namespace SchwabenCode.QuickIO
         /// <returns>True if attributes updated</returns>
         public static Boolean TryRemoveFileAttrribute( FileAttributes source, FileAttributes attr, out FileAttributes updatedSource )
         {
-            if (ContainsFileAttribute(source, attr))
+            if (!ContainsFileAttribute(source, attr))
             {
                 updatedSource = source;
                 return false;
