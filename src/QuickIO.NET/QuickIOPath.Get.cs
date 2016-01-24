@@ -118,7 +118,7 @@ namespace SchwabenCode.QuickIO
             }
 
             // The System.IO behavior is to return "" on invalid path
-            return String.Empty;
+            return "";
         }
 
         /// <summary>
