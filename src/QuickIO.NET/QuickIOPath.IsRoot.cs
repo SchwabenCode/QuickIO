@@ -145,7 +145,15 @@ namespace SchwabenCode.QuickIO
             // strip information
             string serverName;
             string shareName;
-            if( !TryGetServerAndShareNameFromLocation( path, QuickIOPathType.UNC, out serverName, out shareName ) )
+            string[ ] pathElements;
+            if( !TryParseShare( path, QuickIOPathType.UNC, out serverName, out shareName, out pathElements ) )
+            {
+                return false;
+            }
+
+            // check location
+            // if location is present it is no root
+            if( pathElements != null && pathElements.Length > 0 )
             {
                 return false;
             }

@@ -128,7 +128,7 @@ namespace SchwabenCode.QuickIO
             // strip information
             string serverName;
             string shareName;
-            if( !TryGetServerAndShareNameFromLocation( location, QuickIOPathType.Regular, out serverName, out shareName ) )
+            if( !TryParseShare( location, QuickIOPathType.Regular, out serverName, out shareName ) )
             {
                 return false;
             }
@@ -170,7 +170,7 @@ namespace SchwabenCode.QuickIO
             // strip information
             string serverName;
             string shareName;
-            if( !TryGetServerAndShareNameFromLocation( path, QuickIOPathType.UNC, out serverName, out shareName ) )
+            if( !TryParseShare( path, QuickIOPathType.UNC, out serverName, out shareName ) )
             {
                 return false;
             }

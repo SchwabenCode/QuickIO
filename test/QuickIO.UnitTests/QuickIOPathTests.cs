@@ -329,6 +329,8 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( @"\\?\UNC\server\", false )]
         [InlineData( @"\\?\UNC\server\share", true )]
         [InlineData( @"\\?\UNC\server\share\", true )]
+        [InlineData( @"\\?\UNC\server\share\folder", false )]
+        [InlineData( @"\\?\UNC\server\share\folder\", false )]
         public void IsRootShareUnc( string test, bool expected )
         {
             QuickIOPath.IsRootShareUnc( test ).Should().Be( expected );
@@ -443,7 +445,7 @@ namespace SchwabenCode.QuickIO.UnitTests
         {
             string serverName, shareName;
 
-            QuickIOPath.TryGetServerAndShareNameFromLocation( test, QuickIOPathType.Regular, out serverName, out shareName ).Should().Be( parseResultExpected );
+            QuickIOPath.TryParseShare( test, QuickIOPathType.Regular, out serverName, out shareName ).Should().Be( parseResultExpected );
             serverName.Should().Be( serverNameExpected );
             shareName.Should().Be( shareNameExpected );
         }

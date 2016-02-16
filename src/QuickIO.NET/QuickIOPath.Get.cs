@@ -5,6 +5,7 @@
 
 using System;
 using System.Diagnostics.Contracts;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using SchwabenCode.QuickIO.Core;
 
@@ -151,7 +152,7 @@ namespace SchwabenCode.QuickIO
         {
             string serverName;
             string shareName;
-            if( IsShareRegular( path ) && TryGetServerAndShareNameFromLocation( path, QuickIOPathType.Regular, out serverName, out shareName ) )
+            if( IsShareRegular( path ) && TryParseShare( path, QuickIOPathType.Regular, out serverName, out shareName ) )
             {
                 root = $@"{RegularSharePathPrefix}{serverName}\{shareName}";
                 return true;
@@ -168,7 +169,7 @@ namespace SchwabenCode.QuickIO
         {
             string serverName;
             string shareName;
-            if( IsShareUnc( path ) && TryGetServerAndShareNameFromLocation( path, QuickIOPathType.UNC, out serverName, out shareName ) )
+            if( IsShareUnc( path ) && TryParseShare( path, QuickIOPathType.UNC, out serverName, out shareName ) )
             {
                 root = $@"{UncSharePathPrefix}{serverName}\{shareName}";
                 return true;
@@ -183,10 +184,22 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <remarks>Returns false if path is invalid for this operation</remarks>
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
-        internal static Boolean TryGetServerAndShareNameFromLocation( string path, QuickIOPathType shouldBe, out string serverName, out string shareName )
+        internal static Boolean TryParseShare( string path, QuickIOPathType shouldBe, out string serverName, out string shareName )
+        {
+            string[ ] pathElements;
+            return TryParseShare( path, shouldBe, out serverName, out shareName, out pathElements );
+        }
+
+        /// <summary>
+        /// Strips server and share from given path
+        /// </summary>
+        /// <remarks>Returns false if path is invalid for this operation</remarks>
+        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        internal static Boolean TryParseShare( string path, QuickIOPathType shouldBe, out string serverName, out string shareName, out string[ ] pathElements )
         {
             serverName = null;
             shareName = null;
+            pathElements = null;
 
             // Validate input
             if( String.IsNullOrWhiteSpace( path ) )
@@ -209,6 +222,7 @@ namespace SchwabenCode.QuickIO
 
             serverName = names[ 0 ];
             shareName = names[ 1 ];
+            pathElements = names.Skip( 2 ).ToArray();
             return true;
         }
     }
