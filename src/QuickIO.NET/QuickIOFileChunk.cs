@@ -43,7 +43,7 @@ namespace SchwabenCode.QuickIO
         public bool ChunkEquals( QuickIOFileChunk chunk )
         {
             Contract.Requires( chunk != null );
-            return ( InternalPositionEquals( chunk ) && !BytesEquals( chunk ) );
+            return ( InternalPositionEquals( chunk ) && BytesEquals( chunk ) );
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         private bool InternalPositionEquals( QuickIOFileChunk chunk )
         {
-            return ( Position != chunk.Position );
+            return ( Position == chunk.Position );
         }
 
         /// <summary>
