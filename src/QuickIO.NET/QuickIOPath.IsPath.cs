@@ -4,11 +4,8 @@
 // <author>Benjamin Abt</author>
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace SchwabenCode.QuickIO
 {
@@ -17,7 +14,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Checks if given path starts with a known root path
         /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static Boolean IsRelative( string path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
@@ -30,7 +27,7 @@ namespace SchwabenCode.QuickIO
         /// Returns true if given path is <see cref="IsLocal(string)"/> or <see cref="IsShare(string)"/>
         /// </summary>
         /// <remarks>Will return true on C:\ but will return false on C:\folderName</remarks>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static bool IsPath( string path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
@@ -42,7 +39,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Checks if given path matches C:\ or X:\ ...
         /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static Boolean IsLocal( string path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
@@ -54,7 +51,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Checks if given path matches C:\ or X:\ ...
         /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static Boolean IsShare( string path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
@@ -66,7 +63,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Checks if given path matches C:\ or X:\ ...
         /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static Boolean IsLocalRegular( string path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
@@ -83,7 +80,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Checks if given path matches  \\?\C:\ or \\?\X:\ ...
         /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static Boolean IsLocalUnc( string path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
@@ -100,7 +97,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Checks if given path matches  \\s\s
         /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static Boolean IsShareRegular( string path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
@@ -140,7 +137,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// True if <param name="path" /> starts with <see cref="UncLocalPathPrefix"/> or <see cref="UncLocalPathPrefix"/>
         /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static bool IsUnc( string path )
         {
             return ( IsShareUnc( path ) || IsLocalUnc( path ) );
@@ -150,7 +147,7 @@ namespace SchwabenCode.QuickIO
         /// Checks if given path matches \\?\UNC\server\name
         /// </summary>
         /// <remarks>Min length: \\?\UNC\s\s</remarks>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static Boolean IsShareUnc( string path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
@@ -185,7 +182,7 @@ namespace SchwabenCode.QuickIO
         /// Checks if given path starts with expected prefix and has min length
         /// </summary>
         /// <remarks>Internal = no validation</remarks>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         internal static Boolean InternalStartsWithExpected( string path, String prefix )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );

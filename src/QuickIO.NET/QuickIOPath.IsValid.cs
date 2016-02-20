@@ -19,7 +19,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>Ignores Unix File Systems</remarks>
         /// <param name="name">Name to check</param>
         /// <exception cref="InvalidPathException">If invalid character found</exception>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static bool IsValidFolderName( String name )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( name ) );
@@ -57,7 +57,7 @@ namespace SchwabenCode.QuickIO
         /// returns true if char is invalid for a folder name
         /// </summary>
         /// <remarks>https://msdn.microsoft.com/en-us/library/windows/desktop/aa365247(v=vs.85).aspx#naming_conventions</remarks>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static Boolean IsValidFolderChar( char c )
         {
             // TODO: think about whitelisting instead of blacklisting
@@ -82,7 +82,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Checks if given char is a valid windows drive letter
         /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static bool IsValidDriveLetter( char c )
         {
             // hint: older versions of windows were able to allow [:\ but current systems won't!
@@ -92,7 +92,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Verifies server name
         /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static bool IsValidServerName( string serverName )
         {
             if( String.IsNullOrWhiteSpace( serverName ) )
@@ -107,7 +107,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// returns true if char is valid for a server name
         /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static bool IsValidServerNameChar( char c )
         {
             // TODO: constant
@@ -119,7 +119,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Returns true if share name is valid
         /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static bool IsValidShareName( string serverName )
         {
             if( String.IsNullOrWhiteSpace( serverName ) )
@@ -134,7 +134,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Returns true if char is valid for a share name
         /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static bool IsValidShareNameChar( char c )
         {
             // TODO: constant

@@ -14,7 +14,7 @@ namespace SchwabenCode.QuickIO
         /// Returns true if given path is <see cref="IsRootLocal(string)"/> or <see cref="IsRootLocalRegular(string)"/>
         /// </summary>
         /// <remarks>Will return true on C:\ but will return false on C:\folderName</remarks>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static bool IsRoot( string path )
         {
             // Local checks
@@ -24,7 +24,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Checks if given path is local root
         /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static bool IsRootLocal( string path )
         {
             return ( IsRootLocalRegular( path ) || IsRootLocalUnc( path ) );
@@ -33,7 +33,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Checks if given path is share root
         /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static bool IsRootShare( string path )
         {
             return ( IsRootShareRegular( path ) || IsRootShareUnc( path ) );
@@ -42,7 +42,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Checks if given path matches C:\ or X:\ ...
         /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static bool IsRootLocalRegular( string path )
         {
             // Validate input
@@ -61,7 +61,7 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Checks if given path matches  \\?\C:\ or \\?\X:\ ...
         /// </summary>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static bool IsRootLocalUnc( string path )
         {
             // Validate input
@@ -83,7 +83,7 @@ namespace SchwabenCode.QuickIO
         /// Checks if given path matches \\server\name
         /// </summary>
         /// <remarks>Min length: \\s\s</remarks>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static Boolean IsRootShareRegular( string path )
         {
             // Validate input
@@ -127,7 +127,7 @@ namespace SchwabenCode.QuickIO
         /// Checks if given path matches \\?\UNC\server\name
         /// </summary>
         /// <remarks>Min length: \\?\UNC\s\s</remarks>
-        [MethodImpl( MethodImplOptions.AggressiveInlining )]
+        [MethodImpl( 256 )]
         public static bool IsRootShareUnc( string path )
         {
             // Validate input
