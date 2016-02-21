@@ -52,7 +52,7 @@ namespace SchwabenCode.QuickIO
         ///     using ( var fs = OpenRead( pathInfo ) )
         ///     using ( var hashAlgorithm = SHA256.Create( ) )
         ///     {
-        ///         return CalculateHash( hashAlgorithm, fs );
+        ///         return Calculate( hashAlgorithm, fs );
         ///     }
         /// }
         /// </code>

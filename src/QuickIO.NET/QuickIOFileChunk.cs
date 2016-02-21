@@ -100,55 +100,18 @@ namespace SchwabenCode.QuickIO
             return true;
         }
 
-        /// <summary>
-        /// File chunk hash calculation
-        /// </summary>
-        public QuickIOHashResult CalculateHash( QuickIOHashImplementationType hashImplementationType )
-        {
-            Contract.Ensures( Contract.Result<QuickIOHashResult>() != null );
-
-            HashAlgorithm hashAlgorithm;
-
-            switch( hashImplementationType )
-            {
-                case QuickIOHashImplementationType.SHA1:
-                    hashAlgorithm = new SHA1Managed();
-                    break;
-
-                case QuickIOHashImplementationType.SHA256:
-                    hashAlgorithm = new SHA256Managed();
-                    break;
-
-                case QuickIOHashImplementationType.SHA384:
-                    hashAlgorithm = new SHA384Managed();
-                    break;
-
-                case QuickIOHashImplementationType.SHA512:
-                    hashAlgorithm = new SHA512Managed();
-                    break;
-
-                case QuickIOHashImplementationType.MD5:
-                    hashAlgorithm = new MD5CryptoServiceProvider();
-                    break;
-
-                default:
-                    throw new NotImplementedException( "Type " + hashImplementationType + " not implemented." );
-            }
-
-            return CalculateHash( hashAlgorithm );
-        }
+      
 
 
         /// <summary>
         /// File chunk hash calculation
         /// </summary>
         /// <returns><see cref="QuickIOHashResult"/></returns>
-        public QuickIOHashResult CalculateHash( HashAlgorithm hashAlgorithm )
+        public QuickIOHashResult CalculateHash( QuickIOHashImplementationType hashImplementationType )
         {
-            Contract.Requires( hashAlgorithm != null );
             Contract.Ensures( Contract.Result<QuickIOHashResult>() != null );
 
-            return new QuickIOHashResult( hashAlgorithm.ComputeHash( Bytes ) );
+            return QuickIOHash.Calculate( hashImplementationType, Bytes );
         }
 
         /// <summary>
