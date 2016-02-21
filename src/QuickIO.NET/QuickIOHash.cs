@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// <copyright company="Benjamin Abt ( http://www.benjamin-abt.com - http://quickIO.NET )">
+//      Copyright (c) 2016 Benjamin Abt Rights Reserved - DO NOT REMOVE OR EDIT COPYRIGHT
+// </copyright>
+// <author>Benjamin Abt</author>
+
+using System;
 using System.Diagnostics.Contracts;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SchwabenCode.QuickIO
 {
@@ -18,6 +20,9 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         public static QuickIOHashResult Calculate( QuickIOHashImplementationType hashImplementationType, string content, Encoding encoding = null )
         {
+            Contract.Requires( !String.IsNullOrEmpty( content ) );
+            Contract.Ensures( Contract.Result<QuickIOHashResult>() != null );
+
             encoding = encoding ?? Encoding.UTF8;
             return Calculate( hashImplementationType, encoding.GetBytes( content ) );
         }
