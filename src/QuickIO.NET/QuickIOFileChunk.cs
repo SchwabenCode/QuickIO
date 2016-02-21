@@ -100,76 +100,18 @@ namespace SchwabenCode.QuickIO
             return true;
         }
 
-      
 
 
-        /// <summary>
-        /// File chunk hash calculation
-        /// </summary>
-        /// <returns><see cref="QuickIOHashResult"/></returns>
-        public QuickIOHashResult CalculateHash( QuickIOHashImplementationType hashImplementationType )
-        {
-            Contract.Ensures( Contract.Result<QuickIOHashResult>() != null );
-
-            return QuickIOHash.Calculate( hashImplementationType, Bytes );
-        }
 
         /// <summary>
         /// File chunk hash calculation
         /// </summary>
         /// <returns><see cref="QuickIOHashResult"/></returns>
-        public QuickIOHashResult CalculateSha1Hash()
+        public QuickIOHashResult CalculateHash( HashAlgorithm algorithm )
         {
             Contract.Ensures( Contract.Result<QuickIOHashResult>() != null );
-            return CalculateHash( QuickIOHashImplementationType.SHA1 );
-        }
 
-        /// <summary>
-        /// File chunk hash calculation
-        /// </summary>
-        /// <returns><see cref="QuickIOHashResult"/></returns>
-        public QuickIOHashResult CalculateSha256Hash( QuickIOPathInfo pathInfo )
-        {
-            Contract.Requires( pathInfo != null );
-            Contract.Ensures( Contract.Result<QuickIOHashResult>() != null );
-
-            return CalculateHash( QuickIOHashImplementationType.SHA256 );
-        }
-
-        /// <summary>
-        /// File chunk hash calculation
-        /// </summary>
-        /// <returns><see cref="QuickIOHashResult"/></returns>
-        public QuickIOHashResult CalculateSha384Hash( QuickIOPathInfo pathInfo )
-        {
-            Contract.Requires( pathInfo != null );
-            Contract.Ensures( Contract.Result<QuickIOHashResult>() != null );
-
-            return CalculateHash( QuickIOHashImplementationType.SHA384 );
-        }
-
-        /// <summary>
-        /// File chunk hash calculation
-        /// </summary>
-        /// <returns><see cref="QuickIOHashResult"/></returns>
-        public QuickIOHashResult CalculateSha512Hash( QuickIOPathInfo pathInfo )
-        {
-            Contract.Requires( pathInfo != null );
-            Contract.Ensures( Contract.Result<QuickIOHashResult>() != null );
-
-            return CalculateHash( QuickIOHashImplementationType.SHA512 );
-        }
-
-        /// <summary>
-        /// File chunk hash calculation
-        /// </summary>
-        /// <returns><see cref="QuickIOHashResult"/></returns>
-        public QuickIOHashResult CalculateMD5Hash( QuickIOPathInfo pathInfo )
-        {
-            Contract.Requires( pathInfo != null );
-            Contract.Ensures( Contract.Result<QuickIOHashResult>() != null );
-
-            return CalculateHash( QuickIOHashImplementationType.MD5 );
+            return QuickIOHash.Calculate( algorithm, Bytes );
         }
     }
 }
