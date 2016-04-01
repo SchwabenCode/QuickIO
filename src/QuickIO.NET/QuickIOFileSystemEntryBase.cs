@@ -34,11 +34,12 @@ namespace SchwabenCode.QuickIO
             if( findData != null )
             {
                 this.Attributes = findData.dwFileAttributes;
+                //Changed to allow paths which do not exist:
+                _lastWriteTimeUtc = FindData.GetLastWriteTimeUtc();
+                _lastAccessTimeUtc = findData.GetLastAccessTimeUtc();
+                _creationTimeUtc = findData.GetCreationTimeUtc();
             }
 
-            _lastWriteTimeUtc = FindData.GetLastWriteTimeUtc();
-            _lastAccessTimeUtc = findData.GetLastAccessTimeUtc();
-            _creationTimeUtc = findData.GetCreationTimeUtc();
         }
         #endregion
 

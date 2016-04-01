@@ -37,7 +37,8 @@ namespace SchwabenCode.QuickIO
         internal QuickIOPathInfo( string fullpath, Win32FindData win32FindData )
         {
             Contract.Requires( fullpath != null );
-            Contract.Requires( win32FindData != null );
+            //Changed to allow paths which do not exist:
+            //Contract.Requires( win32FindData != null );
 
             this.FindData = win32FindData;
 

@@ -1,10 +1,10 @@
 ﻿{
-  "version": "2.9.0-*",
-  "description": "QuickIO Main Library",
-  "authors": [ "Benjamin Abt" ],
+  "version": "2.9.1-*",
+  "description": "QuickIO Main Library (Fork)",
+  "authors": [ "Avinash Puchalapalli", "Benjamin Abt" ],
   "tags": [ "QuickIO", "QuickIO.NET", "File Operations", "BenjaminAbt", "SCHWABENCODE" ],
-  "projectUrl": "https://github.com/SchwabenCode/QuickIO",
-  "licenseUrl": "https://github.com/SchwabenCode/QuickIO/LICENSE.md",
+  "projectUrl": "https://github.com/holycrepe/QuickIO",
+  "licenseUrl": "https://github.com/holycrepe/QuickIO/LICENSE.md",
   "frameworks": {
     "dnx46": {
       "dependencies": {
