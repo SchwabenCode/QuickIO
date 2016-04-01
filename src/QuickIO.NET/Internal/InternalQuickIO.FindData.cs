@@ -109,13 +109,19 @@ namespace SchwabenCode.QuickIO.Internal
         public static Win32FindData GetFindDataFromPath( string fullpath, QuickIOFileSystemEntryType? estimatedFileSystemEntryType = null )
         {
             Contract.Requires( fullpath != null );
-            Contract.Ensures( Contract.Result<Win32FindData>() != null );
-
+            //Changed to allow paths which do not exist:
+            //Contract.Ensures( Contract.Result<Win32FindData>() != null );
+            if (!QuickIOPath.Exists(fullpath))
+            {
+                return null;
+            }
             Win32FindData win32FindData = SafeGetFindDataFromPath( fullpath );
 
             if( win32FindData == null )
             {
-                throw new PathNotFoundException( fullpath );
+                //Changed to allow paths which do not exist:
+                //throw new PathNotFoundException( fullpath );
+                return null;                
             }
 
             // Check for correct type
