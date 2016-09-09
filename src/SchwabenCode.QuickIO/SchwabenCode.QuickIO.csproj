@@ -39,24 +39,24 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <Optimize>true</Optimize>
     <DefineConstants>NET40;NET40_OR_GREATER;</DefineConstants>
-    <OutputPath>.artifacts\$(Configuration)\$(Framework)_AnyCPU</OutputPath>
-    <DocumentationFile>.artifacts\$(Configuration)\$(Framework)_AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
+    <OutputPath>.artifacts\$(Configuration)\$(Framework)AnyCPU</OutputPath>
+    <DocumentationFile>.artifacts\$(Configuration)\$(Framework)AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'RELEASE_NET45|AnyCPU'">
     <DebugType>pdbonly</DebugType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Optimize>true</Optimize>
     <DefineConstants>NET40;NET40_OR_GREATER;NET45;NET45_OR_GREATER;</DefineConstants>
-    <OutputPath>.artifacts\$(Configuration)\$(Framework)_AnyCPU</OutputPath>
-    <DocumentationFile>.artifacts\$(Configuration)\$(Framework)_AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
+    <OutputPath>.artifacts\$(Configuration)\$(Framework)AnyCPU</OutputPath>
+    <DocumentationFile>.artifacts\$(Configuration)\$(Framework)AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'RELEASE_NET46|AnyCPU'">
     <DebugType>pdbonly</DebugType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <Optimize>true</Optimize>
     <DefineConstants>NET40;NET40_OR_GREATER;NET45;NET45_OR_GREATER;NET46;NET46_OR_GREATER</DefineConstants>
-    <OutputPath>.artifacts\$(Configuration)\$(Framework)_AnyCPU</OutputPath>
-    <DocumentationFile>.artifacts\$(Configuration)\$(Framework)_AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
+    <OutputPath>.artifacts\$(Configuration)\$(Framework)AnyCPU</OutputPath>
+    <DocumentationFile>.artifacts\$(Configuration)\$(Framework)AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
