@@ -9,6 +9,8 @@ using System.IO.Compression;
 using System.Diagnostics.Contracts;
 using SchwabenCode.QuickIO.Core;
 
+#if NET45_OR_GREATER
+
 namespace SchwabenCode.QuickIO
 {
     public partial class QuickIODirectory
@@ -63,3 +65,4 @@ namespace SchwabenCode.QuickIO
         }
     }
 }
+#endif

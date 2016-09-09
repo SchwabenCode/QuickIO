@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SchwabenCode.QuickIO</RootNamespace>
     <AssemblyName>SchwabenCode.QuickIO</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Framework Condition="'$(Framework)' == ''">NET40</Framework>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <DocumentationFile>bin\Debug\SchwabenCode.QuickIO.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Framework Condition="'$(Framework)' == ''">NET40</Framework>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,6 +32,31 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\SchwabenCode.QuickIO.XML</DocumentationFile>
+  </PropertyGroup>
+  <!--SEVERAL FRAMEWORK SUPPORT -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'RELEASE_NET40|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <Optimize>true</Optimize>
+    <DefineConstants>NET40;NET40_OR_GREATER;</DefineConstants>
+    <OutputPath>.artifacts\$(Configuration)\$(Framework)_AnyCPU</OutputPath>
+    <DocumentationFile>.artifacts\$(Configuration)\$(Framework)_AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'RELEASE_NET45|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <Optimize>true</Optimize>
+    <DefineConstants>NET40;NET40_OR_GREATER;NET45;NET45_OR_GREATER;</DefineConstants>
+    <OutputPath>.artifacts\$(Configuration)\$(Framework)_AnyCPU</OutputPath>
+    <DocumentationFile>.artifacts\$(Configuration)\$(Framework)_AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'RELEASE_NET46|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <Optimize>true</Optimize>
+    <DefineConstants>NET40;NET40_OR_GREATER;NET45;NET45_OR_GREATER;NET46;NET46_OR_GREATER</DefineConstants>
+    <OutputPath>.artifacts\$(Configuration)\$(Framework)_AnyCPU</OutputPath>
+    <DocumentationFile>.artifacts\$(Configuration)\$(Framework)_AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -247,11 +274,10 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-</Project>
+  <!-- BUILD LOGIC TO SUPPORT SEVERAL .NET VERSIONS -->
+    <!--<Target Name="AfterBuild">-->
+    <!--  <MSBuild Condition="'$(Framework)' == 'RELEASE_NET40|AnyCPU'" Projects="$(MSBuildProjectFile)" Properties="Framework=RELEASE_NET35|AnyCPU" RunEachTargetSeparately="true" />-->
+    <!--  <MSBuild Condition="'$(Framework)' == 'RELEASE_NET45|AnyCPU'" Projects="$(MSBuildProjectFile)" Properties="Framework=RELEASE_NET40|AnyCPU" RunEachTargetSeparately="true" />-->
+    <!--  <MSBuild Condition="'$(Framework)' == 'RELEASE_NET46|AnyCPU'" Projects="$(MSBuildProjectFile)" Properties="Framework=RELEASE_NET45|AnyCPU" RunEachTargetSeparately="true" />-->
+    <!--</Target>-->
+</Project> 

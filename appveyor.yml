@@ -90,7 +90,8 @@
   before_build:
     - nuget restore
 
-  build:
+  build_script:
+
     verbosity: minimal
     project: SchwabenCode.QuickIO.sln
 
