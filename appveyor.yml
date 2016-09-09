@@ -37,7 +37,7 @@
     - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU"
     - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_40 /p:Platform="Any CPU"
     - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_45 /p:Platform="Any CPU"
-      msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_46 /p:Platform="Any CPU"
+    - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_46 /p:Platform="Any CPU"
 
   after_build:
   - ps: nuget pack SchwabenCode.QuickIO.nuspec -version "$env:PackageVersion"
@@ -94,9 +94,9 @@
 
   build_script:
     - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU"
-    - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_40 /p:Platform="Any CPU""
+    - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_40 /p:Platform="Any CPU"
     - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_45 /p:Platform="Any CPU"
-      msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_46 /p:Platform="Any CPU"
+    - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_46 /p:Platform="Any CPU"
 
   test:
     assemblies:
