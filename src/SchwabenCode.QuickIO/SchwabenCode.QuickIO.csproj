@@ -40,8 +40,8 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <Optimize>true</Optimize>
     <DefineConstants>NET40;NET40_OR_GREATER;</DefineConstants>
-    <OutputPath>..\..\.artifacts\SchwabenCode.QuickIO\$(Configuration)\$(Framework)AnyCPU</OutputPath>
-    <DocumentationFile>..\..\.artifacts\SchwabenCode.QuickIO\$(Configuration)\$(Framework)AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
+    <OutputPath>..\..\_artifacts\SchwabenCode.QuickIO\$(Configuration)\$(Framework)AnyCPU</OutputPath>
+    <DocumentationFile>..\..\_artifacts\SchwabenCode.QuickIO\$(Configuration)\$(Framework)AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Framework)' == 'NET45'">
     <Framework Condition="'$(Framework)' == ''">NET45</Framework>
@@ -49,8 +49,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Optimize>true</Optimize>
     <DefineConstants>NET40;NET40_OR_GREATER;NET45;NET45_OR_GREATER;</DefineConstants>
-    <OutputPath>..\..\.artifacts\SchwabenCode.QuickIO\$(Configuration)\$(Framework)AnyCPU</OutputPath>
-    <DocumentationFile>..\..\.artifacts\SchwabenCode.QuickIO\$(Configuration)\$(Framework)AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
+    <OutputPath>..\..\_artifacts\SchwabenCode.QuickIO\$(Configuration)\$(Framework)AnyCPU</OutputPath>
+    <DocumentationFile>..\..\_artifacts\SchwabenCode.QuickIO\$(Configuration)\$(Framework)AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Framework)' == 'NET46'">
     <Framework Condition="'$(Framework)' == ''">NET46</Framework>
@@ -58,8 +58,8 @@
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <Optimize>true</Optimize>
     <DefineConstants>NET40;NET40_OR_GREATER;NET45;NET45_OR_GREATER;NET46;NET46_OR_GREATER</DefineConstants>
-    <OutputPath>..\..\.artifacts\SchwabenCode.QuickIO\$(Configuration)\$(Framework)AnyCPU</OutputPath>
-    <DocumentationFile>..\..\.artifacts\SchwabenCode.QuickIO\$(Configuration)\$(Framework)AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
+    <OutputPath>..\..\_artifacts\SchwabenCode.QuickIO\$(Configuration)\$(Framework)AnyCPU</OutputPath>
+    <DocumentationFile>..\..\_artifacts\SchwabenCode.QuickIO\$(Configuration)\$(Framework)AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

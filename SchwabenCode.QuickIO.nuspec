@@ -11,11 +11,11 @@
     <description>QuickIO.NET is an extension for the .NET Framework to offer faster file operations.</description>
   </metadata>
   <files>
-      <file src=".artifacts\SchwabenCode.QuickIO\Release\NET40AnyCPU\SchwabenCode.QuickIO.dll" target="lib\net40" />
-      <file src=".artifacts\SchwabenCode.QuickIO\Release\NET40AnyCPU\SchwabenCode.QuickIO.XML" target="lib\net40" />
-      <file src=".artifacts\SchwabenCode.QuickIO\Release\NET45AnyCPU\SchwabenCode.QuickIO.dll" target="lib\net45" />
-      <file src=".artifacts\SchwabenCode.QuickIO\Release\NET45AnyCPU\SchwabenCode.QuickIO.XML" target="lib\net45" />
-      <file src=".artifacts\SchwabenCode.QuickIO\Release\NET46AnyCPU\SchwabenCode.QuickIO.dll" target="lib\net46" />
-      <file src=".artifacts\SchwabenCode.QuickIO\Release\NET46AnyCPU\SchwabenCode.QuickIO.XML" target="lib\net46" />
+      <file src="_artifacts\SchwabenCode.QuickIO\Release\NET40AnyCPU\SchwabenCode.QuickIO.dll" target="lib\net40" />
+      <file src="_artifacts\SchwabenCode.QuickIO\Release\NET40AnyCPU\SchwabenCode.QuickIO.XML" target="lib\net40" />
+      <file src="_artifacts\SchwabenCode.QuickIO\Release\NET45AnyCPU\SchwabenCode.QuickIO.dll" target="lib\net45" />
+      <file src="_artifacts\SchwabenCode.QuickIO\Release\NET45AnyCPU\SchwabenCode.QuickIO.XML" target="lib\net45" />
+      <file src="_artifacts\SchwabenCode.QuickIO\Release\NET46AnyCPU\SchwabenCode.QuickIO.dll" target="lib\net46" />
+      <file src="_artifacts\SchwabenCode.QuickIO\Release\NET46AnyCPU\SchwabenCode.QuickIO.XML" target="lib\net46" />
   </files>
 </package>
