@@ -46,7 +46,7 @@
       - 'tests\**\*.IntegrationTests.dll'
 
   artifacts:
-  - path: 'SchwabenCode.QuickIO.*.nupkg'
+  - path: 'QuickIO.NET.*.nupkg'
     name: SchwabenCode.QuickIO-NuGetPackage
 
   deploy:
@@ -103,7 +103,7 @@
   - ps: nuget pack SchwabenCode.QuickIO.nuspec -version "$env:PackageVersion"
 
   artifacts:
-  - path: 'SchwabenCode.QuickIO.*.nupkg'
+  - path: 'QuickIO.NET.*.nupkg'
     name: SchwabenCode.QuickIO-NuGetPackage
 
   deploy:
