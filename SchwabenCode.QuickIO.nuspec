@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>QuickIO.NET</id>
+    <version>$version$</version>
+    <authors>Benjamin Abt (www.SCHWABENCODE.com)</authors>
+    <copyright>Benjamin Abt 2015 (www.SCHWABENCODE.com)</copyright>
+    <licenseUrl>https://github.com/SchwabenCode/QuickIO/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>http://quickio.net</projectUrl>
+    <description>QuickIO.NET is an extension for the .NET Framework to offer faster file operations.</description>
+  </metadata>
+  <files>
+      <file src="src\SchwabenCode.QuickIO\bin\Release\SchwabenCode.QuickIO.dll" target="lib\net45" />
+      <file src="src\SchwabenCode.QuickIO\bin\Release\SchwabenCode.QuickIO.XML" target="lib\net45" />
+  </files>
+</package>

@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B33DBCEE-42F4-4570-B4EF-5412CE4A4BDA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SchwabenCode.QuickIO</RootNamespace>
+    <AssemblyName>SchwabenCode.QuickIO</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\SchwabenCode.QuickIO.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\SchwabenCode.QuickIO.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\DirectoryAlreadyExistsException.cs" />
+    <Compile Include="Core\DirectoryNotEmptyException.cs" />
+    <Compile Include="Core\FileAlreadyExistsException.cs" />
+    <Compile Include="Core\FileSystemIsBusyException.cs" />
+    <Compile Include="Core\InvalidPathException.cs" />
+    <Compile Include="Core\PathAlreadyExistsException.cs" />
+    <Compile Include="Core\PathNotFoundException.cs" />
+    <Compile Include="Internal\InternalEnumerateFileSystem.cs" />
+    <Compile Include="Internal\InternalHelpers.cs" />
+    <Compile Include="Internal\InternalQuickIO.Directories.cs" />
+    <Compile Include="Internal\InternalQuickIO.Directory.Statistics.cs" />
+    <Compile Include="Internal\InternalQuickIO.FileHandle.cs" />
+    <Compile Include="Internal\InternalQuickIO.Files.cs" />
+    <Compile Include="Internal\InternalQuickIO.FilesAttributes.cs" />
+    <Compile Include="Internal\InternalQuickIO.FileTimes.cs" />
+    <Compile Include="Internal\InternalQuickIO.FindData.cs" />
+    <Compile Include="Internal\InternalQuickIO.Shares.cs" />
+    <Compile Include="Internal\InternalQuickIOCommon.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Core\QuickIOBaseException.cs" />
+    <Compile Include="Core\QuickIOFileSystemEntryType.cs" />
+    <Compile Include="Core\QuickIOShareType.cs" />
+    <Compile Include="Core\QuickIOTransferAlreadyRunningException.cs" />
+    <Compile Include="Core\UnmatchedFileSystemEntryTypeException.cs" />
+    <Compile Include="Core\UnsupportedDriveTypeException.cs" />
+    <Compile Include="Core\UnsupportedShareTypeException.cs" />
+    <Compile Include="QuickIO.cs" />
+    <Compile Include="QuickIODirectory.Compress.cs" />
+    <Compile Include="QuickIODirectory.Copy.cs" />
+    <Compile Include="QuickIODirectory.Create.cs" />
+    <Compile Include="QuickIODirectory.Delete.cs" />
+    <Compile Include="QuickIODirectory.Enumerations.cs" />
+    <Compile Include="QuickIODirectory.Exists.cs" />
+    <Compile Include="QuickIODirectory.Metadata.cs" />
+    <Compile Include="QuickIODirectory.Move.cs" />
+    <Compile Include="QuickIODirectory.Statistics.cs" />
+    <Compile Include="QuickIODirectoryInfo.cs" />
+    <Compile Include="QuickIODirectoryInfo.Enumerations.cs" />
+    <Compile Include="QuickIODirectoryInfo.Metadata.cs" />
+    <Compile Include="QuickIODirectoryInfo.Operators.cs" />
+    <Compile Include="QuickIODirectoryMetadata.cs" />
+    <Compile Include="QuickIODiskInformation.cs" />
+    <Compile Include="QuickIOFile.Append.cs" />
+    <Compile Include="QuickIOFile.Create.cs" />
+    <Compile Include="QuickIOFile.cs" />
+    <Compile Include="QuickIOFile.Open.cs" />
+    <Compile Include="QuickIOFile.Read.cs" />
+    <Compile Include="QuickIOFile.Write.cs" />
+    <Compile Include="QuickIOFileChunk.cs" />
+    <Compile Include="QuickIOFileInfo.Append.cs" />
+    <Compile Include="QuickIOFileInfo.Chunks.cs" />
+    <Compile Include="QuickIOFileInfo.Compare.cs" />
+    <Compile Include="QuickIOFileInfo.Compare.Timestamps.cs" />
+    <Compile Include="QuickIOFileInfo.Compress.cs" />
+    <Compile Include="QuickIOFileInfo.cs" />
+    <Compile Include="QuickIOFileInfo.Metadata.cs" />
+    <Compile Include="QuickIOFileInfo.Open.cs" />
+    <Compile Include="QuickIOFileInfo.Operators.cs" />
+    <Compile Include="QuickIOFileInfo.Read.cs" />
+    <Compile Include="QuickIOFileInfo.Write.cs" />
+    <Compile Include="QuickIOFileMetadata.cs" />
+    <Compile Include="QuickIOFileSystemEntry.cs" />
+    <Compile Include="QuickIOFileSystemEntryBase.cs" />
+    <Compile Include="QuickIOFileSystemMetadataBase.cs" />
+    <Compile Include="QuickIOFileSystemSecurity.cs" />
+    <Compile Include="QuickIOFolderStatisticResult.cs" />
+    <Compile Include="QuickIOHash.cs" />
+    <Compile Include="QuickIOHashResult.cs" />
+    <Compile Include="QuickIOPath.Constants.cs" />
+    <Compile Include="QuickIOPath.cs" />
+    <Compile Include="QuickIOPath.Exists.cs" />
+    <Compile Include="QuickIOPath.Get.cs" />
+    <Compile Include="QuickIOPath.IsPath.cs" />
+    <Compile Include="QuickIOPath.IsRoot.cs" />
+    <Compile Include="QuickIOPath.IsValid.cs" />
+    <Compile Include="QuickIOPath.ToPath.cs" />
+    <Compile Include="QuickIOPathInfo.cs" />
+    <Compile Include="QuickIOPatterns.cs" />
+    <Compile Include="QuickIORecommendedValues.cs" />
+    <Compile Include="QuickIOShare.cs" />
+    <Compile Include="QuickIOShare.Enumerate.cs" />
+    <Compile Include="QuickIOShareInfo.cs" />
+    <Compile Include="QuickIOShareInfo.DiskInformation.cs" />
+    <Compile Include="QuickIOShareInfo.Operators.cs" />
+    <Compile Include="Win32\IWin32ApiShareInfo.cs" />
+    <Compile Include="Win32\Win32ApiShareInfoAdmin.cs" />
+    <Compile Include="Win32\Win32ApiShareInfoNormal.cs" />
+    <Compile Include="Win32\Win32ErrorCodes.cs" />
+    <Compile Include="Win32\Win32FileHandle.cs" />
+    <Compile Include="Win32\Win32FileHandleCollection.cs" />
+    <Compile Include="Win32\Win32FileHandleEnumerator.cs" />
+    <Compile Include="Win32\Win32FileSystemEntry.cs" />
+    <Compile Include="Win32\Win32FileSystemEntrySecurityInformation.cs" />
+    <Compile Include="Win32\Win32FileTime.cs" />
+    <Compile Include="Win32\Win32FindData.cs" />
+    <Compile Include="Win32\Win32FindDataExtensions.cs" />
+    <Compile Include="Win32\Win32SafeNativeMethods.cs" />
+    <Compile Include="Win32\Win32SecurityObjectType.cs" />
+    <Compile Include="_CodeGeneration\QuickIODirectory\QuickIODirectory.Attributes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickIODirectory.Attributes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CodeGeneration\QuickIODirectory\QuickIODirectory.FileTime.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickIODirectory.FileTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CodeGeneration\QuickIODirectory\QuickIODirectory.Root.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickIODirectory.Root.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CodeGeneration\QuickIOFileTime\QuickIOFile.Attributes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickIOFile.Attributes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CodeGeneration\QuickIOFileTime\QuickIOFile.FileTime.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickIOFile.FileTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CodeGeneration\QuickIOFileTime\QuickIOFile.Root.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickIOFile.Root.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CodeGeneration\Templates\SaveOutput.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SaveOutput.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CodeGeneration\Templates\StaticAttributeMethods.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaticAttributeMethods.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CodeGeneration\Templates\StaticFileTimeMethods.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaticFileTimeMethods.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CodeGeneration\Templates\StaticRootMethods.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaticRootMethods.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CurrentlyUnused\QuickIOShareDetailedInfo.cs" />
+    <Compile Include="_Enums\QuickIOEnumerateOptions.cs" />
+    <Compile Include="_Enums\QuickIOFileCompareCriteria.cs" />
+    <Compile Include="_Enums\QuickIOPathLocation.cs" />
+    <Compile Include="_Enums\QuickIOPathType.cs" />
+    <Compile Include="_Enums\QuickIOShareApiReadLevel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Internal\README.md" />
+    <None Include="_CodeGeneration\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="_CodeGeneration\QuickIODirectory\QuickIODirectory.Attributes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIODirectory.Attributes.cs</LastGenOutput>
+    </Content>
+    <Content Include="_CodeGeneration\QuickIODirectory\QuickIODirectory.FileTime.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIODirectory.FileTime.cs</LastGenOutput>
+    </Content>
+    <Content Include="_CodeGeneration\QuickIODirectory\QuickIODirectory.Root.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIODirectory.Root.cs</LastGenOutput>
+    </Content>
+    <Content Include="_CodeGeneration\QuickIOFileTime\QuickIOFile.Attributes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIOFile.Attributes.cs</LastGenOutput>
+    </Content>
+    <Content Include="_CodeGeneration\QuickIOFileTime\QuickIOFile.FileTime.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIOFile.FileTime.cs</LastGenOutput>
+    </Content>
+    <Content Include="_CodeGeneration\QuickIOFileTime\QuickIOFile.Root.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QuickIOFile.Root.cs</LastGenOutput>
+    </Content>
+    <Content Include="_CodeGeneration\Templates\SaveOutput.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SaveOutput.cs</LastGenOutput>
+    </Content>
+    <Content Include="_CodeGeneration\Templates\StaticAttributeMethods.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StaticAttributeMethods.cs</LastGenOutput>
+    </Content>
+    <Content Include="_CodeGeneration\Templates\StaticFileTimeMethods.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StaticFileTimeMethods.cs</LastGenOutput>
+    </Content>
+    <Content Include="_CodeGeneration\Templates\StaticRootMethods.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StaticRootMethods.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
