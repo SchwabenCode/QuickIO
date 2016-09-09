@@ -51,7 +51,7 @@
 
   deploy:
     - provider: NuGet
-      server: https://www.myget.org/F/alegri/api/v2/package
+      server: https://www.myget.org/F/schwabencode/api/v2/package
       api_key:
         secure: 5r4u1BFGZ9CjakS0ATOT2sAKcOjJ7BHzRYJC88aQnYOplsCsKYVtwcTEIGNzHOdh
       artifact: SchwabenCode.QuickIO-NuGetPackage
