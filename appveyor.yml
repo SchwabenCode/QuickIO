@@ -35,7 +35,7 @@
 
   build_script:
     - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU"
-    - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_40 /p:Platform="Any CPU
+    - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_40 /p:Platform="Any CPU"
     - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_45 /p:Platform="Any CPU"
       msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_46 /p:Platform="Any CPU"
 
@@ -94,7 +94,7 @@
 
   build_script:
     - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU"
-    - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_40 /p:Platform="Any CPU
+    - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_40 /p:Platform="Any CPU""
     - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_45 /p:Platform="Any CPU"
       msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_46 /p:Platform="Any CPU"
 
