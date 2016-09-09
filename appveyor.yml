@@ -33,11 +33,9 @@
   before_build:
     - nuget restore
 
-  build_script:
-    - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU"
-    - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_NET40 /p:Platform="Any CPU"
-    - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_NET45 /p:Platform="Any CPU"
-    - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_NET46 /p:Platform="Any CPU"
+  build:
+    verbosity: minimal
+    project: SchwabenCode.QuickIO.sln
 
   after_build:
   - ps: nuget pack SchwabenCode.QuickIO.nuspec -version "$env:PackageVersion"
@@ -92,11 +90,9 @@
   before_build:
     - nuget restore
 
-  build_script:
-    - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU"
-    - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_NET40 /p:Platform="Any CPU"
-    - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_NET45 /p:Platform="Any CPU"
-    - msbuild SchwabenCode.QuickIO.sln /m /verbosity:minimal /p:Configuration=RELEASE_NET46 /p:Platform="Any CPU"
+  build:
+    verbosity: minimal
+    project: SchwabenCode.QuickIO.sln
 
   test:
     assemblies:

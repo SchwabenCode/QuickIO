@@ -9,11 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SchwabenCode.QuickIO</RootNamespace>
     <AssemblyName>SchwabenCode.QuickIO</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <Framework Condition="'$(Framework)' == ''">NET40</Framework>
+    <Framework Condition="'$(Framework)' == ''">NET46</Framework>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +24,7 @@
     <DocumentationFile>bin\Debug\SchwabenCode.QuickIO.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Framework Condition="'$(Framework)' == ''">NET40</Framework>
+    <Framework Condition="'$(Framework)' == ''">NET46</Framework>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,7 +34,8 @@
     <DocumentationFile>bin\Release\SchwabenCode.QuickIO.XML</DocumentationFile>
   </PropertyGroup>
   <!--SEVERAL FRAMEWORK SUPPORT -->
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'RELEASE_NET40|AnyCPU'">
+  <PropertyGroup Condition="'$(Framework)' == 'NET40'">
+    <Framework Condition="'$(Framework)' == ''">NET40</Framework>
     <DebugType>pdbonly</DebugType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <Optimize>true</Optimize>
@@ -42,7 +43,8 @@
     <OutputPath>..\..\.artifacts\SchwabenCode.QuickIO\$(Configuration)\$(Framework)AnyCPU</OutputPath>
     <DocumentationFile>..\..\.artifacts\SchwabenCode.QuickIO\$(Configuration)\$(Framework)AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'RELEASE_NET45|AnyCPU'">
+  <PropertyGroup Condition="'$(Framework)' == 'NET45'">
+    <Framework Condition="'$(Framework)' == ''">NET45</Framework>
     <DebugType>pdbonly</DebugType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Optimize>true</Optimize>
@@ -50,7 +52,8 @@
     <OutputPath>..\..\.artifacts\SchwabenCode.QuickIO\$(Configuration)\$(Framework)AnyCPU</OutputPath>
     <DocumentationFile>..\..\.artifacts\SchwabenCode.QuickIO\$(Configuration)\$(Framework)AnyCPU\SchwabenCode.QuickIO.xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'RELEASE_NET46|AnyCPU'">
+  <PropertyGroup Condition="'$(Framework)' == 'NET46'">
+    <Framework Condition="'$(Framework)' == ''">NET46</Framework>
     <DebugType>pdbonly</DebugType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <Optimize>true</Optimize>
@@ -274,10 +277,17 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- BUILD LOGIC TO SUPPORT SEVERAL .NET VERSIONS -->
-    <!--<Target Name="AfterBuild">-->
-    <!--  <MSBuild Condition="'$(Framework)' == 'RELEASE_NET40|AnyCPU'" Projects="$(MSBuildProjectFile)" Properties="Framework=RELEASE_NET35|AnyCPU" RunEachTargetSeparately="true" />-->
-    <!--  <MSBuild Condition="'$(Framework)' == 'RELEASE_NET45|AnyCPU'" Projects="$(MSBuildProjectFile)" Properties="Framework=RELEASE_NET40|AnyCPU" RunEachTargetSeparately="true" />-->
-    <!--  <MSBuild Condition="'$(Framework)' == 'RELEASE_NET46|AnyCPU'" Projects="$(MSBuildProjectFile)" Properties="Framework=RELEASE_NET45|AnyCPU" RunEachTargetSeparately="true" />-->
-    <!--</Target>-->
+
+ <Target Name="AfterBuild">
+  <!-- This just allows us to drop a note in the build output -->
+    <Message Text="Enter After Build TargetFrameworkVersion:$(TargetFrameworkVersion) Framework:$(Framework)" Importance="high" />
+    <!-- This is the key to the whole process. The second build happens here.  We set our 'Framework' variable allowing the above PropertyGroups to run more frameworks.  -->
+    <MSBuild Condition="'$(Framework)' == 'NET40'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET35" RunEachTargetSeparately="true" />
+    <MSBuild Condition="'$(Framework)' == 'NET45'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET40" RunEachTargetSeparately="true" />
+    <MSBuild Condition="'$(Framework)' == 'NET46'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET45" RunEachTargetSeparately="true" />
+    <!-- You could repeat the above node again here and target another framework if there was a property group that would evaluate to true-->
+    <!-- Just more logging -->
+    <Message Text="Exiting After Build TargetFrameworkVersion:$(TargetFrameworkVersion) Framework:$(Framework)" Importance="high" />
+  </Target>
+
 </Project> 
