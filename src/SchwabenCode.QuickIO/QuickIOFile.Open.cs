@@ -8,7 +8,6 @@ using System.Diagnostics.Contracts;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
-using SchwabenCode.QuickIO.Internal;
 using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO

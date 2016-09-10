@@ -6,7 +6,7 @@
 using System;
 using System.IO;
 using System.Text;
-using SchwabenCode.QuickIO.Internal;
+using SchwabenCode.QuickIO.Engine;
 
 namespace SchwabenCode.QuickIO
 {
@@ -25,7 +25,7 @@ namespace SchwabenCode.QuickIO
         /// <exception cref="PathNotFoundException">One or more intermediate directories do not exist; this function will only create the final directory in the path.</exception>
         public static void Create( String fullName, FileAccess fileAccess = FileAccess.Write, FileShare fileShare = FileShare.None, FileMode fileMode = FileMode.Create, FileAttributes fileAttributes = 0 )
         {
-            InternalQuickIO.CreateFile( fullName, fileAccess, fileShare, fileMode, fileAttributes );
+            QuickIOEngine.CreateFile( fullName, fileAccess, fileShare, fileMode, fileAttributes );
         }
 
         /// <summary>

@@ -5,9 +5,9 @@
 
 using System;
 using System.Collections.Generic;
-using SchwabenCode.QuickIO.Internal;
 using SchwabenCode.QuickIO.Win32;
 using System.Diagnostics.Contracts;
+using SchwabenCode.QuickIO.Engine;
 
 namespace SchwabenCode.QuickIO
 {
@@ -25,9 +25,9 @@ namespace SchwabenCode.QuickIO
             switch( level )
             {
                 case QuickIOShareApiReadLevel.Admin:
-                    return InternalQuickIO.EnumerateShares<Win32ApiShareInfoAdmin>( QuickIOShareApiReadLevel.Admin, machineName );
+                    return QuickIOEngine.EnumerateShares<Win32ApiShareInfoAdmin>( QuickIOShareApiReadLevel.Admin, machineName );
                 case QuickIOShareApiReadLevel.Normal:
-                    return InternalQuickIO.EnumerateShares<Win32ApiShareInfoNormal>( QuickIOShareApiReadLevel.Normal, machineName );
+                    return QuickIOEngine.EnumerateShares<Win32ApiShareInfoNormal>( QuickIOShareApiReadLevel.Normal, machineName );
                 default:
                     throw new NotSupportedException( $"Unsupported level '{level}'" );
             }

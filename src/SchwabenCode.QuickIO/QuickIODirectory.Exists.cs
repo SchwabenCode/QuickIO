@@ -4,7 +4,7 @@
 // <author>Benjamin Abt</author>
 
 using System.IO;
-using SchwabenCode.QuickIO.Internal;
+using SchwabenCode.QuickIO.Engine;
 
 namespace SchwabenCode.QuickIO
 {
@@ -56,7 +56,7 @@ namespace SchwabenCode.QuickIO
         private static bool InternalDirectoryExists(string uncPath)
         {
             int win32Error;
-            var attrs = InternalQuickIO.SafeGetAttributes(uncPath, out win32Error);
+            var attrs = QuickIOEngine.SafeGetAttributes(uncPath, out win32Error);
 
             if(Equals(attrs, 0xffffffff))
             {

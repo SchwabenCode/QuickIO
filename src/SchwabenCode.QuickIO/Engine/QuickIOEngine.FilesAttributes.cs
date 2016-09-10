@@ -10,9 +10,9 @@ using System.IO;
 using System.Runtime.InteropServices;
 using SchwabenCode.QuickIO.Win32;
 
-namespace SchwabenCode.QuickIO.Internal
+namespace SchwabenCode.QuickIO.Engine
 {
-    internal static partial class InternalQuickIO
+    internal static partial class QuickIOEngine
     {
         /// <summary>
         /// Adds a file attribute

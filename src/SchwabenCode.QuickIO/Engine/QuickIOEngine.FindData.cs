@@ -3,15 +3,15 @@
 // </copyright>
 // <author>Benjamin Abt</author>
 
-using SchwabenCode.QuickIO.Win32;
 using System;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Runtime.InteropServices;
+using SchwabenCode.QuickIO.Win32;
 
-namespace SchwabenCode.QuickIO.Internal
+namespace SchwabenCode.QuickIO.Engine
 {
-    internal static partial class InternalQuickIO
+    internal static partial class QuickIOEngine
     {
 
 

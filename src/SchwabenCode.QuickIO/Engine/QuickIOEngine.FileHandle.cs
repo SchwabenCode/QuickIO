@@ -3,15 +3,15 @@
 // </copyright>
 // <author>Benjamin Abt</author>
 
-using Microsoft.Win32.SafeHandles;
 using System;
 using System.Diagnostics.Contracts;
 using System.IO;
+using Microsoft.Win32.SafeHandles;
 using SchwabenCode.QuickIO.Win32;
 
-namespace SchwabenCode.QuickIO.Internal
+namespace SchwabenCode.QuickIO.Engine
 {
-    internal static partial class InternalQuickIO
+    internal static partial class QuickIOEngine
     {
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace SchwabenCode.QuickIO.Internal
 
         //    try
         //    {
-        //        InternalQuickIOCommon.NativeExceptionMapping( path, win32Error );
+        //        QuickIOEngine.NativeExceptionMapping( path, win32Error );
         //    }
         //    catch( Exception ) when (enumerateOptions.HasFlag( QuickIOEnumerateOptions.SuppressAllExceptions ))
         //    {

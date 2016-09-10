@@ -4,17 +4,16 @@
 // <author>Benjamin Abt</author>
 
 using System;
-using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.IO;
 using SchwabenCode.QuickIO.Win32;
 
-namespace SchwabenCode.QuickIO.Internal
+namespace SchwabenCode.QuickIO.Engine
 {
     /// <summary>
     /// Provides several methods for internal purposes.
     /// </summary>
-    internal static class InternalQuickIOCommon
+    internal static partial class QuickIOEngine
     {
         /// <summary>
         /// Common Constants
@@ -38,7 +37,7 @@ namespace SchwabenCode.QuickIO.Internal
         {
             Contract.Requires(!String.IsNullOrWhiteSpace(fullPath));
 
-            Win32FindData findData = InternalQuickIO.GetFindDataFromPath(fullPath);
+            Win32FindData findData = Engine.QuickIOEngine.GetFindDataFromPath(fullPath);
 
             return !findData.dwFileAttributes.Contains(FileAttributes.Directory) ? QuickIOFileSystemEntryType.File : QuickIOFileSystemEntryType.Directory;
         }

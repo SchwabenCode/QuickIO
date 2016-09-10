@@ -6,7 +6,7 @@
 
 
 using System;
-using SchwabenCode.QuickIO.Internal;
+using SchwabenCode.QuickIO.Engine;
 using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO
@@ -233,7 +233,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="lastWriteTime">The time that is to be used</param>
         public static void SetAllFileTimes( String path, DateTime creationTime, DateTime lastAccessTime, DateTime lastWriteTime )
         {
-            SetAllFileTimesUtc( path, creationTime.ToUniversalTime( ), lastAccessTime.ToUniversalTime( ), lastWriteTime.ToUniversalTime( ) );
+            QuickIOEngine.SetAllFileTimes( QuickIOPath.ToPathUnc(path), creationTime.ToUniversalTime( ), lastAccessTime.ToUniversalTime( ), lastWriteTime.ToUniversalTime( ) );
         }
        /// <summary>
         /// Sets the time the file was created.
@@ -244,7 +244,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="lastWriteTime">The time that is to be used</param>
         public static void SetAllFileTimes( QuickIOPathInfo info, DateTime creationTime, DateTime lastAccessTime, DateTime lastWriteTime )
         {
-            SetAllFileTimesUtc( info, creationTime.ToUniversalTime( ), lastAccessTime.ToUniversalTime( ), lastWriteTime.ToUniversalTime( ) );
+            QuickIOEngine.SetAllFileTimes( info.FullNameUnc, creationTime.ToUniversalTime( ), lastAccessTime.ToUniversalTime( ), lastWriteTime.ToUniversalTime( ) );
         }
         /// <summary>
         /// Sets the time the file was created.
@@ -255,7 +255,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="lastWriteTime">The time that is to be used</param>
         public static void SetAllFileTimes( QuickIOFileInfo info, DateTime creationTime, DateTime lastAccessTime, DateTime lastWriteTime )
         {
-            SetAllFileTimesUtc( info, creationTime.ToUniversalTime( ), lastAccessTime.ToUniversalTime( ), lastWriteTime.ToUniversalTime( ) );
+            QuickIOEngine.SetAllFileTimes( info.FullNameUnc, creationTime.ToUniversalTime( ), lastAccessTime.ToUniversalTime( ), lastWriteTime.ToUniversalTime( ) );
         }
         /// <summary>
         /// Sets the dates and times of given directory or file.
@@ -266,7 +266,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="lastWriteTimeUtc">The time that is to be used (UTC)</param>
         public static void SetAllFileTimesUtc( String path, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc )
         {
-            InternalQuickIO.SetAllFileTimes( new QuickIOPathInfo( path ), creationTimeUtc, lastAccessTimeUtc, lastWriteTimeUtc );
+            QuickIOEngine.SetAllFileTimes( QuickIOPath.ToPathUnc( path ), creationTimeUtc, lastAccessTimeUtc, lastWriteTimeUtc );
         }
         /// <summary>
         /// Sets the dates and times of given directory or file.
@@ -277,7 +277,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="lastWriteTimeUtc">The time that is to be used (UTC)</param>
         public static void SetAllFileTimesUtc( QuickIOPathInfo info, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc )
         {
-            InternalQuickIO.SetAllFileTimes( info, creationTimeUtc, lastAccessTimeUtc, lastWriteTimeUtc );
+            QuickIOEngine.SetAllFileTimes( info.FullNameUnc, creationTimeUtc, lastAccessTimeUtc, lastWriteTimeUtc );
         }
         /// <summary>
         /// Sets the dates and times of given directory or file.
@@ -288,7 +288,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="lastWriteTimeUtc">The time that is to be used (UTC)</param>
         public static void SetAllFileTimesUtc( QuickIOFileInfo info, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc )
         {
-            InternalQuickIO.SetAllFileTimes( info.PathInfo, creationTimeUtc, lastAccessTimeUtc, lastWriteTimeUtc );
+            QuickIOEngine.SetAllFileTimes( info.FullNameUnc, creationTimeUtc, lastAccessTimeUtc, lastWriteTimeUtc );
         }
         #endregion
 
@@ -301,7 +301,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setcreationtime(v=vs.110).aspx</remarks>
         public static void SetCreationTime( String path, DateTime creationTime )
         {
-            SetCreationTimeUtc( path, creationTime.ToUniversalTime( ) );
+            QuickIOEngine.SetCreationTimeUtc( QuickIOPath.ToPathUnc(path), creationTime.ToUniversalTime( ) );
         }
         /// <summary>
         /// Defines the time at which the file or directory was created
@@ -311,7 +311,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setcreationtime(v=vs.110).aspx</remarks>
         public static void SetCreationTime( QuickIOPathInfo info, DateTime creationTime )
         {
-            SetCreationTimeUtc( info, creationTime.ToUniversalTime( ) );
+            QuickIOEngine.SetCreationTimeUtc( info.FullNameUnc, creationTime.ToUniversalTime( ) );
         }
         /// <summary>
         /// Defines the time at which the file or directory was created
@@ -321,7 +321,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setcreationtime(v=vs.110).aspx</remarks>
         public static void SetCreationTime( QuickIOFileInfo info, DateTime creationTime )
         {
-            SetCreationTimeUtc( info, creationTime.ToUniversalTime( ) );
+            QuickIOEngine.SetCreationTimeUtc( info.FullNameUnc, creationTime.ToUniversalTime( ) );
         }
         /// <summary>
         /// Defines the time at which the file or directory was created (UTC)
@@ -331,7 +331,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setcreationtimeutc(v=vs.110).aspx</remarks>
         public static void SetCreationTimeUtc( String path, DateTime creationTimeUtc )
         {
-            InternalQuickIO.SetCreationTimeUtc( new QuickIOPathInfo( path ), creationTimeUtc );
+            QuickIOEngine.SetCreationTimeUtc( QuickIOPath.ToPathUnc(path), creationTimeUtc );
         }
         /// <summary>
         /// Defines the time at which the file or directory was created (UTC)
@@ -341,7 +341,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setcreationtimeutc(v=vs.110).aspx</remarks>
         public static void SetCreationTimeUtc( QuickIOPathInfo info, DateTime creationTimeUtc )
         {
-            InternalQuickIO.SetCreationTimeUtc( info, creationTimeUtc );
+            QuickIOEngine.SetCreationTimeUtc( info.FullNameUnc, creationTimeUtc );
         }
         /// <summary>
         /// Defines the time at which the file or directory was created (UTC)
@@ -351,7 +351,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setcreationtimeutc(v=vs.110).aspx</remarks>
         public static void SetCreationTimeUtc( QuickIOFileInfo info, DateTime creationTimeUtc )
         {
-            InternalQuickIO.SetCreationTimeUtc( info.PathInfo, creationTimeUtc );
+            QuickIOEngine.SetCreationTimeUtc( info.FullNameUnc, creationTimeUtc );
         }
         #endregion
 
@@ -364,7 +364,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setcreationtime(v=vs.110).aspx</remarks>
         public static void SetLastAccessTime( String path, DateTime lastAccessTime )
         {
-            SetLastAccessTimeUtc( path, lastAccessTime.ToUniversalTime( ) );
+            QuickIOEngine.SetLastAccessTimeUtc( QuickIOPath.ToPathUnc(path), lastAccessTime.ToUniversalTime( ) );
         }
         /// <summary>
         /// Defines the time at which the file or directory was last accessed
@@ -374,7 +374,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastaccesstime(v=vs.110).aspx</remarks>
         public static void SetLastAccessTime( QuickIOPathInfo info, DateTime lastAccessTime )
         {
-            SetLastAccessTimeUtc( info, lastAccessTime.ToUniversalTime( ) );
+            QuickIOEngine.SetLastAccessTimeUtc( info.FullNameUnc, lastAccessTime.ToUniversalTime( ) );
         }
         /// <summary>
         /// Defines the time at which the file or directory was last accessed
@@ -384,7 +384,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastaccesstime(v=vs.110).aspx</remarks>
         public static void SetLastAccessTime( QuickIOFileInfo info, DateTime lastAccessTime )
         {
-            SetLastAccessTimeUtc( info, lastAccessTime.ToUniversalTime( ) );
+            QuickIOEngine.SetLastAccessTimeUtc( info.FullNameUnc, lastAccessTime.ToUniversalTime( ) );
         }
         /// <summary>
         /// Defines the time at which the file or directory was last accessed (UTC)
@@ -394,7 +394,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastaccesstimeutc(v=vs.110).aspx</remarks>
         public static void SetLastAccessTimeUtc( String path, DateTime lastAccessTimeUtc )
         {
-            InternalQuickIO.SetLastAccessTimeUtc( new QuickIOPathInfo( path ), lastAccessTimeUtc );
+            QuickIOEngine.SetLastAccessTimeUtc( QuickIOPath.ToPathUnc(path), lastAccessTimeUtc );
         }
         /// <summary>
         /// Defines the time at which the file or directory was last accessed (UTC)
@@ -404,7 +404,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastaccesstimeutc(v=vs.110).aspx</remarks>
         public static void SetLastAccessTimeUtc( QuickIOPathInfo info, DateTime lastAccessTimeUtc )
         {
-            InternalQuickIO.SetLastAccessTimeUtc( info, lastAccessTimeUtc );
+            QuickIOEngine.SetLastAccessTimeUtc( info.FullNameUnc, lastAccessTimeUtc );
         }
         /// <summary>
         /// Defines the time at which the file or directory was last accessed (UTC)
@@ -414,7 +414,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastaccesstimeutc(v=vs.110).aspx</remarks>
         public static void SetLastAccessTimeUtc( QuickIOFileInfo info, DateTime lastAccessTimeUtc )
         {
-            InternalQuickIO.SetLastAccessTimeUtc( info.PathInfo, lastAccessTimeUtc );
+            QuickIOEngine.SetLastAccessTimeUtc( info.FullNameUnc, lastAccessTimeUtc );
         }
         #endregion
 
@@ -447,7 +447,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastwritetime(v=vs.110).aspx</remarks>
         public static void SetLastWriteTime( QuickIOFileInfo info, DateTime lastWriteTime )
         {
-            SetLastWriteTimeUtc( info, lastWriteTime.ToUniversalTime( ) );
+            QuickIOEngine.SetLastWriteTimeUtc( info.FullNameUnc, lastWriteTime.ToUniversalTime( ) );
         }
         /// <summary>
         /// Defines the time at which the file or directory was last written (UTC)
@@ -457,7 +457,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastwritetimeutc(v=vs.110).aspx</remarks>
         public static void SetLastWriteTimeUtc( String path, DateTime lastWriteTimeUtc )
         {
-            InternalQuickIO.SetLastWriteTimeUtc( new QuickIOPathInfo( path ), lastWriteTimeUtc );
+            QuickIOEngine.SetLastWriteTimeUtc( QuickIOPath.ToPathUnc(path), lastWriteTimeUtc );
         }
         /// <summary>
         /// Defines the time at which the file or directory was last written (UTC)
@@ -467,7 +467,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastwritetimeutc(v=vs.110).aspx</remarks>
         public static void SetLastWriteTimeUtc( QuickIOPathInfo info, DateTime lastWriteTimeUtc )
         {
-            InternalQuickIO.SetLastWriteTimeUtc( info, lastWriteTimeUtc );
+            QuickIOEngine.SetLastWriteTimeUtc( info.FullNameUnc, lastWriteTimeUtc );
         }
         /// <summary>
         /// Defines the time at which the file or directory was last written (UTC)
@@ -477,7 +477,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.file.setlastwritetimeutc(v=vs.110).aspx</remarks>
         public static void SetLastWriteTimeUtc( QuickIOFileInfo info, DateTime lastWriteTimeUtc )
         {
-            InternalQuickIO.SetLastWriteTimeUtc( info.PathInfo, lastWriteTimeUtc );
+            QuickIOEngine.SetLastWriteTimeUtc( info.FullNameUnc, lastWriteTimeUtc );
         }
         #endregion
     }

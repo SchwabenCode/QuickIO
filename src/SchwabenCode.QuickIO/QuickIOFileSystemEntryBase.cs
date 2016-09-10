@@ -7,7 +7,7 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Security.Principal;
-using SchwabenCode.QuickIO.Internal;
+using SchwabenCode.QuickIO.Engine;
 using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO
@@ -64,7 +64,7 @@ namespace SchwabenCode.QuickIO
                 Attributes = Attributes.Force(FileAttributes.ReadOnly, value);
 
                 // Commit current attributes
-                InternalQuickIO.SetAttributes(PathInfo.FullNameUnc, Attributes);
+                QuickIOEngine.SetAttributes(PathInfo.FullNameUnc, Attributes);
             }
         }
 

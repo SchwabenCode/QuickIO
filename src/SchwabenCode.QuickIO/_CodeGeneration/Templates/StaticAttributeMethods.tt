@@ -11,7 +11,7 @@ void Generate(string className)
 
 using System;
 using System.IO;
-using SchwabenCode.QuickIO.Internal;
+using SchwabenCode.QuickIO.Engine;
 
 namespace SchwabenCode.QuickIO
 {
@@ -25,7 +25,7 @@ namespace SchwabenCode.QuickIO
         /// <returns>The <see cref="FileAttributes"/> of the directory or file.</returns>
         public static void SetAttributes( string path , FileAttributes attributes )
         {
-            SetAttributes( new QuickIOPathInfo( path ), attributes );
+			QuickIOEngine.SetAttributes( QuickIOPath.ToPathUnc( path ), attributes );
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace SchwabenCode.QuickIO
         /// <returns>The <see cref="FileAttributes"/> of the directory or file.</returns>
         public static void SetAttributes( QuickIOPathInfo info, FileAttributes attributes )
         {
-            InternalQuickIO.SetAttributes( info, attributes);
+            QuickIOEngine.SetAttributes( info.FullNameUnc, attributes);
         }
 
 		/// <summary>
@@ -47,7 +47,7 @@ namespace SchwabenCode.QuickIO
         /// <returns>The <see cref="FileAttributes"/> of the directory or file.</returns>
         public static void SetAttributes( <#= className #>Info info, FileAttributes attributes )
         {
-            InternalQuickIO.SetAttributes( info.PathInfo, attributes);
+            QuickIOEngine.SetAttributes( info.FullNameUnc, attributes);
         }
 
         #region Attributes
@@ -58,7 +58,7 @@ namespace SchwabenCode.QuickIO
         /// <returns>The <see cref="FileAttributes"/> of the directory or file.</returns>
         public static FileAttributes GetAttributes( string path )
         {
-            return GetAttributes( new QuickIOPathInfo( path ) );
+            return QuickIOEngine.GetAttributes( QuickIOPath.ToPathUnc (path) );
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace SchwabenCode.QuickIO
         /// <returns>The <see cref="FileAttributes"/> of the directory or file.</returns>
         public static FileAttributes GetAttributes( QuickIOPathInfo info )
         {
-            return InternalQuickIO.GetAttributes( info );
+            return QuickIOEngine.GetAttributes( info.FullNameUnc );
         }
 
 		/// <summary>
@@ -78,7 +78,7 @@ namespace SchwabenCode.QuickIO
         /// <returns>The <see cref="FileAttributes"/> of the directory or file.</returns>
         public static FileAttributes GetAttributes( <#=className#>Info info )
         {
-            return InternalQuickIO.GetAttributes( info.PathInfo );
+            return QuickIOEngine.GetAttributes(info.FullNameUnc);
         }
 
         #endregion
@@ -92,7 +92,10 @@ namespace SchwabenCode.QuickIO
         /// <returns>true if removed. false if not exists in attributes</returns>
         public static bool RemoveAttribute( string path, FileAttributes attribute )
         {
-            return RemoveAttribute( new QuickIOPathInfo( path ), attribute );
+            FileAttributes updatedAttributes;
+            bool result = QuickIOEngine.TryRemoveAttribute(QuickIOPath.ToPathUnc(path), attribute, out updatedAttributes);
+
+            return result;
         }
 
         /// <summary>
@@ -103,7 +106,11 @@ namespace SchwabenCode.QuickIO
         /// <returns>true if removed. false if not exists in attributes</returns>
         public static bool RemoveAttribute( QuickIOPathInfo info, FileAttributes attribute)
         {
-            return InternalQuickIO.RemoveAttribute( info, attribute );
+            FileAttributes updatedAttributes;
+            bool result = QuickIOEngine.TryRemoveAttribute(info.FullNameUnc, attribute, out updatedAttributes);
+            info.Attributes = updatedAttributes;
+
+            return result;
         }
 
         /// <summary>
@@ -114,7 +121,11 @@ namespace SchwabenCode.QuickIO
         /// <returns>true if removed. false if not exists in attributes</returns>
         public static bool RemoveAttribute( <#=className#>Info info, FileAttributes attribute )
         {
-            return InternalQuickIO.RemoveAttribute( info.PathInfo, attribute );
+            FileAttributes updatedAttributes;
+            bool result = QuickIOEngine.TryRemoveAttribute(info.FullNameUnc, attribute, out updatedAttributes);
+            info.Attributes = updatedAttributes;
+
+            return result;
         }
 
         #endregion
@@ -128,7 +139,10 @@ namespace SchwabenCode.QuickIO
         /// <returns>true if added. false if already exists in attributes</returns>
         public static bool AddAttribute( string path, FileAttributes attribute )
         {
-            return AddAttribute( new QuickIOPathInfo( path ), attribute );
+            FileAttributes updatedAttributes;
+            bool result = QuickIOEngine.TryAddAttribute(QuickIOPath.ToPathUnc(path), attribute, out updatedAttributes);
+
+            return result;
         }
 
         /// <summary>
@@ -139,7 +153,11 @@ namespace SchwabenCode.QuickIO
         /// <returns>true if added. false if already exists in attributes</returns>
         public static bool AddAttribute( QuickIOPathInfo info, FileAttributes attribute )
         {
-            return InternalQuickIO.AddAttribute( info, attribute  );
+            FileAttributes updatedAttributes;
+            bool result = QuickIOEngine.TryAddAttribute(info.FullNameUnc, attribute, out updatedAttributes);
+            info.Attributes = updatedAttributes;
+
+            return result;
         }
 
         /// <summary>
@@ -150,7 +168,11 @@ namespace SchwabenCode.QuickIO
         /// <returns>true if added. false if already exists in attributes</returns>
         public static bool AddAttribute( <#=className#>Info info, FileAttributes attribute )
         {
-            return InternalQuickIO.AddAttribute( info.PathInfo, attribute );
+            FileAttributes updatedAttributes;
+            bool result = QuickIOEngine.TryAddAttribute(info.FullNameUnc, attribute, out updatedAttributes);
+            info.Attributes = updatedAttributes;
+
+            return result;
         }
 
         #endregion

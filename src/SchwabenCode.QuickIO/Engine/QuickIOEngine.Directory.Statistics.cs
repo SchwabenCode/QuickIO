@@ -10,13 +10,13 @@ using System.Security.Permissions;
 using System.IO;
 using SchwabenCode.QuickIO.Win32;
 
-namespace SchwabenCode.QuickIO.Internal
+namespace SchwabenCode.QuickIO.Engine
 {
     /// <summary>
     /// Provides internal methods. PathMatchAll IO operations are called from here.
     /// </summary>
     [FileIOPermission(SecurityAction.Demand, AllFiles = FileIOPermissionAccess.AllAccess, AllLocalFiles = FileIOPermissionAccess.AllAccess)]
-    internal static partial class InternalQuickIO
+    internal static partial class QuickIOEngine
     {
         /// <summary>
         /// Determines the statistics of the given directory. This includes the number of files, folders and the total size in bytes.
@@ -76,7 +76,7 @@ namespace SchwabenCode.QuickIO.Internal
             Contract.Requires(!String.IsNullOrWhiteSpace(path));
 
             int win32Error;
-            var attrs = InternalQuickIO.SafeGetAttributes(path, out win32Error);
+            var attrs = QuickIOEngine.SafeGetAttributes(path, out win32Error);
 
             if(Equals(attrs, 0xffffffff))
             {

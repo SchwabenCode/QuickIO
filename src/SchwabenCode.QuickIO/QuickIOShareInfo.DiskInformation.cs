@@ -3,9 +3,9 @@
 // </copyright>
 // <author>Benjamin Abt</author>
 
-using SchwabenCode.QuickIO.Internal;
 using System;
 using System.Diagnostics.Contracts;
+using SchwabenCode.QuickIO.Engine;
 
 namespace SchwabenCode.QuickIO
 {
@@ -27,7 +27,7 @@ namespace SchwabenCode.QuickIO
                 throw new UnsupportedShareTypeException( "Metadata not supported for this Sharetype", this.FullName );
             }
 
-            return InternalQuickIO.GetDiskInformation( this.FullName );
+            return QuickIOEngine.GetDiskInformation( this.FullName );
         }
     }
 }

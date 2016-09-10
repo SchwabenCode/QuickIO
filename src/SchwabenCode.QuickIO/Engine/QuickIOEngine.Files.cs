@@ -4,15 +4,15 @@
 // <author>Benjamin Abt</author>
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Collections.Generic;
 using SchwabenCode.QuickIO.Win32;
 
-namespace SchwabenCode.QuickIO.Internal
+namespace SchwabenCode.QuickIO.Engine
 {
-    internal static partial class InternalQuickIO
+    internal static partial class QuickIOEngine
     {
         /// <summary>
         /// Creates a new file.

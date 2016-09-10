@@ -4,8 +4,8 @@
 // <author>Benjamin Abt</author>
 
 using System;
-using SchwabenCode.QuickIO.Internal;
 using System.Diagnostics.Contracts;
+using SchwabenCode.QuickIO.Engine;
 
 namespace SchwabenCode.QuickIO
 {

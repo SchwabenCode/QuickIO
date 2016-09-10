@@ -72,6 +72,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="_CodeGeneration\QuickIODirectory\QuickIODirectory.Attributes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickIODirectory.Attributes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CodeGeneration\QuickIODirectory\QuickIODirectory.FileTime.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickIODirectory.FileTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CodeGeneration\QuickIODirectory\QuickIODirectory.Root.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickIODirectory.Root.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CodeGeneration\QuickIOFileTime\QuickIOFile.Attributes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickIOFile.Attributes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CodeGeneration\QuickIOFileTime\QuickIOFile.FileTime.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuickIOFile.FileTime.tt</DependentUpon>
+    </Compile>
     <Compile Include="_Exceptions\DirectoryAlreadyExistsException.cs" />
     <Compile Include="_Exceptions\DirectoryNotEmptyException.cs" />
     <Compile Include="_Exceptions\FileAlreadyExistsException.cs" />
@@ -80,16 +105,16 @@
     <Compile Include="_Exceptions\PathAlreadyExistsException.cs" />
     <Compile Include="_Exceptions\PathNotFoundException.cs" />
     <Compile Include="FileAttributesExtensions.cs" />
-    <Compile Include="Internal\InternalEnumerateFileSystem.cs" />
-    <Compile Include="Internal\InternalQuickIO.Directories.cs" />
-    <Compile Include="Internal\InternalQuickIO.Directory.Statistics.cs" />
-    <Compile Include="Internal\InternalQuickIO.FileHandle.cs" />
-    <Compile Include="Internal\InternalQuickIO.Files.cs" />
-    <Compile Include="Internal\InternalQuickIO.FilesAttributes.cs" />
-    <Compile Include="Internal\InternalQuickIO.FileTimes.cs" />
-    <Compile Include="Internal\InternalQuickIO.FindData.cs" />
-    <Compile Include="Internal\InternalQuickIO.Shares.cs" />
-    <Compile Include="Internal\InternalQuickIOCommon.cs" />
+    <Compile Include="Engine\InternalEnumerateFileSystem.cs" />
+    <Compile Include="Engine\QuickIOEngine.Directories.cs" />
+    <Compile Include="Engine\QuickIOEngine.Directory.Statistics.cs" />
+    <Compile Include="Engine\QuickIOEngine.FileHandle.cs" />
+    <Compile Include="Engine\QuickIOEngine.Files.cs" />
+    <Compile Include="Engine\QuickIOEngine.FilesAttributes.cs" />
+    <Compile Include="Engine\QuickIOEngine.FileTimes.cs" />
+    <Compile Include="Engine\QuickIOEngine.FindData.cs" />
+    <Compile Include="Engine\QuickIOEngine.Shares.cs" />
+    <Compile Include="Engine\QuickIOEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="_Exceptions\QuickIOBaseException.cs" />
     <Compile Include="_Enums\QuickIOFileSystemEntryType.cs" />
@@ -170,31 +195,6 @@
     <Compile Include="Win32\Win32FindDataExtensions.cs" />
     <Compile Include="Win32\Win32SafeNativeMethods.cs" />
     <Compile Include="Win32\Win32SecurityObjectType.cs" />
-    <Compile Include="_CodeGeneration\QuickIODirectory\QuickIODirectory.Attributes.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuickIODirectory.Attributes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="_CodeGeneration\QuickIODirectory\QuickIODirectory.FileTime.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuickIODirectory.FileTime.tt</DependentUpon>
-    </Compile>
-    <Compile Include="_CodeGeneration\QuickIODirectory\QuickIODirectory.Root.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuickIODirectory.Root.tt</DependentUpon>
-    </Compile>
-    <Compile Include="_CodeGeneration\QuickIOFileTime\QuickIOFile.Attributes.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuickIOFile.Attributes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="_CodeGeneration\QuickIOFileTime\QuickIOFile.FileTime.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuickIOFile.FileTime.tt</DependentUpon>
-    </Compile>
     <Compile Include="_CodeGeneration\QuickIOFileTime\QuickIOFile.Root.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -228,7 +228,7 @@
     <Compile Include="_Enums\QuickIOShareApiReadLevel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Internal\README.md" />
+    <None Include="Engine\README.md" />
     <None Include="_CodeGeneration\README.md" />
   </ItemGroup>
   <ItemGroup>

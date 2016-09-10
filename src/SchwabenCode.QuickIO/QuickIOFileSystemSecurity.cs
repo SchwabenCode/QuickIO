@@ -9,7 +9,6 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.AccessControl;
 using System.Security.Principal;
-using SchwabenCode.QuickIO.Internal;
 using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO

@@ -3,8 +3,8 @@
 // </copyright>
 // <author>Benjamin Abt</author>
 
-using SchwabenCode.QuickIO.Internal;
 
+using SchwabenCode.QuickIO.Engine;
 
 namespace SchwabenCode.QuickIO
 {
@@ -89,7 +89,7 @@ namespace SchwabenCode.QuickIO
         /// </example>
         public static void Delete( QuickIOPathInfo info, bool recursive = false )
         {
-            InternalQuickIO.DeleteDirectory( info.FullNameUnc, recursive );
+            QuickIOEngine.DeleteDirectory( info.FullNameUnc, recursive );
         }
     }
 }

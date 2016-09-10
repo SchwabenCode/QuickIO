@@ -5,8 +5,8 @@
 
 using System;
 using System.IO;
-using SchwabenCode.QuickIO.Internal;
 using System.Diagnostics.Contracts;
+using SchwabenCode.QuickIO.Engine;
 using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO
@@ -119,7 +119,7 @@ namespace SchwabenCode.QuickIO
             }
 
             int win32Error;
-            if( !InternalQuickIO.CopyFile( source, target, out win32Error, overwrite ) )
+            if( !QuickIOEngine.CopyFile( source, target, out win32Error, overwrite ) )
             {
                 Win32ErrorCodes.NativeExceptionMapping( !Exists( source ) ? target : target, win32Error );
             }
@@ -135,7 +135,7 @@ namespace SchwabenCode.QuickIO
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
 
-            InternalQuickIO.DeleteFile( path );
+            QuickIOEngine.DeleteFile( path );
         }
 
 
@@ -151,7 +151,7 @@ namespace SchwabenCode.QuickIO
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
 
-            return InternalQuickIO.FileExists( path );
+            return QuickIOEngine.FileExists( path );
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace SchwabenCode.QuickIO
             Contract.Requires( !String.IsNullOrWhiteSpace( sourceFileName ) );
             Contract.Requires( !String.IsNullOrWhiteSpace( destinationFileName ) );
 
-            InternalQuickIO.MoveFile( sourceFileName, destinationFileName );
+            QuickIOEngine.MoveFile( sourceFileName, destinationFileName );
         }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace SchwabenCode.QuickIO
             Contract.Requires( sourceFileInfo != null );
             Contract.Requires( destinationFolder != null );
 
-            InternalQuickIO.MoveFile( sourceFileInfo.FullNameUnc, Path.Combine( destinationFolder.FullNameUnc, sourceFileInfo.Name ) );
+            QuickIOEngine.MoveFile( sourceFileInfo.FullNameUnc, Path.Combine( destinationFolder.FullNameUnc, sourceFileInfo.Name ) );
         }
 
         /// <summary>
@@ -208,7 +208,7 @@ namespace SchwabenCode.QuickIO
             Contract.Requires( sourceFileInfo != null );
             Contract.Requires( destinationFolder != null );
 
-            InternalQuickIO.MoveFile( sourceFileInfo.FullNameUnc, Path.Combine( destinationFolder.FullNameUnc, sourceFileInfo.Name ) );
+            QuickIOEngine.MoveFile( sourceFileInfo.FullNameUnc, Path.Combine( destinationFolder.FullNameUnc, sourceFileInfo.Name ) );
         }
 
     }

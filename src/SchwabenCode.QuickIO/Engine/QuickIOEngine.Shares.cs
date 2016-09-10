@@ -4,14 +4,14 @@
 // <author>Benjamin Abt</author>
 
 using System;
-using System.Diagnostics.Contracts;
-using SchwabenCode.QuickIO.Win32;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
+using SchwabenCode.QuickIO.Win32;
 
-namespace SchwabenCode.QuickIO.Internal
+namespace SchwabenCode.QuickIO.Engine
 {
-    internal static partial class InternalQuickIO
+    internal static partial class QuickIOEngine
     {
         /// <summary>
         /// Enumerate shares of specific machine. If no machine is specified, local machine is used
@@ -37,7 +37,7 @@ namespace SchwabenCode.QuickIO.Internal
                 //{
                 //    level = QuickIOShareApiReadLevel.Normal
                 //    // Admin required, but not granted? try with normal usr
-                //    returnCode = InternalQuickIO.GetShareEnumResult( machine, level, ref buffer, ref entriesRead, ref totalEntries, ref resumeHandle );
+                //    returnCode = QuickIOEngine.GetShareEnumResult( machine, level, ref buffer, ref entriesRead, ref totalEntries, ref resumeHandle );
                 //}
 
                 //// skip if zero or no entries

@@ -6,18 +6,17 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using SchwabenCode.QuickIO.Win32;
 
-namespace SchwabenCode.QuickIO.Internal
+namespace SchwabenCode.QuickIO.Engine
 {
     /// <summary>
     /// Provides internal methods. PathMatchAll IO operations are called from here.
     /// </summary>
     [FileIOPermission( SecurityAction.Demand, AllFiles = FileIOPermissionAccess.AllAccess, AllLocalFiles = FileIOPermissionAccess.AllAccess )]
-    internal static partial class InternalQuickIO
+    internal static partial class QuickIOEngine
     {
 
         /// <summary>

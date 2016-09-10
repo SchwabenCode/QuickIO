@@ -1,11 +1,13 @@
-﻿// <copyright company="Benjamin Abt ( http://www.benjamin-abt.com - http://quickIO.NET )">
+﻿
+// <copyright company="Benjamin Abt ( http://www.benjamin-abt.com - http://quickIO.NET )">
 //      Copyright (c) 2016 Benjamin Abt Rights Reserved - DO NOT REMOVE OR EDIT COPYRIGHT
 // </copyright>
 // <author>Benjamin Abt</author>
 
 
+using System;
 using System.IO;
-using SchwabenCode.QuickIO.Internal;
+using SchwabenCode.QuickIO.Engine;
 
 namespace SchwabenCode.QuickIO
 {
@@ -17,9 +19,9 @@ namespace SchwabenCode.QuickIO
         /// <param name="path">The path to the directory or file. </param>
         /// <param name="attributes">New attributes to set.</param>
         /// <returns>The <see cref="FileAttributes"/> of the directory or file.</returns>
-        public static void SetAttributes(string path, FileAttributes attributes)
+        public static void SetAttributes( string path , FileAttributes attributes )
         {
-            SetAttributes(new QuickIOPathInfo(path), attributes);
+			QuickIOEngine.SetAttributes( QuickIOPath.ToPathUnc( path ), attributes );
         }
 
         /// <summary>
@@ -28,20 +30,20 @@ namespace SchwabenCode.QuickIO
         /// <param name="info">A directory or file. </param>
         /// <param name="attributes">New attributes to set.</param>
         /// <returns>The <see cref="FileAttributes"/> of the directory or file.</returns>
-        public static void SetAttributes(QuickIOPathInfo info, FileAttributes attributes)
+        public static void SetAttributes( QuickIOPathInfo info, FileAttributes attributes )
         {
-            InternalQuickIO.SetAttributes(info.FullNameUnc, attributes);
+            QuickIOEngine.SetAttributes( info.FullNameUnc, attributes);
         }
 
-        /// <summary>
+		/// <summary>
         /// Gets the <see cref="FileAttributes"/> of the directory or file.
         /// </summary>
         /// <param name="info">A directory or file. </param>
         /// <param name="attributes">New attributes to set.</param>
         /// <returns>The <see cref="FileAttributes"/> of the directory or file.</returns>
-        public static void SetAttributes(QuickIODirectoryInfo info, FileAttributes attributes)
+        public static void SetAttributes( QuickIODirectoryInfo info, FileAttributes attributes )
         {
-            InternalQuickIO.SetAttributes(info.FullNameUnc, attributes);
+            QuickIOEngine.SetAttributes( info.FullNameUnc, attributes);
         }
 
         #region Attributes
@@ -50,9 +52,9 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="path">The path to the directory or file. </param>
         /// <returns>The <see cref="FileAttributes"/> of the directory or file.</returns>
-        public static FileAttributes GetAttributes(string path)
+        public static FileAttributes GetAttributes( string path )
         {
-            return GetAttributes(new QuickIOPathInfo(path));
+            return QuickIOEngine.GetAttributes( QuickIOPath.ToPathUnc (path) );
         }
 
         /// <summary>
@@ -60,20 +62,19 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="info">A directory or file. </param>
         /// <returns>The <see cref="FileAttributes"/> of the directory or file.</returns>
-        public static FileAttributes GetAttributes(QuickIOPathInfo info)
+        public static FileAttributes GetAttributes( QuickIOPathInfo info )
         {
-            return InternalQuickIO.GetAttributes(info.FullNameUnc);
+            return QuickIOEngine.GetAttributes( info.FullNameUnc );
         }
 
-        /// <summary>
+		/// <summary>
         /// Gets the <see cref="FileAttributes"/> of the directory or file.
         /// </summary>
         /// <param name="info">A directory or file. </param>
         /// <returns>The <see cref="FileAttributes"/> of the directory or file.</returns>
-        public static FileAttributes GetAttributes(QuickIODirectoryInfo info)
+        public static FileAttributes GetAttributes( QuickIODirectoryInfo info )
         {
-            info.Attributes = InternalQuickIO.GetAttributes(info.FullNameUnc);
-            return info.Attributes;
+            return QuickIOEngine.GetAttributes(info.FullNameUnc);
         }
 
         #endregion
@@ -85,10 +86,10 @@ namespace SchwabenCode.QuickIO
         /// <param name="path">A directory or file. </param>
         /// <param name="attribute">Attribute to remove </param>
         /// <returns>true if removed. false if not exists in attributes</returns>
-        public static bool RemoveAttribute(string path, FileAttributes attribute)
+        public static bool RemoveAttribute( string path, FileAttributes attribute )
         {
             FileAttributes updatedAttributes;
-            bool result = InternalQuickIO.TryRemoveAttribute(QuickIOPath.ToPathUnc(path), attribute, out updatedAttributes);
+            bool result = QuickIOEngine.TryRemoveAttribute(QuickIOPath.ToPathUnc(path), attribute, out updatedAttributes);
 
             return result;
         }
@@ -99,10 +100,10 @@ namespace SchwabenCode.QuickIO
         /// <param name="info">A directory or file. </param>
         /// <param name="attribute">Attribute to remove </param>
         /// <returns>true if removed. false if not exists in attributes</returns>
-        public static bool RemoveAttribute(QuickIOPathInfo info, FileAttributes attribute)
+        public static bool RemoveAttribute( QuickIOPathInfo info, FileAttributes attribute)
         {
             FileAttributes updatedAttributes;
-            bool result = InternalQuickIO.TryRemoveAttribute(info.FullNameUnc, attribute, out updatedAttributes);
+            bool result = QuickIOEngine.TryRemoveAttribute(info.FullNameUnc, attribute, out updatedAttributes);
             info.Attributes = updatedAttributes;
 
             return result;
@@ -114,10 +115,10 @@ namespace SchwabenCode.QuickIO
         /// <param name="info">A directory or file. </param>
         /// <param name="attribute">Attribute to remove </param>
         /// <returns>true if removed. false if not exists in attributes</returns>
-        public static bool RemoveAttribute(QuickIODirectoryInfo info, FileAttributes attribute)
+        public static bool RemoveAttribute( QuickIODirectoryInfo info, FileAttributes attribute )
         {
             FileAttributes updatedAttributes;
-            bool result = InternalQuickIO.TryRemoveAttribute(info.FullNameUnc, attribute, out updatedAttributes);
+            bool result = QuickIOEngine.TryRemoveAttribute(info.FullNameUnc, attribute, out updatedAttributes);
             info.Attributes = updatedAttributes;
 
             return result;
@@ -132,10 +133,12 @@ namespace SchwabenCode.QuickIO
         /// <param name="path">A directory or file. </param>
         /// <param name="attribute">Attribute to add </param>
         /// <returns>true if added. false if already exists in attributes</returns>
-        public static bool AddAttribute(string path, FileAttributes attribute)
+        public static bool AddAttribute( string path, FileAttributes attribute )
         {
             FileAttributes updatedAttributes;
-            return InternalQuickIO.TryAddAttribute(QuickIOPath.ToPathUnc(path), attribute, out updatedAttributes);
+            bool result = QuickIOEngine.TryAddAttribute(QuickIOPath.ToPathUnc(path), attribute, out updatedAttributes);
+
+            return result;
         }
 
         /// <summary>
@@ -144,10 +147,10 @@ namespace SchwabenCode.QuickIO
         /// <param name="info">A directory or file. </param>
         /// <param name="attribute">Attribute to add </param>
         /// <returns>true if added. false if already exists in attributes</returns>
-        public static bool AddAttribute(QuickIOPathInfo info, FileAttributes attribute)
+        public static bool AddAttribute( QuickIOPathInfo info, FileAttributes attribute )
         {
             FileAttributes updatedAttributes;
-            bool result = InternalQuickIO.TryAddAttribute(info.FullNameUnc, attribute, out updatedAttributes);
+            bool result = QuickIOEngine.TryAddAttribute(info.FullNameUnc, attribute, out updatedAttributes);
             info.Attributes = updatedAttributes;
 
             return result;
@@ -159,10 +162,10 @@ namespace SchwabenCode.QuickIO
         /// <param name="info">A directory or file. </param>
         /// <param name="attribute">Attribute to add </param>
         /// <returns>true if added. false if already exists in attributes</returns>
-        public static bool AddAttribute(QuickIODirectoryInfo info, FileAttributes attribute)
+        public static bool AddAttribute( QuickIODirectoryInfo info, FileAttributes attribute )
         {
             FileAttributes updatedAttributes;
-            bool result = InternalQuickIO.TryAddAttribute(info.FullNameUnc, attribute, out updatedAttributes);
+            bool result = QuickIOEngine.TryAddAttribute(info.FullNameUnc, attribute, out updatedAttributes);
             info.Attributes = updatedAttributes;
 
             return result;

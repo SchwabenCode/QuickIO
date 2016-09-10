@@ -4,10 +4,8 @@
 // <author>Benjamin Abt</author>
 
 using System;
-using System.Runtime.InteropServices;
-using SchwabenCode.QuickIO.Win32;
-using SchwabenCode.QuickIO.Internal;
 using System.Diagnostics.Contracts;
+using SchwabenCode.QuickIO.Engine;
 
 namespace SchwabenCode.QuickIO
 {
@@ -26,7 +24,7 @@ namespace SchwabenCode.QuickIO
             Contract.Requires( !String.IsNullOrWhiteSpace( sharePath ) );
             Contract.Ensures( Contract.Result<QuickIODiskInformation>() != null );
 
-            return InternalQuickIO.GetDiskInformation( sharePath );
+            return QuickIOEngine.GetDiskInformation( sharePath );
         }
 
     }

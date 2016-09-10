@@ -4,11 +4,7 @@
 // <author>Benjamin Abt</author>
 
 using System;
-using System.IO;
-using System.Net.Mail;
-using SchwabenCode.QuickIO.Internal;
-using System.Diagnostics.Contracts;
-using System.Diagnostics;
+using SchwabenCode.QuickIO.Engine;
 
 namespace SchwabenCode.QuickIO
 {
@@ -21,7 +17,7 @@ namespace SchwabenCode.QuickIO
         /// <returns>True on exists</returns>
         public static Boolean Exists( String path )
         {
-            return InternalQuickIO.Exists( path );
+            return QuickIOEngine.Exists( path );
         }
     }
 }

@@ -8,7 +8,7 @@ using System;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Security.Principal;
-using SchwabenCode.QuickIO.Internal;
+using SchwabenCode.QuickIO.Engine;
 using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO
@@ -23,7 +23,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="fullpath">Full path to the file or directory (regular or unc)</param>
         internal QuickIOPathInfo( String fullpath ) :
-               this( fullpath, InternalQuickIO.GetFindDataFromPath( fullpath ) )
+               this( fullpath, QuickIOEngine.GetFindDataFromPath( fullpath ) )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( fullpath ) );
         }
@@ -96,7 +96,7 @@ namespace SchwabenCode.QuickIO
                 {
                     throw new NotSupportedException( "Root directory does not provide owner access" );
                 }
-                return _findData ?? ( _findData = InternalQuickIO.GetFindDataFromPath( FullNameUnc ) );
+                return _findData ?? ( _findData = QuickIOEngine.GetFindDataFromPath( FullNameUnc ) );
             }
             private set
             {
@@ -141,18 +141,9 @@ namespace SchwabenCode.QuickIO
             get
             {
                 Contract.Requires( !String.IsNullOrWhiteSpace( FullNameUnc ) );
-                return InternalQuickIO.Exists( FullNameUnc );
+                return QuickIOEngine.Exists( FullNameUnc );
             }
         }
-
-        ///// <summary>
-        ///// Returns true if path exists. Checks <see cref="QuickIOFileSystemEntryType"/>
-        ///// </summary>
-        ///// <returns></returns>
-        //public Boolean CheckExistance( QuickIOFileSystemEntryType? systemEntryType = null )
-        //{
-        //    return systemEntryType == null ? InternalQuickIO.Exists( this ) : InternalQuickIOCommon.Exists( FullNameUnc, ( QuickIOFileSystemEntryType ) systemEntryType );
-        //}
 
         /// <summary>
         /// Returns true if path exists. Checks <see cref="QuickIOFileSystemEntryType"/> against the file system
@@ -162,7 +153,7 @@ namespace SchwabenCode.QuickIO
             get
             {
                 Contract.Requires( FullNameUnc != null );
-                return InternalQuickIOCommon.DetermineFileSystemEntry( FullNameUnc );
+                return QuickIOEngine.DetermineFileSystemEntry( FullNameUnc );
             }
 
         }

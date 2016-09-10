@@ -3,8 +3,6 @@
 // </copyright>
 // <author>Benjamin Abt</author>
 
-using SchwabenCode.QuickIO.Internal;
-
 namespace SchwabenCode.QuickIO
 {
     public partial class QuickIODirectoryInfo
@@ -16,7 +14,7 @@ namespace SchwabenCode.QuickIO
         ///// <returns><see cref="QuickIODirectoryMetadata"/></returns>
         //public QuickIODirectoryMetadata GetMetadata( QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         //{
-        //    return InternalQuickIO.EnumerateDirectoryMetadata( FullNameUnc, FindData, enumerateOptions );
+        //    return QuickIOEngine.EnumerateDirectoryMetadata( FullNameUnc, FindData, enumerateOptions );
         //}
     }
 }

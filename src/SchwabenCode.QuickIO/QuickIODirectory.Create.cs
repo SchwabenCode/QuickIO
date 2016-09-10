@@ -3,8 +3,8 @@
 // </copyright>
 // <author>Benjamin Abt</author>
 
-using SchwabenCode.QuickIO.Internal;
 using System.Diagnostics.Contracts;
+using SchwabenCode.QuickIO.Engine;
 
 namespace SchwabenCode.QuickIO
 {
@@ -91,7 +91,7 @@ namespace SchwabenCode.QuickIO
         public static void Create( QuickIOPathInfo path, bool recursive = false )
         {
             Contract.Requires( path != null );
-            InternalQuickIO.CreateDirectory( path.FullNameUnc, recursive );
+            QuickIOEngine.CreateDirectory( path.FullNameUnc, recursive );
         }
     }
 }

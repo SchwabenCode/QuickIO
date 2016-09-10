@@ -10,7 +10,7 @@ using System.IO;
 using System.Linq;
 using SchwabenCode.QuickIO.Win32;
 
-namespace SchwabenCode.QuickIO.Internal
+namespace SchwabenCode.QuickIO.Engine
 {
     internal static class InternalEnumerateFileSystem
     {

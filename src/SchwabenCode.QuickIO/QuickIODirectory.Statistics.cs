@@ -4,7 +4,7 @@
 // <author>Benjamin Abt</author>
 
 using System;
-using SchwabenCode.QuickIO.Internal;
+using SchwabenCode.QuickIO.Engine;
 
 namespace SchwabenCode.QuickIO
 {
@@ -68,7 +68,7 @@ namespace SchwabenCode.QuickIO
         /// </example>
         public static QuickIOFolderStatisticResult GetStatistics( QuickIOPathInfo pathInfo )
         {
-            return InternalQuickIO.GetDirectoryStatistics( pathInfo );
+            return QuickIOEngine.GetDirectoryStatistics( pathInfo );
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace SchwabenCode.QuickIO
         /// </example>
         public static QuickIOFolderStatisticResult GetStatistics( QuickIODirectoryInfo directoryInfo )
         {
-            return InternalQuickIO.GetDirectoryStatistics( directoryInfo.PathInfo );
+            return QuickIOEngine.GetDirectoryStatistics( directoryInfo.PathInfo );
         }
         #endregion
     }
