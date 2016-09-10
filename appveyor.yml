@@ -42,8 +42,8 @@
 
   test:
     assemblies:
-      - 'tests\**\*.UnitTests.dll'
-      - 'tests\**\*.IntegrationTests.dll'
+      - 'test\**\*.UnitTests.dll'
+      - 'test\**\*.IntegrationTests.dll'
 
   artifacts:
   - path: 'QuickIO.NET.*.nupkg'
