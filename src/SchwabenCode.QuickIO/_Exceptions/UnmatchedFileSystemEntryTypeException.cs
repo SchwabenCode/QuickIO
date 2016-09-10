@@ -5,7 +5,7 @@
 
 using System;
 
-namespace SchwabenCode.QuickIO.Core
+namespace SchwabenCode.QuickIO
 {
     /// <summary>
     /// Exception if path returns another type as excepted

@@ -7,7 +7,6 @@ using System.IO;
 using System;
 using System.IO.Compression;
 using System.Diagnostics.Contracts;
-using SchwabenCode.QuickIO.Core;
 
 #if NET45_OR_GREATER
 

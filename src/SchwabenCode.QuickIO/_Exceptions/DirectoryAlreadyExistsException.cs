@@ -6,7 +6,7 @@
 using System;
 using System.Diagnostics.Contracts;
 
-namespace SchwabenCode.QuickIO.Core
+namespace SchwabenCode.QuickIO
 {
     /// <summary>
     /// This error is raised if you want to create for example a folder which already exists.

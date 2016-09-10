@@ -6,26 +6,28 @@
 using System;
 using System.Diagnostics.Contracts;
 
-namespace SchwabenCode.QuickIO.Core
+namespace SchwabenCode.QuickIO
 {
     /// <summary>
-    /// Exception if path does not exist.
+    /// Invalid Path Exception
     /// </summary>
-    public class PathNotFoundException : QuickIOBaseException
+    public class InvalidPathException : QuickIOBaseException
     {
         /// <summary>
-        /// Exception if path does not exist.
+        /// Invalid Path Exception
         /// </summary>
-        public PathNotFoundException( string path )
-            : this( $"The system cannot find the path specified", path )
+        /// <param name="path">Invalid Path</param>
+        public InvalidPathException( string path )
+            : base( "The filename, directory name, or volume label syntax is incorrect.", path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
         }
-
         /// <summary>
-        /// Exception if path does not exist.
+        /// Invalid Path Exception
         /// </summary>
-        public PathNotFoundException( string message, string path )
+        /// <param name="message">Error Message</param>
+        /// <param name="path">Invalid Path</param>
+        public InvalidPathException( string message, string path )
             : base( message, path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( message ) );

@@ -9,7 +9,6 @@ using System.Diagnostics.Contracts;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
-using SchwabenCode.QuickIO.Core;
 using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO.Internal

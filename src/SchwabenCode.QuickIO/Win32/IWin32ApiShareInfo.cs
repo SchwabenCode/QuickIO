@@ -4,7 +4,6 @@
 // <author>Benjamin Abt</author>
 
 using System;
-using SchwabenCode.QuickIO.Core;
 
 namespace SchwabenCode.QuickIO.Win32
 {

@@ -3,7 +3,7 @@
 // </copyright>
 // <author>Benjamin Abt</author>
 
-namespace SchwabenCode.QuickIO.Core
+namespace SchwabenCode.QuickIO
 {
     /// <summary>
     /// Represents type of path or handle

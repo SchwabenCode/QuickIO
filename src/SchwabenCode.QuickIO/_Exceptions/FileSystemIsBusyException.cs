@@ -6,7 +6,7 @@
 using System;
 using System.Diagnostics.Contracts;
 
-namespace SchwabenCode.QuickIO.Core
+namespace SchwabenCode.QuickIO
 {
     /// <summary>
     /// This error is raised if file system is busy and further operations are not able to execute

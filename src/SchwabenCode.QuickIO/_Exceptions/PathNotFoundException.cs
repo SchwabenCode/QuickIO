@@ -6,19 +6,26 @@
 using System;
 using System.Diagnostics.Contracts;
 
-namespace SchwabenCode.QuickIO.Core
+namespace SchwabenCode.QuickIO
 {
     /// <summary>
-    /// This error is raised if a folder that is not empty should be deleted.
+    /// Exception if path does not exist.
     /// </summary>
-    public class DirectoryNotEmptyException : QuickIOBaseException
+    public class PathNotFoundException : QuickIOBaseException
     {
         /// <summary>
-        /// Creates an instance of <see cref="DirectoryNotEmptyException"/>
+        /// Exception if path does not exist.
         /// </summary>
-        /// <param name="message">Error message</param>
-        /// <param name="path">Affected directory path</param>
-        public DirectoryNotEmptyException( string message, string path )
+        public PathNotFoundException( string path )
+            : this( $"The system cannot find the path specified", path )
+        {
+            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
+        }
+
+        /// <summary>
+        /// Exception if path does not exist.
+        /// </summary>
+        public PathNotFoundException( string message, string path )
             : base( message, path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( message ) );

@@ -7,7 +7,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
 
-namespace SchwabenCode.QuickIO.Core
+namespace SchwabenCode.QuickIO
 {
     /// <summary>
     /// Abstract base class for exceptions

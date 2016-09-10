@@ -72,13 +72,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\DirectoryAlreadyExistsException.cs" />
-    <Compile Include="Core\DirectoryNotEmptyException.cs" />
-    <Compile Include="Core\FileAlreadyExistsException.cs" />
-    <Compile Include="Core\FileSystemIsBusyException.cs" />
-    <Compile Include="Core\InvalidPathException.cs" />
-    <Compile Include="Core\PathAlreadyExistsException.cs" />
-    <Compile Include="Core\PathNotFoundException.cs" />
+    <Compile Include="_Exceptions\DirectoryAlreadyExistsException.cs" />
+    <Compile Include="_Exceptions\DirectoryNotEmptyException.cs" />
+    <Compile Include="_Exceptions\FileAlreadyExistsException.cs" />
+    <Compile Include="_Exceptions\FileSystemIsBusyException.cs" />
+    <Compile Include="_Exceptions\InvalidPathException.cs" />
+    <Compile Include="_Exceptions\PathAlreadyExistsException.cs" />
+    <Compile Include="_Exceptions\PathNotFoundException.cs" />
     <Compile Include="FileAttributesExtensions.cs" />
     <Compile Include="Internal\InternalEnumerateFileSystem.cs" />
     <Compile Include="Internal\InternalQuickIO.Directories.cs" />
@@ -91,13 +91,13 @@
     <Compile Include="Internal\InternalQuickIO.Shares.cs" />
     <Compile Include="Internal\InternalQuickIOCommon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Core\QuickIOBaseException.cs" />
-    <Compile Include="Core\QuickIOFileSystemEntryType.cs" />
-    <Compile Include="Core\QuickIOShareType.cs" />
-    <Compile Include="Core\QuickIOTransferAlreadyRunningException.cs" />
-    <Compile Include="Core\UnmatchedFileSystemEntryTypeException.cs" />
-    <Compile Include="Core\UnsupportedDriveTypeException.cs" />
-    <Compile Include="Core\UnsupportedShareTypeException.cs" />
+    <Compile Include="_Exceptions\QuickIOBaseException.cs" />
+    <Compile Include="_Enums\QuickIOFileSystemEntryType.cs" />
+    <Compile Include="_Enums\QuickIOShareType.cs" />
+    <Compile Include="_Exceptions\QuickIOTransferAlreadyRunningException.cs" />
+    <Compile Include="_Exceptions\UnmatchedFileSystemEntryTypeException.cs" />
+    <Compile Include="_Exceptions\UnsupportedDriveTypeException.cs" />
+    <Compile Include="_Exceptions\UnsupportedShareTypeException.cs" />
     <Compile Include="QuickIO.cs" />
     <Compile Include="QuickIODirectory.Compress.cs" />
     <Compile Include="QuickIODirectory.Copy.cs" />

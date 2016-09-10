@@ -1,7 +1,5 @@
 ﻿using System.IO;
 using FluentAssertions;
-using SchwabenCode.QuickIO.Core;
-using SchwabenCode.QuickIO.Internal;
 using Xunit;
 
 namespace SchwabenCode.QuickIO.UnitTests

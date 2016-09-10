@@ -9,7 +9,6 @@ using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using SchwabenCode.QuickIO.Win32;
-using SchwabenCode.QuickIO.Core;
 
 namespace SchwabenCode.QuickIO.Internal
 {

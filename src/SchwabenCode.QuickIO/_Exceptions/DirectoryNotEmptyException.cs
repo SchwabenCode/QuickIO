@@ -6,17 +6,19 @@
 using System;
 using System.Diagnostics.Contracts;
 
-namespace SchwabenCode.QuickIO.Core
+namespace SchwabenCode.QuickIO
 {
     /// <summary>
-    /// Exception if path does not exist.
+    /// This error is raised if a folder that is not empty should be deleted.
     /// </summary>
-    public class PathAlreadyExistsException : QuickIOBaseException
+    public class DirectoryNotEmptyException : QuickIOBaseException
     {
         /// <summary>
-        /// Exception if path does not exist.
+        /// Creates an instance of <see cref="DirectoryNotEmptyException"/>
         /// </summary>
-        public PathAlreadyExistsException( string message, string path )
+        /// <param name="message">Error message</param>
+        /// <param name="path">Affected directory path</param>
+        public DirectoryNotEmptyException( string message, string path )
             : base( message, path )
         {
             Contract.Requires( !String.IsNullOrWhiteSpace( message ) );

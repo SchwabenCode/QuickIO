@@ -3,19 +3,22 @@
 // </copyright>
 // <author>Benjamin Abt</author>
 
-namespace SchwabenCode.QuickIO.Core
+using System;
+
+namespace SchwabenCode.QuickIO
 {
     /// <summary>
     /// Represents an exception for unsuuported drive types
     /// </summary>
-    public class UnsupportedDriveTypeException : QuickIOBaseException
+    public class UnsupportedShareTypeException : QuickIOBaseException
     {
         /// <summary>
-        /// Creates an instance of <see cref="UnsupportedDriveTypeException"/>
+        /// Creates an instance of <see cref="UnsupportedShareTypeException"/>
         /// </summary>
         /// <param name="path">Unsupported drive</param>
-        public UnsupportedDriveTypeException( string path )
-            : base( "Unsupported Drive Type: only logical drives are supported; do not use mapped network drives.", path )
+        /// <param name="message">Error</param>
+        public UnsupportedShareTypeException( String message, string path )
+            : base( message, path )
         {
         }
     }

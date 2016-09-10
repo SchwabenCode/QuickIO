@@ -35,7 +35,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.directory.getdirectoryroot(v=vs.110).aspx</remarks>
         public static QuickIOPathInfo GetDirectoryRoot( QuickIOPathInfo info )
         {
-            return info.Root;
+            return new QuickIOPathInfo(info.Root);
         }
 
 		/// <summary>
@@ -46,7 +46,7 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.directory.getdirectoryroot(v=vs.110).aspx</remarks>
         public static QuickIOPathInfo GetDirectoryRoot( <#= className #>Info info )
         {
-            return info.Root;
+            return new QuickIOPathInfo(info.Root);
         }
 
         #endregion
