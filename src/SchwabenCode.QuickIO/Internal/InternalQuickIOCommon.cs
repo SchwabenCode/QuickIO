@@ -35,13 +35,13 @@ namespace SchwabenCode.QuickIO.Internal
         /// </summary>
         /// <param name="fullPath">Full path</param>
         /// <returns><see cref="QuickIOFileSystemEntryType"/></returns>
-        internal static QuickIOFileSystemEntryType DetermineFileSystemEntry( string fullPath )
+        internal static QuickIOFileSystemEntryType DetermineFileSystemEntry(string fullPath)
         {
-            Contract.Requires( !String.IsNullOrWhiteSpace( fullPath ) );
+            Contract.Requires(!String.IsNullOrWhiteSpace(fullPath));
 
-            Win32FindData findData = InternalQuickIO.GetFindDataFromPath( fullPath );
+            Win32FindData findData = InternalQuickIO.GetFindDataFromPath(fullPath);
 
-            return !InternalHelpers.ContainsFileAttribute( findData.dwFileAttributes, FileAttributes.Directory ) ? QuickIOFileSystemEntryType.File : QuickIOFileSystemEntryType.Directory;
+            return !findData.dwFileAttributes.Contains(FileAttributes.Directory) ? QuickIOFileSystemEntryType.File : QuickIOFileSystemEntryType.Directory;
         }
 
         /// <summary>
@@ -49,11 +49,11 @@ namespace SchwabenCode.QuickIO.Internal
         /// </summary>
         /// <param name="findData"><see cref="Win32FindData"/></param>
         /// <returns><see cref="QuickIOFileSystemEntryType"/></returns>
-        internal static QuickIOFileSystemEntryType DetermineFileSystemEntry( Win32FindData findData )
+        internal static QuickIOFileSystemEntryType DetermineFileSystemEntry(Win32FindData findData)
         {
-            Contract.Requires( findData != null );
+            Contract.Requires(findData != null);
 
-            return !InternalHelpers.ContainsFileAttribute( findData.dwFileAttributes, FileAttributes.Directory ) ? QuickIOFileSystemEntryType.File : QuickIOFileSystemEntryType.Directory;
+            return !findData.dwFileAttributes.Contains(FileAttributes.Directory) ? QuickIOFileSystemEntryType.File : QuickIOFileSystemEntryType.Directory;
         }
     }
 }

@@ -16,8 +16,8 @@ namespace SchwabenCode.QuickIO
     /// <summary>
     /// Provides properties and instance method for files and directories
     /// </summary>
-    [Browsable( false )]
-    [EditorBrowsable( EditorBrowsableState.Never )]
+    [Browsable(false)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class QuickIOFileSystemEntryBase
     {
         #region Base CTOR
@@ -27,11 +27,11 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="pathInfo"><see cref="QuickIOPathInfo"/></param>
         /// <param name="findData"><see cref="Win32FindData"/></param>
-        internal QuickIOFileSystemEntryBase( QuickIOPathInfo pathInfo, Win32FindData findData )
+        internal QuickIOFileSystemEntryBase(QuickIOPathInfo pathInfo, Win32FindData findData)
         {
             this.PathInfo = pathInfo;
             this.FindData = findData;
-            if( findData != null )
+            if(findData != null)
             {
                 this.Attributes = findData.dwFileAttributes;
                 //Changed to allow paths which do not exist:
@@ -59,23 +59,13 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         public Boolean IsReadOnly
         {
-            get
-            {
-                return InternalHelpers.ContainsFileAttribute( Attributes, FileAttributes.ReadOnly );
-            }
+            get { return Attributes.Contains(FileAttributes.ReadOnly); }
             set
             {
-                if( value )
-                {
-                    InternalHelpers.AddFileAttrribute( Attributes, FileAttributes.ReadOnly );
-                }
-                else
-                {
-                    InternalHelpers.RemoveFileAttribute( Attributes, FileAttributes.ReadOnly );
-                }
+                Attributes = Attributes.Force(FileAttributes.ReadOnly, value);
 
                 // Commit current attributes
-                InternalQuickIO.SetAttributes( PathInfo.FullNameUnc, Attributes );
+                InternalQuickIO.SetAttributes(PathInfo.FullNameUnc, Attributes);
             }
         }
 
@@ -93,15 +83,15 @@ namespace SchwabenCode.QuickIO
         /// </param>
         /// <param name="exceptionValue">Default return value if <sparamref name="throwExceptionIfFileSystemEntryTypeDiffers"/> is true</param>
         /// <returns>True or <paramref name="exceptionValue"/> if <see cref="UnmatchedFileSystemEntryTypeException"/> thrown and <paramref name="throwExceptionIfFileSystemEntryTypeDiffers"/> is true</returns>
-        public Boolean SafeExists( bool throwExceptionIfFileSystemEntryTypeDiffers = false, bool exceptionValue = false )
+        public Boolean SafeExists(bool throwExceptionIfFileSystemEntryTypeDiffers = false, bool exceptionValue = false)
         {
             try
             {
                 return Exists;
             }
-            catch( UnmatchedFileSystemEntryTypeException )
+            catch(UnmatchedFileSystemEntryTypeException)
             {
-                if( throwExceptionIfFileSystemEntryTypeDiffers )
+                if(throwExceptionIfFileSystemEntryTypeDiffers)
                 {
                     return exceptionValue;
                 }
@@ -161,17 +151,17 @@ namespace SchwabenCode.QuickIO
         {
             get
             {
-                if( PathInfo.IsRoot )
+                if(PathInfo.IsRoot)
                 {
-                    throw new NotSupportedException( "Root directory does not provide time access" );
+                    throw new NotSupportedException("Root directory does not provide time access");
                 }
                 return _creationTimeUtc;
             }
             protected set
             {
-                if( PathInfo.IsRoot )
+                if(PathInfo.IsRoot)
                 {
-                    throw new NotSupportedException( "Root directory does not provide time access" );
+                    throw new NotSupportedException("Root directory does not provide time access");
                 }
                 _creationTimeUtc = value;
             }
@@ -184,17 +174,17 @@ namespace SchwabenCode.QuickIO
         {
             get
             {
-                if( PathInfo.IsRoot )
+                if(PathInfo.IsRoot)
                 {
-                    throw new NotSupportedException( "Root directory does not provide time access" );
+                    throw new NotSupportedException("Root directory does not provide time access");
                 }
                 return _lastAccessTimeUtc;
             }
             protected set
             {
-                if( PathInfo.IsRoot )
+                if(PathInfo.IsRoot)
                 {
-                    throw new NotSupportedException( "Root directory does not provide time access" );
+                    throw new NotSupportedException("Root directory does not provide time access");
                 }
                 _lastAccessTimeUtc = value;
             }
@@ -207,17 +197,17 @@ namespace SchwabenCode.QuickIO
         {
             get
             {
-                if( PathInfo.IsRoot )
+                if(PathInfo.IsRoot)
                 {
-                    throw new NotSupportedException( "Root directory does not provide time access" );
+                    throw new NotSupportedException("Root directory does not provide time access");
                 }
                 return _lastWriteTimeUtc;
             }
             protected set
             {
-                if( PathInfo.IsRoot )
+                if(PathInfo.IsRoot)
                 {
-                    throw new NotSupportedException( "Root directory does not provide time access" );
+                    throw new NotSupportedException("Root directory does not provide time access");
                 }
                 _lastWriteTimeUtc = value;
             }
@@ -281,17 +271,17 @@ namespace SchwabenCode.QuickIO
         /// Determines the owner
         /// </summary>
         /// <returns><see cref="IdentityReference"/></returns>
-        public void SetOwner( NTAccount newOwner )
+        public void SetOwner(NTAccount newOwner)
         {
-            PathInfo.SetOwner( newOwner );
+            PathInfo.SetOwner(newOwner);
         }
 
         /// <summary>
         /// Sets the owner
         /// </summary>
-        public void SetOwner( IdentityReference newOwersIdentityReference )
+        public void SetOwner(IdentityReference newOwersIdentityReference)
         {
-            PathInfo.SetOwner( newOwersIdentityReference );
+            PathInfo.SetOwner(newOwersIdentityReference);
         }
     }
 }

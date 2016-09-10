@@ -20,9 +20,9 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.directory.exists(v=vs.110).aspx</remarks>
         /// <exception cref="UnmatchedFileSystemEntryTypeException">Searched for file but found folder.</exception>
         /// <exception cref="InvalidPathException">Path is invalid.</exception>
-        public static bool Exists( string path )
+        public static bool Exists(string path)
         {
-            return InternalDirectoryExists( path );
+            return InternalDirectoryExists(path);
         }
 
         /// <summary>
@@ -33,9 +33,9 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.directory.exists(v=vs.110).aspx</remarks>
         /// <exception cref="UnmatchedFileSystemEntryTypeException">Searched for file but found folder.</exception>
         /// <exception cref="InvalidPathException">Path is invalid.</exception>
-        public static bool Exists( QuickIOPathInfo pathInfo )
+        public static bool Exists(QuickIOPathInfo pathInfo)
         {
-            return Exists( pathInfo.FullNameUnc);
+            return Exists(pathInfo.FullNameUnc);
         }
 
         /// <summary>
@@ -46,29 +46,29 @@ namespace SchwabenCode.QuickIO
         /// <remarks>http://msdn.microsoft.com/en-us/library/system.io.directory.exists(v=vs.110).aspx</remarks>
         /// <exception cref="UnmatchedFileSystemEntryTypeException">Searched for file but found folder.</exception>
         /// <exception cref="InvalidPathException">Path is invalid.</exception>
-        public static bool Exists( QuickIODirectoryInfo directoryInfo )
+        public static bool Exists(QuickIODirectoryInfo directoryInfo)
         {
-            return Exists( directoryInfo.FullNameUnc );
+            return Exists(directoryInfo.FullNameUnc);
         }
 
         #endregion
 
         #region Internal Directory
-        private static bool InternalDirectoryExists( string uncPath )
+        private static bool InternalDirectoryExists(string uncPath)
         {
             int win32Error;
-            var attrs = InternalQuickIO.SafeGetAttributes( uncPath, out win32Error );
+            var attrs = InternalQuickIO.SafeGetAttributes(uncPath, out win32Error);
 
-            if( Equals( attrs, 0xffffffff ) )
+            if(Equals(attrs, 0xffffffff))
             {
                 return false;
             }
-            if( InternalHelpers.ContainsFileAttribute( FileAttributes.Directory, ( FileAttributes )attrs ) )
+            if(((FileAttributes)attrs).Contains(FileAttributes.Directory))
             {
                 return true;
             }
 
-            throw new UnmatchedFileSystemEntryTypeException( QuickIOFileSystemEntryType.Directory, QuickIOFileSystemEntryType.File, uncPath );
+            throw new UnmatchedFileSystemEntryTypeException(QuickIOFileSystemEntryType.Directory, QuickIOFileSystemEntryType.File, uncPath);
         }
         #endregion
     }

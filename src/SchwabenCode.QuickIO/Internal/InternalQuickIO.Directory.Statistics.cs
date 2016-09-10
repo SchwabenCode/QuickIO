@@ -16,7 +16,7 @@ namespace SchwabenCode.QuickIO.Internal
     /// <summary>
     /// Provides internal methods. PathMatchAll IO operations are called from here.
     /// </summary>
-    [FileIOPermission( SecurityAction.Demand, AllFiles = FileIOPermissionAccess.AllAccess, AllLocalFiles = FileIOPermissionAccess.AllAccess )]
+    [FileIOPermission(SecurityAction.Demand, AllFiles = FileIOPermissionAccess.AllAccess, AllLocalFiles = FileIOPermissionAccess.AllAccess)]
     internal static partial class InternalQuickIO
     {
         /// <summary>
@@ -26,7 +26,7 @@ namespace SchwabenCode.QuickIO.Internal
         /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>Provides the statistics of the directory</returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        public static QuickIOFolderStatisticResult GetDirectoryStatistics( QuickIOPathInfo pathInfo, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
+        public static QuickIOFolderStatisticResult GetDirectoryStatistics(QuickIOPathInfo pathInfo, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None)
         {
             throw new NotImplementedException();
         }
@@ -36,22 +36,22 @@ namespace SchwabenCode.QuickIO.Internal
         /// </summary>
         /// <param name="rootPath">Share to check</param>
         /// <returns><see cref="QuickIODiskInformation"/></returns>
-        public static QuickIODiskInformation GetDiskInformation( String rootPath )
+        public static QuickIODiskInformation GetDiskInformation(String rootPath)
         {
-            Contract.Requires( !String.IsNullOrWhiteSpace( rootPath ) );
-            Contract.Ensures( Contract.Result<QuickIODiskInformation>() != null );
+            Contract.Requires(!String.IsNullOrWhiteSpace(rootPath));
+            Contract.Ensures(Contract.Result<QuickIODiskInformation>() != null);
 
             UInt64 freeBytes;
             UInt64 totalBytes;
             UInt64 totalFreeBytes;
 
             /* PInvoke request */
-            if( !Win32SafeNativeMethods.GetDiskFreeSpaceEx( rootPath, out freeBytes, out totalBytes, out totalFreeBytes ) )
+            if(!Win32SafeNativeMethods.GetDiskFreeSpaceEx(rootPath, out freeBytes, out totalBytes, out totalFreeBytes))
             {
-                Win32ErrorCodes.NativeExceptionMapping( rootPath, Marshal.GetLastWin32Error() );
+                Win32ErrorCodes.NativeExceptionMapping(rootPath, Marshal.GetLastWin32Error());
             }
 
-            return new QuickIODiskInformation( freeBytes, totalBytes, totalFreeBytes );
+            return new QuickIODiskInformation(freeBytes, totalBytes, totalFreeBytes);
         }
 
         /// <summary>
@@ -59,37 +59,37 @@ namespace SchwabenCode.QuickIO.Internal
         /// </summary>
         /// <param name="sourceFileName">Full source path</param>
         /// <param name="destFileName">Full target path</param>
-        public static void MoveFile( string sourceFileName, string destFileName )
+        public static void MoveFile(string sourceFileName, string destFileName)
         {
-            Contract.Requires( !String.IsNullOrWhiteSpace( sourceFileName ) );
-            Contract.Requires( !String.IsNullOrWhiteSpace( destFileName ) );
+            Contract.Requires(!String.IsNullOrWhiteSpace(sourceFileName));
+            Contract.Requires(!String.IsNullOrWhiteSpace(destFileName));
 
-            if( !Win32SafeNativeMethods.MoveFile( sourceFileName, destFileName ) )
+            if(!Win32SafeNativeMethods.MoveFile(sourceFileName, destFileName))
             {
-                Win32ErrorCodes.NativeExceptionMapping( sourceFileName, Marshal.GetLastWin32Error() );
+                Win32ErrorCodes.NativeExceptionMapping(sourceFileName, Marshal.GetLastWin32Error());
             }
         }
 
 
         #region Internal Directory
-        public static bool FileExists( string path )
+        public static bool FileExists(string path)
         {
-            Contract.Requires( !String.IsNullOrWhiteSpace( path ) );
+            Contract.Requires(!String.IsNullOrWhiteSpace(path));
 
             int win32Error;
-            var attrs = InternalQuickIO.SafeGetAttributes( path, out win32Error );
+            var attrs = InternalQuickIO.SafeGetAttributes(path, out win32Error);
 
-            if( Equals( attrs, 0xffffffff ) )
+            if(Equals(attrs, 0xffffffff))
             {
                 return false;
             }
 
-            if( !InternalHelpers.ContainsFileAttribute( FileAttributes.Directory, ( FileAttributes )attrs ) )
+            if(!((FileAttributes)attrs).Contains(FileAttributes.Directory))
             {
                 return true;
             }
 
-            throw new UnmatchedFileSystemEntryTypeException( QuickIOFileSystemEntryType.File, QuickIOFileSystemEntryType.Directory, path );
+            throw new UnmatchedFileSystemEntryTypeException(QuickIOFileSystemEntryType.File, QuickIOFileSystemEntryType.Directory, path);
         }
         #endregion
     }

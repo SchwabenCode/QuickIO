@@ -616,7 +616,7 @@ namespace SchwabenCode.QuickIO
                 Marshal.Copy( pSecurityDescriptor, securityDescriptorDataArray, 0, ( int )securityDescriptorLength );
 
                 CommonObjectSecurity securityInfo;
-                if( InternalHelpers.ContainsFileAttribute( PathInfo.Attributes, FileAttributes.Directory ) )
+                if( PathInfo.Attributes.Contains( FileAttributes.Directory ) )
                 {
                     securityInfo = new DirectorySecurity();
                     securityInfo.SetSecurityDescriptorBinaryForm( securityDescriptorDataArray );

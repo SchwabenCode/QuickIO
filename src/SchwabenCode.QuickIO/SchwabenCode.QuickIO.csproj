@@ -79,8 +79,8 @@
     <Compile Include="Core\InvalidPathException.cs" />
     <Compile Include="Core\PathAlreadyExistsException.cs" />
     <Compile Include="Core\PathNotFoundException.cs" />
+    <Compile Include="FileAttributesExtensions.cs" />
     <Compile Include="Internal\InternalEnumerateFileSystem.cs" />
-    <Compile Include="Internal\InternalHelpers.cs" />
     <Compile Include="Internal\InternalQuickIO.Directories.cs" />
     <Compile Include="Internal\InternalQuickIO.Directory.Statistics.cs" />
     <Compile Include="Internal\InternalQuickIO.FileHandle.cs" />
@@ -277,9 +277,8 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-
- <Target Name="AfterBuild">
-  <!-- This just allows us to drop a note in the build output -->
+  <Target Name="AfterBuild">
+    <!-- This just allows us to drop a note in the build output -->
     <Message Text="Enter After Build TargetFrameworkVersion:$(TargetFrameworkVersion) Framework:$(Framework)" Importance="high" />
     <!-- This is the key to the whole process. The second build happens here.  We set our 'Framework' variable allowing the above PropertyGroups to run more frameworks.  -->
     <MSBuild Condition="'$(Framework)' == 'NET40'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET35" RunEachTargetSeparately="true" />
@@ -289,5 +288,4 @@
     <!-- Just more logging -->
     <Message Text="Exiting After Build TargetFrameworkVersion:$(TargetFrameworkVersion) Framework:$(Framework)" Importance="high" />
   </Target>
-
-</Project> 
+</Project>
