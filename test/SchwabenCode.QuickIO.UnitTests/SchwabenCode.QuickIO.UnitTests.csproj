@@ -71,6 +71,7 @@
     <Compile Include="ExceptionTests.cs" />
     <Compile Include="FileAttributesExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuickIOBaseExceptionTests.cs" />
     <Compile Include="QuickIODiskInformationTests.cs" />
     <Compile Include="QuickIOFileChunkTests.cs" />
     <Compile Include="QuickIOFileMetadataTests.cs" />

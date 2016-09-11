@@ -46,5 +46,24 @@ namespace SchwabenCode.QuickIO.UnitTests
             attr.Contains(FileAttributes.Archive).Should().Be(true);
             attr.Contains(FileAttributes.System).Should().Be(false);
         }
+
+
+        [Fact]
+        public void ForceFileAttribute()
+        {
+            FileAttributes attr = FileAttributes.Archive;
+
+
+            FileAttributes result;
+
+            result = attr.Force(FileAttributes.Archive, true);
+            result.Contains(FileAttributes.Archive).Should().BeTrue();
+
+            result = attr.Force(FileAttributes.Archive, false);
+            result.Contains(FileAttributes.Archive).Should().BeFalse();
+
+            result = attr.Force(FileAttributes.System, false);
+            result.Contains(FileAttributes.System).Should().BeFalse();
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace SchwabenCode.QuickIO.Engine
             Contract.Ensures( Contract.Result<IEnumerable<QuickIOShareInfo>>() != null );
 
             // Specify 
-            string machine = String.IsNullOrEmpty( machineName ) ? Environment.MachineName : machineName;
+            string machine = String.IsNullOrWhiteSpace( machineName ) ? Environment.MachineName : machineName;
             IntPtr buffer = IntPtr.Zero;
 
             try
@@ -53,7 +53,7 @@ namespace SchwabenCode.QuickIO.Engine
 
                     for( int i = 0, currentDataItem = buffer.ToInt32() ;i < entriesRead ;i++, currentDataItem += typeSize )
                     {
-                        IWin32ApiShareInfo shareInfo = ( T )Marshal.PtrToStructure( new IntPtr( currentDataItem ), typeof( T ) );
+                        IWin32ApiShareInfo shareInfo = ( T )Marshal.PtrToStructure( new IntPtr( currentDataItem ), type);
                         yield return new QuickIOShareInfo( machine, shareInfo.GetShareName(), shareInfo.GetShareType(), shareInfo.GetRemark() );
                     }
                 }

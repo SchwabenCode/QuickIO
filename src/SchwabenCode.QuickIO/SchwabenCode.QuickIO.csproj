@@ -72,6 +72,56 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="QuickIOPatternConstants.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferDirectoryCreatedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferDirectoryCreatingEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferDirectoryCreationErrorEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferEventDelegates.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferFileCopyErrorEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferFileCopyFinishedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferFileCopyProgressEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferFileCopyStartedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferFileCreationErrorEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferFileCreationFinishedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferFileCreationProgressEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferFileCreationStartedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobDequeuedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobEndEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobEnqueuedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobErrorEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobQueuedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobReatryMaxReachedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobRequeuedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobRunEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobWriteEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferJobWriteWithSourceEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferWorkerCreatedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferWorkerIsSleepingEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferWorkerPickedJobEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferWorkerShutdownEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferWorkerStartedEventArgs.cs" />
+    <Compile Include="Transfer\Events\QuickIOTransferWorkerWokeUpEventArgs.cs" />
+    <Compile Include="Transfer\IQuickIOTransferJob.cs" />
+    <Compile Include="Transfer\IQuickIOTransferObserver.cs" />
+    <Compile Include="Transfer\IQuickIOTransferWriteJob.cs" />
+    <Compile Include="Transfer\QuickIOTransferBackgroundService.cs" />
+    <Compile Include="Transfer\QuickIOTransferDirectoryCopyService.cs" />
+    <Compile Include="Transfer\QuickIOTransferDirectoryCopyService_Events.cs" />
+    <Compile Include="Transfer\QuickIOTransferDirectoryCreationJob.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCopyJob.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCopyService.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCopyService_Events.cs" />
+    <Compile Include="Transfer\QuickIOTransferFileCreationJob.cs" />
+    <Compile Include="Transfer\QuickIOTransferJob.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobPriorityComparer.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobType.cs" />
+    <Compile Include="Transfer\QuickIOTransferJobWriteJob.cs" />
+    <Compile Include="Transfer\QuickIOTransferObserver.cs" />
+    <Compile Include="Transfer\QuickIOTransferServiceBase.cs" />
+    <Compile Include="Transfer\QuickIOTransferServiceBase_Events.cs" />
+    <Compile Include="Transfer\QuickIOTransferServiceBase_Executions.cs" />
+    <Compile Include="Transfer\QuickIOTransferSetTimestampsJob.cs" />
     <Compile Include="_CodeGeneration\QuickIODirectory\QuickIODirectory.Attributes.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -276,6 +326,7 @@
       <LastGenOutput>StaticRootMethods.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
     <!-- This just allows us to drop a note in the build output -->
