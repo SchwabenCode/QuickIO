@@ -1,5 +1,6 @@
-# master branch commits deploy on NuGet as beta
-
+# dev branch commits: build, test and deploy on MyGet as pre-release
+# master branch commits without tag: no deploy, just build and test
+# master branch commits with tag (GitHub release): build, test and deploy on Nuget as stable
 -
   branches:
     only:
@@ -56,7 +57,6 @@
         secure: 5r4u1BFGZ9CjakS0ATOT2sAKcOjJ7BHzRYJC88aQnYOplsCsKYVtwcTEIGNzHOdh
       artifact: SchwabenCode.QuickIO-NuGetPackage
 
-# release branch
 -
   branches:
     only:
@@ -116,7 +116,7 @@
         appveyor_repo_tag: true
 
 # all other branches
-# compile, test, release
+# compile, test
 -
   version: 2.10.{build}
 
