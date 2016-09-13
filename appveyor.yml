@@ -1,4 +1,4 @@
-# dev branch commits: build, test and deploy on MyGet as pre-release
+# develop branch commits: build, test and deploy on MyGet as pre-release
 # master branch commits without tag: no deploy, just build and test
 # master branch commits with tag (GitHub release): build, test and deploy on Nuget as stable
 -
