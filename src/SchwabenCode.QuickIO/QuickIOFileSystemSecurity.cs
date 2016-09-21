@@ -630,7 +630,6 @@ namespace SchwabenCode.QuickIO
             }
             finally
             {
-                Win32SafeNativeMethods.LocalFree( zeroHandle );
                 Win32SafeNativeMethods.LocalFree( pSecurityDescriptor );
             }
         }
