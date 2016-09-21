@@ -12,7 +12,7 @@ namespace SchwabenCode.QuickIO.Win32
     /// Win32 Security Information
     /// </summary>
     [Flags]
-    public enum Win32FileSystemEntrySecurityInformation : uint
+    internal enum Win32FileSystemEntrySecurityInformation : uint
     {
         OwnerSecurityInformation = 1,
         GroupSecurityInformation = 2,

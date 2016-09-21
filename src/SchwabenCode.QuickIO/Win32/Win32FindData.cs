@@ -14,7 +14,7 @@ namespace SchwabenCode.QuickIO.Win32
     /// </summary>
     [StructLayout( LayoutKind.Sequential, CharSet = CharSet.Auto )]
     [BestFitMapping( false )]
-    public class Win32FindData
+    internal class Win32FindData
     {
         /// <summary>
         /// File Attributes

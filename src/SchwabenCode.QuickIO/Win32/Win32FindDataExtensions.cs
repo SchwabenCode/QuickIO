@@ -9,7 +9,7 @@ using System.IO;
 
 namespace SchwabenCode.QuickIO.Win32
 {
-    public static class Win32FindDataExtensions
+    internal static class Win32FindDataExtensions
     {
         /// <summary>
         /// Returns true if entry is a directory

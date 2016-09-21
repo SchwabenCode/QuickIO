@@ -13,7 +13,7 @@ namespace SchwabenCode.QuickIO.Win32
     /// </summary>
     /// <remarks>See http://msdn.microsoft.com/en-us/library/windows/desktop/bb525407(v=vs.85).aspx</remarks>
     [StructLayout( LayoutKind.Sequential, CharSet = CharSet.Unicode )]
-    public struct Win32ApiShareInfoNormal: IWin32ApiShareInfo
+    internal struct Win32ApiShareInfoNormal: IWin32ApiShareInfo
     {
         [MarshalAs( UnmanagedType.LPWStr )]
         public String ShareName;

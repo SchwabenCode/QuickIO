@@ -8,7 +8,7 @@ namespace SchwabenCode.QuickIO.Win32
     /// <summary>
     /// Win32 Security Object Type
     /// </summary>
-    public enum Win32SecurityObjectType
+    internal enum Win32SecurityObjectType
     {
         SeUnknownObjectType = 0x0,
         SeFileObject = 0x1,

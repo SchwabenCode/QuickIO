@@ -14,7 +14,7 @@ namespace SchwabenCode.QuickIO.Win32
     /// <summary>
     /// Native Methods - take a look on www.pinvoke.net
     /// </summary>
-    public static class Win32SafeNativeMethods
+    internal static class Win32SafeNativeMethods
     {
         #region advapi32.dll
         [DllImport( "advapi32.dll", CharSet = CharSet.Auto, ExactSpelling = true, SetLastError = true )]

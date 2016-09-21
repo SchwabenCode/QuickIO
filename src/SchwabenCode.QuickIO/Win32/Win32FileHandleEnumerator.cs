@@ -14,7 +14,7 @@ namespace SchwabenCode.QuickIO.Win32
     /// <summary>
     /// Provides an file system enumerator for FindFirstFile and FindNextFile
     /// </summary>
-    public class Win32FileHandleEnumerator : IEnumerator<Win32FileSystemEntry>
+    internal class Win32FileHandleEnumerator : IEnumerator<Win32FileSystemEntry>
     {
         /// <summary>
         /// Creates an instance of <see cref="Win32FileHandleEnumerator"/> and sets <see cref="_currentFindData"/>

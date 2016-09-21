@@ -12,7 +12,7 @@ namespace SchwabenCode.QuickIO.Win32
     /// Represents Win32 LongFileTime
     /// </summary>
     [StructLayout( LayoutKind.Sequential )]
-    public struct Win32FileTime
+    internal struct Win32FileTime
     {
         public uint DateTimeLow;
         public uint DateTimeHigh;

@@ -7,7 +7,7 @@ using System;
 
 namespace SchwabenCode.QuickIO.Win32
 {
-    public interface IWin32ApiShareInfo
+    internal interface IWin32ApiShareInfo
     {
         /// <summary>
         /// Returns the share name

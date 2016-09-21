@@ -12,7 +12,7 @@ namespace SchwabenCode.QuickIO.Win32
     /// <summary>
     /// Provides a class for Win32 safe handle implementations
     /// </summary>
-    public sealed class Win32FileHandle : SafeHandleZeroOrMinusOneIsInvalid
+    internal sealed class Win32FileHandle : SafeHandleZeroOrMinusOneIsInvalid
     {
         /// <summary>
         /// Initializes a new instance of the Win32ApiFileHandle class, specifying whether the handle is to be reliably released.

@@ -9,7 +9,7 @@ using System.Diagnostics.Contracts;
 
 namespace SchwabenCode.QuickIO.Win32
 {
-    public class Win32FileHandleCollection : IEnumerable
+    internal class Win32FileHandleCollection : IEnumerable
     {
         public bool FitlerSystemEntries { get; }
 

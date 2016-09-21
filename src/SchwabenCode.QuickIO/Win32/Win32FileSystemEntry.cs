@@ -8,7 +8,7 @@ using System.IO;
 
 namespace SchwabenCode.QuickIO.Win32
 {
-    public class Win32FileSystemEntry
+    internal class Win32FileSystemEntry
     {
         public Win32FileSystemEntry( Win32FileHandle fileHandle, Win32FindData findData )
         {

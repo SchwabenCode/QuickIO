@@ -12,7 +12,7 @@ namespace SchwabenCode.QuickIO.Win32
     /// <summary>
     /// Win32 Error Code Collection
     /// </summary>
-    public class Win32ErrorCodes
+    internal class Win32ErrorCodes
     {
         public const Int32 ERROR_ACCESS_DENIED = 5;
         public const Int32 ERROR_ADAP_HDW_ERR = 57;
