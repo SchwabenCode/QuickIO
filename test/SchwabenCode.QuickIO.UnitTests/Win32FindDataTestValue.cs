@@ -3,7 +3,7 @@ using SchwabenCode.QuickIO.Win32;
 
 namespace SchwabenCode.QuickIO.UnitTests
 {
-    public class Win32FindDataTestValue : Win32FindData
+    internal class Win32FindDataTestValue : Win32FindData
     {
         public Win32FindDataTestValue()
         {

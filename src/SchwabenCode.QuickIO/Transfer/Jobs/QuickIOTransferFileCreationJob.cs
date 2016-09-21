@@ -127,7 +127,7 @@ namespace SchwabenCode.QuickIO.Transfer
             using ( var rs = new MemoryStream( Contents ) )
             using ( var ws = QuickIOFile.Open( targetFullnameInfo, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None ) )
             {
-                var totalBytes = rs.Length;
+                long totalBytes = rs.Length;
 
                 OnCreationStarted( totalBytes );
 
@@ -135,7 +135,7 @@ namespace SchwabenCode.QuickIO.Transfer
                 ws.SetLength( totalBytes );
 
                 int bytesRead;
-                UInt64 bytesTransfered = 0;
+                long bytesTransfered = 0;
 
                 // check buffer for small files; will be faster
                 var bytes = new byte[ Math.Min( totalBytes, MaxBufferSize ) ];
@@ -147,7 +147,7 @@ namespace SchwabenCode.QuickIO.Transfer
                     ws.Write( bytes, 0, bytesRead );
 
                     // Calculation
-                    bytesTransfered = ( bytesTransfered + ( UInt64 ) bytesRead );
+                    bytesTransfered = ( bytesTransfered +  bytesRead );
 
                     OnCreationProgress( totalBytes, bytesTransfered );
                 }
@@ -263,7 +263,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <summary>
         /// Fires <see cref="Progress"/>
         /// </summary>
-        private void OnCreationProgress( Int64 totalBytes, UInt64 bytesTransfered )
+        private void OnCreationProgress(long totalBytes, long bytesTransfered )
         {
             QuickIOTransferFileCreationProgressEventArgs args = null;
             if ( Progress != null )
@@ -305,7 +305,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <summary>
         /// Fires <see cref="Finished"/>
         /// </summary>
-        private void OnCreationFinished( Int64 totalBytes )
+        private void OnCreationFinished(long totalBytes )
         {
             QuickIOTransferFileCreationFinishedEventArgs args = null;
             if ( Finished != null )

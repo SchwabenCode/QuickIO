@@ -17,37 +17,25 @@ namespace SchwabenCode.QuickIO.Transfer.Events
         /// <summary>
         /// Total bytes of file transfered
         /// </summary>
-        public ulong BytesTransfered { get; private set; }
+        public long BytesTransfered { get; }
 
         /// <summary>
         /// Time the progress event was fired
         /// </summary>
-        public DateTime ProgressTimestamp { get; private set; }
+        public DateTime ProgressTimestamp { get; }
 
         private DateTime? _estimatedFinishTimestamp;
 
         /// <summary>
         /// Estimated Timestamp when transfer is finished
         /// </summary>
-        public DateTime EstimatedFinishTimestamp
-        {
-            get
-            {
-                return ( DateTime ) ( _estimatedFinishTimestamp ?? ( _estimatedFinishTimestamp = TransferStartedTimestamp.Add( EstimatedDuration ) ) );
-            }
-        }
+        public DateTime EstimatedFinishTimestamp => ( DateTime ) ( _estimatedFinishTimestamp ?? ( _estimatedFinishTimestamp = TransferStartedTimestamp.Add( EstimatedDuration ) ) );
 
         private TimeSpan? _estimatedDuration;
         /// <summary>
         /// Estimated Duration
         /// </summary>
-        public TimeSpan EstimatedDuration
-        {
-            get
-            {
-                return ( TimeSpan ) ( _estimatedDuration ?? ( _estimatedDuration = TimeSpan.FromSeconds( ( TotalBytes / BytesPerSecond ) ) ) );
-            }
-        }
+        public TimeSpan EstimatedDuration => ( TimeSpan ) ( _estimatedDuration ?? ( _estimatedDuration = TimeSpan.FromSeconds( ( TotalBytes / BytesPerSecond ) ) ) );
 
         private double? _percentage;
 
@@ -83,13 +71,7 @@ namespace SchwabenCode.QuickIO.Transfer.Events
         /// <summary>
         /// Live transfer duration
         /// </summary>
-        public TimeSpan Duration
-        {
-            get
-            {
-                return ( TimeSpan ) ( _duration ?? ( _duration = ProgressTimestamp.Subtract( TransferStartedTimestamp ) ) );
-            }
-        }
+        public TimeSpan Duration => ( TimeSpan ) ( _duration ?? ( _duration = ProgressTimestamp.Subtract( TransferStartedTimestamp ) ) );
 
 
         private double? _bytesPerSecond;
@@ -97,18 +79,12 @@ namespace SchwabenCode.QuickIO.Transfer.Events
         /// <summary>
         /// Live bytes per second
         /// </summary>
-        public Double BytesPerSecond
-        {
-            get
-            {
-                return ( Double ) ( _bytesPerSecond ?? ( _bytesPerSecond = ( BytesTransfered / Duration.TotalSeconds ) ) );
-            }
-        }
+        public Double BytesPerSecond => ( Double ) ( _bytesPerSecond ?? ( _bytesPerSecond = ( BytesTransfered / Duration.TotalSeconds ) ) );
 
         /// <summary>
         /// Total bytes of file
         /// </summary>
-        public UInt64 TotalBytes { get; private set; }
+        public long TotalBytes { get; private set; }
 
 
         /// <summary>
@@ -124,10 +100,10 @@ namespace SchwabenCode.QuickIO.Transfer.Events
         /// <param name="totalBytes">Total bytes to transfer</param>
         /// <param name="bytesTransfered">Total bytes transfered</param>
         /// <param name="transferStarted"></param>
-        public QuickIOTransferFileCreationProgressEventArgs( IQuickIOTransferJob job, string targetPath, Int64 totalBytes, UInt64 bytesTransfered, DateTime transferStarted )
+        public QuickIOTransferFileCreationProgressEventArgs( IQuickIOTransferJob job, string targetPath, long totalBytes, long bytesTransfered, DateTime transferStarted )
             : base( job, targetPath )
         {
-            TotalBytes = ( UInt64 ) totalBytes;
+            TotalBytes = totalBytes;
             BytesTransfered = bytesTransfered;
             TransferStartedTimestamp = transferStarted;
             ProgressTimestamp = DateTime.Now;

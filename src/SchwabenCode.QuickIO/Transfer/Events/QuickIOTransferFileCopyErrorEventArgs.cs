@@ -26,7 +26,7 @@ namespace SchwabenCode.QuickIO.Transfer.Events
         /// <param name="source">Source file path</param>
         /// <param name="target">Target file path</param>
         /// <param name="e">Exception</param>
-        public QuickIOTransferFileCopyErrorEventArgs( IQuickIOTransferJob job, string source, String target, Exception e )
+        public QuickIOTransferFileCopyErrorEventArgs( IQuickIOTransferJob job, string source, string target, Exception e )
             : base( job, source, target )
         {
             Exception = e;

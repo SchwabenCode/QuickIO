@@ -25,31 +25,19 @@ namespace SchwabenCode.QuickIO.Transfer.Events
         /// <summary>
         /// Live transfer duration
         /// </summary>
-        public TimeSpan Duration
-        {
-            get
-            {
-                return ( TimeSpan ) ( _duration ?? ( _duration = TransferFinished.Subtract( TransferStarted ) ) );
-            }
-        }
+        public TimeSpan Duration => ( TimeSpan ) ( _duration ?? ( _duration = TransferFinished.Subtract( TransferStarted ) ) );
 
         private double? _bytesPerSecond;
 
         /// <summary>
         /// Live bytes per second
         /// </summary>
-        public Double BytesPerSecond
-        {
-            get
-            {
-                return ( Double ) ( _bytesPerSecond ?? ( _bytesPerSecond = ( TotalBytes / Duration.TotalSeconds ) ) );
-            }
-        }
+        public Double BytesPerSecond => ( Double ) ( _bytesPerSecond ?? ( _bytesPerSecond = ( TotalBytes / Duration.TotalSeconds ) ) );
 
         /// <summary>
         /// Total bytes of file
         /// </summary>
-        public UInt64 TotalBytes { get; private set; }
+        public long TotalBytes { get; private set; }
 
 
         /// <summary>
@@ -65,10 +53,10 @@ namespace SchwabenCode.QuickIO.Transfer.Events
         /// <param name="targetPath">Target file path</param>
         /// <param name="totalBytes">Total bytes to transfer</param>
         /// <param name="transferStarted"></param>
-        public QuickIOTransferFileCopyFinishedEventArgs( IQuickIOTransferJob job, string sourcePath, string targetPath, Int64 totalBytes, DateTime transferStarted )
+        public QuickIOTransferFileCopyFinishedEventArgs( IQuickIOTransferJob job, string sourcePath, string targetPath, long totalBytes, DateTime transferStarted )
             : base( job, sourcePath, targetPath )
         {
-            TotalBytes = ( UInt64 ) totalBytes;
+            TotalBytes = totalBytes;
             TransferStarted = transferStarted;
             TransferFinished = DateTime.Now;
         }

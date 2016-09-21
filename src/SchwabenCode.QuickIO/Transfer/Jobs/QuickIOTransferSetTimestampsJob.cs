@@ -15,13 +15,7 @@ namespace SchwabenCode.QuickIO.Transfer
     internal class QuickIOTransferSetTimestampsJob : QuickIOTransferJob
     {
         // Job Type
-        internal override QuickIOTransferJobType JobType
-        {
-            get
-            {
-                return QuickIOTransferJobType.FileSetTimestampsJob;
-            }
-        }
+        internal override QuickIOTransferJobType JobType => QuickIOTransferJobType.FileSetTimestampsJob;
 
         /// <summary>
         ///  Implementation of this job

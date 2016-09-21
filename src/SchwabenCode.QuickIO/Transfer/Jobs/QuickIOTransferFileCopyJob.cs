@@ -122,10 +122,10 @@ namespace SchwabenCode.QuickIO.Transfer
                 ws.SetLength( totalBytes );
 
                 int bytesRead;
-                UInt64 bytesTransfered = 0;
+                long bytesTransfered = 0;
 
                 // check buffer for small files; will be faster
-                var bytes = new byte[ Math.Min( totalBytes, MaxBufferSize ) ];
+                byte[] bytes = new byte[ Math.Min( totalBytes, MaxBufferSize ) ];
 
                 // transfer chunks
                 while ( ( bytesRead = rs.Read( bytes, 0, bytes.Length ) ) > 0 )
@@ -134,7 +134,7 @@ namespace SchwabenCode.QuickIO.Transfer
                     ws.Write( bytes, 0, bytesRead );
 
                     // Calculation
-                    bytesTransfered = ( bytesTransfered + ( UInt64 ) bytesRead );
+                    bytesTransfered = ( bytesTransfered +  bytesRead );
 
 
                     OnCopyProgress( totalBytes, bytesTransfered );
@@ -289,7 +289,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <summary>
         /// Fire <see cref="Progress"/>
         /// </summary>
-        private void OnCopyProgress( Int64 totalBytes, UInt64 bytesTransfered )
+        private void OnCopyProgress(long totalBytes, long bytesTransfered )
         {
             QuickIOTransferFileCopyProgressEventArgs args = null;
             if ( Progress != null )

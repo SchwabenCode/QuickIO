@@ -100,7 +100,7 @@ namespace SchwabenCode.QuickIO.Win32
         public static Win32FileTime DateTimeToFiletime( DateTime time )
         {
             Win32FileTime ft;
-            var fileTime = time.ToFileTimeUtc();
+            long fileTime = time.ToFileTimeUtc();
             ft.DateTimeLow = ( uint )( fileTime & 0xFFFFFFFF );
             ft.DateTimeHigh = ( uint )( fileTime >> 32 );
             return ft;

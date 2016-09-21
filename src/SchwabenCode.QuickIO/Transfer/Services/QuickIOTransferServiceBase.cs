@@ -26,14 +26,14 @@ namespace SchwabenCode.QuickIO.Transfer
     {
         private readonly object _workerShutdownLock = new object();
         private volatile int _maxWorkerCount;
-        private volatile Int32 _workerCountRemoveRequested;
+        private volatile int _workerCountRemoveRequested;
         private readonly Dictionary<Int32, Thread> _workerThreads;
         private readonly object _workerCountRemoveRequestedLock = new object();
 
         /// <summary>
         /// Provides Events and Settings for transfer monitoring
         /// </summary>
-        public IQuickIOTransferObserver Observer { get; private set; }
+        public IQuickIOTransferObserver Observer { get; }
 
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <summary>
         /// Size of Buffer
         /// </summary>
-        public Int32 MaxBufferSize
+        public int MaxBufferSize
         {
             get
             {
@@ -75,7 +75,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <summary>
         /// Max Job Retry Count
         /// </summary>
-        public Int32 MaxJobRetryAttempts
+        public int MaxJobRetryAttempts
         {
             get
             {
@@ -90,24 +90,12 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <summary>
         /// Count of active workers
         /// </summary>
-        public Int32 WorkerCount
-        {
-            get
-            {
-                lock(_workerThreadsLock)
-                {
-                    return _workerThreads.Count;
-                }
-            }
-        }
+        public int WorkerCount => _workerThreads.Count;
 
         /// <summary>
         /// True if service is running
         /// </summary>
-        protected Boolean IsWorking
-        {
-            get { return WorkerCount != 0; }
-        }
+        protected bool IsWorking => WorkerCount != 0;
 
         /// <summary>
         /// Starts the service
@@ -233,7 +221,7 @@ namespace SchwabenCode.QuickIO.Transfer
         {
             var tParams = new ParameterizedThreadStart(StartConsuming);
 
-            var wt = new Thread(tParams);
+            Thread wt = new Thread(tParams);
             _workerThreads.Add(wt.ManagedThreadId, wt);
             OnWorkerCreated(wt.ManagedThreadId);
 

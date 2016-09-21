@@ -17,7 +17,7 @@ namespace SchwabenCode.QuickIO.Transfer.Events
         /// <summary>
         /// Total bytes of file
         /// </summary>
-        public UInt64 TotalBytes { get; private set; }
+        public long TotalBytes { get; private set; }
 
         /// <summary>
         /// Time transfer of file started
@@ -31,11 +31,11 @@ namespace SchwabenCode.QuickIO.Transfer.Events
         /// <param name="targetPath">Source file path</param>
         /// <param name="job">Affected job</param>
         /// <param name="totalBytes">Total bytes to transfer</param>
-        public QuickIOTransferFileCopyStartedEventArgs( IQuickIOTransferJob job, string sourcePath, string targetPath, Int64 totalBytes )
-            : base( job, sourcePath, targetPath )
+        public QuickIOTransferFileCopyStartedEventArgs(IQuickIOTransferJob job, string sourcePath, string targetPath, long totalBytes, DateTime? transferStarted = null)
+            : base(job, sourcePath, targetPath)
         {
-            TotalBytes = ( UInt64 ) totalBytes;
-            TransferStarted = DateTime.Now;
+            TotalBytes = totalBytes;
+            TransferStarted = transferStarted ?? DateTime.Now;
         }
     }
 }

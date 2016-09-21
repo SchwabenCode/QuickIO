@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchwabenCode.QuickIO.UnitTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchwabenCode.QuickIO.IntegrationTests", "test\SchwabenCode.QuickIO.IntegrationTests\SchwabenCode.QuickIO.IntegrationTests.csproj", "{84664F86-61B1-4970-B390-4FCD71A8C081}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchwabenCode.QuickIO.Transfer.UnitTests", "test\SchwabenCode.QuickIO.Transfer.UnitTests\SchwabenCode.QuickIO.Transfer.UnitTests.csproj", "{D450919D-A474-4551-89E1-CF3C38DDE9D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{84664F86-61B1-4970-B390-4FCD71A8C081}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84664F86-61B1-4970-B390-4FCD71A8C081}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84664F86-61B1-4970-B390-4FCD71A8C081}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D450919D-A474-4551-89E1-CF3C38DDE9D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D450919D-A474-4551-89E1-CF3C38DDE9D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D450919D-A474-4551-89E1-CF3C38DDE9D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D450919D-A474-4551-89E1-CF3C38DDE9D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,5 +53,6 @@ Global
 		{B33DBCEE-42F4-4570-B4EF-5412CE4A4BDA} = {F71A44C3-0AB3-4854-971E-2F4021F7C2E2}
 		{4867DD64-C401-4139-84F7-4252E138CC9B} = {66095698-080C-4938-8F62-D4C470EEBB97}
 		{84664F86-61B1-4970-B390-4FCD71A8C081} = {66095698-080C-4938-8F62-D4C470EEBB97}
+		{D450919D-A474-4551-89E1-CF3C38DDE9D6} = {66095698-080C-4938-8F62-D4C470EEBB97}
 	EndGlobalSection
 EndGlobal

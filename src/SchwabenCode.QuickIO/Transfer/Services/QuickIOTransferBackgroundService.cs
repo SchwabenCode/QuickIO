@@ -154,12 +154,8 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <param name="maxFileRetry"></param>
         /// <param name="autostart">true to auto start. false to start service by using <see cref="QuickIOTransferServiceBase.StartWorking"/></param>
         public QuickIOTransferBackgroundService(int workerCount, int maxFileRetry = 3, bool autostart = true)
-            : this(null, workerCount, maxFileRetry)
+            : this(null, workerCount, maxFileRetry, autostart)
         {
-            if(autostart)
-            {
-                Start();
-            }
         }
 
         /// <summary>
@@ -181,7 +177,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <summary>
         /// Starts the service if not started yet
         /// </summary>
-        public Boolean Start()
+        public bool Start()
         {
             return StartWorking();
         }
@@ -192,6 +188,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// </summary>
         /// <param name="queueItem">Item to add</param>
         /// <returns>true on add; false if not</returns>
+        /// <example></example>
         public void Add(QuickIOTransferFileCopyJob queueItem)
         {
             if(queueItem == null) throw new ArgumentNullException(nameof(queueItem));
@@ -199,7 +196,7 @@ namespace SchwabenCode.QuickIO.Transfer
 
             if(CancelRequested)
             {
-                throw new Exception("Queue is cancelled.");
+                throw new OperationCanceledException("Queue is cancelled.");
             }
 
             if(AddingCompleted)
