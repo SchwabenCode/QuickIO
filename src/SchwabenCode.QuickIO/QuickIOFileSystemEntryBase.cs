@@ -120,6 +120,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         public String Parent => PathInfo.Parent;
 
+
         /// <summary>
         /// Returns current <see cref="QuickIOFileSystemSecurity"/>
         /// </summary>

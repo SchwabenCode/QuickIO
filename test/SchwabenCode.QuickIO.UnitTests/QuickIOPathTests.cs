@@ -86,6 +86,7 @@ namespace SchwabenCode.QuickIO.UnitTests
         [InlineData( null, null, false )]
         [InlineData( @"C:\", null, false )]
         [InlineData( @" C:\ ", null, false )]
+        [InlineData(@"C:\test ", @"C:\", false)]
         [InlineData( @"\server", null, true )]
         [InlineData( @" \\server\share ", null, false )]
 
