@@ -30,8 +30,6 @@ To offer you a simple use and an easy integration QuickIO.NET methods lean again
 It took many hours to create this library in its published form.  
 If you like the library and saved you much time, then maybe respect this with a small donation to the [animal shelter of Stuttgart](http://www.tierheim-stuttgart.de/).
 
-If you want to thank me personally, take a look at [my personal Amazon wishlist](http://www.amazon.de/gp/registry/wishlist/H6KLKT7UMI7Z/).
-
 It would be also very nice when you just write me, if you like this implementation and tell me what you've started!
 
 ## License
