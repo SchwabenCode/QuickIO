@@ -1,24 +1,6 @@
 ﻿## ChangeList QuickIO - https://QuickIO.codeplex.com
 ## Author - Benjamin Abt - www.benjamin-abt.com
 
-2013-01-23 - Constants embedded in QuickIOCommon
+2014-04-07 - Fixed EnumerateFiles-Exception if search for in all sub dirs too
 
-2013-01-23 - NETCompatibility.cs added to support .NET 2.0
-			 New Exception Type UnmatchedFileSystemEntryTypeException
-			 InternalQuickIO Find<T> Method removed to avoid reflection for performance increasements
-
-2013-01-22 - QuickIOCommon added
-			 InternalHelpers added for easier FileAttributeHandling
-
-2013-01-13 - public Methods for File and Directory instance creation.
-			 New Exceptions.
-			 Now InternalQuickIO has Methods for single file or directory search.
-			 New Enum for FileSystemEntryType
-
-2013-01-12 - Performance Improvements, Performance Tests, Documentation
-
-2013-01-08 - Static implementation for path manipulation
-
-2013-01-06 - Creates first base implementations
-
-2013-01-05 - Project start
+2014-04-05 - First public release

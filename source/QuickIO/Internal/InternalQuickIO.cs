@@ -770,7 +770,9 @@ namespace SchwabenCode.QuickIO.Internal
                     if ( !InternalHelpers.ContainsFileAttribute( win32FindData.dwFileAttributes, FileAttributes.Directory ) )
                     {
                         yield return new QuickIOFileInfo( resultPath, win32FindData );
-
+                    }
+                    else
+                    {
                         // SubFolders?!
                         if ( searchOption == SearchOption.AllDirectories )
                         {
