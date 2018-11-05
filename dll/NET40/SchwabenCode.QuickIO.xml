@@ -68,6 +68,28 @@
             Provides static methods to access folders. For example creating, deleting and retrieving content and security information such as the owner.
             </summary>
         </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.Copy(System.String,System.String,System.Boolean)">
+            <summary>
+            Copies a directory and all contents
+            </summary>
+            <param name="source">Source directory</param>
+            <param name="target">Target directory</param>
+            <param name="overwrite">true to overwrite existing files</param>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.Copy(SchwabenCode.QuickIO.QuickIODirectoryInfo,SchwabenCode.QuickIO.QuickIOPathInfo,System.Boolean)">
+            <summary>
+            Copies a directory and all contents
+            </summary>
+            <param name="source">Source directory</param>
+            <param name="target">Target directory</param>
+            <param name="overwrite">true to overwrite existing files</param>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.GetMetadastaAsync(System.String)">
+            <summary>
+            Receives <see cref="T:SchwabenCode.QuickIO.QuickIODirectoryMetadata"/> of current directory using a sperare Task
+            </summary>
+            <returns><see cref="T:SchwabenCode.QuickIO.QuickIODirectoryMetadata"/></returns>
+        </member>
         <member name="M:SchwabenCode.QuickIO.QuickIODirectory.SetAttributes(System.String,System.IO.FileAttributes)">
             <summary>
             Gets the <see cref="T:System.IO.FileAttributes"/> of the directory or file.
@@ -112,6 +134,54 @@
             </summary>
             <param name="info">A directory or file. </param>
             <returns>The <see cref="T:System.IO.FileAttributes"/> of the directory or file.</returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.RemoveAttribute(System.String,System.IO.FileAttributes)">
+            <summary>
+            Removes the specified attribute from file or directory
+            </summary>
+            <param name="path">A directory or file. </param>
+            <param name="attribute">Attribute to remove </param>
+            <returns>true if removed. false if not exists in attributes</returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.RemoveAttribute(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.FileAttributes)">
+            <summary>
+            Removes the specified attribute from file or directory
+            </summary>
+            <param name="info">A directory or file. </param>
+            <param name="attribute">Attribute to remove </param>
+            <returns>true if removed. false if not exists in attributes</returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.RemoveAttribute(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.FileAttributes)">
+            <summary>
+            Removes the specified attribute from file or directory
+            </summary>
+            <param name="info">A directory or file. </param>
+            <param name="attribute">Attribute to remove </param>
+            <returns>true if removed. false if not exists in attributes</returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.AddAttribute(System.String,System.IO.FileAttributes)">
+            <summary>
+            Adds the specified attribute to file or directory
+            </summary>
+            <param name="path">A directory or file. </param>
+            <param name="attribute">Attribute to add </param>
+            <returns>true if added. false if already exists in attributes</returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.AddAttribute(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.FileAttributes)">
+            <summary>
+            Adds the specified attribute to file or directory
+            </summary>
+            <param name="info">A directory or file. </param>
+            <param name="attribute">Attribute to add </param>
+            <returns>true if added. false if already exists in attributes</returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.AddAttribute(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.FileAttributes)">
+            <summary>
+            Adds the specified attribute to file or directory
+            </summary>
+            <param name="info">A directory or file. </param>
+            <param name="attribute">Attribute to add </param>
+            <returns>true if added. false if already exists in attributes</returns>
         </member>
         <member name="M:SchwabenCode.QuickIO.QuickIODirectory.GetDirectoryRoot(System.String)">
             <summary>
@@ -715,7 +785,7 @@
             </code>
             </example>       /// 
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoryPaths(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoryPaths(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directory names in a specified path.
             </summary>
@@ -725,7 +795,7 @@
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoryPathsAsync(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoryPathsAsync(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directory names in a specified path in async context.
             </summary>
@@ -734,7 +804,7 @@
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoryPaths(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoryPaths(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directory names in a specified path.
             </summary>
@@ -744,7 +814,7 @@
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoryPathsAsync(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoryPathsAsync(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directory names in a specified path in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -753,7 +823,7 @@
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoryPaths(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoryPaths(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directory names in a specified path.
             </summary>
@@ -763,7 +833,7 @@
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoryPathsAsync(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoryPathsAsync(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directory names in a specified path in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -772,7 +842,7 @@
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectories(System.String,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectories(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directories in a specified path.
             </summary>
@@ -792,7 +862,7 @@
             </code>
             </example>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoriesAsync(System.String,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoriesAsync(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directories in a specified path in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -801,7 +871,7 @@
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectories(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectories(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directories in a specified path.
             </summary>
@@ -810,7 +880,7 @@
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoriesAsync(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoriesAsync(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directories in a specified path in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/> in async context.
             </summary>
@@ -819,7 +889,7 @@
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectories(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectories(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directories names in a specified path.
             </summary>
@@ -828,7 +898,7 @@
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoriesAsync(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateDirectoriesAsync(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directories names in a specified path in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -837,7 +907,7 @@
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilePaths(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilePaths(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names in a specified path.
             </summary>
@@ -847,7 +917,7 @@
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383458(v=vs.110).aspx</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilePathsAsync(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilePathsAsync(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names in a specified path in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -857,7 +927,7 @@
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilePaths(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilePaths(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names in a specified path.
             </summary>
@@ -867,7 +937,7 @@
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383458(v=vs.110).aspx</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilePathsAsync(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilePathsAsync(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names in a specified path in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -877,7 +947,7 @@
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilePaths(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilePaths(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names in a specified path.
             </summary>
@@ -887,7 +957,7 @@
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383458(v=vs.110).aspx</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilePathsAsync(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilePathsAsync(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names in a specified path in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -897,7 +967,7 @@
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFiles(System.String,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFiles(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
              <summary>
              Returns an enumerable collection of files in a specified path.
              </summary>
@@ -917,7 +987,7 @@
             </code>
              </example>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilesAsync(System.String,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilesAsync(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of files in a specified path in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -926,7 +996,7 @@
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFiles(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFiles(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of files in a specified path.
             </summary>
@@ -935,7 +1005,7 @@
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383458(v=vs.110).aspx</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilesAsync(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilesAsync(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of files in a specified path in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -944,7 +1014,7 @@
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns> #
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFiles(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFiles(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of files in a specified path.
             </summary>
@@ -952,7 +1022,7 @@
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilesAsync(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFilesAsync(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of files in a specified path in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -961,7 +1031,7 @@
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>     /// 
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntryPaths(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntryPaths(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
             </summary>
@@ -971,7 +1041,7 @@
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntryPathsAsync(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntryPathsAsync(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -981,7 +1051,7 @@
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntryPaths(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntryPaths(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
             </summary>
@@ -991,7 +1061,7 @@
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntryPathsAsync(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntryPathsAsync(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -1001,7 +1071,7 @@
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntryPaths(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntryPaths(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
             </summary>
@@ -1011,7 +1081,7 @@
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntryPathsAsync(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntryPathsAsync(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -1021,7 +1091,7 @@
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntries(System.String,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntries(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
              <summary>
              Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
              </summary>
@@ -1043,7 +1113,7 @@
              </code>
              </example>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntriesAsync(System.String,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntriesAsync(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -1052,7 +1122,7 @@
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntries(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntries(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
             </summary>
@@ -1061,7 +1131,7 @@
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntriesAsync(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntriesAsync(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -1071,7 +1141,7 @@
             <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntries(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntries(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
             </summary>
@@ -1080,7 +1150,7 @@
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntriesAsync(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntriesAsync(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -1174,6 +1244,21 @@
             <param name="overwrite">true to overwrite target</param>
             <exception cref="T:SchwabenCode.QuickIO.DirectoryAlreadyExistsException">Target exists</exception>
         </member>
+        <member name="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions">
+            <summary>
+            Options for enumerations
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.QuickIOEnumerateOptions.None">
+            <summary>
+            No options
+            </summary>
+        </member>
+        <member name="F:SchwabenCode.QuickIO.QuickIOEnumerateOptions.SuppressAllExceptions">
+            <summary>
+            Suppresses all exceptions
+            </summary>
+        </member>
         <member name="T:SchwabenCode.QuickIO.QuickIOFile">
             <summary>
             Provides static methods to access files. For example creating, deleting and retrieving content and security information such as the owner.
@@ -1223,6 +1308,54 @@
             </summary>
             <param name="info">A directory or file. </param>
             <returns>The <see cref="T:System.IO.FileAttributes"/> of the directory or file.</returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIOFile.RemoveAttribute(System.String,System.IO.FileAttributes)">
+            <summary>
+            Removes the specified attribute from file or directory
+            </summary>
+            <param name="path">A directory or file. </param>
+            <param name="attribute">Attribute to remove </param>
+            <returns>true if removed. false if not exists in attributes</returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIOFile.RemoveAttribute(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.FileAttributes)">
+            <summary>
+            Removes the specified attribute from file or directory
+            </summary>
+            <param name="info">A directory or file. </param>
+            <param name="attribute">Attribute to remove </param>
+            <returns>true if removed. false if not exists in attributes</returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIOFile.RemoveAttribute(SchwabenCode.QuickIO.QuickIOFileInfo,System.IO.FileAttributes)">
+            <summary>
+            Removes the specified attribute from file or directory
+            </summary>
+            <param name="info">A directory or file. </param>
+            <param name="attribute">Attribute to remove </param>
+            <returns>true if removed. false if not exists in attributes</returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIOFile.AddAttribute(System.String,System.IO.FileAttributes)">
+            <summary>
+            Adds the specified attribute to file or directory
+            </summary>
+            <param name="path">A directory or file. </param>
+            <param name="attribute">Attribute to add </param>
+            <returns>true if added. false if already exists in attributes</returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIOFile.AddAttribute(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.FileAttributes)">
+            <summary>
+            Adds the specified attribute to file or directory
+            </summary>
+            <param name="info">A directory or file. </param>
+            <param name="attribute">Attribute to add </param>
+            <returns>true if added. false if already exists in attributes</returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.QuickIOFile.AddAttribute(SchwabenCode.QuickIO.QuickIOFileInfo,System.IO.FileAttributes)">
+            <summary>
+            Adds the specified attribute to file or directory
+            </summary>
+            <param name="info">A directory or file. </param>
+            <param name="attribute">Attribute to add </param>
+            <returns>true if added. false if already exists in attributes</returns>
         </member>
         <member name="M:SchwabenCode.QuickIO.QuickIOFile.GetDirectoryRoot(System.String)">
             <summary>
@@ -2807,74 +2940,6 @@
         <member name="P:SchwabenCode.QuickIO.Transfer.IQuickIOTransferWriteJob.Overwrite">
             <summary>
             true to overwrite existing element
-            </summary>
-        </member>
-        <member name="T:SchwabenCode.QuickIO.QuickIOCommon">
-            <summary>
-            Provides several methods for internal purposes.
-            </summary>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIOCommon.DetermineFileSystemEntry(SchwabenCode.QuickIO.QuickIOPathInfo)">
-            <summary>
-            Determines the type based on the attributes of the path
-            </summary>
-            <param name="pathInfo"><see cref="T:SchwabenCode.QuickIO.QuickIOPathInfo"/></param>
-            <returns><see cref="T:SchwabenCode.QuickIO.QuickIOFileSystemEntryType"/></returns>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIOCommon.DetermineFileSystemEntry(SchwabenCode.QuickIO.Win32API.Win32FindData)">
-            <summary>
-            Determines the type based on the attributes of the handle
-            </summary>
-            <param name="findData"><see cref="T:SchwabenCode.QuickIO.Win32API.Win32FindData"/></param>
-            <returns><see cref="T:SchwabenCode.QuickIO.QuickIOFileSystemEntryType"/></returns>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIOCommon.Exists(System.String)">
-            <summary>
-            Reurns true if passed path exists
-            </summary>
-            <param name="path">Path to check</param>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIOCommon.Exists(System.String,SchwabenCode.QuickIO.QuickIOFileSystemEntryType)">
-            <summary>
-            Checks whether the path with the expected system entry type exists
-            </summary>
-            <param name="path">Path to a file or a directory</param>
-            <param name="systemEntryType"><see cref="T:SchwabenCode.QuickIO.QuickIOFileSystemEntryType"/> you are searching for</param>
-            <returns></returns>
-            <exception cref="T:SchwabenCode.QuickIO.UnmatchedFileSystemEntryTypeException">Path exists but it's not the type you're searching for.</exception>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIOCommon.Exists(SchwabenCode.QuickIO.QuickIOPathInfo,SchwabenCode.QuickIO.QuickIOFileSystemEntryType)">
-            <summary>
-            Checks whether the path with the expected system entry type exists
-            </summary>
-            <param name="pathInfo">A file or a directory</param>
-            <param name="systemEntryType"><see cref="T:SchwabenCode.QuickIO.QuickIOFileSystemEntryType"/> you are searching for</param>
-            <returns></returns>
-            <exception cref="T:SchwabenCode.QuickIO.UnmatchedFileSystemEntryTypeException">Path exists but it's not the type you're searching for.</exception>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIOCommon.NativeExceptionMapping(System.String)">
-            <summary>
-            Exception Mapping
-            </summary>
-            <param name="path">Error path</param>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIOCommon.NativeExceptionMapping(System.String,System.Int32)">
-            <summary>
-            Exception Mapping
-            </summary>
-            <param name="path"></param>
-            <param name="errorCode">errorCode</param>
-        </member>
-        <member name="T:SchwabenCode.QuickIO.QuickIOCommon.Constants">
-            <summary>
-            Common Constants
-            </summary>
-        </member>
-        <member name="F:SchwabenCode.QuickIO.QuickIOCommon.Constants.INVALID_FILE_ATTRIBUTES">
-            <summary>
-            Represents return value of invalid request of get the file attributes of a system entry.
-            Is equal to UInt32.MaxValue
-            See http://msdn.microsoft.com/en-us/library/windows/desktop/aa364944(v=vs.85).aspx
             </summary>
         </member>
         <member name="T:SchwabenCode.QuickIO.Transfer.QuickIOTransferDirectoryCopyService">
@@ -4851,26 +4916,27 @@
             <param name="directoryInfo"><see cref="T:System.IO.DirectoryInfo"/></param>
             <returns><see cref="T:SchwabenCode.QuickIO.QuickIODirectoryInfo"/></returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.GetMetadata">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.GetMetadata(SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Receives <see cref="T:SchwabenCode.QuickIO.QuickIODirectoryMetadata"/> of current file
             </summary>
             <returns><see cref="T:SchwabenCode.QuickIO.QuickIODirectoryMetadata"/></returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.GetMetadataAsync">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.GetMetadataAsync(SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Receives <see cref="T:SchwabenCode.QuickIO.QuickIODirectoryMetadata"/> of current file using seperate task
             </summary>
             <returns><see cref="T:SchwabenCode.QuickIO.QuickIODirectoryMetadata"/></returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateDirectoryPaths(System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateDirectoryPaths(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directory names.
             </summary>
             <param name="searchOption">Specifiy depth with <see cref="T:System.IO.SearchOption"/></param>
+            <param name="enumerateOptions">Options for enumerations</param>
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateDirectoryPathsAsync(System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateDirectoryPathsAsync(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directory names in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -4878,14 +4944,14 @@
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateDirectories(System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateDirectories(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directories in a specified path.
             </summary>
             <param name="searchOption">Specifiy depth with <see cref="T:System.IO.SearchOption"/></param>
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateDirectoriesAsync(System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateDirectoriesAsync(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directories in a specified path in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -4893,14 +4959,14 @@
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFilePaths(System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFilePaths(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names in a specified path.
             </summary>
             <param name="searchOption">Specifiy depth with <see cref="T:System.IO.SearchOption"/></param>
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFilePathsAsync(System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFilePathsAsync(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names in a specified path in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -4908,14 +4974,14 @@
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFiles(System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFiles(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of files in a specified path.
             </summary>
             <param name="searchOption">Specifiy depth with <see cref="T:System.IO.SearchOption"/></param>
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFilesAsync(System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFilesAsync(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of files in a specified path in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -4923,7 +4989,7 @@
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFileSystemEntryPaths(System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFileSystemEntryPaths(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
             </summary>
@@ -4931,7 +4997,7 @@
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFileSystemEntryPathsAsync(System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFileSystemEntryPathsAsync(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -4939,14 +5005,14 @@
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFileSystemEntries(System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFileSystemEntries(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
             </summary>
             <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFileSystemEntriesAsync(System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFileSystemEntriesAsync(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories in a seperate task created by the default <see cref="T:System.Threading.Tasks.TaskScheduler"/>.
             </summary>
@@ -6127,13 +6193,7 @@
             <param name="findData"><see cref="T:SchwabenCode.QuickIO.Win32API.Win32FindData"/></param>
             <returns><see cref="T:SchwabenCode.QuickIO.QuickIOFileSystemEntryType"/></returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIOCommon.Exists(System.String)">
-            <summary>
-            Reurns true if passed path exists
-            </summary>
-            <param name="path">Path to check</param>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIOCommon.Exists(System.String,SchwabenCode.QuickIO.QuickIOFileSystemEntryType)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIOCommon.Exists(SchwabenCode.QuickIO.QuickIOPathInfo,SchwabenCode.QuickIO.QuickIOFileSystemEntryType)">
             <summary>
             Checks whether the path with the expected system entry type exists
             </summary>
@@ -6142,11 +6202,11 @@
             <returns></returns>
             <exception cref="T:SchwabenCode.QuickIO.UnmatchedFileSystemEntryTypeException">Path exists but it's not the type you're searching for.</exception>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIOCommon.Exists(SchwabenCode.QuickIO.QuickIOPathInfo,SchwabenCode.QuickIO.QuickIOFileSystemEntryType)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIOCommon.Exists(System.String,SchwabenCode.QuickIO.QuickIOFileSystemEntryType)">
             <summary>
             Checks whether the path with the expected system entry type exists
             </summary>
-            <param name="pathInfo">A file or a directory</param>
+            <param name="path">Path to a file or a directory</param>
             <param name="systemEntryType"><see cref="T:SchwabenCode.QuickIO.QuickIOFileSystemEntryType"/> you are searching for</param>
             <returns></returns>
             <exception cref="T:SchwabenCode.QuickIO.UnmatchedFileSystemEntryTypeException">Path exists but it's not the type you're searching for.</exception>
@@ -6932,6 +6992,22 @@
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error will be fired if the specified path or a part of them does not exist.</exception>
             <exception cref="T:System.IO.FileNotFoundException">This error will be fired when attempting a file to delete, which does not exist.</exception>
         </member>
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.RemoveAttribute(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.FileAttributes)">
+            <summary>
+            Remove a file attribute
+            </summary>
+            <param name="pathInfo">Affected target</param>
+            <param name="attribute">Attribute to remove</param>
+            <returns>true if removed. false if not exists in attributes</returns>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.AddAttribute(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.FileAttributes)">
+            <summary>
+            Adds a file attribute
+            </summary>
+            <param name="pathInfo">Affected target</param>
+            <param name="attribute">Attribute to add</param>
+            <returns>true if added. false if already exists in attributes</returns>
+        </member>
         <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.CreateDirectory(SchwabenCode.QuickIO.QuickIOPathInfo,System.Boolean)">
             <summary>
             Creates a new directory. If <paramref name="recursive"/> is false, the parent directory must exists.
@@ -6958,26 +7034,13 @@
             <param name="recursive">If <paramref name="recursive"/> is true then all subfolders are also deleted.</param>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
             <exception cref="T:SchwabenCode.QuickIO.DirectoryNotEmptyException">The directory is not empty.</exception>
+            <remarks>Function loads every file and attribute. Alls read-only flags will be removed before removing.</remarks>
         </member>
         <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.TryGetFindDataFromPath(SchwabenCode.QuickIO.QuickIOPathInfo,SchwabenCode.QuickIO.Win32API.Win32FindData@)">
             <summary>
-            Gets the <see cref="T:SchwabenCode.QuickIO.Win32API.Win32FindData"/> from the passed <paramref name="pathInfo"/>
-            </summary>
-            <param name="pathInfo"><seealso cref="T:SchwabenCode.QuickIO.QuickIOPathInfo"/></param>
-            <param name="pathFindData"><seealso cref="T:SchwabenCode.QuickIO.Win32API.Win32FindData"/>. Will be null if path does not exist.</param>
-            <returns>true if path is valid and <see cref="T:SchwabenCode.QuickIO.Win32API.Win32FindData"/> is set</returns>
-            <remarks>
-            <see>
-                <cref>QuickIOCommon.NativeExceptionMapping</cref>
-            </see> if invalid handle found.
-            </remarks>
-            <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.TryGetFindDataFromPath(System.String,SchwabenCode.QuickIO.Win32API.Win32FindData@)">
-            <summary>
             Gets the <see cref="T:SchwabenCode.QuickIO.Win32API.Win32FindData"/> from the passed path.
             </summary>
-            <param name="fullName">Path</param>
+            <param name="pathInfo">Path</param>
             <param name="pathFindData"><seealso cref="T:SchwabenCode.QuickIO.Win32API.Win32FindData"/>. Will be null if path does not exist.</param>
             <returns>true if path is valid and <see cref="T:SchwabenCode.QuickIO.Win32API.Win32FindData"/> is set</returns>
             <remarks>
@@ -6997,19 +7060,18 @@
             <returns><see cref="T:Microsoft.Win32.SafeHandles.SafeFileHandle"/></returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.Exists(SchwabenCode.QuickIO.QuickIOPathInfo)">
+            <summary>
+            Reurns true if passed path exists
+            </summary>
+            <param name="pathInfo">Path to check</param>
+        </member>
         <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.GetFindDataFromPath(SchwabenCode.QuickIO.QuickIOPathInfo)">
+            
             <summary>
             Returns the <see cref="T:SchwabenCode.QuickIO.Win32API.Win32FindData"/> from specified <paramref name="pathInfo"/>
             </summary>
             <param name="pathInfo">Path to the file system entry</param>
-            <returns><see cref="T:SchwabenCode.QuickIO.Win32API.Win32FindData"/></returns>
-            <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.GetFindDataFromPath(System.String)">
-            <summary>
-            Returns the <see cref="T:SchwabenCode.QuickIO.Win32API.Win32FindData"/> from specified <paramref name="fullUncPath"/>
-            </summary>
-            <param name="fullUncPath">Path to the file system entry</param>
             <returns><see cref="T:SchwabenCode.QuickIO.Win32API.Win32FindData"/></returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
@@ -7057,81 +7119,89 @@
             <returns><see cref="T:Microsoft.Win32.SafeHandles.SafeFileHandle"/></returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateDirectoryMetadata(SchwabenCode.QuickIO.QuickIOPathInfo)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateDirectoryMetadata(SchwabenCode.QuickIO.QuickIOPathInfo,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Determined metadata of directory
             </summary>
             <param name="pathInfo">Path of the directory</param>
+            <param name="enumerateOptions">The enumeration options for exception handling</param>
             <returns><see cref="T:SchwabenCode.QuickIO.QuickIODirectoryMetadata"/> started with the given directory</returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateDirectoryMetadata(System.String,SchwabenCode.QuickIO.Win32API.Win32FindData)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateDirectoryMetadata(System.String,SchwabenCode.QuickIO.Win32API.Win32FindData,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Determined metadata of directory
             </summary>
             <param name="uncDirectoryPath">Path of the directory</param>
             <param name="findData"><see cref="T:SchwabenCode.QuickIO.Win32API.Win32FindData"/></param>
+            <param name="enumerateOptions">The enumeration options for exception handling</param>
             <returns><see cref="T:SchwabenCode.QuickIO.QuickIODirectoryMetadata"/> started with the given directory</returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateDirectories(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateDirectories(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Determined all subfolders of a directory
             </summary>
             <param name="pathInfo">Path of the directory</param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
+            <param name="enumerateOptions">The enumeration options for exception handling</param>
             <returns><see cref="T:SchwabenCode.QuickIO.QuickIODirectoryInfo"/> collection of subfolders</returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateFileSystemEntries(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateFileSystemEntries(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Determined all sub system entries of a directory
             </summary>
             <param name="pathInfo">Path of the directory</param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
+            <param name="enumerateOptions">The enumeration options for exception handling</param>
             <returns>Collection of <see cref="T:SchwabenCode.QuickIO.QuickIODirectoryInfo"/></returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateFileSystemEntries(System.String,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateFileSystemEntries(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Determined all sub system entries of a directory
             </summary>
             <param name="uncDirectoryPath">Path of the directory</param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
+            <param name="enumerateOptions">The enumeration options for exception handling</param>
             <returns>Collection of <see cref="T:SchwabenCode.QuickIO.QuickIODirectoryInfo"/></returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateFileSystemEntryPaths(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateFileSystemEntryPaths(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions,SchwabenCode.QuickIO.QuickIOPathType)">
             <summary>
             Determined all sub file system entries of a directory
             </summary>
             <param name="pathInfo">Path of the directory</param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
+            <param name="enumerateOptions">The enumeration options for exception handling</param>
             <returns>Collection of <see cref="T:SchwabenCode.QuickIO.QuickIODirectoryInfo"/></returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateFileSystemEntryPaths(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateFileSystemEntryPaths(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions,SchwabenCode.QuickIO.QuickIOPathType)">
             <summary>
             Determined all sub file system entries of a directory
             </summary>
             <param name="uncDirectoryPath">Path of the directory</param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
+            <param name="enumerateOptions">The enumeration options for exception handling</param>
             <returns>Collection of <see cref="T:SchwabenCode.QuickIO.QuickIODirectoryInfo"/></returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateDirectoryPaths(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateDirectoryPaths(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions,SchwabenCode.QuickIO.QuickIOPathType)">
             <summary>
             Determined all sub directory paths of a directory
             </summary>
             <param name="path">Path of the directory</param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
+            <param name="enumerateOptions">The enumeration options for exception handling</param>
             <returns>Collection of directory paths</returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateFiles(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateFiles(SchwabenCode.QuickIO.QuickIOPathInfo,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Determined all files of a directory
             </summary>
@@ -7149,22 +7219,24 @@
             <param name="win32Error">Win32Error Code. 0 on success</param>
             <returns><see cref="T:SchwabenCode.QuickIO.Win32API.Win32FileHandle"/> of specified path</returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateFiles(System.String,System.IO.SearchOption)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateFiles(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Determined all files of a directory
             </summary>
             <param name="uncDirectoryPath">Path of the directory</param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
+            <param name="enumerateOptions">The enumeration options for exception handling</param>
             <returns>Collection of files</returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateFilePaths(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerateFilePaths(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions,SchwabenCode.QuickIO.QuickIOPathType)">
             <summary>
             Determined all files paths of a directory
             </summary>
             <param name="path">Path of the directory</param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
+            <param name="enumerateOptions">The enumeration options for exception handling</param>
             <returns>Collection of file paths</returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
@@ -7186,16 +7258,22 @@
             <exception cref="T:SchwabenCode.QuickIO.UnmatchedFileSystemEntryTypeException">Path exists but it's not a directory; it's a file.</exception>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.FindPaths(System.String,System.IO.SearchOption,System.Nullable{SchwabenCode.QuickIO.QuickIOFileSystemEntryType},SchwabenCode.QuickIO.QuickIOPathType)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.FindPaths(System.String,System.IO.SearchOption,System.Nullable{SchwabenCode.QuickIO.QuickIOFileSystemEntryType},SchwabenCode.QuickIO.QuickIOEnumerateOptions,SchwabenCode.QuickIO.QuickIOPathType)">
             <summary>
             Search Exection
             </summary>
             <param name="uncDirectoryPath">Start directory path</param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
+            <param name="enumerateOptions">The enumeration options for exception handling</param>
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
             <param name="filterType"><see cref="T:SchwabenCode.QuickIO.QuickIOFileSystemEntryType"/></param>
             <returns>Collection of path</returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.EnumerationHandleInvalidFileHandle(System.String,SchwabenCode.QuickIO.QuickIOEnumerateOptions,System.Int32)">
+            <summary>
+            Handles the options to the fired exception
+            </summary>
         </member>
         <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.FormatPathByType(SchwabenCode.QuickIO.QuickIOPathType,System.String)">
             <summary>
@@ -7233,7 +7311,7 @@
             <returns>True if copy succeeded, false if not. Check last Win32 Error to get further information.</returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.GetDirectoryStatistics(SchwabenCode.QuickIO.QuickIOPathInfo)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.GetDirectoryStatistics(SchwabenCode.QuickIO.QuickIOPathInfo,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Determines the statistics of the given directory. This includes the number of files, folders and the total size in bytes.
             </summary>
@@ -7241,7 +7319,7 @@
             <returns>Provides the statistics of the directory</returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
-        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.GetDirectoryStatistics(System.String)">
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.GetDirectoryStatistics(System.String,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Determines the statistics of the given directory. This includes the number of files, folders and the total size in bytes.        /// 
             </summary>
@@ -8392,6 +8470,17 @@
             
             If the function fails, the return value is equal to a handle to the local memory object. To get extended error information, call GetLastError.
             </returns>
+        </member>
+        <member name="T:SchwabenCode.QuickIO.UnsupportedDriveType">
+            <summary>
+            Represents an exception for unsuuported drive types
+            </summary>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.UnsupportedDriveType.#ctor(System.String)">
+            <summary>
+            Creates an instance of <see cref="T:SchwabenCode.QuickIO.UnsupportedDriveType"/>
+            </summary>
+            <param name="path">Unsupported drive</param>
         </member>
         <member name="T:SchwabenCode.QuickIO.Win32API.Win32FileHandle">
             <summary>

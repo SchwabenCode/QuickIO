@@ -60,6 +60,17 @@ namespace SchwabenCode.QuickIO
             IsRoot = parsePathResult.IsRoot;
             PathLocation = parsePathResult.PathLocation;
             this.PathType = parsePathResult.PathType;
+
+            if ( PathLocation == QuickIOPathLocation.Local )
+            {
+                var testRoot = IsRoot ? FullName : RootFullName;
+
+                if ( !Array.Exists( Environment.GetLogicalDrives( ), delegate( string drve ) { return drve.Equals( testRoot, StringComparison.OrdinalIgnoreCase ); } ) )
+                {
+                    throw new UnsupportedDriveType( testRoot );
+                }
+            }
+
         }
 
         /// <summary>
@@ -110,7 +121,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         internal Win32FindData FindData
         {
-            get { return _findData ?? ( _findData = InternalQuickIO.GetFindDataFromPath( FullNameUnc ) ); }
+            get { return _findData ?? ( _findData = InternalQuickIO.GetFindDataFromPath( this ) ); }
             set
             {
                 _findData = value;
@@ -157,7 +168,7 @@ namespace SchwabenCode.QuickIO
         /// <returns></returns>
         public Boolean CheckExistance( QuickIOFileSystemEntryType? systemEntryType = null )
         {
-            return systemEntryType == null ? InternalQuickIOCommon.Exists( FullNameUnc ) : InternalQuickIOCommon.Exists( FullNameUnc, ( QuickIOFileSystemEntryType ) systemEntryType );
+            return systemEntryType == null ? InternalQuickIO.Exists( this ) : InternalQuickIOCommon.Exists( FullNameUnc, ( QuickIOFileSystemEntryType ) systemEntryType );
         }
 
         /// <summary>
@@ -176,7 +187,7 @@ namespace SchwabenCode.QuickIO
         /// Returns current <see cref="QuickIOFileSystemSecurity"/>
         /// </summary>
         /// <returns><see cref="QuickIOFileSystemSecurity"/></returns>
-        public QuickIOFileSystemSecurity GetFileSystemSecurity( )
+        public QuickIOFileSystemSecurity GetFileSystemSecurity()
         {
             return new QuickIOFileSystemSecurity( this );
         }
@@ -185,7 +196,7 @@ namespace SchwabenCode.QuickIO
         /// Determines the owner
         /// </summary>
         /// <returns><see cref="NTAccount"/></returns>
-        public NTAccount GetOwner( )
+        public NTAccount GetOwner()
         {
             return GetOwnerIdentifier( ).Translate( typeof( NTAccount ) ) as NTAccount;
         }
@@ -194,7 +205,7 @@ namespace SchwabenCode.QuickIO
         /// Determines the owner
         /// </summary>
         /// <returns><see cref="IdentityReference"/></returns>
-        public IdentityReference GetOwnerIdentifier( )
+        public IdentityReference GetOwnerIdentifier()
         {
             return GetFileSystemSecurity( ).FileSystemSecurityInformation.GetOwner( typeof( SecurityIdentifier ) );
         }

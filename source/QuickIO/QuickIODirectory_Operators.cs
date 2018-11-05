@@ -6,7 +6,6 @@
 // <summary>Provides properties and instance methods for directories</summary>
 
 using System;
-using System.IO;
 using SchwabenCode.QuickIO.Internal;
 
 
@@ -23,6 +22,7 @@ namespace SchwabenCode.QuickIO
         /// <returns><see cref="QuickIODirectoryMetadata"/></returns>
         public static QuickIODirectoryMetadata GetMetadata( String directoryPath )
         {
+            Invariant.NotEmpty( directoryPath );
             return InternalQuickIO.EnumerateDirectoryMetadata( new QuickIOPathInfo( directoryPath ) );
         }
 
@@ -32,6 +32,7 @@ namespace SchwabenCode.QuickIO
         /// <returns><see cref="QuickIODirectoryMetadata"/></returns>
         public static QuickIODirectoryMetadata GetMetadata( QuickIODirectoryInfo directoryInfo )
         {
+            Invariant.NotNull( directoryInfo );
             return InternalQuickIO.EnumerateDirectoryMetadata( directoryInfo.PathInfo );
         }
 
@@ -41,6 +42,7 @@ namespace SchwabenCode.QuickIO
         /// <returns><see cref="QuickIODirectoryMetadata"/></returns>
         public static QuickIODirectoryMetadata GetMetadata( QuickIOPathInfo pathInfo )
         {
+            Invariant.NotNull( pathInfo );
             return InternalQuickIO.EnumerateDirectoryMetadata( pathInfo );
         }
 
@@ -51,6 +53,7 @@ namespace SchwabenCode.QuickIO
         /// <returns><see cref="QuickIODirectoryMetadata"/></returns>
         public static Task<QuickIODirectoryMetadata> GetMetadataAsync( String directoryPath )
         {
+            Invariant.NotEmpty( directoryPath );
             return Compatibility.NETCompatibility.AsyncExtensions.GetAsyncResult( ( ) => InternalQuickIO.EnumerateDirectoryMetadata( new QuickIOPathInfo( directoryPath ) ) );
         }
         /// <summary>
@@ -59,6 +62,7 @@ namespace SchwabenCode.QuickIO
         /// <returns><see cref="QuickIODirectoryMetadata"/></returns>
         public static Task<QuickIODirectoryMetadata> GetMetadataAsync( QuickIODirectoryInfo directoryInfo )
         {
+            Invariant.NotNull( directoryInfo );
             return Compatibility.NETCompatibility.AsyncExtensions.GetAsyncResult( ( ) => InternalQuickIO.EnumerateDirectoryMetadata( directoryInfo.PathInfo ) );
         }
         /// <summary>
@@ -67,6 +71,7 @@ namespace SchwabenCode.QuickIO
         /// <returns><see cref="QuickIODirectoryMetadata"/></returns>
         public static Task<QuickIODirectoryMetadata> GetMetadataAsync( QuickIOPathInfo pathInfo )
         {
+            Invariant.NotNull( pathInfo );
             return Compatibility.NETCompatibility.AsyncExtensions.GetAsyncResult( ( ) => InternalQuickIO.EnumerateDirectoryMetadata( pathInfo ) );
         }
 #endif

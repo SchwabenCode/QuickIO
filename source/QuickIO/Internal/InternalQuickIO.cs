@@ -61,6 +61,7 @@ namespace SchwabenCode.QuickIO.Internal
         /// <exception cref="FileNotFoundException">This error is fired if the specified file to remove does not exist.</exception>
         public static void DeleteFile( QuickIOPathInfo pathInfo )
         {
+            RemoveAttribute( pathInfo, FileAttributes.ReadOnly );
             DeleteFile( pathInfo.FullNameUnc );
         }
 
@@ -72,8 +73,47 @@ namespace SchwabenCode.QuickIO.Internal
         /// <exception cref="FileNotFoundException">This error will be fired when attempting a file to delete, which does not exist.</exception>
         public static void DeleteFile( QuickIOFileInfo fileInfo )
         {
+            RemoveAttribute( fileInfo.PathInfo, FileAttributes.ReadOnly );
             DeleteFile( fileInfo.PathInfo );
         }
+
+        /// <summary>
+        /// Remove a file attribute
+        /// </summary>
+        /// <param name="pathInfo">Affected target</param>
+        /// <param name="attribute">Attribute to remove</param>
+        /// <returns>true if removed. false if not exists in attributes</returns>
+        public static Boolean RemoveAttribute( QuickIOPathInfo pathInfo, FileAttributes attribute )
+        {
+            if ( ( pathInfo.Attributes & attribute ) == attribute )
+            {
+                var attributes = pathInfo.Attributes;
+                attributes &= ~attribute;
+                SetAttributes( pathInfo, attributes );
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Adds a file attribute
+        /// </summary>
+        /// <param name="pathInfo">Affected target</param>
+        /// <param name="attribute">Attribute to add</param>
+        /// <returns>true if added. false if already exists in attributes</returns>
+        public static Boolean AddAttribute( QuickIOPathInfo pathInfo, FileAttributes attribute )
+        {
+            if ( ( pathInfo.Attributes & attribute ) != attribute )
+            {
+                var attributes = pathInfo.Attributes;
+                attributes |= attribute;
+                SetAttributes( pathInfo, attributes );
+                return true;
+            }
+
+            return false;
+        }
+
 
         /// <summary>
         /// Creates a new directory. If <paramref name="recursive"/> is false, the parent directory must exists.
@@ -124,7 +164,7 @@ namespace SchwabenCode.QuickIO.Internal
         /// <exception cref="FileNotFoundException">This error will be fired when attempting a file to delete, which does not exist.</exception>
         public static void DeleteFiles( String directoryPath, bool recursive = false )
         {
-            var allFilePaths = EnumerateFilePaths( directoryPath, recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly );
+            var allFilePaths = EnumerateFilePaths( directoryPath, recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions.None );
             foreach ( var filePath in allFilePaths )
             {
                 DeleteFile( filePath );
@@ -138,34 +178,82 @@ namespace SchwabenCode.QuickIO.Internal
         /// <param name="recursive">If <paramref name="recursive"/> is true then all subfolders are also deleted.</param>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         /// <exception cref="DirectoryNotEmptyException">The directory is not empty.</exception>
+        /// <remarks>Function loads every file and attribute. Alls read-only flags will be removed before removing.</remarks>
         public static void DeleteDirectory( QuickIOPathInfo pathInfo, bool recursive = false )
         {
+            // Contents
             if ( recursive )
             {
                 // Remove all files
 
-                DeleteFiles( pathInfo.FullNameUnc, true );
-                var allFolderPaths = EnumerateDirectoryPaths( pathInfo.FullNameUnc, SearchOption.AllDirectories, QuickIOPathType.UNC );
-                foreach ( var folderPathAsUNC in allFolderPaths )
+                var contents = new List<KeyValuePair<QuickIOPathInfo, QuickIOFileSystemEntryType>>( EnumerateFileSystemEntries( pathInfo, SearchOption.AllDirectories, QuickIOEnumerateOptions.None ) );
+
+                // First delete files
+                foreach ( var item in contents )
                 {
-                    Win32SafeNativeMethods.RemoveDirectory( folderPathAsUNC );
+                    if ( item.Value == QuickIOFileSystemEntryType.File )
+                    {
+                        DeleteFile( item.Key );
+                    }
+                }
+
+                for ( var i = contents.Count - 1 ; i >= 0 ; i-- )
+                {
+                    var item = contents[ i ];
+
+                    if ( item.Value == QuickIOFileSystemEntryType.Directory )
+                    {
+                        RemoveAttribute( item.Key, FileAttributes.ReadOnly );
+
+                        var removed = Win32SafeNativeMethods.RemoveDirectory( item.Key.FullNameUnc );
+                        var win32Error = Marshal.GetLastWin32Error( );
+                        if ( !removed )
+                        {
+                            InternalQuickIOCommon.NativeExceptionMapping( pathInfo.FullName, win32Error );
+                        }
+                    }
                 }
             }
 
-
-            var removed = Win32SafeNativeMethods.RemoveDirectory( pathInfo.FullNameUnc );
-            var win32Error = Marshal.GetLastWin32Error( );
-            if ( !removed )
+            // Remove specified
             {
-                InternalQuickIOCommon.NativeExceptionMapping( pathInfo.FullName, win32Error );
+                var removed = Win32SafeNativeMethods.RemoveDirectory( pathInfo.FullNameUnc );
+                var win32Error = Marshal.GetLastWin32Error( );
+                if ( !removed )
+                {
+                    InternalQuickIOCommon.NativeExceptionMapping( pathInfo.FullName, win32Error );
+                }
             }
         }
 
         #region FindData
+        ///// <summary>
+        ///// Gets the <see cref="Win32FindData"/> from the passed <paramref name="pathInfo"/>
+        ///// </summary>
+        ///// <param name="pathInfo"><seealso cref="QuickIOPathInfo"/></param>
+        ///// <param name="pathFindData"><seealso cref="Win32FindData"/>. Will be null if path does not exist.</param>
+        ///// <returns>true if path is valid and <see cref="Win32FindData"/> is set</returns>
+        ///// <remarks>
+        ///// <see>
+        /////     <cref>QuickIOCommon.NativeExceptionMapping</cref>
+        ///// </see> if invalid handle found.
+        ///// </remarks>
+        ///// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
+        //public static bool TryGetFindDataFromPath( QuickIOPathInfo pathInfo, out Win32FindData pathFindData )
+        //{
+        //    if ( TryGetFindDataFromPath( pathInfo.FullNameUnc, out pathFindData ) )
+        //    {
+        //        return true;
+        //    }
+
+        //    pathFindData = null;
+        //    return false;
+        //}
+
         /// <summary>
-        /// Gets the <see cref="Win32FindData"/> from the passed <paramref name="pathInfo"/>
+        /// Gets the <see cref="Win32FindData"/> from the passed path.
         /// </summary>
-        /// <param name="pathInfo"><seealso cref="QuickIOPathInfo"/></param>
+        /// <param name="pathInfo">Path</param>
         /// <param name="pathFindData"><seealso cref="Win32FindData"/>. Will be null if path does not exist.</param>
         /// <returns>true if path is valid and <see cref="Win32FindData"/> is set</returns>
         /// <remarks>
@@ -176,37 +264,21 @@ namespace SchwabenCode.QuickIO.Internal
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         public static bool TryGetFindDataFromPath( QuickIOPathInfo pathInfo, out Win32FindData pathFindData )
         {
-            if ( TryGetFindDataFromPath( pathInfo.FullNameUnc, out pathFindData ) )
-            {
-                return true;
-            }
-
-            pathFindData = null;
-            return false;
-        }
-
-        /// <summary>
-        /// Gets the <see cref="Win32FindData"/> from the passed path.
-        /// </summary>
-        /// <param name="fullName">Path</param>
-        /// <param name="pathFindData"><seealso cref="Win32FindData"/>. Will be null if path does not exist.</param>
-        /// <returns>true if path is valid and <see cref="Win32FindData"/> is set</returns>
-        /// <remarks>
-        /// <see>
-        ///     <cref>QuickIOCommon.NativeExceptionMapping</cref>
-        /// </see> if invalid handle found.
-        /// </remarks>
-        /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        public static bool TryGetFindDataFromPath( String fullName, out Win32FindData pathFindData )
-        {
             var win32FindData = new Win32FindData( );
             int win32Error;
-            using ( var fileHandle = FindFirstSafeFileHandle( fullName, win32FindData, out win32Error ) )
+
+            //var path = pathInfo.FullNameUnc;
+            //if ( pathInfo.IsRoot )
+            //{
+            //    path = QuickIOPath.Combine( path, "*" );
+            //}
+
+            using ( var fileHandle = FindFirstSafeFileHandle( pathInfo.FullNameUnc, win32FindData, out win32Error ) )
             {
                 // Take care of invalid handles
                 if ( fileHandle.IsInvalid )
                 {
-                    InternalQuickIOCommon.NativeExceptionMapping( fullName, win32Error );
+                    InternalQuickIOCommon.NativeExceptionMapping( pathInfo.FullName, win32Error );
                 }
 
                 // Treffer auswerten
@@ -240,6 +312,47 @@ namespace SchwabenCode.QuickIO.Internal
         }
 
         /// <summary>
+        /// Reurns true if passed path exists
+        /// </summary>
+        /// <param name="pathInfo">Path to check</param>
+        public static Boolean Exists( QuickIOPathInfo pathInfo )
+        {
+            var win32FindData = new Win32FindData( );
+            int win32Error;
+
+            var path = pathInfo.FullNameUnc;
+            if ( pathInfo.IsRoot )
+            {
+                path = QuickIOPath.Combine( path, "*" );
+            }
+
+            using ( var fileHandle = FindFirstSafeFileHandle( path, win32FindData, out win32Error ) )
+            {
+                // Take care of invalid handles
+                return !fileHandle.IsInvalid;
+            }
+        }
+
+
+        ///// <summary>
+        ///// Returns the <see cref="Win32FindData"/> from specified <paramref name="pathInfo"/>
+        ///// </summary>
+        ///// <param name="pathInfo">Path to the file system entry</param>
+        ///// <returns><see cref="Win32FindData"/></returns>
+        ///// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
+        //public static Win32FindData GetFindDataFromPath( QuickIOPathInfo pathInfo )
+        //{
+        //    return GetFindDataFromPath( pathInfo.FullNameUnc );
+        //}
+
+        ///// <summary>
+        ///// Returns the <see cref="Win32FindData"/> from specified <paramref name="fullUncPath"/>
+        ///// </summary>
+        ///// <param name="fullUncPath">Path to the file system entry</param>
+        ///// <returns><see cref="Win32FindData"/></returns>
+        ///// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
+        /// 
+        /// <summary>
         /// Returns the <see cref="Win32FindData"/> from specified <paramref name="pathInfo"/>
         /// </summary>
         /// <param name="pathInfo">Path to the file system entry</param>
@@ -247,25 +360,14 @@ namespace SchwabenCode.QuickIO.Internal
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         public static Win32FindData GetFindDataFromPath( QuickIOPathInfo pathInfo )
         {
-            return GetFindDataFromPath( pathInfo.FullNameUnc );
-        }
-
-        /// <summary>
-        /// Returns the <see cref="Win32FindData"/> from specified <paramref name="fullUncPath"/>
-        /// </summary>
-        /// <param name="fullUncPath">Path to the file system entry</param>
-        /// <returns><see cref="Win32FindData"/></returns>
-        /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        public static Win32FindData GetFindDataFromPath( String fullUncPath )
-        {
             var win32FindData = new Win32FindData( );
             int win32Error;
-            using ( var fileHandle = FindFirstSafeFileHandle( fullUncPath, win32FindData, out win32Error ) )
+            using ( var fileHandle = FindFirstSafeFileHandle( pathInfo.FullNameUnc, win32FindData, out win32Error ) )
             {
                 // Take care of invalid handles
                 if ( fileHandle.IsInvalid )
                 {
-                    InternalQuickIOCommon.NativeExceptionMapping( fullUncPath, win32Error );
+                    InternalQuickIOCommon.NativeExceptionMapping( pathInfo.FullName, win32Error );
                 }
 
                 // Treffer auswerten
@@ -276,7 +378,7 @@ namespace SchwabenCode.QuickIO.Internal
                 }
             }
 
-            throw new PathNotFoundException( fullUncPath );
+            throw new PathNotFoundException( pathInfo.FullName );
         }
 
         /// <summary>
@@ -398,11 +500,12 @@ namespace SchwabenCode.QuickIO.Internal
         /// Determined metadata of directory
         /// </summary>
         /// <param name="pathInfo">Path of the directory</param>
+        /// <param name="enumerateOptions">The enumeration options for exception handling</param>
         /// <returns><see cref="QuickIODirectoryMetadata"/> started with the given directory</returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        internal static QuickIODirectoryMetadata EnumerateDirectoryMetadata( QuickIOPathInfo pathInfo )
+        internal static QuickIODirectoryMetadata EnumerateDirectoryMetadata( QuickIOPathInfo pathInfo, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
-            return EnumerateDirectoryMetadata( pathInfo.FullNameUnc, pathInfo.FindData );
+            return EnumerateDirectoryMetadata( pathInfo.FullNameUnc, pathInfo.FindData, enumerateOptions );
         }
 
         /// <summary>
@@ -410,9 +513,10 @@ namespace SchwabenCode.QuickIO.Internal
         /// </summary>
         /// <param name="uncDirectoryPath">Path of the directory</param>
         /// <param name="findData"><see cref="Win32FindData"/></param>
+        /// <param name="enumerateOptions">The enumeration options for exception handling</param>
         /// <returns><see cref="QuickIODirectoryMetadata"/> started with the given directory</returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        internal static QuickIODirectoryMetadata EnumerateDirectoryMetadata( String uncDirectoryPath, Win32FindData findData )
+        internal static QuickIODirectoryMetadata EnumerateDirectoryMetadata( String uncDirectoryPath, Win32FindData findData, QuickIOEnumerateOptions enumerateOptions )
         {
             // Results
             var subFiles = new List<QuickIOFileMetadata>( );
@@ -432,6 +536,11 @@ namespace SchwabenCode.QuickIO.Internal
                     if ( win32Error != Win32ErrorCodes.ERROR_NO_MORE_FILES )
                     {
                         InternalQuickIOCommon.NativeExceptionMapping( uncDirectoryPath, win32Error );
+                    }
+
+                    if ( EnumerationHandleInvalidFileHandle( uncDirectoryPath, enumerateOptions, win32Error ) )
+                    {
+                        return null;
                     }
                 }
 
@@ -458,7 +567,7 @@ namespace SchwabenCode.QuickIO.Internal
                     #region Directory
                     else
                     {
-                        var dir = EnumerateDirectoryMetadata( uncResultPath, win32FindData );
+                        var dir = EnumerateDirectoryMetadata( uncResultPath, win32FindData, enumerateOptions );
                         subDirs.Add( dir );
                     }
                     #endregion
@@ -480,9 +589,10 @@ namespace SchwabenCode.QuickIO.Internal
         /// </summary>
         /// <param name="pathInfo">Path of the directory</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">The enumeration options for exception handling</param>
         /// <returns><see cref="QuickIODirectoryInfo"/> collection of subfolders</returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        internal static IEnumerable<QuickIODirectoryInfo> EnumerateDirectories( QuickIOPathInfo pathInfo, SearchOption searchOption )
+        internal static IEnumerable<QuickIODirectoryInfo> EnumerateDirectories( QuickIOPathInfo pathInfo, SearchOption searchOption, QuickIOEnumerateOptions enumerateOptions )
         {
             // Match for start of search
             var currentPath = QuickIOPath.Combine( pathInfo.FullNameUnc, "*" );
@@ -498,6 +608,12 @@ namespace SchwabenCode.QuickIO.Internal
                     if ( win32Error != Win32ErrorCodes.ERROR_NO_MORE_FILES )
                     {
                         InternalQuickIOCommon.NativeExceptionMapping( pathInfo.FullName, win32Error );
+                    }
+
+                    if ( EnumerationHandleInvalidFileHandle( pathInfo.FullName, enumerateOptions, win32Error ) )
+                    {
+                        yield return null;
+
                     }
                 }
 
@@ -521,7 +637,7 @@ namespace SchwabenCode.QuickIO.Internal
                         // SubFolders?!
                         if ( searchOption == SearchOption.AllDirectories )
                         {
-                            foreach ( var match in EnumerateDirectories( new QuickIOPathInfo( resultPath, win32FindData.cFileName ), searchOption ) )
+                            foreach ( var match in EnumerateDirectories( new QuickIOPathInfo( resultPath, win32FindData.cFileName ), searchOption, enumerateOptions ) )
                             {
                                 yield return match;
                             }
@@ -539,11 +655,12 @@ namespace SchwabenCode.QuickIO.Internal
         /// </summary>
         /// <param name="pathInfo">Path of the directory</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">The enumeration options for exception handling</param>
         /// <returns>Collection of <see cref="QuickIODirectoryInfo"/></returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        internal static IEnumerable<KeyValuePair<QuickIOPathInfo, QuickIOFileSystemEntryType>> EnumerateFileSystemEntries( QuickIOPathInfo pathInfo, SearchOption searchOption )
+        internal static IEnumerable<KeyValuePair<QuickIOPathInfo, QuickIOFileSystemEntryType>> EnumerateFileSystemEntries( QuickIOPathInfo pathInfo, SearchOption searchOption, QuickIOEnumerateOptions enumerateOptions )
         {
-            return EnumerateFileSystemEntries( pathInfo.FullNameUnc, searchOption );
+            return EnumerateFileSystemEntries( pathInfo.FullNameUnc, searchOption, enumerateOptions );
         }
 
         /// <summary>
@@ -551,9 +668,10 @@ namespace SchwabenCode.QuickIO.Internal
         /// </summary>
         /// <param name="uncDirectoryPath">Path of the directory</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">The enumeration options for exception handling</param>
         /// <returns>Collection of <see cref="QuickIODirectoryInfo"/></returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        private static IEnumerable<KeyValuePair<QuickIOPathInfo, QuickIOFileSystemEntryType>> EnumerateFileSystemEntries( String uncDirectoryPath, SearchOption searchOption )
+        private static IEnumerable<KeyValuePair<QuickIOPathInfo, QuickIOFileSystemEntryType>> EnumerateFileSystemEntries( String uncDirectoryPath, SearchOption searchOption, QuickIOEnumerateOptions enumerateOptions )
         {
             // Match for start of search
             var currentPath = QuickIOPath.Combine( uncDirectoryPath, "*" );
@@ -569,6 +687,11 @@ namespace SchwabenCode.QuickIO.Internal
                     if ( win32Error != Win32ErrorCodes.ERROR_NO_MORE_FILES )
                     {
                         InternalQuickIOCommon.NativeExceptionMapping( uncDirectoryPath, win32Error );
+                    }
+
+                    if ( EnumerationHandleInvalidFileHandle( uncDirectoryPath, enumerateOptions, win32Error ) )
+                    {
+                        yield return new KeyValuePair<QuickIOPathInfo, QuickIOFileSystemEntryType>( );
                     }
                 }
 
@@ -592,7 +715,7 @@ namespace SchwabenCode.QuickIO.Internal
                         // SubFolders?!
                         if ( searchOption == SearchOption.AllDirectories )
                         {
-                            foreach ( var match in EnumerateFileSystemEntries( new QuickIOPathInfo( resultPath, win32FindData.cFileName ), searchOption ) )
+                            foreach ( var match in EnumerateFileSystemEntries( new QuickIOPathInfo( resultPath, win32FindData.cFileName ), searchOption, enumerateOptions ) )
                             {
                                 yield return match;
                             }
@@ -616,11 +739,12 @@ namespace SchwabenCode.QuickIO.Internal
         /// <param name="pathInfo">Path of the directory</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">The enumeration options for exception handling</param>
         /// <returns>Collection of <see cref="QuickIODirectoryInfo"/></returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        internal static IEnumerable<KeyValuePair<String, QuickIOFileSystemEntryType>> EnumerateFileSystemEntryPaths( QuickIOPathInfo pathInfo, SearchOption searchOption, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular )
+        internal static IEnumerable<KeyValuePair<String, QuickIOFileSystemEntryType>> EnumerateFileSystemEntryPaths( QuickIOPathInfo pathInfo, SearchOption searchOption, QuickIOEnumerateOptions enumerateOptions, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular )
         {
-            return EnumerateFileSystemEntryPaths( pathInfo.FullNameUnc, searchOption, pathFormatReturn );
+            return EnumerateFileSystemEntryPaths( pathInfo.FullNameUnc, searchOption, enumerateOptions, pathFormatReturn );
         }
 
         /// <summary>
@@ -629,9 +753,10 @@ namespace SchwabenCode.QuickIO.Internal
         /// <param name="uncDirectoryPath">Path of the directory</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">The enumeration options for exception handling</param>
         /// <returns>Collection of <see cref="QuickIODirectoryInfo"/></returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        private static IEnumerable<KeyValuePair<String, QuickIOFileSystemEntryType>> EnumerateFileSystemEntryPaths( String uncDirectoryPath, SearchOption searchOption, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular )
+        private static IEnumerable<KeyValuePair<String, QuickIOFileSystemEntryType>> EnumerateFileSystemEntryPaths( String uncDirectoryPath, SearchOption searchOption, QuickIOEnumerateOptions enumerateOptions, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular )
         {
             // Match for start of search
             var currentPath = QuickIOPath.Combine( uncDirectoryPath, "*" );
@@ -647,6 +772,11 @@ namespace SchwabenCode.QuickIO.Internal
                     if ( win32Error != Win32ErrorCodes.ERROR_NO_MORE_FILES )
                     {
                         InternalQuickIOCommon.NativeExceptionMapping( uncDirectoryPath, win32Error );
+                    }
+
+                    if ( EnumerationHandleInvalidFileHandle( uncDirectoryPath, enumerateOptions, win32Error ) )
+                    {
+                        yield return new KeyValuePair<string, QuickIOFileSystemEntryType>( );
                     }
                 }
 
@@ -670,7 +800,7 @@ namespace SchwabenCode.QuickIO.Internal
                         // SubFolders?!
                         if ( searchOption == SearchOption.AllDirectories )
                         {
-                            foreach ( var match in EnumerateFileSystemEntryPaths( resultPath, searchOption, pathFormatReturn ) )
+                            foreach ( var match in EnumerateFileSystemEntryPaths( resultPath, searchOption, enumerateOptions, pathFormatReturn ) )
                             {
                                 yield return match;
                             }
@@ -695,11 +825,12 @@ namespace SchwabenCode.QuickIO.Internal
         /// <param name="path">Path of the directory</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">The enumeration options for exception handling</param>
         /// <returns>Collection of directory paths</returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        internal static IEnumerable<String> EnumerateDirectoryPaths( String path, SearchOption searchOption, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular )
+        internal static IEnumerable<String> EnumerateDirectoryPaths( String path, SearchOption searchOption, QuickIOEnumerateOptions enumerateOptions, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular )
         {
-            return FindPaths( path, searchOption, QuickIOFileSystemEntryType.Directory, pathFormatReturn );
+            return FindPaths( path, searchOption, QuickIOFileSystemEntryType.Directory, enumerateOptions, pathFormatReturn );
         }
         #endregion
 
@@ -712,9 +843,9 @@ namespace SchwabenCode.QuickIO.Internal
         /// <param name="searchOption"><see cref="SearchOption"/></param>
         /// <returns>Collection of files</returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        internal static IEnumerable<QuickIOFileInfo> EnumerateFiles( QuickIOPathInfo pathInfo, SearchOption searchOption )
+        internal static IEnumerable<QuickIOFileInfo> EnumerateFiles( QuickIOPathInfo pathInfo, SearchOption searchOption, QuickIOEnumerateOptions enumerateOptions )
         {
-            return EnumerateFiles( pathInfo.FullNameUnc, searchOption );
+            return EnumerateFiles( pathInfo.FullNameUnc, searchOption, enumerateOptions );
         }
 
         /// <summary>
@@ -736,9 +867,10 @@ namespace SchwabenCode.QuickIO.Internal
         /// </summary>
         /// <param name="uncDirectoryPath">Path of the directory</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">The enumeration options for exception handling</param>
         /// <returns>Collection of files</returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        internal static IEnumerable<QuickIOFileInfo> EnumerateFiles( String uncDirectoryPath, SearchOption searchOption )
+        internal static IEnumerable<QuickIOFileInfo> EnumerateFiles( String uncDirectoryPath, SearchOption searchOption, QuickIOEnumerateOptions enumerateOptions )
         {
             // Match for start of search
             var currentPath = QuickIOPath.Combine( uncDirectoryPath, "*" );
@@ -749,9 +881,9 @@ namespace SchwabenCode.QuickIO.Internal
             using ( var fileHandle = FindFirstFileManaged( currentPath, win32FindData, out win32Error ) )
             {
                 // Take care of invalid handles
-                if ( fileHandle.IsInvalid )
+                if ( fileHandle.IsInvalid && EnumerationHandleInvalidFileHandle( uncDirectoryPath, enumerateOptions, win32Error ) )
                 {
-                    InternalQuickIOCommon.NativeExceptionMapping( uncDirectoryPath, win32Error );
+                    yield return null;
                 }
 
                 // Treffer auswerten
@@ -776,7 +908,7 @@ namespace SchwabenCode.QuickIO.Internal
                         // SubFolders?!
                         if ( searchOption == SearchOption.AllDirectories )
                         {
-                            foreach ( var match in EnumerateFiles( resultPath, searchOption ) )
+                            foreach ( var match in EnumerateFiles( resultPath, searchOption, enumerateOptions ) )
                             {
                                 yield return match;
                             }
@@ -795,11 +927,12 @@ namespace SchwabenCode.QuickIO.Internal
         /// <param name="path">Path of the directory</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">The enumeration options for exception handling</param>
         /// <returns>Collection of file paths</returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        internal static IEnumerable<String> EnumerateFilePaths( String path, SearchOption searchOption, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular )
+        internal static IEnumerable<String> EnumerateFilePaths( String path, SearchOption searchOption, QuickIOEnumerateOptions enumerateOptions, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular )
         {
-            return FindPaths( path, searchOption, QuickIOFileSystemEntryType.File, pathFormatReturn );
+            return FindPaths( path, searchOption, QuickIOFileSystemEntryType.File, enumerateOptions, pathFormatReturn );
         }
         #endregion
         #endregion
@@ -863,11 +996,12 @@ namespace SchwabenCode.QuickIO.Internal
         /// </summary>
         /// <param name="uncDirectoryPath">Start directory path</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">The enumeration options for exception handling</param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
         /// <param name="filterType"><see cref="QuickIOFileSystemEntryType"/></param>
         /// <returns>Collection of path</returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        private static IEnumerable<String> FindPaths( String uncDirectoryPath, SearchOption searchOption, QuickIOFileSystemEntryType? filterType, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular )
+        private static IEnumerable<String> FindPaths( String uncDirectoryPath, SearchOption searchOption, QuickIOFileSystemEntryType? filterType, QuickIOEnumerateOptions enumerateOptions, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular )
         {
             // Result Container
             var results = new List<String>( );
@@ -881,9 +1015,9 @@ namespace SchwabenCode.QuickIO.Internal
             using ( var fileHandle = FindFirstSafeFileHandle( currentPath, win32FindData, out win32Error ) )
             {
                 // Take care of invalid handles
-                if ( fileHandle.IsInvalid )
+                if ( fileHandle.IsInvalid && EnumerationHandleInvalidFileHandle( uncDirectoryPath, enumerateOptions, win32Error ) )
                 {
-                    InternalQuickIOCommon.NativeExceptionMapping( uncDirectoryPath, win32Error );
+                    return new List<String>( );
                 }
 
                 // Treffer auswerten
@@ -919,7 +1053,12 @@ namespace SchwabenCode.QuickIO.Internal
                         // SubFolders?!
                         if ( searchOption == SearchOption.AllDirectories )
                         {
-                            results.AddRange( FindPaths( resultPath, searchOption, filterType ) );
+                            var r = new List<String>( FindPaths( resultPath, searchOption, filterType, enumerateOptions ) );
+                            if ( r.Count > 0 )
+                            {
+                                results.AddRange( r );
+                            }
+
                         }
                     }
 
@@ -930,6 +1069,27 @@ namespace SchwabenCode.QuickIO.Internal
             }
             // Return result;
             return results;
+        }
+
+        /// <summary>
+        /// Handles the options to the fired exception
+        /// </summary>
+        private static bool EnumerationHandleInvalidFileHandle( string path, QuickIOEnumerateOptions enumerateOptions, int win32Error )
+        {
+            try
+            {
+                InternalQuickIOCommon.NativeExceptionMapping( path, win32Error );
+            }
+            catch ( Exception e )
+            {
+                if ( ( enumerateOptions & QuickIOEnumerateOptions.SuppressAllExceptions ) == QuickIOEnumerateOptions.SuppressAllExceptions )
+                {
+                    return true;
+                }
+
+                throw;
+            }
+            return false;
         }
 
         /// <summary>
@@ -1002,9 +1162,9 @@ namespace SchwabenCode.QuickIO.Internal
         /// <param name="pathInfo">PathInfo of the directory to generate the statistics.</param>
         /// <returns>Provides the statistics of the directory</returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        public static QuickIOFolderStatisticResult GetDirectoryStatistics( QuickIOPathInfo pathInfo )
+        public static QuickIOFolderStatisticResult GetDirectoryStatistics( QuickIOPathInfo pathInfo, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
-            return GetDirectoryStatistics( pathInfo.FullNameUnc );
+            return GetDirectoryStatistics( pathInfo.FullNameUnc, enumerateOptions );
         }
 
         /// <summary>
@@ -1013,7 +1173,7 @@ namespace SchwabenCode.QuickIO.Internal
         /// <param name="path">Path to the directory to generate the statistics.</param>
         /// <returns>Provides the statistics of the directory</returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
-        public static QuickIOFolderStatisticResult GetDirectoryStatistics( String path )
+        public static QuickIOFolderStatisticResult GetDirectoryStatistics( String path, QuickIOEnumerateOptions enumerateOptions )
         {
             UInt64 fileCount = 0;
             UInt64 folderCount = 0;
@@ -1030,7 +1190,10 @@ namespace SchwabenCode.QuickIO.Internal
                 // Take care of invalid handles
                 if ( fileHandle.IsInvalid )
                 {
-                    InternalQuickIOCommon.NativeExceptionMapping( path, win32Error );
+                    if ( EnumerationHandleInvalidFileHandle( currentPath, enumerateOptions, win32Error ) )
+                    {
+                        return null;
+                    }
                 }
 
                 // Treffer auswerten
@@ -1054,7 +1217,7 @@ namespace SchwabenCode.QuickIO.Internal
                     else
                     {
                         folderCount++;
-                        var result = GetDirectoryStatistics( resultPath );
+                        var result = GetDirectoryStatistics( resultPath, enumerateOptions );
                         {
                             folderCount += result.FolderCount;
                             fileCount += result.FileCount;

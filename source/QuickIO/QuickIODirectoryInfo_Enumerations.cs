@@ -1,10 +1,4 @@
-﻿// <copyright file="QuickIODirectoryInfo_Enumerations.cs" company="Benjamin Abt (  http://www.benjamin-abt.com - http://quickIO.NET  )">
-// Copyright (c) 2014 All Rights Reserved - DO NOT REMOVE OR EDIT COPYRIGHT
-// </copyright>
-// <author>Benjamin Abt</author>
-// <date>01/06/2014</date>
-// <summary>Provides properties and instance methods for directories</summary>
-
+﻿
 using System.Collections.Generic;
 using System.IO;
 
@@ -19,12 +13,14 @@ namespace SchwabenCode.QuickIO
     public sealed partial class QuickIODirectoryInfo
     {
         #region EnumerateDirectoryPaths
+
         /// <summary>
         /// Returns an enumerable collection of directory names.
         /// </summary>
         /// <param name="searchOption">Specifiy depth with <see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">Options for enumerations</param>
         /// <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
-        public IEnumerable<string> EnumerateDirectoryPaths( SearchOption searchOption = SearchOption.TopDirectoryOnly )
+        public IEnumerable<string> EnumerateDirectoryPaths( SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
             return QuickIODirectory.EnumerateDirectoryPaths( PathInfo, searchOption );
         }
@@ -35,7 +31,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="searchOption">Specifiy depth with <see cref="SearchOption"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
-        public Task<IEnumerable<string>> EnumerateDirectoryPathsAsync( SearchOption searchOption = SearchOption.TopDirectoryOnly )
+        public Task<IEnumerable<string>> EnumerateDirectoryPathsAsync( SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
             return NETCompatibility.AsyncExtensions.GetAsyncResult( () => EnumerateDirectoryPaths( searchOption ) );
         }
@@ -49,7 +45,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="searchOption">Specifiy depth with <see cref="SearchOption"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
-        public IEnumerable<QuickIODirectoryInfo> EnumerateDirectories( SearchOption searchOption = SearchOption.TopDirectoryOnly )
+        public IEnumerable<QuickIODirectoryInfo> EnumerateDirectories( SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
             return QuickIODirectory.EnumerateDirectories( PathInfo, searchOption );
         }
@@ -60,7 +56,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="searchOption">Specifiy depth with <see cref="SearchOption"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
-        public Task<IEnumerable<QuickIODirectoryInfo>> EnumerateDirectoriesAsync( SearchOption searchOption = SearchOption.TopDirectoryOnly )
+        public Task<IEnumerable<QuickIODirectoryInfo>> EnumerateDirectoriesAsync( SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
             return NETCompatibility.AsyncExtensions.GetAsyncResult( () => EnumerateDirectories( searchOption ) );
         }
@@ -73,7 +69,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="searchOption">Specifiy depth with <see cref="SearchOption"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
-        public IEnumerable<string> EnumerateFilePaths( SearchOption searchOption = SearchOption.TopDirectoryOnly )
+        public IEnumerable<string> EnumerateFilePaths( SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
             return QuickIODirectory.EnumerateFilePaths( PathInfo, searchOption );
         }
@@ -84,7 +80,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="searchOption">Specifiy depth with <see cref="SearchOption"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
-        public Task<IEnumerable<string>> EnumerateFilePathsAsync( SearchOption searchOption = SearchOption.TopDirectoryOnly )
+        public Task<IEnumerable<string>> EnumerateFilePathsAsync( SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
             return NETCompatibility.AsyncExtensions.GetAsyncResult( () => EnumerateFilePaths( searchOption ) );
         }
@@ -97,7 +93,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="searchOption">Specifiy depth with <see cref="SearchOption"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
-        public IEnumerable<QuickIOFileInfo> EnumerateFiles( SearchOption searchOption = SearchOption.TopDirectoryOnly )
+        public IEnumerable<QuickIOFileInfo> EnumerateFiles( SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
             return QuickIODirectory.EnumerateFiles( PathInfo, searchOption );
         }
@@ -108,7 +104,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="searchOption">Specifiy depth with <see cref="SearchOption"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
-        public Task<IEnumerable<QuickIOFileInfo>> EnumerateFilesAsync( SearchOption searchOption = SearchOption.TopDirectoryOnly )
+        public Task<IEnumerable<QuickIOFileInfo>> EnumerateFilesAsync( SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
             return NETCompatibility.AsyncExtensions.GetAsyncResult( () => EnumerateFiles( searchOption ) );
         }
@@ -122,7 +118,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="searchOption">Specifiy depth with <see cref="SearchOption"/></param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
-        public IEnumerable<KeyValuePair<string, QuickIOFileSystemEntryType>> EnumerateFileSystemEntryPaths( SearchOption searchOption = SearchOption.TopDirectoryOnly )
+        public IEnumerable<KeyValuePair<string, QuickIOFileSystemEntryType>> EnumerateFileSystemEntryPaths( SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
             return QuickIODirectory.EnumerateFileSystemEntryPaths( PathInfo, searchOption );
         }
@@ -133,7 +129,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="searchOption">Specifiy depth with <see cref="SearchOption"/></param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
-        public Task<IEnumerable<KeyValuePair<string, QuickIOFileSystemEntryType>>> EnumerateFileSystemEntryPathsAsync( SearchOption searchOption = SearchOption.TopDirectoryOnly )
+        public Task<IEnumerable<KeyValuePair<string, QuickIOFileSystemEntryType>>> EnumerateFileSystemEntryPathsAsync( SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
             return NETCompatibility.AsyncExtensions.GetAsyncResult( () => EnumerateFileSystemEntryPaths( searchOption ) );
         }
@@ -146,7 +142,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
-        public IEnumerable<KeyValuePair<QuickIOPathInfo, QuickIOFileSystemEntryType>> EnumerateFileSystemEntries( SearchOption searchOption = SearchOption.TopDirectoryOnly )
+        public IEnumerable<KeyValuePair<QuickIOPathInfo, QuickIOFileSystemEntryType>> EnumerateFileSystemEntries( SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
             return QuickIODirectory.EnumerateFileSystemEntries( PathInfo, searchOption );
         }
@@ -157,7 +153,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
-        public Task<IEnumerable<KeyValuePair<QuickIOPathInfo, QuickIOFileSystemEntryType>>> EnumerateFileSystemEntriesAsync( SearchOption searchOption = SearchOption.TopDirectoryOnly )
+        public Task<IEnumerable<KeyValuePair<QuickIOPathInfo, QuickIOFileSystemEntryType>>> EnumerateFileSystemEntriesAsync( SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
             return NETCompatibility.AsyncExtensions.GetAsyncResult( () => EnumerateFileSystemEntries( searchOption ) );
         }

@@ -37,7 +37,7 @@ namespace SchwabenCode.QuickIO.Internal
         /// <returns><see cref="QuickIOFileSystemEntryType"/></returns>
         internal static QuickIOFileSystemEntryType DetermineFileSystemEntry( QuickIOPathInfo pathInfo )
         {
-            var findData = InternalQuickIO.GetFindDataFromPath( pathInfo.FullNameUnc );
+            var findData = InternalQuickIO.GetFindDataFromPath( pathInfo );
 
             return !InternalHelpers.ContainsFileAttribute( findData.dwFileAttributes, FileAttributes.Directory ) ? QuickIOFileSystemEntryType.File : QuickIOFileSystemEntryType.Directory;
         }
@@ -52,21 +52,18 @@ namespace SchwabenCode.QuickIO.Internal
             return !InternalHelpers.ContainsFileAttribute( findData.dwFileAttributes, FileAttributes.Directory ) ? QuickIOFileSystemEntryType.File : QuickIOFileSystemEntryType.Directory;
         }
 
+
+
         /// <summary>
-        /// Reurns true if passed path exists
+        /// Checks whether the path with the expected system entry type exists
         /// </summary>
-        /// <param name="path">Path to check</param>
-        public static Boolean Exists( String path )
+        /// <param name="path">Path to a file or a directory</param>
+        /// <param name="systemEntryType"><see cref="QuickIOFileSystemEntryType"/> you are searching for</param>
+        /// <returns></returns>
+        /// <exception cref="UnmatchedFileSystemEntryTypeException">Path exists but it's not the type you're searching for.</exception>
+        public static Boolean Exists( QuickIOPathInfo path, QuickIOFileSystemEntryType systemEntryType )
         {
-            try
-            {
-                InternalQuickIO.GetFindDataFromPath( path );
-            }
-            catch ( PathNotFoundException )
-            {
-                return false;
-            }
-            return true;
+            return Exists( path.FullNameUnc, systemEntryType );
         }
 
         /// <summary>
@@ -78,45 +75,23 @@ namespace SchwabenCode.QuickIO.Internal
         /// <exception cref="UnmatchedFileSystemEntryTypeException">Path exists but it's not the type you're searching for.</exception>
         public static Boolean Exists( String path, QuickIOFileSystemEntryType systemEntryType )
         {
-            return Exists( new QuickIOPathInfo( path ), systemEntryType );
-        }
-
-        /// <summary>
-        /// Checks whether the path with the expected system entry type exists
-        /// </summary>
-        /// <param name="pathInfo">A file or a directory</param>
-        /// <param name="systemEntryType"><see cref="QuickIOFileSystemEntryType"/> you are searching for</param>
-        /// <returns></returns>
-        /// <exception cref="UnmatchedFileSystemEntryTypeException">Path exists but it's not the type you're searching for.</exception>
-        public static Boolean Exists( QuickIOPathInfo pathInfo, QuickIOFileSystemEntryType systemEntryType )
-        {
-            switch ( systemEntryType )
+            var info = new QuickIOPathInfo( path );
+            if ( !info.Exists )
             {
-                case QuickIOFileSystemEntryType.Directory:
-                    try
-                    {
-                        InternalQuickIO.LoadDirectoryFromPathInfo( pathInfo );
-                        return true;
-                    }
-                    catch ( PathNotFoundException )
-                    {
-                        return false;
-                    }
-
-                case QuickIOFileSystemEntryType.File:
-                    try
-                    {
-                        InternalQuickIO.LoadFileFromPathInfo( pathInfo );
-                        return true;
-                    }
-                    catch ( PathNotFoundException )
-                    {
-                        return false;
-                    }
-
-                default:
-                    throw new ArgumentException( "Unknown QuickIOFileSystemEntryType passed." );
+                return false;
             }
+
+            if ( info.IsRoot && systemEntryType == QuickIOFileSystemEntryType.Directory ) // root is always directory
+            {
+                return true;
+            }
+
+            if ( info.SystemEntryType == systemEntryType )
+            {
+                return true;
+            }
+
+            throw new UnmatchedFileSystemEntryTypeException( systemEntryType, info.SystemEntryType, info.FullName );
         }
 
         /// <summary>

@@ -257,7 +257,6 @@ namespace SchwabenCode.QuickIO
             }
         }
 
-
         /// <summary>
         /// Combines given path elements
         /// </summary>

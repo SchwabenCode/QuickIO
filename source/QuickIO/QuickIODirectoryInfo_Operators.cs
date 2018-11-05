@@ -40,9 +40,9 @@ namespace SchwabenCode.QuickIO
         /// Receives <see cref="QuickIODirectoryMetadata"/> of current file
         /// </summary>
         /// <returns><see cref="QuickIODirectoryMetadata"/></returns>
-        public QuickIODirectoryMetadata GetMetadata()
+        public QuickIODirectoryMetadata GetMetadata(QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None)
         {
-            return InternalQuickIO.EnumerateDirectoryMetadata( FullNameUnc, FindData );
+            return InternalQuickIO.EnumerateDirectoryMetadata( FullNameUnc, FindData, enumerateOptions );
         }
 
 #if NET40_OR_GREATER
@@ -50,9 +50,9 @@ namespace SchwabenCode.QuickIO
         /// Receives <see cref="QuickIODirectoryMetadata"/> of current file using seperate task
         /// </summary>
         /// <returns><see cref="QuickIODirectoryMetadata"/></returns>
-        public Task<QuickIODirectoryMetadata> GetMetadataAsync()
+        public Task<QuickIODirectoryMetadata> GetMetadataAsync( QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
-            return Compatibility.NETCompatibility.AsyncExtensions.GetAsyncResult( () => InternalQuickIO.EnumerateDirectoryMetadata( FullNameUnc, FindData ) );
+            return Compatibility.NETCompatibility.AsyncExtensions.GetAsyncResult( () => InternalQuickIO.EnumerateDirectoryMetadata( FullNameUnc, FindData, enumerateOptions ) );
         }
 #endif
     }

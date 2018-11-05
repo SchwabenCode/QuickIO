@@ -118,11 +118,13 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>QuickIODirectory_FileTime.cs</LastGenOutput>
     </None>
+    <Compile Include="QuickIODirectory_Copy.cs" />
     <Compile Include="QuickIODirectory_Attributes.cs">
       <DependentUpon>QuickIODirectory_Attributes.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="QuickIOEnumerateOptions.cs" />
     <Compile Include="QuickIOFile_Attributes.cs">
       <DependentUpon>QuickIOFile_Attributes.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -159,7 +161,6 @@
     <Compile Include="Transfer\IQuickIOTransferJob.cs" />
     <Compile Include="Transfer\IQuickIOTransferObserver.cs" />
     <Compile Include="Transfer\IQuickIOTransferWriteJob.cs" />
-    <Compile Include="QuickIOCommon.cs" />
     <Compile Include="Transfer\Events\QuickIOTransferJobWriteEventArgs.cs" />
     <Compile Include="Transfer\QuickIOTransferDirectoryCopyService.cs" />
     <Compile Include="Transfer\Events\QuickIOTransferDirectoryCreatedEventArgs.cs" />
@@ -254,6 +255,7 @@
     <Compile Include="Transfer\Events\QuickIOTransferWorkerWokeUpEventArgs.cs" />
     <Compile Include="Transfer\QuickIOTransferJobWriteJob.cs" />
     <Compile Include="SafeNative\Win32SafeNativeMethods.cs" />
+    <Compile Include="UnsupportedDriveType.cs" />
     <Compile Include="Win32API\Win32FileHandle.cs" />
     <Compile Include="Win32API\Win32SecurityObjectType.cs" />
     <Compile Include="Win32API\Win32FileSystemEntrySecurityInformation.cs" />

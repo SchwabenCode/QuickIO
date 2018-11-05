@@ -3,7 +3,7 @@
 // Copyright (c) 2014 All Rights Reserved - DO NOT REMOVE OR EDIT COPYRIGHT
 // </copyright>
 // <author>Benjamin Abt</author>
-// <date>04/04/2014</date>
+// <date>04/15/2014</date>
 // <summary>QuickIOFile_Attributes></summary>
 
 using System;
@@ -76,6 +76,78 @@ namespace SchwabenCode.QuickIO
         public static FileAttributes GetAttributes( QuickIOFileInfo info )
         {
             return InternalQuickIO.GetAttributes( info.PathInfo );
+        }
+
+        #endregion
+
+        #region Remove Attribute
+        /// <summary>
+        /// Removes the specified attribute from file or directory
+        /// </summary>
+        /// <param name="path">A directory or file. </param>
+        /// <param name="attribute">Attribute to remove </param>
+        /// <returns>true if removed. false if not exists in attributes</returns>
+        public static bool RemoveAttribute( string path, FileAttributes attribute )
+        {
+            return RemoveAttribute( new QuickIOPathInfo( path ), attribute );
+        }
+
+        /// <summary>
+        /// Removes the specified attribute from file or directory
+        /// </summary>
+        /// <param name="info">A directory or file. </param>
+        /// <param name="attribute">Attribute to remove </param>
+        /// <returns>true if removed. false if not exists in attributes</returns>
+        public static bool RemoveAttribute( QuickIOPathInfo info, FileAttributes attribute)
+        {
+            return InternalQuickIO.RemoveAttribute( info, attribute );
+        }
+
+        /// <summary>
+        /// Removes the specified attribute from file or directory
+        /// </summary>
+        /// <param name="info">A directory or file. </param>
+        /// <param name="attribute">Attribute to remove </param>
+        /// <returns>true if removed. false if not exists in attributes</returns>
+        public static bool RemoveAttribute( QuickIOFileInfo info, FileAttributes attribute )
+        {
+            return InternalQuickIO.RemoveAttribute( info.PathInfo, attribute );
+        }
+
+        #endregion
+
+        #region Add Attribute
+        /// <summary>
+        /// Adds the specified attribute to file or directory
+        /// </summary>
+        /// <param name="path">A directory or file. </param>
+        /// <param name="attribute">Attribute to add </param>
+        /// <returns>true if added. false if already exists in attributes</returns>
+        public static bool AddAttribute( string path, FileAttributes attribute )
+        {
+            return AddAttribute( new QuickIOPathInfo( path ), attribute );
+        }
+
+        /// <summary>
+        /// Adds the specified attribute to file or directory
+        /// </summary>
+        /// <param name="info">A directory or file. </param>
+        /// <param name="attribute">Attribute to add </param>
+        /// <returns>true if added. false if already exists in attributes</returns>
+        public static bool AddAttribute( QuickIOPathInfo info, FileAttributes attribute )
+        {
+            return InternalQuickIO.AddAttribute( info, attribute  );
+        }
+
+        /// <summary>
+        /// Adds the specified attribute to file or directory
+        /// </summary>
+        /// <param name="info">A directory or file. </param>
+        /// <param name="attribute">Attribute to add </param>
+        /// <returns>true if added. false if already exists in attributes</returns>
+        public static bool AddAttribute( QuickIOFileInfo info, FileAttributes attribute )
+        {
+            return InternalQuickIO.AddAttribute( info.PathInfo, attribute );
         }
 
         #endregion
