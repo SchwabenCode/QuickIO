@@ -3943,16 +3943,13 @@
              ]]></code>
              </example>
         </member>
-        <member name="F:SchwabenCode.QuickIO.Transfer.QuickIOTransferFileCopyService._running">
-            <summary>
-            thread safe indicator if copy is running
-            </summary>
-        </member>
         <member name="M:SchwabenCode.QuickIO.Transfer.QuickIOTransferFileCopyService.Start">
             <summary>
             Starts the copy process.
             First it determines all content information of source. Then the target directory structure will be created before transfer begins
             </summary>
+            <exception cref="T:System.InvalidOperationException">Service is already running.</exception>
+            <exception cref="T:System.ObjectDisposedException">Fired if you try to start a same service multiple times.</exception>
         </member>
         <member name="P:SchwabenCode.QuickIO.Transfer.QuickIOTransferFileCopyService.SourceFileInfos">
             <summary>
@@ -4002,11 +3999,6 @@
         <member name="P:SchwabenCode.QuickIO.Transfer.QuickIOTransferFileCopyService.Percentage">
             <summary>
             Bytes per second
-            </summary>
-        </member>
-        <member name="P:SchwabenCode.QuickIO.Transfer.QuickIOTransferFileCopyService.IsRunning">
-            <summary>
-            true if copy process is running
             </summary>
         </member>
         <member name="T:SchwabenCode.QuickIO.Transfer.Events.QuickIOTransferFileCopyStartedEventArgs">

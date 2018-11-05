@@ -25,7 +25,6 @@ namespace SchwabenCode.QuickIO.Transfer
     [EditorBrowsable( EditorBrowsableState.Never )]
     public partial class QuickIOTransferServiceBase
     {
-        private volatile Boolean _working;
         private readonly object _workerShutdownLock = new object( );
         private volatile int _maxWorkerCount;
         private volatile Int32 _workerCountRemoveRequested;
@@ -108,15 +107,14 @@ namespace SchwabenCode.QuickIO.Transfer
         /// </summary>
         protected Boolean IsWorking
         {
-            get { return _working; }
-            set { _working = value; }
+            get { return WorkerCount != 0; }
         }
 
         /// <summary>
         /// Starts the service
         /// </summary>
         /// <returns>false if service is already started</returns>
-        protected bool StartWorking( )
+        protected bool StartWorking()
         {
             if ( IsWorking )
             {
@@ -125,8 +123,6 @@ namespace SchwabenCode.QuickIO.Transfer
 
             CreateWorkers( );
             StartWorkers( );
-
-            IsWorking = true;
 
             return true;
         }
@@ -146,7 +142,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <summary>
         /// Cancels the file provider and all transfers
         /// </summary>
-        public void Cancel( )
+        public void Cancel()
         {
             OnCancellationRequested( );
 
@@ -156,7 +152,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <summary>
         /// Marks the queue as completed. No more items can be added.
         /// </summary>
-        public void CompleteAdding( )
+        public void CompleteAdding()
         {
             OnCompletedAddingRequested( );
 
@@ -181,7 +177,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <summary>
         /// Resorts the Queue
         /// </summary>
-        private void InternalReSortLockedQueue( )
+        private void InternalReSortLockedQueue()
         {
             if ( PriorityComparer != null )
             {
@@ -219,7 +215,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <summary>
         /// Creates the amount of workers
         /// </summary>
-        protected void CreateWorkers( )
+        protected void CreateWorkers()
         {
             lock ( _workerThreadsLock )
             {
@@ -234,7 +230,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// Creates a new worker
         /// </summary>
         /// <returns>Created thread</returns>
-        private Thread InternalCreateNewWorker( )
+        private Thread InternalCreateNewWorker()
         {
             var tParams = new ParameterizedThreadStart( StartConsuming );
 
@@ -248,7 +244,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <summary>
         /// Creates the amount of workers
         /// </summary>
-        protected void StartWorkers( )
+        protected void StartWorkers()
         {
             lock ( _workerThreadsLock )
             {
@@ -313,7 +309,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <summary>
         /// Wakes sleeping workers up
         /// </summary>
-        private void WakeUpSleepingWorkers( )
+        private void WakeUpSleepingWorkers()
         {
             lock ( _jobQueueLock )
             {
@@ -324,7 +320,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// <summary>
         /// waits for queue items
         /// </summary>
-        private void InternalWaitForNewQueueItems( )
+        private void InternalWaitForNewQueueItems()
         {
             Monitor.Wait( _jobQueueLock );
         }
@@ -376,7 +372,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// Clears the queue and returns all queued elements
         /// </summary>
         /// <returns>Collection of <see cref="IQuickIOTransferJob"/></returns>
-        protected IEnumerable<IQuickIOTransferJob> Clear( )
+        protected IEnumerable<IQuickIOTransferJob> Clear()
         {
             List<IQuickIOTransferJob> queued;
             lock ( _jobQueue )
@@ -392,7 +388,7 @@ namespace SchwabenCode.QuickIO.Transfer
         /// Joins all threads and blocks until all threads and queue items are completed.
         /// Queue has to be completed.
         /// </summary>
-        protected void WaitForFinish( )
+        protected void WaitForFinish()
         {
             if ( !AddingCompleted )
             {

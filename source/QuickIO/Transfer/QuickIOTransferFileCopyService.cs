@@ -219,9 +219,6 @@ namespace SchwabenCode.QuickIO.Transfer
             SourceFileInfos = new List<QuickIOFileInfo>( sourceFileInfos );
             TargetFullName = targetFullName;
             Overwrite = overwrite;
-
-            // Always start working and threads
-            StartWorkers( );
         }
 
         private ulong _totalBytes;
@@ -339,46 +336,43 @@ namespace SchwabenCode.QuickIO.Transfer
         }
 
         /// <summary>
-        /// thread safe indicator if copy is running
-        /// </summary>
-        private volatile bool _running;
-
-        /// <summary>
-        /// true if copy process is running
-        /// </summary>
-        public Boolean IsRunning
-        {
-            get { return _running; }
-            protected set { _running = value; }
-        }
-
-        /// <summary>
         /// Starts the copy process.
         /// First it determines all content information of source. Then the target directory structure will be created before transfer begins
         /// </summary>
+        /// <exception cref="InvalidOperationException">Service is already running.</exception>
+        /// <exception cref="ObjectDisposedException">Fired if you try to start a same service multiple times.</exception>
         public void Start()
         {
             try
             {
-                if ( IsRunning )
+                if ( base.IsWorking )
                 {
-                    throw new Exception( "Already running." );
+                    throw new InvalidOperationException( "Already running." );
+                }
+
+                if ( TransferFinished != null )
+                {
+                    throw new ObjectDisposedException( "Service already finished. Unable to start same service multiple times." );
                 }
 
                 TransferStarted = DateTime.Now;
                 TransferFinished = null;
 
-                var targetPathInfo = new QuickIOPathInfo( TargetFullName );
+                var targetUnc = QuickIOPath.ToUncPath( TargetFullName );
 
                 var fileTransferQueueItems = new List<QuickIOTransferJob>( );
 
                 foreach ( var file in SourceFileInfos )
                 {
-                    var target = targetPathInfo.FullNameUnc + QuickIOPath.DirectorySeparatorChar + file.Name;
+
+                    var target = targetUnc + QuickIOPath.DirectorySeparatorChar + file.Name;
                     fileTransferQueueItems.Add( new QuickIOTransferFileCopyJob( file.FullNameUnc, target, MaxBufferSize, Overwrite, true ) );
+                    TotalBytes += file.Bytes;
                 }
 
                 InternalAddRange( fileTransferQueueItems );
+
+                base.StartWorking( );
 
                 // No more will be added
                 CompleteAdding( );
@@ -388,7 +382,6 @@ namespace SchwabenCode.QuickIO.Transfer
             }
             finally
             {
-                IsRunning = false;
                 TransferFinished = DateTime.Now;
             }
         }
