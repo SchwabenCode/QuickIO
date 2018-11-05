@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "c:\\Users\\Ben\\Desktop\\QuickIO\\sourceCode\\quickio\\rel\\v1.0.0.0\\source\\QuickIO\\QuickIO.csproj",
+  "TargetFramework": "v4.5",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
+}
