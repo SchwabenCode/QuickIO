@@ -21,6 +21,10 @@ namespace SchwabenCode.QuickIO
     [EditorBrowsable( EditorBrowsableState.Never )]
     public abstract class QuickIOFileSystemEntryBase
     {
+        private DateTime _creationTimeUtc;
+        private DateTime _lastAccessTimeUtc;
+        private DateTime _lastWriteTimeUtc;
+
         /// <summary>
         /// Returns true if exists
         /// </summary>
@@ -94,7 +98,10 @@ namespace SchwabenCode.QuickIO
         {
             this.FindData = findData;
             this.PathInfo = pathInfo;
-            this.Attributes = findData.dwFileAttributes;
+            if ( findData != null )
+            {
+                this.Attributes = findData.dwFileAttributes;
+            }
         }
         #endregion
 
@@ -162,17 +169,72 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Gets the creation time (UTC)
         /// </summary>
-        public DateTime CreationTimeUtc { get; protected set; }
+        public DateTime CreationTimeUtc
+        {
+            get
+            {
+                if ( PathInfo.IsRoot )
+                {
+                    throw new NotSupportedException( "Root directory does not provide time access" );
+                }
+                return _creationTimeUtc;
+            }
+            protected set
+            {
+                if ( PathInfo.IsRoot )
+                {
+                    throw new NotSupportedException( "Root directory does not provide time access" );
+                }
+                _creationTimeUtc = value;
+            }
+        }
 
         /// <summary>
         /// Gets the time (UTC) of last access. 
         /// </summary>
-        public DateTime LastAccessTimeUtc { get; protected set; }
+        public DateTime LastAccessTimeUtc
+        {
+            get
+            {
+                if ( PathInfo.IsRoot )
+                {
+                    throw new NotSupportedException( "Root directory does not provide time access" );
+                }
+                return _lastAccessTimeUtc;
+            }
+            protected set
+            {
+                if ( PathInfo.IsRoot )
+                {
+                    throw new NotSupportedException( "Root directory does not provide time access" );
+                }
+                _lastAccessTimeUtc = value;
+            }
+        }
 
         /// <summary>
         /// Gets the time (UTC) was last written to
         /// </summary>
-        public DateTime LastWriteTimeUtc { get; protected set; }
+        public DateTime LastWriteTimeUtc
+        {
+            get
+            {
+                if ( PathInfo.IsRoot )
+                {
+                    throw new NotSupportedException( "Root directory does not provide time access" );
+                }
+                return _lastWriteTimeUtc;
+            }
+            protected set
+            {
+                if ( PathInfo.IsRoot )
+                {
+                    throw new NotSupportedException( "Root directory does not provide time access" );
+                }
+                _lastWriteTimeUtc = value;
+            }
+        }
+
         #endregion
 
         #region LocalTime

@@ -181,48 +181,45 @@ namespace SchwabenCode.QuickIO.Internal
         /// <remarks>Function loads every file and attribute. Alls read-only flags will be removed before removing.</remarks>
         public static void DeleteDirectory( QuickIOPathInfo pathInfo, bool recursive = false )
         {
+            DeleteDirectory( new QuickIODirectoryInfo( pathInfo ), recursive );
+        }
+
+        /// <summary>
+        /// Deletes all files in the given directory. On request  all contents, too.
+        /// </summary>
+        /// <param name="directoryInfo">Info of directory to clear</param>
+        /// <param name="recursive">If <paramref name="recursive"/> is true then all subfolders are also deleted.</param>
+        /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
+        /// <exception cref="DirectoryNotEmptyException">The directory is not empty.</exception>
+        /// <remarks>Function loads every file and attribute. Alls read-only flags will be removed before removing.</remarks>
+        public static void DeleteDirectory( QuickIODirectoryInfo directoryInfo, bool recursive = false )
+        {
             // Contents
             if ( recursive )
             {
-                // Remove all files
-
-                var contents = new List<KeyValuePair<QuickIOPathInfo, QuickIOFileSystemEntryType>>( EnumerateFileSystemEntries( pathInfo, SearchOption.AllDirectories, QuickIOEnumerateOptions.None ) );
-
-                // First delete files
-                foreach ( var item in contents )
+                // search all contents
+                var subFiles = QuickIODirectory.EnumerateFilePaths( directoryInfo.FullNameUnc, SearchOption.TopDirectoryOnly, QuickIOPathType.UNC, QuickIOEnumerateOptions.None );
+                #region delete all files
+                foreach ( var item in subFiles )
                 {
-                    if ( item.Value == QuickIOFileSystemEntryType.File )
-                    {
-                        DeleteFile( item.Key );
-                    }
+                    DeleteFile( item );
                 }
+                #endregion
 
-                for ( var i = contents.Count - 1 ; i >= 0 ; i-- )
+                var subDirs = QuickIODirectory.EnumerateDirectories( directoryInfo, SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions.None );
+
+                foreach ( var subDir in subDirs )
                 {
-                    var item = contents[ i ];
-
-                    if ( item.Value == QuickIOFileSystemEntryType.Directory )
-                    {
-                        RemoveAttribute( item.Key, FileAttributes.ReadOnly );
-
-                        var removed = Win32SafeNativeMethods.RemoveDirectory( item.Key.FullNameUnc );
-                        var win32Error = Marshal.GetLastWin32Error( );
-                        if ( !removed )
-                        {
-                            InternalQuickIOCommon.NativeExceptionMapping( pathInfo.FullName, win32Error );
-                        }
-                    }
+                    DeleteDirectory( subDir, recursive );
                 }
             }
 
             // Remove specified
+            var removed = Win32SafeNativeMethods.RemoveDirectory( directoryInfo.FullNameUnc );
+            var win32Error = Marshal.GetLastWin32Error( );
+            if ( !removed )
             {
-                var removed = Win32SafeNativeMethods.RemoveDirectory( pathInfo.FullNameUnc );
-                var win32Error = Marshal.GetLastWin32Error( );
-                if ( !removed )
-                {
-                    InternalQuickIOCommon.NativeExceptionMapping( pathInfo.FullName, win32Error );
-                }
+                InternalQuickIOCommon.NativeExceptionMapping( directoryInfo.FullName, win32Error );
             }
         }
 

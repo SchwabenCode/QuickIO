@@ -4677,7 +4677,7 @@
             </summary>
             <returns><see cref="T:SchwabenCode.QuickIO.QuickIODirectoryMetadata"/></returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateDirectoryPaths(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateDirectoryPaths(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of directory names.
             </summary>
@@ -4692,11 +4692,12 @@
             <param name="searchOption">Specifiy depth with <see cref="T:System.IO.SearchOption"/></param>
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFilePaths(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFilePaths(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names in a specified path.
             </summary>
             <param name="searchOption">Specifiy depth with <see cref="T:System.IO.SearchOption"/></param>
+            <param name="pathFormatReturn">Specifies the type of path to return.</param>
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         </member>
         <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFiles(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
@@ -4706,7 +4707,7 @@
             <param name="searchOption">Specifiy depth with <see cref="T:System.IO.SearchOption"/></param>
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFileSystemEntryPaths(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
+        <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFileSystemEntryPaths(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
             <summary>
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
             </summary>
@@ -6285,6 +6286,7 @@
             <summary>
             Attributes. Cached.
             </summary>
+            <exception cref="T:System.NotSupportedException">if path is root</exception>
         </member>
         <member name="P:SchwabenCode.QuickIO.QuickIOPathInfo.IsRoot">
             <summary>
@@ -6732,6 +6734,16 @@
             Deletes all files in the given directory. On request  all contents, too.
             </summary>
             <param name="pathInfo">PathInfo of directory to clear</param>
+            <param name="recursive">If <paramref name="recursive"/> is true then all subfolders are also deleted.</param>
+            <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
+            <exception cref="T:SchwabenCode.QuickIO.DirectoryNotEmptyException">The directory is not empty.</exception>
+            <remarks>Function loads every file and attribute. Alls read-only flags will be removed before removing.</remarks>
+        </member>
+        <member name="M:SchwabenCode.QuickIO.Internal.InternalQuickIO.DeleteDirectory(SchwabenCode.QuickIO.QuickIODirectoryInfo,System.Boolean)">
+            <summary>
+            Deletes all files in the given directory. On request  all contents, too.
+            </summary>
+            <param name="directoryInfo">Info of directory to clear</param>
             <param name="recursive">If <paramref name="recursive"/> is true then all subfolders are also deleted.</param>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
             <exception cref="T:SchwabenCode.QuickIO.DirectoryNotEmptyException">The directory is not empty.</exception>

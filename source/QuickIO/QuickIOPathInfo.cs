@@ -121,7 +121,14 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         internal Win32FindData FindData
         {
-            get { return _findData ?? ( _findData = InternalQuickIO.GetFindDataFromPath( this ) ); }
+            get
+            {
+                if ( IsRoot )
+                {
+                    throw new NotSupportedException( "Root directory does not provide owner access" );
+                }
+                return _findData ?? ( _findData = InternalQuickIO.GetFindDataFromPath( this ) );
+            }
             set
             {
                 _findData = value;
@@ -132,10 +139,15 @@ namespace SchwabenCode.QuickIO
         /// <summary>
         /// Attributes. Cached.
         /// </summary>
+        /// <exception cref="NotSupportedException">if path is root</exception>
         public FileAttributes Attributes
         {
             get
             {
+                if ( IsRoot )
+                {
+                    throw new NotSupportedException( "Root directory does not provide attributes" );
+                }
                 return FindData.dwFileAttributes;
             }
         }
@@ -187,7 +199,7 @@ namespace SchwabenCode.QuickIO
         /// Returns current <see cref="QuickIOFileSystemSecurity"/>
         /// </summary>
         /// <returns><see cref="QuickIOFileSystemSecurity"/></returns>
-        public QuickIOFileSystemSecurity GetFileSystemSecurity()
+        public QuickIOFileSystemSecurity GetFileSystemSecurity( )
         {
             return new QuickIOFileSystemSecurity( this );
         }
@@ -196,8 +208,12 @@ namespace SchwabenCode.QuickIO
         /// Determines the owner
         /// </summary>
         /// <returns><see cref="NTAccount"/></returns>
-        public NTAccount GetOwner()
+        public NTAccount GetOwner( )
         {
+            if ( IsRoot )
+            {
+                throw new NotSupportedException( "Root directory does not provide owner access" );
+            }
             return GetOwnerIdentifier( ).Translate( typeof( NTAccount ) ) as NTAccount;
         }
 
@@ -205,8 +221,12 @@ namespace SchwabenCode.QuickIO
         /// Determines the owner
         /// </summary>
         /// <returns><see cref="IdentityReference"/></returns>
-        public IdentityReference GetOwnerIdentifier()
+        public IdentityReference GetOwnerIdentifier( )
         {
+            if ( IsRoot )
+            {
+                throw new NotSupportedException( "Root directory does not provide owner access" );
+            }
             return GetFileSystemSecurity( ).FileSystemSecurityInformation.GetOwner( typeof( SecurityIdentifier ) );
         }
 
@@ -215,6 +235,10 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         public void SetOwner( NTAccount newOwner )
         {
+            if ( IsRoot )
+            {
+                throw new NotSupportedException( "Root directory does not provide owner access" );
+            }
             GetFileSystemSecurity( ).FileSystemSecurityInformation.SetOwner( newOwner.Translate( typeof( SecurityIdentifier ) ) );
         }
 
@@ -223,6 +247,10 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         public void SetOwner( IdentityReference newOwersIdentityReference )
         {
+            if ( IsRoot )
+            {
+                throw new NotSupportedException( "Root directory does not provide owner access" );
+            }
             GetFileSystemSecurity( ).FileSystemSecurityInformation.SetOwner( newOwersIdentityReference );
         }
     }

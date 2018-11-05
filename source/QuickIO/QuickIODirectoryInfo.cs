@@ -33,7 +33,7 @@ namespace SchwabenCode.QuickIO
         /// Create new instance of <see cref="QuickIODirectoryInfo"/>
         /// </summary>
         public QuickIODirectoryInfo( QuickIOPathInfo pathInfo )
-            : this( pathInfo, InternalQuickIO.GetFindDataFromPath( pathInfo ) )
+            : this( pathInfo, pathInfo.IsRoot ? null : InternalQuickIO.GetFindDataFromPath( pathInfo ) )
         {
         }
 
@@ -45,7 +45,10 @@ namespace SchwabenCode.QuickIO
         internal QuickIODirectoryInfo( QuickIOPathInfo pathInfo, Win32FindData win32FindData ) :
             base( pathInfo, win32FindData )
         {
-            RetriveDateTimeInformation( win32FindData );
+            if ( win32FindData != null )
+            {
+                RetriveDateTimeInformation( win32FindData );
+            }
         }
 
         /// <summary>
