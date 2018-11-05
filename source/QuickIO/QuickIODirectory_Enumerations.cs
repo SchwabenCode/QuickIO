@@ -20,12 +20,14 @@ namespace SchwabenCode.QuickIO
     public static partial class QuickIODirectory
     {
         #region EnumerateDirectoryPaths
+
         /// <summary>
         /// Returns an enumerable collection of directory names in a specified path.
         /// </summary>
         /// <param name="path">The directory to search.</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
         public static IEnumerable<string> EnumerateDirectoryPaths( string path, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -38,6 +40,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="path">The directory to search.</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
         /// <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         public static Task<IEnumerable<string>> EnumerateDirectoryPathsAsync( string path, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -52,6 +55,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="directoryInfo">The directory to search.</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
         public static IEnumerable<string> EnumerateDirectoryPaths( QuickIODirectoryInfo directoryInfo, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -65,6 +69,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="directoryInfo">The directory to search.</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         public static Task<IEnumerable<string>> EnumerateDirectoryPathsAsync( QuickIODirectoryInfo directoryInfo, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
@@ -78,6 +83,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="info">The directory to search.</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
         public static IEnumerable<string> EnumerateDirectoryPaths( QuickIOPathInfo info, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -90,6 +96,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="info">The directory to search.</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
         /// <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         public static Task<IEnumerable<string>> EnumerateDirectoryPathsAsync( QuickIOPathInfo info, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -105,6 +112,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="path">The directory to search.</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
         /// <example>
@@ -127,6 +135,7 @@ namespace SchwabenCode.QuickIO
         /// Returns an enumerable collection of directories in a specified path in a seperate task created by the default <see cref="TaskScheduler"/>.
         /// </summary>
         /// <param name="path">The directory to search.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
@@ -141,6 +150,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="directoryInfo">The directory to search.</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
         public static IEnumerable<QuickIODirectoryInfo> EnumerateDirectories( QuickIODirectoryInfo directoryInfo, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -153,6 +163,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="directoryInfo">The directory to search.</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         public static Task<IEnumerable<QuickIODirectoryInfo>> EnumerateDirectoriesAsync( QuickIODirectoryInfo directoryInfo, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -166,6 +177,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="info">The directory to search.</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
         public static IEnumerable<QuickIODirectoryInfo> EnumerateDirectories( QuickIOPathInfo info, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -178,6 +190,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="info">The directory to search.</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         public static Task<IEnumerable<QuickIODirectoryInfo>> EnumerateDirectoriesAsync( QuickIOPathInfo info, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -194,6 +207,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="path">The directory to search. </param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383458(v=vs.110).aspx</remarks>
         public static IEnumerable<string> EnumerateFilePaths( string path, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -207,6 +221,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="path">The directory to search. </param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         public static Task<IEnumerable<string>> EnumerateFilePathsAsync( string path, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -221,6 +236,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="directoryInfo">The directory to search. </param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383458(v=vs.110).aspx</remarks>
         public static IEnumerable<string> EnumerateFilePaths( QuickIODirectoryInfo directoryInfo, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -234,6 +250,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="directoryInfo">The directory to search. </param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         public static Task<IEnumerable<string>> EnumerateFilePathsAsync( QuickIODirectoryInfo directoryInfo, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -248,6 +265,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="info">The directory to search. </param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383458(v=vs.110).aspx</remarks>
         public static IEnumerable<string> EnumerateFilePaths( QuickIOPathInfo info, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -261,6 +279,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="info">The directory to search. </param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         public static Task<IEnumerable<string>> EnumerateFilePathsAsync( QuickIOPathInfo info, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -278,6 +297,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="path">The directory to search. </param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383458(v=vs.110).aspx</remarks>
         /// <example>
@@ -301,6 +321,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="path">The directory to search. </param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         public static Task<IEnumerable<QuickIOFileInfo>> EnumerateFilesAsync( string path, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -315,6 +336,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="directoryInfo">The directory to search. </param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383458(v=vs.110).aspx</remarks>
         public static IEnumerable<QuickIOFileInfo> EnumerateFiles( QuickIODirectoryInfo directoryInfo, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -327,6 +349,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="directoryInfo">The directory to search. </param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns> #
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         public static Task<IEnumerable<QuickIOFileInfo>> EnumerateFilesAsync( QuickIODirectoryInfo directoryInfo, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -340,6 +363,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="info">The directory to search. </param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         public static IEnumerable<QuickIOFileInfo> EnumerateFiles( QuickIOPathInfo info, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
         {
@@ -351,6 +375,7 @@ namespace SchwabenCode.QuickIO
         /// </summary>
         /// <param name="info">The directory to search. </param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>     /// 
         public static Task<IEnumerable<QuickIOFileInfo>> EnumerateFilesAsync( QuickIOPathInfo info, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -368,6 +393,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="path">The directory to search. </param>
         /// <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
         public static IEnumerable<KeyValuePair<string, QuickIOFileSystemEntryType>> EnumerateFileSystemEntryPaths( string path, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -381,6 +407,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="path">The directory to search. </param>
         /// <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         public static Task<IEnumerable<KeyValuePair<string, QuickIOFileSystemEntryType>>> EnumerateFileSystemEntryPathsAsync( string path, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -395,6 +422,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="directoryInfo">The directory to search. </param>
         /// <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
         public static IEnumerable<KeyValuePair<string, QuickIOFileSystemEntryType>> EnumerateFileSystemEntryPaths( QuickIODirectoryInfo directoryInfo, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -408,6 +436,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="directoryInfo">The directory to search. </param>
         /// <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         public static Task<IEnumerable<KeyValuePair<string, QuickIOFileSystemEntryType>>> EnumerateFileSystemEntryPathsAsync( QuickIODirectoryInfo directoryInfo, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -422,6 +451,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="pathInfo">The directory to search. </param>
         /// <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
         public static IEnumerable<KeyValuePair<string, QuickIOFileSystemEntryType>> EnumerateFileSystemEntryPaths( QuickIOPathInfo pathInfo, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -435,6 +465,7 @@ namespace SchwabenCode.QuickIO
         /// <param name="pathInfo">The directory to search. </param>
         /// <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
         /// <param name="pathFormatReturn">Specifies the type of path to return.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         public static Task<IEnumerable<KeyValuePair<string, QuickIOFileSystemEntryType>>> EnumerateFileSystemEntryPathsAsync( QuickIOPathInfo pathInfo, SearchOption searchOption = SearchOption.TopDirectoryOnly, QuickIOPathType pathFormatReturn = QuickIOPathType.Regular, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -450,6 +481,7 @@ namespace SchwabenCode.QuickIO
         /// Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
         /// </summary>
         /// <param name="path">The directory to search. </param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
@@ -475,6 +507,7 @@ namespace SchwabenCode.QuickIO
         /// Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories in a seperate task created by the default <see cref="TaskScheduler"/>.
         /// </summary>
         /// <param name="path">The directory to search. </param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         /// <remarks><b>Requires .NET 4.0 or higher</b><br /><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
@@ -488,6 +521,7 @@ namespace SchwabenCode.QuickIO
         /// Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
         /// </summary>
         /// <param name="pathInfo">The directory to search. </param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
@@ -500,6 +534,7 @@ namespace SchwabenCode.QuickIO
         /// Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories in a seperate task created by the default <see cref="TaskScheduler"/>.
         /// </summary>
         /// <param name="pathInfo">The directory to search. </param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
@@ -514,6 +549,7 @@ namespace SchwabenCode.QuickIO
         /// Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
         /// </summary>
         /// <param name="directoryInfo">The directory to search. </param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
@@ -526,6 +562,7 @@ namespace SchwabenCode.QuickIO
         /// Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories in a seperate task created by the default <see cref="TaskScheduler"/>.
         /// </summary>
         /// <param name="directoryInfo">The directory to search. </param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
         /// <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         /// <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>

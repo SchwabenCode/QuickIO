@@ -838,6 +838,7 @@ namespace SchwabenCode.QuickIO.Internal
         /// </summary>
         /// <param name="pathInfo">Path of the directory</param>
         /// <param name="searchOption"><see cref="SearchOption"/></param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>Collection of files</returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         internal static IEnumerable<QuickIOFileInfo> EnumerateFiles( QuickIOPathInfo pathInfo, SearchOption searchOption, QuickIOEnumerateOptions enumerateOptions )
@@ -1077,7 +1078,7 @@ namespace SchwabenCode.QuickIO.Internal
             {
                 InternalQuickIOCommon.NativeExceptionMapping( path, win32Error );
             }
-            catch ( Exception e )
+            catch ( Exception )
             {
                 if ( ( enumerateOptions & QuickIOEnumerateOptions.SuppressAllExceptions ) == QuickIOEnumerateOptions.SuppressAllExceptions )
                 {
@@ -1157,6 +1158,7 @@ namespace SchwabenCode.QuickIO.Internal
         /// Determines the statistics of the given directory. This includes the number of files, folders and the total size in bytes.
         /// </summary>
         /// <param name="pathInfo">PathInfo of the directory to generate the statistics.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>Provides the statistics of the directory</returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         public static QuickIOFolderStatisticResult GetDirectoryStatistics( QuickIOPathInfo pathInfo, QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None )
@@ -1168,6 +1170,7 @@ namespace SchwabenCode.QuickIO.Internal
         /// Determines the statistics of the given directory. This includes the number of files, folders and the total size in bytes.        /// 
         /// </summary>
         /// <param name="path">Path to the directory to generate the statistics.</param>
+        /// <param name="enumerateOptions">Options <see cref="QuickIOEnumerateOptions"/></param>
         /// <returns>Provides the statistics of the directory</returns>
         /// <exception cref="PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         public static QuickIOFolderStatisticResult GetDirectoryStatistics( String path, QuickIOEnumerateOptions enumerateOptions )

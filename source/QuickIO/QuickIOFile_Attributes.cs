@@ -3,7 +3,7 @@
 // Copyright (c) 2014 All Rights Reserved - DO NOT REMOVE OR EDIT COPYRIGHT
 // </copyright>
 // <author>Benjamin Abt</author>
-// <date>04/15/2014</date>
+// <date>05/28/2014</date>
 // <summary>QuickIOFile_Attributes></summary>
 
 using System;

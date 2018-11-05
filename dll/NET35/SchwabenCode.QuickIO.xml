@@ -148,30 +148,6 @@
             <param name="attribute">Attribute to add </param>
             <returns>true if added. false if already exists in attributes</returns>
         </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.GetDirectoryRoot(System.String)">
-            <summary>
-            Returns the root information
-            </summary>
-            <param name="path">The path of a file or directory. </param>
-            <returns>A QuickIOPathInfo that represents the root or null if <paramref name="path"/> is root.</returns>
-            <remarks>http://msdn.microsoft.com/en-us/library/system.io.directory.getdirectoryroot(v=vs.110).aspx</remarks>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.GetDirectoryRoot(SchwabenCode.QuickIO.QuickIOPathInfo)">
-            <summary>
-            Returns the root information
-            </summary>
-            <param name="info">A file or directory. </param>
-            <returns>A QuickIOPathInfo that represents the root or null if <paramref name="info"/> is root.</returns>
-            <remarks>http://msdn.microsoft.com/en-us/library/system.io.directory.getdirectoryroot(v=vs.110).aspx</remarks>
-        </member>
-        <member name="M:SchwabenCode.QuickIO.QuickIODirectory.GetDirectoryRoot(SchwabenCode.QuickIO.QuickIODirectoryInfo)">
-            <summary>
-            Returns the root information
-            </summary>
-            <param name="info">A file or directory. </param>
-            <returns>A QuickIOPathInfo that represents the root or null if <paramref name="info"/> is root.</returns>
-            <remarks>http://msdn.microsoft.com/en-us/library/system.io.directory.getdirectoryroot(v=vs.110).aspx</remarks>
-        </member>
         <member name="M:SchwabenCode.QuickIO.QuickIODirectory.GetCreationTime(System.String)">
             <summary>
             Returns the creation time of the file or directory
@@ -739,6 +715,7 @@
             <param name="path">The directory to search.</param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
         </member>
@@ -749,6 +726,7 @@
             <param name="directoryInfo">The directory to search.</param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
         </member>
@@ -759,6 +737,7 @@
             <param name="info">The directory to search.</param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
         </member>
@@ -768,6 +747,7 @@
             </summary>
             <param name="path">The directory to search.</param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
             <example>
@@ -788,6 +768,7 @@
             </summary>
             <param name="directoryInfo">The directory to search.</param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
         </member>
@@ -797,6 +778,7 @@
             </summary>
             <param name="info">The directory to search.</param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383304(v=vs.110).aspx</remarks>
         </member>
@@ -807,6 +789,7 @@
             <param name="path">The directory to search. </param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383458(v=vs.110).aspx</remarks>
         </member>
@@ -817,6 +800,7 @@
             <param name="directoryInfo">The directory to search. </param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383458(v=vs.110).aspx</remarks>
         </member>
@@ -827,6 +811,7 @@
             <param name="info">The directory to search. </param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383458(v=vs.110).aspx</remarks>
         </member>
@@ -836,6 +821,7 @@
              </summary>
              <param name="path">The directory to search. </param>
              <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
+             <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
              <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
              <remarks>http://msdn.microsoft.com/en-us/library/dd383458(v=vs.110).aspx</remarks>
              <example>
@@ -856,6 +842,7 @@
             </summary>
             <param name="directoryInfo">The directory to search. </param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383458(v=vs.110).aspx</remarks>
         </member>
@@ -865,6 +852,7 @@
             </summary>
             <param name="info">The directory to search. </param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         </member>
         <member name="M:SchwabenCode.QuickIO.QuickIODirectory.EnumerateFileSystemEntryPaths(System.String,System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
@@ -874,6 +862,7 @@
             <param name="path">The directory to search. </param>
             <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
         </member>
@@ -884,6 +873,7 @@
             <param name="directoryInfo">The directory to search. </param>
             <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
         </member>
@@ -894,6 +884,7 @@
             <param name="pathInfo">The directory to search. </param>
             <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
         </member>
@@ -902,6 +893,7 @@
              Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
              </summary>
              <param name="path">The directory to search. </param>
+             <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
              <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
              <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
              <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
@@ -924,6 +916,7 @@
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
             </summary>
             <param name="pathInfo">The directory to search. </param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
@@ -933,6 +926,7 @@
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
             </summary>
             <param name="directoryInfo">The directory to search. </param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks>http://msdn.microsoft.com/en-us/library/dd383459(v=vs.110).aspx</remarks>
@@ -4682,7 +4676,8 @@
             Returns an enumerable collection of directory names.
             </summary>
             <param name="searchOption">Specifiy depth with <see cref="T:System.IO.SearchOption"/></param>
-            <param name="enumerateOptions">Options for enumerations</param>
+            <param name="pathFormatReturn">Type of return</param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         </member>
         <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateDirectories(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
@@ -4690,6 +4685,7 @@
             Returns an enumerable collection of directories in a specified path.
             </summary>
             <param name="searchOption">Specifiy depth with <see cref="T:System.IO.SearchOption"/></param>
+            <param name="enumerateOptions">Options</param>
             <returns>An enumerable collection of the full names (including paths) for the directories in the directory specified by path.</returns>
         </member>
         <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFilePaths(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
@@ -4698,6 +4694,7 @@
             </summary>
             <param name="searchOption">Specifiy depth with <see cref="T:System.IO.SearchOption"/></param>
             <param name="pathFormatReturn">Specifies the type of path to return.</param>
+            <param name="enumerateOptions">Options</param>
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         </member>
         <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFiles(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
@@ -4705,6 +4702,7 @@
             Returns an enumerable collection of files in a specified path.
             </summary>
             <param name="searchOption">Specifiy depth with <see cref="T:System.IO.SearchOption"/></param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of the full names (including paths) for the files in the directory specified by path.</returns>
         </member>
         <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.EnumerateFileSystemEntryPaths(System.IO.SearchOption,SchwabenCode.QuickIO.QuickIOPathType,SchwabenCode.QuickIO.QuickIOEnumerateOptions)">
@@ -4712,6 +4710,8 @@
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
             </summary>
             <param name="searchOption">Specifiy depth with <see cref="T:System.IO.SearchOption"/></param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
+            <param name="pathFormatReturn">Type of return</param>
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
             <remarks><b>Requires .NET 4.0 or higher</b><br/><u>Warning:</u> parallel file system browsing on the same hard disk (HDD/SSD) will decrease performance. Use this only on stripped RAIDs or with network shares.</remarks>
         </member>
@@ -4720,6 +4720,7 @@
             Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.
             </summary>
             <param name="searchOption">One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is TopDirectoryOnly.</param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>An enumerable collection of file-system entries in the directory specified by path and that match the specified search pattern and option.</returns>
         </member>
         <member name="M:SchwabenCode.QuickIO.QuickIODirectoryInfo.#ctor(System.String)">
@@ -6920,6 +6921,7 @@
             </summary>
             <param name="pathInfo">Path of the directory</param>
             <param name="searchOption"><see cref="T:System.IO.SearchOption"/></param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>Collection of files</returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
@@ -7029,6 +7031,7 @@
             Determines the statistics of the given directory. This includes the number of files, folders and the total size in bytes.
             </summary>
             <param name="pathInfo">PathInfo of the directory to generate the statistics.</param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>Provides the statistics of the directory</returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>
@@ -7037,6 +7040,7 @@
             Determines the statistics of the given directory. This includes the number of files, folders and the total size in bytes.        /// 
             </summary>
             <param name="path">Path to the directory to generate the statistics.</param>
+            <param name="enumerateOptions">Options <see cref="T:SchwabenCode.QuickIO.QuickIOEnumerateOptions"/></param>
             <returns>Provides the statistics of the directory</returns>
             <exception cref="T:SchwabenCode.QuickIO.PathNotFoundException">This error is fired if the specified path or a part of them does not exist.</exception>
         </member>

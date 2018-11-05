@@ -3,7 +3,7 @@
 // Copyright (c) 2014 All Rights Reserved - DO NOT REMOVE OR EDIT COPYRIGHT
 // </copyright>
 // <author>Benjamin Abt</author>
-// <date>04/04/2014</date>
+// <date>05/28/2014</date>
 // <summary>QuickIOFile_FileTimeMethods></summary>
 
 using System;

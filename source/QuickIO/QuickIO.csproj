@@ -97,26 +97,29 @@
     <None Include="QuickIODirectory_Attributes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>QuickIODirectory_Attributes.cs</LastGenOutput>
+      <TransformOnBuild>True</TransformOnBuild>
     </None>
     <None Include="QuickIOFile_Attributes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>QuickIOFile_Attributes.cs</LastGenOutput>
+      <TransformOnBuild>True</TransformOnBuild>
     </None>
     <None Include="QuickIOFile_Root.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>QuickIOFile_Root.cs</LastGenOutput>
     </None>
     <None Include="QuickIODirectory_Root.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIODirectory_Root.cs</LastGenOutput>
+      <TransformOnBuild>True</TransformOnBuild>
     </None>
     <None Include="QuickIOFile_FileTime.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>QuickIOFile_FileTime.cs</LastGenOutput>
+      <TransformOnBuild>True</TransformOnBuild>
     </None>
     <None Include="QuickIODirectory_FileTime.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>QuickIODirectory_FileTime.cs</LastGenOutput>
+      <TransformOnBuild>True</TransformOnBuild>
     </None>
     <Compile Include="QuickIODirectory_Copy.cs" />
     <Compile Include="QuickIODirectory_Attributes.cs">
@@ -132,11 +135,6 @@
     </Compile>
     <Compile Include="QuickIOFile_Root.cs">
       <DependentUpon>QuickIOFile_Root.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="QuickIODirectory_Root.cs">
-      <DependentUpon>QuickIODirectory_Root.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
