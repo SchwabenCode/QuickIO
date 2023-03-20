@@ -6,9 +6,6 @@
 |master| Stable |  [![AppVeyor Stable](https://img.shields.io/appveyor/ci/BenjaminAbt/QuickIO/master.svg?style=flat-square)](https://ci.appveyor.com/project/BenjaminAbt/QuickIO) | [![NuGet](https://img.shields.io/nuget/v/QuickIO.NET.svg?style=flat-square)](https://www.nuget.org/packages/QuickIO.NET) on [NuGet](https://www.nuget.org/packages/QuickIO.NET)|
 |develop| Pre Releases | [![AppVeyor Unstable](https://img.shields.io/appveyor/ci/BenjaminAbt/QuickIO/develop.svg?style=flat-square)](https://ci.appveyor.com/project/BenjaminAbt/QuickIO) | [![MyGet](https://img.shields.io/myget/schwabencode/vpre/QuickIO.NET.svg?style=flat-square)](https://www.myget.org/feed/schwabencode/package/nuget/QuickIO.NET) on [MyGet](https://www.myget.org/feed/schwabencode/package/nuget/QuickIO.NET) |
 
-# Website
-Checkout the official Page [http://quickIO.NET](http://quickIO.NET)
-
 # Project Description
 QuickIO.NET is an extension for the .NET Framework to provide faster file operations.
 To offer you a simple use and an easy integration QuickIO.NET methods lean against the ones provided by the .NET Framework.
