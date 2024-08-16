@@ -1,5 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk"> 
 
+
+    <PropertyGroup Label="Package">
+        <PackageId>QuickIO.NET</PackageId>
+        <IsPackable>true</IsPackable>
+        <PackageReadmeFile>readme.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    </PropertyGroup>
+
+
   <ItemGroup>
     <None Update="CodeTemplates\SaveOutput.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -175,9 +184,5 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>QuickIOFile_Root_Async.tt</DependentUpon>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 </Project>

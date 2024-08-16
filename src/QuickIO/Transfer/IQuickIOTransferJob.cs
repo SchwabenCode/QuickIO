@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.Contracts;
+﻿
+using System.Diagnostics.Contracts;
 using SchwabenCode.QuickIO.Transfer.Contracts;
 
 namespace SchwabenCode.QuickIO.Transfer;

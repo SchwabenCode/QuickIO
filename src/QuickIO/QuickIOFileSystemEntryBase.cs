@@ -23,12 +23,6 @@ public abstract class QuickIOFileSystemEntryBase
     public abstract bool Exists { get; }
 
     /// <summary>
-    /// Returns true if exists
-    /// </summary>
-    public abstract Task<bool> ExistsAsync { get; }
-
-
-    /// <summary>
     /// True if file is readonly. Cached.
     /// </summary>
     public bool IsReadOnly

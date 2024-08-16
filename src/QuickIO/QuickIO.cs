@@ -1,4 +1,5 @@
-﻿using SchwabenCode.QuickIO.Internal;
+﻿using System.Diagnostics.CodeAnalysis;
+using SchwabenCode.QuickIO.Internal;
 
 namespace SchwabenCode.QuickIO;
 
@@ -15,7 +16,7 @@ public static partial class QuickIO
     /// <returns></returns>
     /// <exception cref="UnmatchedFileSystemEntryTypeException">Searched for file but found folder.</exception>
     /// <exception cref="InvalidPathException">Path is invalid.</exception>
-    public static bool FileExists(string path)
+    public static bool FileExists([NotNullWhen(true)] string path)
     {
         return QuickIOFile.Exists(path);
     }

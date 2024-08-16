@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics.Contracts;
 
+
 namespace SchwabenCode.QuickIO.Transfer.Contracts;
 
 /// <summary>

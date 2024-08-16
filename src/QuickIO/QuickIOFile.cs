@@ -1,4 +1,5 @@
-﻿using SchwabenCode.QuickIO.Compatibility;
+﻿using System.Diagnostics.CodeAnalysis;
+using SchwabenCode.QuickIO.Compatibility;
 using SchwabenCode.QuickIO.Internal;
 
 namespace SchwabenCode.QuickIO;
@@ -234,19 +235,6 @@ public static partial class QuickIOFile
     }
 
     /// <summary>
-    /// Checks whether the specified file exists.
-    /// </summary>
-    /// <param name="fileInfo">The the file to check.</param>
-    /// <returns><b>true</b> if the caller has the required permissions and path contains the name of an existing file; otherwise, <b>false</b></returns>
-    /// <remarks>The original Exists method returns also false on null! http://msdn.microsoft.com/en-us/library/system.io.file.exists(v=vs.110).aspx</remarks>
-    /// <exception cref="UnmatchedFileSystemEntryTypeException">Searched for file but found folder.</exception>
-    /// <exception cref="InvalidPathException">Path is invalid.</exception>
-    public static Task<bool> ExistsAsync(QuickIOFileInfo fileInfo)
-    {
-        return NETCompatibility.AsyncExtensions.GetAsyncResult(() => Exists(fileInfo));
-    }
-
-    /// <summary>
     /// Moves a specified file to a new location, providing the option to give a new file name.
     /// </summary>
     /// <param name="sourceFileName">The name of the file to move. </param>
@@ -256,6 +244,7 @@ public static partial class QuickIOFile
     {
         InternalQuickIO.MoveFile(sourceFileName, destinationFileName);
     }
+
     /// <summary>
     /// Moves a specified file to a new location, providing the option to give a new file name.
     /// </summary>
@@ -311,12 +300,16 @@ public static partial class QuickIOFile
         return NETCompatibility.AsyncExtensions.ExecuteAsync(() => Move(sourceFileInfo, destinationFolder));
     }
 
-    #region Internal Directory
-    private static bool InternalFileExists(string uncPath)
+    private static bool InternalFileExists([NotNullWhen(true)] string? uncPath)
     {
+        if (uncPath is null || uncPath.Length is 0)
+        {
+            return false;
+        }
+
         uint attrs = InternalQuickIO.SafeGetAttributes( uncPath, out _ );
 
-        if (Equals(attrs, 0xffffffff))
+        if (Equals(attrs, 0xffff_ffff))
         {
             return false;
         }
@@ -326,8 +319,7 @@ public static partial class QuickIOFile
             return true;
         }
 
-        throw new UnmatchedFileSystemEntryTypeException(QuickIOFileSystemEntryType.File, QuickIOFileSystemEntryType.Directory, uncPath);
+        throw new UnmatchedFileSystemEntryTypeException(
+            QuickIOFileSystemEntryType.File, QuickIOFileSystemEntryType.Directory, uncPath);
     }
-    #endregion
-
 }
