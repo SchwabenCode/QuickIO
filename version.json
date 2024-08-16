@@ -1,0 +1,25 @@
+{
+    "$schema": "https://raw.githubusercontent.com/dotnet/Nerdbank.GitVersioning/master/src/NerdBank.GitVersioning/version.schema.json",
+    "version": "3.0",
+    "assemblyVersion": {
+        "precision": "revision" // optional. Use when you want a more precise assembly version than the default major.minor.
+    },
+    "nugetPackageVersion": {
+        "semVer": 1 // optional. Set to either 1 or 2 to control how the NuGet package version string is generated. Default is 1.
+    },
+    "publicReleaseRefSpec": [
+        "^refs/heads/main", // we release out of main
+        "^refs/tags/v\\d+\\.\\d+" // we also release tags starting with vN.N
+    ],
+    "cloudBuild": {
+        "setVersionVariables": true,
+        "buildNumber": {
+            "enabled": true
+        }
+    },
+    "release": {
+        "branchName": "v{version}",
+        "versionIncrement": "minor",
+        "firstUnstableTag": "alpha"
+    }
+}
