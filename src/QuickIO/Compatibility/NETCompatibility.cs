@@ -1,24 +1,35 @@
 ﻿namespace SchwabenCode.QuickIO.Compatibility;
 
+/// <summary>
+/// Provides compatibility methods for asynchronous operations in the .NET framework.
+/// </summary>
+/// <remarks>
+/// The <see cref="NETCompatibility"/> class includes a nested <see cref="AsyncExtensions"/> class that 
+/// offers static methods to facilitate asynchronous execution of actions and functions, providing a way to 
+/// manage asynchronous tasks in a consistent manner.
+/// </remarks>
 public static class NETCompatibility
 {
     /// <summary>
-    /// Several methods for async operations
+    /// Contains extension methods for executing actions and functions asynchronously.
     /// </summary>
     public static class AsyncExtensions
     {
+        /// <summary>
+        /// A static instance of <see cref="TaskFactory"/> used for creating and scheduling tasks.
+        /// </summary>
         private static readonly TaskFactory s_asyncTaskFactory = Task.Factory;
 
         /// <summary>
-        /// Executes the action in a wrapped task to use async operation
+        /// Executes a given action asynchronously and returns a task that completes with a specified result value.
         /// </summary>
-        /// <typeparam name="T">Result Type</typeparam>
-        /// <param name="action">Action to execute in wrapped task</param>
-        /// <param name="resultValue">Returns this value if finished</param>
-        /// <returns><see cref="Task"/></returns>
+        /// <typeparam name="T">The type of the result value.</typeparam>
+        /// <param name="action">The action to execute asynchronously.</param>
+        /// <param name="resultValue">The result value to return upon successful completion of the action.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public static Task ExecuteAsyncResult<T>(Action action, T resultValue)
         {
-            TaskCompletionSource<T> tcs = new( );
+            TaskCompletionSource<T> tcs = new();
 
             _ = s_asyncTaskFactory.StartNew(() =>
             {
@@ -37,14 +48,14 @@ public static class NETCompatibility
         }
 
         /// <summary>
-        /// Executes the action in a wrapped task to use async operation and gets the result
+        /// Executes a given function asynchronously and returns a task that completes with the function's result.
         /// </summary>
-        /// <typeparam name="T">Result Type</typeparam>
-        /// <param name="action">Action to execute in wrapped task</param>
-        /// <returns><see cref="Task"/> with result value</returns>
+        /// <typeparam name="T">The type of the result produced by the function.</typeparam>
+        /// <param name="action">The function to execute asynchronously.</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation and containing the function's result.</returns>
         public static Task<T> GetAsyncResult<T>(Func<T> action)
         {
-            TaskCompletionSource<T> tcs = new( );
+            TaskCompletionSource<T> tcs = new();
 
             _ = s_asyncTaskFactory.StartNew(() =>
             {
@@ -62,13 +73,14 @@ public static class NETCompatibility
         }
 
         /// <summary>
-        /// Executes the action in a wrapped task to use async operation
+        /// Executes a given action asynchronously and returns a task that represents the operation.
         /// </summary>
-        /// <param name="action">Action to execute in wrapped task</param>
-        /// <returns><see cref="Task"/></returns>
+        /// <param name="action">The action to execute asynchronously.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public static Task ExecuteAsync(Action action)
         {
             return s_asyncTaskFactory.StartNew(action);
         }
     }
 }
+

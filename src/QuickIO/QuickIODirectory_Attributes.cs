@@ -54,7 +54,7 @@ public partial class QuickIODirectory
     /// <returns>The <see cref="FileAttributes"/> of the directory or file.</returns>
     public static FileAttributes GetAttributes(QuickIOPathInfo info)
     {
-        return InternalQuickIO.GetAttributes(info);
+        return InternalQuickIO.GetAttributes(info.FullNameUnc);
     }
 
     /// <summary>
@@ -64,7 +64,7 @@ public partial class QuickIODirectory
     /// <returns>The <see cref="FileAttributes"/> of the directory or file.</returns>
     public static FileAttributes GetAttributes(QuickIODirectoryInfo info)
     {
-        return InternalQuickIO.GetAttributes(info.PathInfo);
+        return InternalQuickIO.GetAttributes(info.FullNameUnc);
     }
 
     /// <summary>

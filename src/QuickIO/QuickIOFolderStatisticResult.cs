@@ -1,35 +1,22 @@
 ﻿namespace SchwabenCode.QuickIO;
 
 /// <summary>
-/// Folder Statistics
+/// Represents the result of retrieving statistics for a directory, including counts of subdirectories and files, and the total size of files in bytes.
 /// </summary>
-public class QuickIOFolderStatisticResult
-{
-    /// <summary>
-    /// Folder Count
-    /// </summary>
-    public ulong FolderCount { get; private set; }
+/// <param name="FolderCount">The number of subdirectories within the directory.</param>
+/// <param name="FileCount">The number of files within the directory.</param>
+/// <param name="TotalBytes">The total size of all files within the directory, in bytes.</param>
+/// <example>
+/// <code>
+/// QuickIOFolderStatisticResult stats = new QuickIOFolderStatisticResult(10, 150, 204800);
+/// 
+/// Console.WriteLine($"Folders: {stats.FolderCount}");
+/// Console.WriteLine($"Files: {stats.FileCount}");
+/// Console.WriteLine($"Total size: {stats.TotalBytes} bytes");
+/// </code>
+/// </example>
+public record class QuickIOFolderStatisticResult(
+    ulong FolderCount,
+    ulong FileCount,
+    ulong TotalBytes);
 
-    /// <summary>
-    /// File Count
-    /// </summary>
-    public ulong FileCount { get; private set; }
-
-    /// <summary>
-    /// Total TotalBytes
-    /// </summary>
-    public ulong TotalBytes { get; private set; }
-
-    /// <summary>
-    /// Creates new Instance of <see cref="QuickIOFolderStatisticResult"/> - internal access only
-    /// </summary>
-    /// <param name="folderCount">Folder Count</param>
-    /// <param name="fileCount">File Count</param>
-    /// <param name="size"> Total TotalBytes</param>
-    internal QuickIOFolderStatisticResult(ulong folderCount, ulong fileCount, ulong size)
-    {
-        FolderCount = folderCount;
-        FileCount = fileCount;
-        TotalBytes = size;
-    }
-}
