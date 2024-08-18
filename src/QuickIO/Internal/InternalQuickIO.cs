@@ -1629,6 +1629,20 @@ internal static class InternalQuickIO
         return (FileAttributes)attrs;
     }
 
+    /// <summary>
+    /// Retrieves the file system attributes of the specified path.
+    /// </summary>
+    /// <param name="pathInfo">An instance of <see cref="QuickIOPathInfo"/> representing the path for which to retrieve attributes.</param>
+    /// <returns>The <see cref="FileAttributes"/> of the specified path.</returns>
+    /// <remarks>
+    /// This method returns the file system attributes associated with the provided path, such as whether the path is a directory, a file, or has other attributes like being hidden or read-only.
+    /// </remarks>
+    internal static FileAttributes GetAttributes(QuickIOPathInfo pathInfo)
+    {
+        return pathInfo.Attributes;
+    }
+
+
 
     /// <summary>
     /// Asynchronously sets the attributes for the specified file or directory.
