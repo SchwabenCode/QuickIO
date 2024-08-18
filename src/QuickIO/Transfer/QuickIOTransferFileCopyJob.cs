@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using SchwabenCode.QuickIO.Internal;
 
 namespace SchwabenCode.QuickIO.Transfer;
 
@@ -185,10 +184,9 @@ public class QuickIOTransferFileCopyJob : QuickIOTransferJobWriteJob
     public QuickIOTransferFileCopyJob(IQuickIOTransferObserver? observer, string source, string target, int maxBufferSize = 1024, bool overwrite = false, bool parentExistanceCheck = true, int prorityLevel = 0, CancellationToken cancellationToken = default) :
         base(observer, prorityLevel, overwrite, cancellationToken)
     {
-        Invariant.NotEmpty(source);
-        Invariant.NotEmpty(target);
+        ArgumentNullException.ThrowIfNullOrEmpty(source);
+        ArgumentNullException.ThrowIfNullOrEmpty(target);
 
-        // Own
         MaxBufferSize = Math.Max(1024, maxBufferSize);
         Source = source;
         Target = target;

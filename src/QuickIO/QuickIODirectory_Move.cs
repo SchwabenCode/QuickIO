@@ -15,8 +15,8 @@ public partial class QuickIODirectory
     /// <exception cref="DirectoryAlreadyExistsException">Target exists</exception>
     public static void Move(string from, string to, bool overwrite = false)
     {
-        Invariant.NotEmpty(from);
-        Invariant.NotEmpty(to);
+        ArgumentNullException.ThrowIfNullOrEmpty(from);
+        ArgumentNullException.ThrowIfNullOrEmpty(to);
 
         if (!overwrite && Exists(to))
         {

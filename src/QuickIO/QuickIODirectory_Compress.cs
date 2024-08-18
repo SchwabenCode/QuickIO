@@ -1,5 +1,4 @@
 ﻿using System.IO.Compression;
-using SchwabenCode.QuickIO.Internal;
 
 namespace SchwabenCode.QuickIO;
 
@@ -15,10 +14,10 @@ public partial class QuickIODirectory
     /// <param name="overWriteExistingZip">true to overwrite existing zipfile</param>
     /// <param name="compressionLevel"><see cref="CompressionLevel"/></param>
     /// <param name="includeBaseDirectory">True to include basedirectory</param>
-    public static void Compress(String directoryFullPath, String zipFullPath, bool overWriteExistingZip = false, CompressionLevel compressionLevel = CompressionLevel.Fastest, bool includeBaseDirectory = false)
+    public static void Compress(string directoryFullPath, string zipFullPath, bool overWriteExistingZip = false, CompressionLevel compressionLevel = CompressionLevel.Fastest, bool includeBaseDirectory = false)
     {
-        Invariant.NotEmpty(directoryFullPath);
-        Invariant.NotEmpty(zipFullPath);
+        ArgumentNullException.ThrowIfNullOrEmpty(directoryFullPath);
+        ArgumentNullException.ThrowIfNullOrEmpty(directoryFullPath);
 
         if (!Exists(directoryFullPath))
         {
@@ -43,9 +42,9 @@ public partial class QuickIODirectory
     /// <param name="overWriteExistingZip">true to overwrite existing zipfile</param>
     /// <param name="compressionLevel"><see cref="CompressionLevel"/></param>
     /// <param name="includeBaseDirectory">True to include basedirectory</param>
-    public static void Compress(QuickIODirectoryInfo directory, String zipFullPath, bool overWriteExistingZip = false, CompressionLevel compressionLevel = CompressionLevel.Fastest, bool includeBaseDirectory = false)
+    public static void Compress(QuickIODirectoryInfo directory, string zipFullPath, bool overWriteExistingZip = false, CompressionLevel compressionLevel = CompressionLevel.Fastest, bool includeBaseDirectory = false)
     {
-        Invariant.NotEmpty(zipFullPath);
+        ArgumentNullException.ThrowIfNullOrEmpty(zipFullPath);
 
         Compress(directory.FullName, zipFullPath, overWriteExistingZip, compressionLevel, includeBaseDirectory);
     }

@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using SchwabenCode.QuickIO.Internal;
 
 namespace SchwabenCode.QuickIO.Transfer;
 
@@ -184,8 +183,8 @@ public class QuickIOTransferFileCreationJob : QuickIOTransferJobWriteJob
     public QuickIOTransferFileCreationJob(IQuickIOTransferObserver? observer, string targetDirectory, string fileName, byte[] contents, int maxBufferSize = 1024, bool overwrite = false, bool parentExistanceCheck = true, int prorityLevel = 0) :
         base(observer, prorityLevel)
     {
-        Invariant.NotEmpty(targetDirectory);
-        Invariant.NotEmpty(fileName);
+        ArgumentNullException.ThrowIfNullOrEmpty(targetDirectory);
+        ArgumentNullException.ThrowIfNullOrEmpty(fileName);
 
         // Parent
         Overwrite = overwrite;

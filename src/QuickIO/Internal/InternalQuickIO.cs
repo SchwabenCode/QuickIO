@@ -1087,7 +1087,7 @@ internal static class InternalQuickIO
     /// <param name="searchOption">Specifies whether to search only the top directory or all subdirectories. Defaults to <see cref="SearchOption.TopDirectoryOnly"/>.</param>
     /// <param name="enumerateOptions">Options to control the enumeration behavior. Defaults to <see cref="QuickIOEnumerateOptions.None"/>.</param>
     /// <param name="pathFormatReturn">Specifies the format of the paths returned. Defaults to <see cref="QuickIOPathType.Regular"/>.</param>
-    /// <returns>An <see cref="IEnumerable{KeyValuePair{String, QuickIOFileSystemEntryType}}"/> containing pairs of paths and their corresponding file system entry types.</returns>
+    /// <returns>An <see cref="IEnumerable{KeyValuePair{string, QuickIOFileSystemEntryType}}"/> containing pairs of paths and their corresponding file system entry types.</returns>
     /// <remarks>
     /// This method calls the internal method <see cref="EnumerateFileSystemEntryPaths"/> with the UNC path of the directory, enabling the same functionality for path enumeration as if the path was a string.
     /// </remarks>
@@ -1125,7 +1125,7 @@ internal static class InternalQuickIO
     /// <param name="searchOption">Specifies whether to search only the top directory or all subdirectories. Defaults to <see cref="SearchOption.TopDirectoryOnly"/>.</param>
     /// <param name="enumerateOptions">Options to control the enumeration behavior. Defaults to <see cref="QuickIOEnumerateOptions.None"/>.</param>
     /// <param name="pathFormatReturn">Specifies the format of the paths returned. Defaults to <see cref="QuickIOPathType.Regular"/>.</param>
-    /// <returns>An <see cref="IEnumerable{KeyValuePair{String, QuickIOFileSystemEntryType}}"/> containing pairs of paths and their corresponding file system entry types.</returns>
+    /// <returns>An <see cref="IEnumerable{KeyValuePair{string, QuickIOFileSystemEntryType}}"/> containing pairs of paths and their corresponding file system entry types.</returns>
     /// <remarks>
     /// This method uses the native Windows API to enumerate file system entries and yields a sequence of <see cref="KeyValuePair{String, QuickIOFileSystemEntryType}"/> objects.
     /// It supports recursive searching when <see cref="SearchOption.AllDirectories"/> is specified and formats paths according to the <see cref="pathFormatReturn"/> parameter.

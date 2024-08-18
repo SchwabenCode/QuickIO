@@ -15,7 +15,7 @@ public partial class QuickIODirectory
     /// <param name="overWriteExistingZip">true to overwrite existing zipfile</param>
     /// <param name="compressionLevel"><see cref="CompressionLevel"/></param>
     /// <param name="includeBaseDirectory">True to include basedirectory</param>
-    public static Task CompressAsync(String directoryFullPath, String zipFullPath, bool overWriteExistingZip = false, CompressionLevel compressionLevel = CompressionLevel.Fastest, bool includeBaseDirectory = false)
+    public static Task CompressAsync(string directoryFullPath, string zipFullPath, bool overWriteExistingZip = false, CompressionLevel compressionLevel = CompressionLevel.Fastest, bool includeBaseDirectory = false)
     {
         return NETCompatibility.AsyncExtensions.ExecuteAsync(() => Compress(directoryFullPath, zipFullPath, overWriteExistingZip, compressionLevel, includeBaseDirectory));
     }
@@ -30,7 +30,7 @@ public partial class QuickIODirectory
     /// <param name="overWriteExistingZip">true to overwrite existing zipfile</param>
     /// <param name="compressionLevel"><see cref="CompressionLevel"/></param>
     /// <param name="includeBaseDirectory">True to include basedirectory</param>
-    public static Task CompressAsync(QuickIODirectoryInfo directory, String zipFullPath, bool overWriteExistingZip = false, CompressionLevel compressionLevel = CompressionLevel.Fastest, bool includeBaseDirectory = false)
+    public static Task CompressAsync(QuickIODirectoryInfo directory, string zipFullPath, bool overWriteExistingZip = false, CompressionLevel compressionLevel = CompressionLevel.Fastest, bool includeBaseDirectory = false)
     {
         return NETCompatibility.AsyncExtensions.ExecuteAsync(() => Compress(directory, zipFullPath, overWriteExistingZip, compressionLevel, includeBaseDirectory));
     }

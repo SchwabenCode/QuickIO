@@ -11,7 +11,7 @@ public static partial class QuickIODirectory
     public static QuickIODirectoryMetadata? GetMetadata(string directoryPath,
         QuickIOEnumerateOptions enumerateOptions = QuickIOEnumerateOptions.None)
     {
-        Invariant.NotEmpty(directoryPath);
+        ArgumentNullException.ThrowIfNullOrEmpty(directoryPath);
         return InternalQuickIO.EnumerateDirectoryMetadata(new QuickIOPathInfo(directoryPath), enumerateOptions);
     }
 

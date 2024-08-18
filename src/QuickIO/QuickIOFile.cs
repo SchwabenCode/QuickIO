@@ -89,8 +89,8 @@ public static partial class QuickIOFile
     /// <exception cref="FileSystemIsBusyException">Filesystem is busy</exception>
     public static void Copy(string uncSourceFullName, string uncTargetFullName, bool overwrite = false, bool createRecursive = true)
     {
-        Invariant.NotEmpty(uncSourceFullName);
-        Invariant.NotEmpty(uncTargetFullName);
+        ArgumentNullException.ThrowIfNullOrEmpty(uncSourceFullName);
+        ArgumentNullException.ThrowIfNullOrEmpty(uncTargetFullName);
 
         if (createRecursive)
         {
