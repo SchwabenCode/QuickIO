@@ -1,5 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk"> 
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup Label="Package">
         <PackageId>QuickIO.NET</PackageId>
@@ -8,185 +7,184 @@
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     </PropertyGroup>
 
+    <ItemGroup Label="NuGet">
+        <PackageReference Include="T4.Build" PrivateAssets="All" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Update="CodeTemplates\SaveOutput.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SaveOutput.cs</LastGenOutput>
-    </None>
-    <None Update="CodeTemplates\StaticAttributeMethods.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StaticAttributeMethods.cs</LastGenOutput>
-    </None>
-    <None Update="CodeTemplates\StaticAttributeMethods_Async.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StaticAttributeMethods_Async.cs</LastGenOutput>
-    </None>
-    <None Update="CodeTemplates\StaticFileTimeMethods.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StaticFileTimeMethods.cs</LastGenOutput>
-    </None>
-    <None Update="CodeTemplates\StaticFileTimeMethods_Async.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StaticFileTimeMethods_Async.cs</LastGenOutput>
-    </None>
-    <None Update="CodeTemplates\StaticRootMethods.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StaticRootMethods.cs</LastGenOutput>
-    </None>
-    <None Update="CodeTemplates\StaticRootMethods_Async.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StaticRootMethods_Async.cs</LastGenOutput>
-    </None>
-    <None Update="QuickIODirectory_Attributes.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIODirectory_Attributes.cs</LastGenOutput>
-    </None>
-    <None Update="QuickIODirectory_Attributes_Async.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIODirectory_Attributes_Async.cs</LastGenOutput>
-    </None>
-    <None Update="QuickIODirectory_FileTime.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIODirectory_FileTime.cs</LastGenOutput>
-    </None>
-    <None Update="QuickIODirectory_FileTime_Async.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIODirectory_FileTime_Async.cs</LastGenOutput>
-    </None>
-    <None Update="QuickIODirectory_Root.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIODirectory_Root.cs</LastGenOutput>
-    </None>
-    <None Update="QuickIODirectory_Root_Async.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIODirectory_Root_Async.cs</LastGenOutput>
-    </None>
-    <None Update="QuickIOFile_Attributes.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIOFile_Attributes.cs</LastGenOutput>
-    </None>
-    <None Update="QuickIOFile_Attributes_Async.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIOFile_Attributes_Async.cs</LastGenOutput>
-    </None>
-    <None Update="QuickIOFile_FileTime.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIOFile_FileTime.cs</LastGenOutput>
-    </None>
-    <None Update="QuickIOFile_FileTime_Async.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIOFile_FileTime_Async.cs</LastGenOutput>
-    </None>
-    <None Update="QuickIOFile_Root.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIOFile_Root.cs</LastGenOutput>
-    </None>
-    <None Update="QuickIOFile_Root_Async.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuickIOFile_Root_Async.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
+    <ItemGroup>
+        <None Update="CodeTemplates\SaveOutput.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>SaveOutput.cs</LastGenOutput>
+        </None>
+        <None Update="CodeTemplates\StaticAttributeMethods.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>StaticAttributeMethods.cs</LastGenOutput>
+        </None>
+        <None Update="CodeTemplates\StaticAttributeMethods_Async.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>StaticAttributeMethods_Async.cs</LastGenOutput>
+        </None>
+        <None Update="CodeTemplates\StaticFileTimeMethods.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>StaticFileTimeMethods.cs</LastGenOutput>
+        </None>
+        <None Update="CodeTemplates\StaticFileTimeMethods_Async.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>StaticFileTimeMethods_Async.cs</LastGenOutput>
+        </None>
+        <None Update="CodeTemplates\StaticRootMethods.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>StaticRootMethods.cs</LastGenOutput>
+        </None>
+        <None Update="CodeTemplates\StaticRootMethods_Async.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>StaticRootMethods_Async.cs</LastGenOutput>
+        </None>
+        <None Update="QuickIODirectory_Attributes.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>QuickIODirectory_Attributes.cs</LastGenOutput>
+        </None>
+        <None Update="QuickIODirectory_Attributes_Async.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>QuickIODirectory_Attributes_Async.cs</LastGenOutput>
+        </None>
+        <None Update="QuickIODirectory_FileTime.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>QuickIODirectory_FileTime.cs</LastGenOutput>
+        </None>
+        <None Update="QuickIODirectory_FileTime_Async.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>QuickIODirectory_FileTime_Async.cs</LastGenOutput>
+        </None>
+        <None Update="QuickIODirectory_Root.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>QuickIODirectory_Root.cs</LastGenOutput>
+        </None>
+        <None Update="QuickIODirectory_Root_Async.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>QuickIODirectory_Root_Async.cs</LastGenOutput>
+        </None>
+        <None Update="QuickIOFile_Attributes.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>QuickIOFile_Attributes.cs</LastGenOutput>
+        </None>
+        <None Update="QuickIOFile_Attributes_Async.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>QuickIOFile_Attributes_Async.cs</LastGenOutput>
+        </None>
+        <None Update="QuickIOFile_FileTime.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>QuickIOFile_FileTime.cs</LastGenOutput>
+        </None>
+        <None Update="QuickIOFile_FileTime_Async.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>QuickIOFile_FileTime_Async.cs</LastGenOutput>
+        </None>
+        <None Update="QuickIOFile_Root.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>QuickIOFile_Root.cs</LastGenOutput>
+        </None>
+        <None Update="QuickIOFile_Root_Async.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>QuickIOFile_Root_Async.cs</LastGenOutput>
+        </None>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="CodeTemplates\SaveOutput.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>SaveOutput.tt</DependentUpon>
-    </Compile>
-    <Compile Update="CodeTemplates\StaticAttributeMethods.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>StaticAttributeMethods.tt</DependentUpon>
-    </Compile>
-    <Compile Update="CodeTemplates\StaticAttributeMethods_Async.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>StaticAttributeMethods_Async.tt</DependentUpon>
-    </Compile>
-    <Compile Update="CodeTemplates\StaticFileTimeMethods.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>StaticFileTimeMethods.tt</DependentUpon>
-    </Compile>
-    <Compile Update="CodeTemplates\StaticFileTimeMethods_Async.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>StaticFileTimeMethods_Async.tt</DependentUpon>
-    </Compile>
-    <Compile Update="CodeTemplates\StaticRootMethods.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>StaticRootMethods.tt</DependentUpon>
-    </Compile>
-    <Compile Update="CodeTemplates\StaticRootMethods_Async.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>StaticRootMethods_Async.tt</DependentUpon>
-    </Compile>
-    <Compile Update="QuickIODirectory_Attributes.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>QuickIODirectory_Attributes.tt</DependentUpon>
-    </Compile>
-    <Compile Update="QuickIODirectory_Attributes_Async.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>QuickIODirectory_Attributes_Async.tt</DependentUpon>
-    </Compile>
-    <Compile Update="QuickIODirectory_FileTime.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>QuickIODirectory_FileTime.tt</DependentUpon>
-    </Compile>
-    <Compile Update="QuickIODirectory_FileTime_Async.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>QuickIODirectory_FileTime_Async.tt</DependentUpon>
-    </Compile>
-    <Compile Update="QuickIODirectory_Root.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>QuickIODirectory_Root.tt</DependentUpon>
-    </Compile>
-    <Compile Update="QuickIODirectory_Root_Async.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>QuickIODirectory_Root_Async.tt</DependentUpon>
-    </Compile>
-    <Compile Update="QuickIOFile_Attributes.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>QuickIOFile_Attributes.tt</DependentUpon>
-    </Compile>
-    <Compile Update="QuickIOFile_Attributes_Async.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>QuickIOFile_Attributes_Async.tt</DependentUpon>
-    </Compile>
-    <Compile Update="QuickIOFile_FileTime.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>QuickIOFile_FileTime.tt</DependentUpon>
-    </Compile>
-    <Compile Update="QuickIOFile_FileTime_Async.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>QuickIOFile_FileTime_Async.tt</DependentUpon>
-    </Compile>
-    <Compile Update="QuickIOFile_Root.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>QuickIOFile_Root.tt</DependentUpon>
-    </Compile>
-    <Compile Update="QuickIOFile_Root_Async.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>QuickIOFile_Root_Async.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-  </ItemGroup>
+    <ItemGroup>
+        <Compile Update="CodeTemplates\SaveOutput.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>SaveOutput.tt</DependentUpon>
+        </Compile>
+        <Compile Update="CodeTemplates\StaticAttributeMethods.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>StaticAttributeMethods.tt</DependentUpon>
+        </Compile>
+        <Compile Update="CodeTemplates\StaticAttributeMethods_Async.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>StaticAttributeMethods_Async.tt</DependentUpon>
+        </Compile>
+        <Compile Update="CodeTemplates\StaticFileTimeMethods.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>StaticFileTimeMethods.tt</DependentUpon>
+        </Compile>
+        <Compile Update="CodeTemplates\StaticFileTimeMethods_Async.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>StaticFileTimeMethods_Async.tt</DependentUpon>
+        </Compile>
+        <Compile Update="CodeTemplates\StaticRootMethods.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>StaticRootMethods.tt</DependentUpon>
+        </Compile>
+        <Compile Update="CodeTemplates\StaticRootMethods_Async.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>StaticRootMethods_Async.tt</DependentUpon>
+        </Compile>
+        <Compile Update="QuickIODirectory_Attributes.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>QuickIODirectory_Attributes.tt</DependentUpon>
+        </Compile>
+        <Compile Update="QuickIODirectory_Attributes_Async.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>QuickIODirectory_Attributes_Async.tt</DependentUpon>
+        </Compile>
+        <Compile Update="QuickIODirectory_FileTime.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>QuickIODirectory_FileTime.tt</DependentUpon>
+        </Compile>
+        <Compile Update="QuickIODirectory_FileTime_Async.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>QuickIODirectory_FileTime_Async.tt</DependentUpon>
+        </Compile>
+        <Compile Update="QuickIODirectory_Root.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>QuickIODirectory_Root.tt</DependentUpon>
+        </Compile>
+        <Compile Update="QuickIODirectory_Root_Async.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>QuickIODirectory_Root_Async.tt</DependentUpon>
+        </Compile>
+        <Compile Update="QuickIOFile_Attributes.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>QuickIOFile_Attributes.tt</DependentUpon>
+        </Compile>
+        <Compile Update="QuickIOFile_Attributes_Async.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>QuickIOFile_Attributes_Async.tt</DependentUpon>
+        </Compile>
+        <Compile Update="QuickIOFile_FileTime.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>QuickIOFile_FileTime.tt</DependentUpon>
+        </Compile>
+        <Compile Update="QuickIOFile_FileTime_Async.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>QuickIOFile_FileTime_Async.tt</DependentUpon>
+        </Compile>
+        <Compile Update="QuickIOFile_Root.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>QuickIOFile_Root.tt</DependentUpon>
+        </Compile>
+        <Compile Update="QuickIOFile_Root_Async.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>QuickIOFile_Root_Async.tt</DependentUpon>
+        </Compile>
+    </ItemGroup>
 </Project>
