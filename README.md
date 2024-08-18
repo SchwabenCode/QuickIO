@@ -16,7 +16,6 @@ Starting in July 2024, the migration to a new codebase has begun. Version 3 will
 
 
 [![QuickIO.NET](https://img.shields.io/nuget/v/QuickIO.NET.svg?logo=nuget&label=QuickIO.NET%20NuGet)](https://www.nuget.org/packages/QuickIO.NET)
-https://img.shields.io/github/actions/workflow/status/SchwabenCode/QuickIO/ci.yml
 
 
 ```shell
