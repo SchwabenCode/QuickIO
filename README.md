@@ -5,10 +5,6 @@
 
 QuickIO is a library that extends and accelerates .NET methods for file operations by not using the .NET abstraction for file operations, but by communicating directly with the Win32 API and avoiding unnecessary early overhead.
 
-## Roadmap
-
-QuickIO was not developed further for many years, partly due to time constraints and partly in the hope that file operations in .NET would become more efficient. Many workarounds from the .NET Framework 4.0 era are currently included, e.g. asynchronous operations.
-Starting in July 2024, the migration to a new codebase has begun. Version 3 will be a transition phase that will only support Windows. Version 4 will then be a cross-platform solution.
 
 ## Installation
 
@@ -33,7 +29,8 @@ dotnet add package QuickIO.NET --version yourVersion
 
 See [QuickIO.NET on NuGet.org](https://www.nuget.org/packages/QuickIO.NET)
 
-# Main features
+## Main features
+
 * **Much** faster browsing of folder structures (up to 30x faster)
 * Lightning-fast retrieve of **metadata** of folders, files, and directory structures
 * File chunk support for reading, comparisons and hashing.
@@ -43,6 +40,11 @@ See [QuickIO.NET on NuGet.org](https://www.nuget.org/packages/QuickIO.NET)
 * Calculate **checksums of files and file chunks**
 * Fully tested source code using UnitTests
 * Nearly identical signature of methods. So a simple replacement is possible
+
+## Roadmap
+
+QuickIO was not developed further for many years, partly due to time constraints and partly in the hope that file operations in .NET would become more efficient. Many workarounds from the .NET Framework 4.0 era are currently included, e.g. asynchronous operations.
+Starting in July 2024, the migration to a new codebase has begun. Version 3 will be a transition phase that will only support Windows. Version 4 will then be a cross-platform solution.
 
 ## Give Thanks ![GitHub Sponsors](https://img.shields.io/github/sponsors/BenjaminAbt?label=Sponsors)
 
