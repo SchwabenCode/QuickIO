@@ -4,15 +4,25 @@ using System.Runtime.InteropServices;
 namespace SchwabenCode.QuickIO.Win32API;
 
 /// <summary>
-/// Use this Info bag if call with admin privilegs fails (fallback)
+/// Represents information about a shared resource in the Win32 API.
 /// </summary>
-/// <remarks>See http://msdn.microsoft.com/en-us/library/windows/desktop/bb525407(v=vs.85).aspx</remarks>
 [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
 internal struct Win32ApiShareInfoNormal
 {
-    [MarshalAs( UnmanagedType.LPWStr )]
+    /// <summary>
+    /// The name of the shared resource.
+    /// </summary>
+    [MarshalAs(UnmanagedType.LPWStr)]
     public string ShareName;
+
+    /// <summary>
+    /// The type of the shared resource.
+    /// </summary>
     public QuickIOShareType ShareType;
-    [MarshalAs( UnmanagedType.LPWStr )]
+
+    /// <summary>
+    /// A comment or description associated with the shared resource.
+    /// </summary>
+    [MarshalAs(UnmanagedType.LPWStr)]
     public string Remark;
 }

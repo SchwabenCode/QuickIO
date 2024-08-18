@@ -221,7 +221,7 @@ public class QuickIOTransferFileCopyJob : QuickIOTransferJobWriteJob
     /// <remarks>Will reduce the processing speed, because a single physical access is required for each setting.</remarks>
     public bool CopyTimestamps
     {
-        get { return _copyTimestamps; }
+        get => _copyTimestamps;
         set { _copyTimestamps = value; }
     }
 
@@ -232,7 +232,7 @@ public class QuickIOTransferFileCopyJob : QuickIOTransferJobWriteJob
     /// <remarks>Will reduce the processing speed, because a single physical access is required for each setting.</remarks>
     public bool CopyAttributes
     {
-        get { return _copyTimestamps; }
+        get => _copyTimestamps;
         set { _copyTimestamps = value; }
     }
 

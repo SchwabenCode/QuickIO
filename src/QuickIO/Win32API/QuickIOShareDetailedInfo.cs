@@ -1,64 +1,41 @@
 ﻿namespace SchwabenCode.QuickIO.Win32API;
 
 /// <summary>
-/// Container of detailed share information
+/// Represents detailed information about a shared resource in the QuickIO library.
 /// </summary>
-public class QuickIOShareDetailedInfo
+/// <param name="Name">The name of the shared resource.</param>
+/// <param name="Type">The type of the shared resource.</param>
+/// <param name="Remark">A comment or description associated with the shared resource.</param>
+/// <param name="Permissions">The permissions set for the shared resource. Can be null.</param>
+/// <param name="MaxUsers">The maximum number of users that can simultaneously access the shared resource. Can be null.</param>
+/// <param name="CurrentUsers">The current number of users accessing the shared resource. Can be null.</param>
+/// <param name="Path">The local path of the shared resource.</param>
+/// <param name="Password">The password required to access the shared resource, if any.</param>
+public record class QuickIOShareDetailedInfo(
+    string Name,
+    QuickIOShareType Type,
+    string Remark,
+    int? Permissions,
+    int? MaxUsers,
+    int? CurrentUsers,
+    string Path,
+    string Password)
 {
     /// <summary>
-    /// Transfers the struct information to the class
+    /// Initializes a new instance of the <see cref="QuickIOShareDetailedInfo"/> class 
+    /// using a <see cref="Win32ApiShareInfoAdmin"/> structure.
     /// </summary>
-    /// <param name="shareInfo">share information</param>
+    /// <param name="shareInfo">A <see cref="Win32ApiShareInfoAdmin"/> structure containing 
+    /// information about the shared resource.</param>
     internal QuickIOShareDetailedInfo(Win32ApiShareInfoAdmin shareInfo)
-    {
-        Name = shareInfo.ShareName;
-        Type = shareInfo.ShareType;
-        Remark = shareInfo.Remark;
-
-        Permissions = shareInfo.Permissions;
-        MaxUsers = shareInfo.MaxUsers;
-        CurrentUsers = shareInfo.CurrentUsers;
-        Path = shareInfo.Path;
-        Password = shareInfo.Password;
-    }
-
-    /// <summary>
-    /// Name of Share
-    /// </summary>
-    public string Name { get; private set; }
-
-    /// <summary>
-    /// Share Type
-    /// </summary>
-    public QuickIOShareType Type { get; private set; }
-
-    /// <summary>
-    /// Remark / Comment
-    /// </summary>
-    public string Remark { get; private set; }
-
-    /// <summary>
-    /// Permissions. Is null, if admin privileges are not granted.
-    /// </summary>
-    public int? Permissions { get; private set; }
-
-    /// <summary>
-    /// MaxUsers of the parallel connected users. Is null, if admin privileges are not granted.
-    /// </summary>
-    public int? MaxUsers { get; private set; }
-
-    /// <summary>
-    /// CurrentUsers connected to the share. Is null, if admin privileges are not granted.
-    /// </summary>
-    public int? CurrentUsers { get; private set; }
-
-    /// <summary>
-    /// Permissions. Is null, if admin privileges are not granted.
-    /// </summary>
-    public string Path { get; private set; }
-
-    /// <summary>
-    /// Password. Is null, if admin privileges are not granted.
-    /// </summary>
-    public string Password { get; private set; }
+        : this(
+              shareInfo.ShareName,
+              shareInfo.ShareType,
+              shareInfo.Remark,
+              shareInfo.Permissions,
+              shareInfo.MaxUsers,
+              shareInfo.CurrentUsers,
+              shareInfo.Path,
+              shareInfo.Password)
+    { }
 }

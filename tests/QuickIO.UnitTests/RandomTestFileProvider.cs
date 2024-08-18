@@ -24,7 +24,7 @@ public class RandomTestFileProvider : IDisposable
 
     public RandomTestFileProvider()
     {
-        Files = new List<string>();
+        Files = [];
     }
 
     public void Dispose()

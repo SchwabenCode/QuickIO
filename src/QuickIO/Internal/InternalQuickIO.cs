@@ -14,7 +14,7 @@ namespace SchwabenCode.QuickIO.Internal;
 /// This class contains methods for interacting with the Windows file system API and managing file and directory attributes.
 /// It is not intended to be used directly by external code, and its members are only accessible within the assembly.
 /// </remarks>
-internal static class InternalQuickIO
+internal static partial class InternalQuickIO
 {
     /// <summary>
     /// Creates a new file or opens an existing file specified by the <see cref="QuickIOPathInfo"/> object with the specified access, sharing, mode, and attributes.
@@ -137,11 +137,7 @@ internal static class InternalQuickIO
     /// </example>
     public static void DeleteFile(QuickIOPathInfo pathInfo)
     {
-        if (pathInfo is null)
-        {
-            throw new ArgumentNullException(nameof(pathInfo));
-        }
-
+        ArgumentNullException.ThrowIfNull(pathInfo);
         DeleteFile(pathInfo.FullNameUnc);
     }
 
@@ -170,7 +166,7 @@ internal static class InternalQuickIO
     /// </example>
     public static void DeleteFile(QuickIOFileInfo fileInfo)
     {
-
+        ArgumentNullException.ThrowIfNull(fileInfo);
         DeleteFile(fileInfo.PathInfo);
     }
 
@@ -199,6 +195,8 @@ internal static class InternalQuickIO
     /// </example>
     public static bool RemoveAttribute(QuickIOPathInfo pathInfo, FileAttributes attribute)
     {
+        ArgumentNullException.ThrowIfNull(pathInfo);
+
         if ((pathInfo.Attributes & attribute) == attribute)
         {
             FileAttributes attributes = pathInfo.Attributes;
@@ -456,7 +454,7 @@ internal static class InternalQuickIO
                 InternalQuickIOCommon.NativeExceptionMapping(pathInfo.FullName, win32Error);
             }
 
-            if (!InternalRawDataHelpers.IsSystemDirectoryEntry(win32FindData))
+            if (!Win32Data.IsSystemDirectoryEntry(win32FindData))
             {
                 pathFindData = win32FindData;
                 return true;
@@ -576,7 +574,7 @@ internal static class InternalQuickIO
             }
 
             // Ignore . and .. directories
-            if (!InternalRawDataHelpers.IsSystemDirectoryEntry(win32FindData))
+            if (!Win32Data.IsSystemDirectoryEntry(win32FindData))
             {
                 return win32FindData;
             }
@@ -639,20 +637,20 @@ internal static class InternalQuickIO
                 InternalQuickIOCommon.NativeExceptionMapping(fullUncPath, win32Error);
             }
 
-            if (!InternalRawDataHelpers.IsSystemDirectoryEntry(win32FindData))
+            if (!Win32Data.IsSystemDirectoryEntry(win32FindData))
             {
                 switch (estimatedFileSystemEntryType)
                 {
                     case null:
                         return win32FindData;
                     case QuickIOFileSystemEntryType.Directory:
-                        if (InternalHelpers.ContainsFileAttribute(win32FindData.dwFileAttributes, FileAttributes.Directory))
+                        if (InternalQuickIO.ContainsFileAttribute(win32FindData.dwFileAttributes, FileAttributes.Directory))
                         {
                             return win32FindData;
                         }
                         throw new UnmatchedFileSystemEntryTypeException(QuickIOFileSystemEntryType.Directory, QuickIOFileSystemEntryType.File, fullUncPath);
                     case QuickIOFileSystemEntryType.File:
-                        if (!InternalHelpers.ContainsFileAttribute(win32FindData.dwFileAttributes, FileAttributes.Directory))
+                        if (!InternalQuickIO.ContainsFileAttribute(win32FindData.dwFileAttributes, FileAttributes.Directory))
                         {
                             return win32FindData;
                         }
@@ -848,8 +846,8 @@ internal static class InternalQuickIO
         QuickIOEnumerateOptions enumerateOptions)
     {
         // Results
-        List<QuickIOFileMetadata> subFiles = new();
-        List<QuickIODirectoryMetadata> subDirs = new();
+        List<QuickIOFileMetadata> subFiles = [];
+        List<QuickIODirectoryMetadata> subDirs = [];
 
         string currentPath = QuickIOPath.Combine(uncDirectoryPath, QuickIOPatternConstants.All);
 
@@ -871,7 +869,7 @@ internal static class InternalQuickIO
 
             do
             {
-                if (InternalRawDataHelpers.IsSystemDirectoryEntry(win32FindData))
+                if (Win32Data.IsSystemDirectoryEntry(win32FindData))
                 {
                     continue;
                 }
@@ -947,7 +945,7 @@ internal static class InternalQuickIO
 
         do
         {
-            if (InternalRawDataHelpers.IsSystemDirectoryEntry(win32FindData))
+            if (Win32Data.IsSystemDirectoryEntry(win32FindData))
             {
                 continue;
             }
@@ -1049,7 +1047,7 @@ internal static class InternalQuickIO
 
         do
         {
-            if (InternalRawDataHelpers.IsSystemDirectoryEntry(win32FindData))
+            if (Win32Data.IsSystemDirectoryEntry(win32FindData))
             {
                 continue;
             }
@@ -1169,7 +1167,7 @@ internal static class InternalQuickIO
 
         do
         {
-            if (InternalRawDataHelpers.IsSystemDirectoryEntry(win32FindData))
+            if (Win32Data.IsSystemDirectoryEntry(win32FindData))
             {
                 continue;
             }
@@ -1344,7 +1342,7 @@ internal static class InternalQuickIO
 
         do
         {
-            if (InternalRawDataHelpers.IsSystemDirectoryEntry(win32FindData))
+            if (Win32Data.IsSystemDirectoryEntry(win32FindData))
             {
                 continue;
             }
@@ -1508,7 +1506,7 @@ internal static class InternalQuickIO
 
             do
             {
-                if (InternalRawDataHelpers.IsSystemDirectoryEntry(win32FindData))
+                if (Win32Data.IsSystemDirectoryEntry(win32FindData))
                 {
                     continue;
                 }
@@ -1884,7 +1882,7 @@ internal static class InternalQuickIO
 
             do
             {
-                if (InternalRawDataHelpers.IsSystemDirectoryEntry(win32FindData))
+                if (Win32Data.IsSystemDirectoryEntry(win32FindData))
                 {
                     continue;
                 }

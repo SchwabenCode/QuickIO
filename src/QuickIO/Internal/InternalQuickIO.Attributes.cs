@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides internal helper methods for managing and manipulating <see cref="FileAttributes"/> in file operations.
 /// </summary>
-internal static class InternalHelpers
+internal static partial class InternalQuickIO
 {
     /// <summary>
     /// Adds or removes a specified <see cref="FileAttributes"/> from the source based on the existence flag.

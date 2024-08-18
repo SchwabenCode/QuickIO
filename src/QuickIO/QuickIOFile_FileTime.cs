@@ -10,6 +10,7 @@
 
 using System;
 using SchwabenCode.QuickIO.Internal;
+using SchwabenCode.QuickIO.Win32API;
 
 namespace SchwabenCode.QuickIO;
 
