@@ -1,4 +1,6 @@
-# QuickIO.NET
+# QuickIO.NET ![GitHub Sponsors](https://img.shields.io/github/sponsors/BenjaminAbt?label=Sponsor%20QuckIO.NET)
+
+
 **by [Benjamin Abt](http://www.benjamin-abt.com) - [SchwabenCode.com](http://www.schwabencode.com)**
 
 QuickIO is a library that extends and accelerates .NET methods for file operations by not using the .NET abstraction for file operations, but by communicating directly with the Win32 API and avoiding unnecessary early overhead.
@@ -7,6 +9,30 @@ QuickIO is a library that extends and accelerates .NET methods for file operatio
 
 QuickIO was not developed further for many years, partly due to time constraints and partly in the hope that file operations in .NET would become more efficient. Many workarounds from the .NET Framework 4.0 era are currently included, e.g. asynchronous operations.
 Starting in July 2024, the migration to a new codebase has begun. Version 3 will be a transition phase that will only support Windows. Version 4 will then be a cross-platform solution.
+
+## Installation
+
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/SchwabenCode/QuickIO/ci.yml?branch=main&label=GitHub%20Action)
+
+
+[![QuickIO.NET](https://img.shields.io/nuget/v/QuickIO.NET.svg?logo=nuget&label=QuickIO.NET%20NuGet)](https://www.nuget.org/packages/QuickIO.NET)
+https://img.shields.io/github/actions/workflow/status/SchwabenCode/QuickIO/ci.yml
+
+
+```shell
+# CLI
+dotnet add package QuickIO.NET --version yourVersion
+
+# Package Reference
+<PackageReference Include="QuickIO.NET" Version="yourVersion" />
+
+# Directory.Packages.props
+<PackageVersion Include="QuickIO.NET" Version="yourVersion" />
+
+# replace yourVersion with the specific verison
+```
+
+See [QuickIO.NET on NuGet.org](https://www.nuget.org/packages/QuickIO.NET)
 
 # Main features
 * **Much** faster browsing of folder structures (up to 30x faster)
@@ -19,13 +45,15 @@ Starting in July 2024, the migration to a new codebase has begun. Version 3 will
 * Fully tested source code using UnitTests
 * Nearly identical signature of methods. So a simple replacement is possible
 
-## Give Thanks
-It took many hours to create this library in its published form.  
+## Give Thanks ![GitHub Sponsors](https://img.shields.io/github/sponsors/BenjaminAbt?label=Sponsors)
+
+It took many hours to create this library.  
 If you like the library and saved you much time, then maybe respect this with a small donation to the [animal shelter of Stuttgart](http://www.tierheim-stuttgart.de/).
 
 It would be also very nice when you just write me, if you like this implementation and tell me what you've started!
 
-## License
+## License ![GitHub License](https://img.shields.io/github/license/SchwabenCode/QuickIO)
+
 
 >    MIT License
 >    Copyright (c) 2013-2024 Benjamin Abt
@@ -40,7 +68,7 @@ It would be also very nice when you just write me, if you like this implementati
 This library was created on the basis of my own needs. I am not responsible for integration issues, errors or any damage.
 On usage problems, please use public forums. For bugs and features please fork to your own branch, fix it and create a pull request or use the [issue tab](https://github.com/SchwabenCode/QuickIO/issues).
 
-Thank you and good luck with your software.
+Thank you and all the best for your software.
 
 ## History
 
