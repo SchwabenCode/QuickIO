@@ -13,8 +13,8 @@ env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
 
 jobs:
-    build:
-      runs-on: ubuntu-latest
+    build-win:
+      runs-on: windows-latest
       steps:
       
       - name: Cancel previous builds in PR
