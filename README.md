@@ -8,7 +8,7 @@ QuickIO is a library that extends and accelerates .NET methods for file operatio
 
 ## Installation
 
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/SchwabenCode/QuickIO/ci.yml?branch=main&label=GitHub%20Action)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/SchwabenCode/QuickIO/main.yml?branch=main&label=GitHub%20Action)
 
 
 [![QuickIO.NET](https://img.shields.io/nuget/v/QuickIO.NET.svg?logo=nuget&label=QuickIO.NET%20NuGet)](https://www.nuget.org/packages/QuickIO.NET)
