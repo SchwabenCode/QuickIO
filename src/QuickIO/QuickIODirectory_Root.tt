@@ -1,6 +1,6 @@
 ﻿<#@ template language="C#" hostspecific="true" #>
-<#@ include file=".\CodeTemplates\SaveOutput.tt" #>
-<#@ include file=".\CodeTemplates\StaticRootMethods.tt" #>
+<#@ include file="CodeTemplates/SaveOutput.tt" #>
+<#@ include file="CodeTemplates/StaticRootMethods.tt" #>
 <#@ output  extension=".cs" #>
 <#
     Generate("QuickIODirectory");
