@@ -46,8 +46,8 @@ jobs:
       - name: Test with dotnet
         run: dotnet test
 
-      - name: Pack NuGet
-        run: dotnet pack
-              --configuration ${{ env.BuildConfig }}
-              /p:ContinuousIntegrationBuild=true
-              /p:Version=${{ steps.nbgv.outputs.NuGetPackageVersion }}
+      # - name: Pack NuGet
+      #   run: dotnet pack
+      #         --configuration ${{ env.BuildConfig }}
+      #         /p:ContinuousIntegrationBuild=true
+      #         /p:Version=${{ steps.nbgv.outputs.NuGetPackageVersion }}
