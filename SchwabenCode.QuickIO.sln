@@ -28,7 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_", "_", "{B8A157F1-0014-41
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{8B8B57B5-3460-4C92-BD4F-6E65D7E34113}"
 	ProjectSection(SolutionItems) = preProject
-		.github\ci.yml = .github\ci.yml
+		.github\main.yml = .github\main.yml
 	EndProjectSection
 EndProject
 Global
