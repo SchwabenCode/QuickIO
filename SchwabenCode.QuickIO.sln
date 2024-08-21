@@ -26,6 +26,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_", "_", "{B8A157F1-0014-41
 		version.json = version.json
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{8B8B57B5-3460-4C92-BD4F-6E65D7E34113}"
+	ProjectSection(SolutionItems) = preProject
+		.github\ci.yml = .github\ci.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +57,7 @@ Global
 		{435893FD-03CF-460F-B7DC-A18FEC7526A7} = {F5111071-EFEB-49A9-B17F-388541B168CA}
 		{7E7A00FE-15A7-434E-8AEB-553DF26FF0A4} = {B206207E-EEC5-4F1B-BDF5-1D225EF10679}
 		{755CFD84-D67D-48FA-AF91-BB45ADFF6489} = {B206207E-EEC5-4F1B-BDF5-1D225EF10679}
+		{8B8B57B5-3460-4C92-BD4F-6E65D7E34113} = {B8A157F1-0014-4125-824F-D476951DC63A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6829A37E-1842-4B1C-94AE-BB5EC9DC0905}
