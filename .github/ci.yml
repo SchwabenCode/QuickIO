@@ -1,0 +1,53 @@
+name: NET
+
+on:
+    push:
+      branches:
+        - main
+    pull_request:
+      branches:
+        - main
+
+env:
+  BuildConfig: Release
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+
+jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+      
+      - name: Cancel previous builds in PR
+        uses: styfle/cancel-workflow-action@0.12.1
+          
+      - name: 'Checkout Code'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+
+      - name: 'Install .NET SDK'
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: ./global.json
+
+      - name: Versioning
+        uses: dotnet/nbgv@master
+        id: nbgv
+
+      - name: Version Info
+        run: |
+          echo 'SemVer2: ${{ steps.nbgv.outputs.SemVer2 }}'
+
+      - name: Build with dotnet
+        run: dotnet build
+              --configuration ${{ env.BuildConfig }}
+              /p:Version=${{ steps.nbgv.outputs.AssemblyVersion }}
+
+      - name: Test with dotnet
+        run: dotnet test
+
+      - name: Pack NuGet
+        run: dotnet pack
+              --configuration ${{ env.BuildConfig }}
+              /p:ContinuousIntegrationBuild=true
+              /p:Version=${{ steps.nbgv.outputs.NuGetPackageVersion }}

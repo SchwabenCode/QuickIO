@@ -1,0 +1,68 @@
+<Project>
+
+    <PropertyGroup Label="Head">
+        <Company>Benjamin Abt</Company>
+        <Authors>Benjamin Abt, SchwabenCode</Authors>
+        <Product>QuickIO.NET</Product>
+        <Copyright>Benjamin Abt</Copyright>
+        <Title>QuickIO.NET</Title>
+        <Description>
+            QuickIO.NET is an extension to provide faster file operations. To offer you a simple use and an easy integration QuickIO.NET methods lean against the ones provided by .NET.
+        </Description>
+        <DefaultLanguage>en-US</DefaultLanguage>
+        <NoPackageAnalysis>true</NoPackageAnalysis>
+        <DebugType>embedded</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Env">
+        <IsTestProject>$(MSBuildProjectName.Contains('Test'))</IsTestProject>
+        <IsBenchmarkProject>$(MsBuildProjectName.Contains('Benchmark'))</IsBenchmarkProject>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Assembly">
+        <GlobalNamespacePrefix>SchwabenCode</GlobalNamespacePrefix>
+        <GlobalAssemblyNamePrefix>SchwabenCode</GlobalAssemblyNamePrefix>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Project">
+        <TargetFrameworks>net7.0-windows;net8.0-windows</TargetFrameworks>
+        <RootNamespace>$(GlobalNamespacePrefix).$(MSBuildProjectName)</RootNamespace>
+        <AssemblyName>$(GlobalAssemblyNamePrefix).$(MSBuildProjectName)</AssemblyName>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Package">
+        <IsPackable>false</IsPackable>
+        <PackageProjectUrl>https://github.com/SchwabenCode/QuickIO</PackageProjectUrl>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <Description>QuickIO.NET is an extension to provide faster file operations. To offer you a simple use and an easy integration QuickIO.NET methods lean against the ones provided by .NET.</Description>
+        <MinClientVersion>2.12</MinClientVersion>
+        <PackageTags>QuickIO, Benjamin Abt, SchwabenCode</PackageTags>
+        <IsPackable>false</IsPackable>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    </PropertyGroup>
+
+    <PropertyGroup Label="C#">
+        <LangVersion>12.0</LangVersion>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <!--
+    TODO
+    <PropertyGroup Condition="'$(IsTestProject)' != 'true' AND '$(IsBenchmarkProject)' != 'true'">
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>-->
+
+    <PropertyGroup>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)SchwabenCode.QuickIO.snk</AssemblyOriginatorKeyFile>
+        <PublicKey>
+            0024000004800000940000000602000000240000525341310004000001000100e134c749a752a2
+            42309cd3d12a6407b0329aa45d0e3b647018c42ec1f0e7313bf4993e97234a4c70bc61421750e7
+            84519fec95759fdf35790d9e897abbbb0ca13e094bc2598cc99aad32c720fdbde1abf470be7bca
+            833ee99bcc316ecb6cc3f015bffeb1cf6fed735f439c5b13fa0ed4b1a8708f4a02a3fbeaff725a
+            fa075cd4
+        </PublicKey>
+    </PropertyGroup>
+</Project>
