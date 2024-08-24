@@ -12,7 +12,7 @@
         <None Include="LICENSE.txt" Pack="true" PackagePath="" />
     </ItemGroup>
 
-    <ItemGroup Label="NuGet"
+    <ItemGroup Label="NuGet">
         <PackageReference Include="T4.Build" PrivateAssets="All" />
     </ItemGroup>
 
