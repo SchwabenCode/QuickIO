@@ -5,8 +5,12 @@
         <IsPackable>true</IsPackable>
         <PackageReadmeFile>readme.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
+
+    <ItemGroup Label="Package Details">
+        <None Include="readme.md" Pack="true" PackagePath="" />
+        <None Include="LICENSE.txt" Pack="true" PackagePath="" />
+    </ItemGroup>
 
     <ItemGroup Label="NuGet">
         <PackageReference Include="T4.Build" PrivateAssets="All" />
@@ -187,5 +191,9 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>QuickIOFile_Root_Async.tt</DependentUpon>
         </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
     </ItemGroup>
 </Project>

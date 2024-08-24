@@ -1,6 +1,6 @@
 ﻿<#@ template language="C#" hostspecific="true" #>
-<#@ include file=".\CodeTemplates\SaveOutput.tt" #>
-<#@ include file=".\CodeTemplates\StaticAttributeMethods_Async.tt" #>
+<#@ include file="CodeTemplates/SaveOutput.tt" #>
+<#@ include file="CodeTemplates/StaticAttributeMethods_Async.tt" #>
 <#@ output  extension=".cs" #>
 <#
     Generate("QuickIOFile");

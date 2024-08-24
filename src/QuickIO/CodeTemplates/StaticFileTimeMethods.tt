@@ -18,6 +18,7 @@ var dateTimeReturnValueText = "A <see cref=\"DateTime\"/> structure.";
 
 using System;
 using SchwabenCode.QuickIO.Internal;
+using SchwabenCode.QuickIO.Win32API;
 
 namespace SchwabenCode.QuickIO;
 
