@@ -6,6 +6,11 @@
         <PackageReadmeFile>readme.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     </PropertyGroup>
+    
+    <ItemGroup>
+        <None Include="readme.md" Pack="true" PackagePath="" />
+        <None Include="LICENSE.txt" Pack="true" PackagePath="" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="T4.Build" PrivateAssets="All" />
