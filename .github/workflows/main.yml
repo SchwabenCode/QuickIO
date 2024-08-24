@@ -52,6 +52,13 @@ jobs:
               /p:ContinuousIntegrationBuild=true
               /p:Version=${{ steps.nbgv.outputs.NuGetPackageVersion }}
 
+      - name: Push to NuGet
+        run: dotnet nuget push **/*.nupkg
+                --api-key ${{ secrets.NUGET_DEPLOY_KEY }}
+                --source https://api.nuget.org/v3/index.json
+                --no-symbols
+                --skip-duplicate
+
       # - name: Update CHANGELOG
       #   id: changelog
       #   uses: requarks/changelog-action@v1
