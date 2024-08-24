@@ -6,13 +6,13 @@
         <PackageReadmeFile>readme.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     </PropertyGroup>
-    
-    <ItemGroup>
+
+    <ItemGroup Label="Package Details">
         <None Include="readme.md" Pack="true" PackagePath="" />
         <None Include="LICENSE.txt" Pack="true" PackagePath="" />
     </ItemGroup>
 
-    <ItemGroup>
+    <ItemGroup Label="NuGet"
         <PackageReference Include="T4.Build" PrivateAssets="All" />
     </ItemGroup>
 
