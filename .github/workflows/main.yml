@@ -50,4 +50,4 @@ jobs:
         run: dotnet pack
               --configuration ${{ env.BuildConfig }}
               /p:ContinuousIntegrationBuild=true
-              /p:V ersion=${{ steps.nbgv.outputs.NuGetPackageVersion }}
+              /p:Version=${{ steps.nbgv.outputs.NuGetPackageVersion }}
