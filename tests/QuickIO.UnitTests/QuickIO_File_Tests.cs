@@ -41,7 +41,7 @@ public class QuickIO_File_Tests
         Assert.Equal(test[1], result[1]);
 
         // Append
-        QuickIOFile.AppendAllLines(file, new List<string>() { test[2] });
+        QuickIOFile.AppendAllLines(file, [test[2]]);
         Assert.Equal(test[0], result[0]);
         Assert.Equal(test[1], result[1]);
         Assert.Equal(test[2], result[2]);

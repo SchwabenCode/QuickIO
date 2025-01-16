@@ -1,5 +1,4 @@
-﻿using FluentAssertions;
-using Xunit;
+﻿using Xunit;
 
 namespace SchwabenCode.QuickIO.UnitTests;
 
@@ -69,16 +68,16 @@ public class QuickIO_Directory_Tests
     [Fact]
     public void Directory_SetWriteTime_Test()
     {
-        string currentDirc = Path.GetFullPath( "TestFiles/DirTimeTest" );
-        QuickIODirectoryInfo dirInfo = new( currentDirc );
+        string currentDirc = Path.GetFullPath("TestFiles/DirTimeTest");
+        QuickIODirectoryInfo dirInfo = new(currentDirc);
 
-        DateTime newTime = DateTime.Now.AddDays( -1 );
+        DateTime newTime = DateTime.Now.AddDays(-1);
 
         QuickIODirectory.SetAllFileTimesUtc(dirInfo, newTime, newTime, newTime);
 
-        QuickIODirectory.GetLastWriteTime(dirInfo).Should().Be(newTime);
-        QuickIODirectory.GetLastAccessTime(dirInfo).Should().Be(newTime);
-        QuickIODirectory.GetCreationTime(dirInfo).Should().Be(newTime);
+        Assert.Equal(newTime, QuickIODirectory.GetLastWriteTime(dirInfo));
+        Assert.Equal(newTime, QuickIODirectory.GetLastAccessTime(dirInfo));
+        Assert.Equal(newTime, QuickIODirectory.GetCreationTime(dirInfo));
     }
 
     // TODO
