@@ -35,10 +35,10 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      - name: Setup .NET SDK 9.x
-        uses: actions/setup-dotnet@v3
+      - name: 'Install .NET Global.json SDK' # is always the latest
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.x'
+          global-json-file: ./global.json
 
       - name: Versioning
         uses: dotnet/nbgv@master
