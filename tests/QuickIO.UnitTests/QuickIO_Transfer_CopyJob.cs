@@ -1,17 +1,19 @@
-﻿using SchwabenCode.QuickIO.Transfer;
-using Xunit;
+﻿// this will be replace with a mock soon
 
-namespace SchwabenCode.QuickIO.UnitTests;
+//using SchwabenCode.QuickIO.Transfer;
+//using Xunit;
 
-public class QuickIO_Transfer_CopyJob
-{
-    [Fact]
-    public void TestCopyJob_1()
-    {
-        string testFile = Path.GetFullPath( @"TestFiles\Test.txt" );
-        string target = @"D:\testfile.txt";
+//namespace SchwabenCode.QuickIO.UnitTests;
 
-        QuickIOTransferFileCopyJob copyJob = new( testFile, target, 65535, overwrite: true );
-        copyJob.Run();
-    }
-}
+//public class QuickIO_Transfer_CopyJob
+//{
+//    [Fact]
+//    public void TestCopyJob_1()
+//    {
+//        string testFile = Path.GetFullPath( @"TestFiles\Test.txt" );
+//        string target = @"D:\testfile.txt";
+
+//        QuickIOTransferFileCopyJob copyJob = new( testFile, target, 65535, overwrite: true );
+//        copyJob.Run();
+//    }
+//}

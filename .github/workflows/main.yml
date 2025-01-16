@@ -25,7 +25,17 @@ jobs:
         with:
           fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
 
-      - name: 'Install .NET SDK'
+      - name: Setup .NET SDK 7.x
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '7.x'
+
+      - name: Setup .NET SDK 8.x
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+
+      - name: 'Install .NET Global.json SDK' # is always the latest
         uses: actions/setup-dotnet@v4
         with:
           global-json-file: ./global.json

@@ -25,7 +25,7 @@
     </PropertyGroup>
 
     <PropertyGroup Label="Project">
-        <TargetFrameworks>net7.0-windows;net8.0-windows</TargetFrameworks>
+        <TargetFrameworks>net7.0-windows;net8.0-windows;net9.0-windows</TargetFrameworks>
         <RootNamespace>$(GlobalNamespacePrefix).$(MSBuildProjectName)</RootNamespace>
         <AssemblyName>$(GlobalAssemblyNamePrefix).$(MSBuildProjectName)</AssemblyName>
     </PropertyGroup>

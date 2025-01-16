@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using FluentAssertions;
 using Xunit;
 
 namespace SchwabenCode.QuickIO.UnitTests;
@@ -96,7 +95,7 @@ public class QuickIO_Directory_Enumerations_Tests
     {
         string testfile = Path.Combine( Path.GetFullPath( "TestFiles/" ), "AttrFail_" + Path.GetRandomFileName( ) );
 
-        Action act = () => QuickIODirectory.GetAttributes(testfile).HasFlag(FileAttributes.Hidden);
-        act.Should().Throw<PathNotFoundException>();
+        Assert.Throws<PathNotFoundException>(() => QuickIODirectory.GetAttributes(testfile).HasFlag(FileAttributes.Hidden));
     }
 }
+
